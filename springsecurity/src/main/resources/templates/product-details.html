@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--Start ./ head-->
+<div th:replace="/component/header :: head"></div>
+<!--End ./ head-->
+
+
+<body>
+    <!-- Search Wrapper Area Start -->
+    <div th:replace="/component/header :: search"></div>
+    <!-- Search Wrapper Area End -->
+
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div th:replace="/component/header :: logo"></div>
+        <!-- Header Area Start -->
+        <div th:replace="/component/header :: header"></div>
+        <!-- Header Area End -->
+
+        <!-- Product Details Area Start -->
+        <div class="single-product-area section-padding-100 clearfix">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mt-50">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Furniture</a></li>
+                                <li class="breadcrumb-item"><a href="#">Chairs</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">white modern chair</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div id="single-product-detail" class="row">
+                    <div class="col-12 col-lg-7">
+                        <div class="single_product_thumb">
+                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" id="imageOneStyle" style="background-image: url(img/product-img/pro-big-1.jpg);">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="1" id="imageTwoStyle" style="background-image: url(img/product-img/pro-big-2.jpg);">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="2" id="imageThreeStyle" style="background-image: url(img/product-img/pro-big-3.jpg);">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="3" id="imageFourStyle" style="background-image: url(img/product-img/pro-big-4.jpg);">
+                                    </li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a class="gallery_img" id="imageOneHref" href="img/product-img/pro-big-1.jpg">
+                                            <img class="d-block w-100" id="imageOneSrc" src="img/product-img/pro-big-1.jpg" alt="First slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" id="imageTwoHref" href="img/product-img/pro-big-2.jpg">
+                                            <img class="d-block w-100" id="imageTwoSrc" src="img/product-img/pro-big-2.jpg" alt="Second slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" id="imageThreeHref" href="img/product-img/pro-big-3.jpg">
+                                            <img class="d-block w-100" id="imageThreeSrc" src="img/product-img/pro-big-3.jpg" alt="Third slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" id="imageFourHref" href="img/product-img/pro-big-4.jpg">
+                                            <img class="d-block w-100" id="imageFourSrc" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <div class="single_product_desc">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p id="price-product" class="product-price">$180</p>
+                                <a th:href="@{/product-details/}">
+                                    <h6 id="name-product">White Modern Chair</h6>
+                                </a>
+                                <!-- Ratings & Review -->
+                                <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+                                    <div class="ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="review">
+                                        <a href="#">Write A Review</a>
+                                    </div>
+                                </div>
+                                <!-- Avaiable -->
+                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                            </div>
+
+                            <div class="short_overview my-5">
+                                <p id="description-product">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?</p>
+                            </div>
+
+                            <!-- Add to Cart Form -->
+                            <form class="cart clearfix" method="post">
+                                <button type="button" id="addtocart" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Details Area End -->
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+
+    <!-- ##### Newsletter Area Start ##### -->
+    <div th:replace="/component/footer :: section"></div>
+    <!-- ##### Newsletter Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <div th:replace="/component/footer :: footer"></div>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### Script Area Start ##### -->
+    <!-- Function js -->
+    <script th:src="@{/js/detailsJs.js}"></script>
+    <!-- ##### Script Area End ##### -->
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+a {
+    cursor: pointer;
+}
+
+.shop_sidebar_area,
+.amado_product_area.section-padding-100,
+.products-catagories-area.clearfix,
+.cart-table-area.section-padding-100,
+.single-product-area.section-padding-100.clearfix{
+    z-index: -1 !important;
+}
+
+td.remove-item {
+    position: absolute;
+    right: 5px;
+    top: -10px;
+    width: 10px !important;
+    display: inline-block;
+    height: 10px;
+    color: red;
+    cursor: pointer;
+    border: none;
+}
+a.cart-nav.cart,
+div.login-nav.login{
+    position: relative;
+}
+div.login-nav.login {
+    display: block;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 15px 0;
+    color: #131212;
+    line-height: 1;
+	cursor: pointer;
+}
+div.login-nav.login>img {
+    margin-right: 10px;
+}
+div.login-nav.login>span {
+    color: #131212 !important;
+    -webkit-transition: all 500ms ease 0s;
+    transition: all 500ms ease 0s;
+    text-decoration: none;
+    outline: 0 solid transparent;
+    font-weight: 400;
+}
+div.login-nav.login>div.box-up>div>ul>li>a:hover,
+div.login-nav.login>span.name:hover {
+    color: #fbb710 !important;;
+}
+
+
+div.box-up {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    position: absolute;
+    left: 170px;
+    top: 0px;
+    z-index: 100;
+}
+
+a.cart-nav.cart:hover div.box-up,
+div.login-nav.login:hover div.box-up{
+    display: block !important;
+}
+
+div.login-nav.login>div.box-up>div>ul>li {
+    width: 180px;
+    color: #131212;
+    padding: 2px 10px;
+}
+div.login-nav.login>div.box-up>div>ul>li>a {
+    font-size: 16px;
+    text-transform: capitalize;
+}
