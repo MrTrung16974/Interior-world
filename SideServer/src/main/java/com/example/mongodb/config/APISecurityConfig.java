@@ -18,9 +18,10 @@ public class    APISecurityConfig extends WebSecurityConfigurerAdapter {
     CustomUserDetailServices userDetailsService;
 
     @Bean
-    protected PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

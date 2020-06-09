@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 
@@ -38,63 +39,63 @@ public class HomeApiController {
 
     @Autowired
     OrderServices orderServices;
-//
-//    @Autowired
-//    TokenAuthenticationService tokenAuthenticationService;
-//
-//    @Autowired
-//    PasswordEncoder passwordEncoder;
-//
-//    @Autowired
-//    UserRepository userRepository;
-//
-//    @PostMapping("/login")
-//    public BaseResponse login(@RequestParam(value = "username" )String username,
-//                              @RequestParam(value = "password" )String password) {
-//        BaseResponse response = new BaseResponse();
-//        try {
-//            if (!username.isEmpty() && !password.isEmpty()) {
-//                Optional<User> optUser = userRepository.findById(username);
-//                if (!optUser.isPresent()) {
-//                    throw new Exception("username or password invalid");
-//                }
-//                User user = optUser.get();
-//                if(!passwordEncoder.matches(password, user.getPassword())) {
-//                    throw new Exception("Password invalid");
-//                }
-//                response.setData("00");
-//                response.setMessage("Login Success");
-//                response.setData(tokenAuthenticationService.generateJWT(user.getId()));
-//            } else {
-//                response.setData("00");
-//                response.setMessage("Error");
-//                response.setData(null);
-//            }
-//        }catch (Exception e) {
-//            response.setData("99");
-//            response.setMessage("Error");
-//            response.setData(e.getMessage());
-//        }
-//        return response;
-//    }
-//
-//    @GetMapping("/getInfoUser")
-//    public BaseResponse getInfo(@RequestHeader("Authen") String token) {
-//        BaseResponse response = new BaseResponse();
-//        try {
-//            if(!tokenAuthenticationService.validateToKen(token)) {
-//                throw new Exception("Token invalid");
-//            }
-//            response.setData("00");
-//            response.setMessage("get data thanh công");
-//            response.setData("User info");
-//        }catch (Exception e) {
-//            response.setData("99");
-//            response.setMessage("Error" );
-//            response.setData(e.getMessage());
-//        }
-//        return response;
-//    }
+
+    @Autowired
+    TokenAuthenticationService tokenAuthenticationService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @PostMapping("/login")
+    public BaseResponse login(@RequestParam(value = "username" )String username,
+                              @RequestParam(value = "password" )String password) {
+        BaseResponse response = new BaseResponse();
+        try {
+            if (!username.isEmpty() && !password.isEmpty()) {
+                Optional<User> optUser = userRepository.findById(username);
+                if (!optUser.isPresent()) {
+                    throw new Exception("username or password invalid");
+                }
+                User user = optUser.get();
+                if(!passwordEncoder.matches(password, user.getPassword())) {
+                    throw new Exception("Password invalid");
+                }
+                response.setCode("00");
+                response.setMessage("Login Success");
+                response.setData(tokenAuthenticationService.generateJWT(user.getId()));
+            } else {
+                response.setCode("00");
+                response.setMessage("Error");
+                response.setData(null);
+            }
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error");
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
+
+    @GetMapping("/getInfoUser")
+    public BaseResponse getInfo(@RequestHeader("Authorization") String token) {
+        BaseResponse response = new BaseResponse();
+        try {
+            if(!tokenAuthenticationService.validateToKen(token)) {
+                throw new Exception("Token invalid");
+            }
+            response.setCode("00");
+            response.setMessage("get data thanh công");
+            response.setData("User info");
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error" );
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
 
     //    Upload file img
     @PostMapping("/upload")

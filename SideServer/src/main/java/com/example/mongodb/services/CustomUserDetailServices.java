@@ -16,9 +16,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class CustomUserDetailServices  implements UserDetailsService {
-
-    @Autowired
-    private PasswordEncoder bScriptPasswordEncoder;
     @Autowired
     private UserRepository userRepository;
 
