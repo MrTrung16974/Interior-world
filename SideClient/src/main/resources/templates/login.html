@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form th:action="@{/login}" method="post" autocomplete="off" id="login_form">
+                <form autocomplete="off" id="login_form">
                     <label class="error" style="margin-bottom: 10px; color: #fff;" th:if="${param.error != null}">Thông tin đăng nhập không hợp lệ. Vui lòng kiểm tra lại!</label>
                     <label class="error" style="margin-bottom: 10px; color: #fff;" th:if="${param.lock != null}">Tên đăng nhập đã bị khóa do sai mật khẩu liên tiếp 5 lần</label>
                     <div class="input-group form-group">
@@ -55,7 +55,7 @@
                         <input type="checkbox">Remember Me
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Login" onclick="saveUserName()" class="btn float-right login_btn">
+                        <input type="button" value="Login" onclick="loginUser(), saveUserName()" class="btn float-right login_btn">
                     </div>
                 </form>
             </div>
@@ -85,9 +85,12 @@
 <!-- Active js -->
 <script th:src="@{/js/active.js}"></script>
 <!-- Scripts js -->
-<script th:src="@{/js/scripts.js}"></script>
+<script th:src="@{/js/logic.js}"></script>
 <!-- Function js -->
 <script th:src="@{/js/function.js}"></script>
+<!-- RederData js -->
+<script th:src="@{/js/RederData.js}"></script>
 <!-- ##### Script Area End ##### -->
+
 </body>
 </html>

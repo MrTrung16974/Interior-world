@@ -30,8 +30,8 @@
             <ul>
                 <li class="home"><a th:href="@{/home}">Trang chủ</a></li>
                 <li class="shop"><a th:href="@{shop}">Cửa hàng</a></li>
-                <li class="cart"><a th:href="@{cart}">Giỏ hàng</a></li>
-                <li class="checkout"><a th:href="@{checkout}">Thanh toán</a></li>
+                <li class="cart"><a onclick="loadPageCast()">Giỏ hàng</a></li>
+                <li class="checkout"><a onclick="loadPagePayCast()">Thanh toán</a></li>
             </ul>
         </nav>
         <!-- Button Group -->
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <a th:href="@{cart}" class="cart-nav cart">
+            <a onclick="loadPageCast()" class="cart-nav cart">
                 <img th:src="@{/img/core-img/cart.png}" alt=""> Giỏ hàng <span id="total-cast">(0)</span>
                 <div class="box-up">
                     <div id="box-up-lst-prodcut-in-cast">

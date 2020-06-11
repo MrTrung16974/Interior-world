@@ -32,10 +32,10 @@
                                             <a class="nav-link" th:href="@{shop}">Cửa hàng</a>
                                         </li>
                                         <li class="nav-item cart">
-                                            <a class="nav-link" th:href="@{cart}">Giỏ hàng</a>
+                                            <a class="nav-link" onclick="loadPageCast()">Giỏ hàng</a>
                                         </li>
                                         <li class="nav-item checkout">
-                                            <a class="nav-link" th:href="@{checkout}">Thanh toán</a>
+                                            <a class="nav-link" onclick="loadPagePayCast()">Thanh toán</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -60,9 +60,11 @@
         <!-- Active js -->
         <script th:src="@{/js/active.js}"></script>
         <!-- Scripts js -->
-        <script th:src="@{/js/scripts.js}"></script>
+        <script th:src="@{/js/logic.js}"></script>
         <!-- Function js -->
         <script th:src="@{/js/function.js}"></script>
+        <!-- RederData js -->
+        <script th:src="@{/js/RederData.js}"></script>
         <!-- ##### Script Area End ##### -->
 
     </footer>

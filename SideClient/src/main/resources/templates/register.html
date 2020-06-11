@@ -34,31 +34,31 @@
                 </div>
             </div>
             <div class="card-body">
-                <form th:action="@{/register}" method="post" autocomplete="off" id="login_form">
+                <form autocomplete="off" id="login_form">
                     <label class="error" style="margin-bottom: 10px" th:if="${param.error != null}">Thông tin đăng nhập không hợp lệ. Vui lòng kiểm tra lại!</label>
                     <label class="error" style="margin-bottom: 10px" th:if="${param.lock != null}">Tên đăng nhập đã bị khóa do sai mật khẩu liên tiếp 5 lần</label>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="name" class="form-control"  placeholder="Tên của bạn" />
+                        <input type="text" name="name" id="regiter-name" class="form-control"  placeholder="Tên của bạn" />
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input  type="text" name="username" class="form-control"  placeholder="Nhập tên tài khoản"/>
+                        <input  type="text" name="username" id="regiter-username" class="form-control"  placeholder="Nhập tên tài khoản"/>
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" name="password" class="form-control"  placeholder="Nhập mật khẩu" />
+                        <input type="text" name="password" id="regiter-passwprd" class="form-control"  placeholder="Nhập mật khẩu" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Sign Up" class="btn float-right login_btn">
+                        <input type="button" onclick="registerUser()" value="Sign Up" class="btn float-right login_btn">
                     </div>
                 </form>
             </div>
@@ -85,9 +85,12 @@
 <!-- Active js -->
 <script th:src="@{/js/active.js}"></script>
 <!-- Scripts js -->
-<script th:src="@{/js/scripts.js}"></script>
+<script th:src="@{/js/logic.js}"></script>
 <!-- Function js -->
 <script th:src="@{/js/function.js}"></script>
+<!-- RederData js -->
+<script th:src="@{/js/RederData.js}"></script>
+
 <!-- ##### Script Area End ##### -->
 </body>
 </html>

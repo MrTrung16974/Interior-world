@@ -79,6 +79,22 @@ public class HomeApiController {
         return response;
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public BaseResponse logout() {
+        BaseResponse response = new BaseResponse();
+        try {
+            response.setCode("00");
+            response.setMessage("success!");
+            response.setData("User info");
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error" );
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
+
+
     @GetMapping("/getInfoUser")
     public BaseResponse getInfo(@RequestHeader("Authorization") String token) {
         BaseResponse response = new BaseResponse();
