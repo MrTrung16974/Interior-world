@@ -41,11 +41,10 @@ function loginUser() {
                 }
                 if(user != "" && user != null) {
                     window.location.href = "http://localhost:8089/home"
-                }else {
-                    window.location.href = "http://localhost:8089/login?error=true"
                 }
             }
             else {
+                window.location.href = "http://localhost:8089/login?error=true"
                 console.log(response.message);
             }
         }
