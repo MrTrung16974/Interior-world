@@ -28,10 +28,9 @@
                     <div class="col-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mt-50">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Furniture</a></li>
-                                <li class="breadcrumb-item"><a href="#">Chairs</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">white modern chair</li>
+                                <li class="breadcrumb-item active" id="breadcrumb-item-name" aria-current="page">white modern chair</li>
                             </ol>
                         </nav>
                     </div>
@@ -111,6 +110,28 @@
                                 <button type="button" id="addtocart" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
                             </form>
 
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="imput-comment my-5">
+                            <div class="form-group">
+                                <textarea class="form-control p-3" placeholder="Đánh giá của bạn về sản phẩm này!" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary">Bình Luận</button>
+                        </div>
+                        <div class="media mt-3">
+                            <img width="50" height="50" th:src="@{/img/core-img/login.png}" class="mr-3" alt="...">
+                            <div class="media-body">
+                                <h5 class="mt-0">Media heading</h5>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                        <div class="media mt-3">
+                            <img width="50" height="50" th:src="@{/img/core-img/login.png}" class="mr-3" alt="...">
+                            <div class="media-body">
+                                <h5 class="mt-0">Media heading</h5>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
                         </div>
                     </div>
                 </div>

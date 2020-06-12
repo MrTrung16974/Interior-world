@@ -35,6 +35,7 @@ $(document).ready(function () {
 
             $("#price-product").text(`$${item.price}`);
             $("#name-product").text(`${item.name}`);
+            $("#breadcrumb-item-name").text(`${item.name}`);
             $("#description-product").text(`${item.description}`);
 
             $("button#addtocart").attr("onclick", `addToCastDB('${item.id}')`);

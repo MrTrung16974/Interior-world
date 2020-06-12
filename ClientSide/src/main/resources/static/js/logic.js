@@ -1,7 +1,6 @@
 // khai báo biến
 var user = getCookie("user");
 var username = getCookie("username");
-console.log(user);
 var keyword = "";
 var pageDefault = 0;
 var cart = {
@@ -59,6 +58,7 @@ function forPagination(totalPage) {
         }
     }
 }
+
 function getTotalProductInCast(cast) {
     let total = cart.listProduct.length;
     if (total <= 0) {
@@ -69,6 +69,7 @@ function getTotalProductInCast(cast) {
         $("#total-in-cast").text(`${total} sản phẩm`);
     }
 }
+
 function getPriceProductInCast(cast) {
     let price_number = 0;
     if (cast.listProduct != null) {
