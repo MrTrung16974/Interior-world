@@ -19,10 +19,6 @@ public class HomeController {
     public String cart(){
         return "cart";
     }
-    @RequestMapping("/checkout")
-    public String checkOut(){
-        return "checkout";
-    }
     @RequestMapping("/product-details")
     public String productDetails(@RequestParam("id") String id){
         return "product-details";

@@ -407,36 +407,3 @@ function removeItem(idProduct) {
         toastr.error('Bạn cần đăng nhâp!', "HAHA");
     }
 }
-
-function paymentToCastDB(idProduct) {
-    if(user != "") {
-        $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.id,
-            type: "POST",
-            success: function (response) {
-                if (response.code = "00") {
-                    cart = response.data;
-                    if(user != "") {
-                        if(cart.listProduct != null) {
-                            getTotalProductInCast(cart);
-                            rederDataCast(cart.listProduct);
-                            rederDataCastBoxUp(cart.listProduct);
-                            if(cart.listProduct[0] != null) {
-                                getPriceProductInCast(cart);
-                                toastr.error('Payment product success!',  "HAHA");
-                            }
-                        }
-                    }else {
-                        toastr.error('Bạn cần đăng nhâp!',  "HAHA");
-                    }
-                }
-            },
-            error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
-            }
-        });
-    }else {
-        toastr.error('Bạn cần đăng nhâp!', "HAHA");
-    }
-}
-

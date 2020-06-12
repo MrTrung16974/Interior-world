@@ -95,14 +95,6 @@ function loadPageCast() {
 
     }
 }
-function loadPagePayCast() {
-     if(user != null && user != "") {
-         window.location.href = "http://localhost:8089/checkout"
-     }else {
-         window.location.href = "http://localhost:8089/login"
-
-     }
-}
 
 // logic cookie
 function getCookie(cname) {

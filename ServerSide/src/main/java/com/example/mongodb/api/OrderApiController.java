@@ -211,22 +211,4 @@ public class OrderApiController {
         return response;
     }
 
-//    thanh toán
-    @RequestMapping(value = "/payment/{id}", method = RequestMethod.POST)
-    public BaseResponse paymentOrder(@PathVariable("id") String id) {
-        BaseResponse response = new BaseResponse();
-        Optional<Order> optOrder = orderRepository.findById(id);
-        if(!optOrder.isPresent()) {
-            response.setCode("99");
-            response.setData(null);
-            response.setMessage("Data not found");
-        }
-        Order exOrder = optOrder.get();
-        exOrder.setStatus(2);
-        exOrder.setCreatedAt(new Date());
-        response.setMessage("Thanh toán thành cống");
-        response.setCode("00");
-        return response;
-    }
-
 }
