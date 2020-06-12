@@ -173,7 +173,7 @@ function getProductInCast() {
                 if(cart.listProduct != null) {
                     getTotalProductInCast(cart);
                     rederDataCast(cart.listProduct);
-                    rederUserInfo(cart)
+                    rederUserInfo(cart);
                     rederDataCastBoxUp(cart.listProduct);
                     if(cart.listProduct[0] != null) {
                         getPriceProductInCast(cart);

@@ -48,6 +48,7 @@ function forStar(star) {
     }
     return starWrite;
 }
+
 function forPagination(totalPage) {
     $("#pagination").empty();
     for(let i = 0; i < totalPage; i++) {
@@ -62,8 +63,10 @@ function getTotalProductInCast(cast) {
     let total = cart.listProduct.length;
     if (total <= 0) {
         $("#total-cast").text(`(0)`);
+        $("#total-in-cast").text(`0 sản phẩm`);
     } else {
         $("#total-cast").text(`(${total})`);
+        $("#total-in-cast").text(`${total} sản phẩm`);
     }
 }
 function getPriceProductInCast(cast) {
