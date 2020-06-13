@@ -12,6 +12,7 @@ $.ajax({
     success: function (response) {
         if(response.code == "00") {
             rederData(response.data.content);
+            console.log(response.data.content);
             let totalPage = response.data.totalPages;
             forPagination(totalPage);
         }else {

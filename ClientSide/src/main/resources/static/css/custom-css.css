@@ -25,8 +25,8 @@ a {
 
 td.remove-item {
     position: absolute;
-    right: 5px;
-    top: -10px;
+    right: 30px;
+    top: 0px;
     width: 10px !important;
     display: inline-block;
     height: 10px;
@@ -92,9 +92,11 @@ div.login-nav.login>div.box-up>div>ul>li>a {
     text-transform: capitalize;
 }
 
-div#box-up-lst-prodcut-in-cast {
-    padding: .75rem;
+div#box-up-lst-prodcut-in-cast tr.lst-product-cart {
+    position: relative;
+    padding: 0px .75rem;
     width: 296px;
+    display: inline-block;
     max-width: 296px;
 }
 

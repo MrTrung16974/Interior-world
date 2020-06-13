@@ -56,22 +56,22 @@ function rederDataCastBoxUp(data) {
         && data.length > 0 != null) {
         data.map(item => {
             $('#box-up-lst-prodcut-in-cast').append(
-            `<tr style="position: relative;">
-                    <td class="cart_product_img box-up">
-                        <a href="#"><img width="50" height="50" src="${item.image.imageOne}" alt="Product"></a>
-                    </td>
-                    <td class="cart_product_desc box-up">
-                        <a href="/product-details?id=${item.id}" >
-                            <h5>${item.name}</h5>
-                        </a>
-                    </td>
-                    <td class="price box-up">
-                        <span>$${item.price}</span>
-                    </td>
-                    <td style="position: relative;" onclick="deleteItem(${item.id})" class="remove-item box-up">
-                        <span>x</span>
-                    </td>
-                </tr>`
+            `<tr class="lst-product-cart">
+                <td class="cart_product_img box-up">
+                    <a href="#"><img width="50" height="50" src="${item.image.imageOne}" alt="Product"></a>
+                </td>
+                <td class="cart_product_desc box-up">
+                    <a href="/product-details?id=${item.id}" >
+                        <h5>${item.name}</h5>
+                    </a>
+                </td>
+                <td class="price box-up">
+                    <span>$${item.price}</span>
+                </td>
+                <td onclick="deleteItem(${item.id})" class="remove-item box-up">
+                    <span>x</span>
+                </td>
+            </tr>`
         );
     });
     }else{
