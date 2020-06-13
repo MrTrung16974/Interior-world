@@ -1,4 +1,4 @@
-package com.example.mongodb.model;
+package com.example.mongodb.dto;
 
 public class Promotion {
     private String name;

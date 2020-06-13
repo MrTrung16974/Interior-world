@@ -5,7 +5,7 @@ import com.example.mongodb.dto.ProductCast;
 import com.example.mongodb.dto.UpdateCastRequest;
 import com.example.mongodb.model.Order;
 import com.example.mongodb.model.Product;
-import com.example.mongodb.model.ProductModel;
+import com.example.mongodb.dto.ProductModel;
 import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

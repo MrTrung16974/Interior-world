@@ -1,16 +1,8 @@
 package com.example.mongodb;
 
 
-import com.example.mongodb.model.Image;
-import com.example.mongodb.model.Product;
-import com.example.mongodb.model.Promotion;
-import com.example.mongodb.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Date;
 
 @SpringBootApplication
 public class MongodbApplication {

@@ -1,4 +1,4 @@
-package com.example.mongodb.model;
+package com.example.mongodb.dto;
 
 public class ProductModel {
     private String id;
@@ -6,6 +6,7 @@ public class ProductModel {
     private Double price;
     private String description;
     private Image image;
+    private Comment comment;
     private Promotion promotion;
     private Integer color;
     private Integer material;
@@ -15,6 +16,14 @@ public class ProductModel {
 
     public Image getImage() {
         return image;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     public Promotion getPromotion() {

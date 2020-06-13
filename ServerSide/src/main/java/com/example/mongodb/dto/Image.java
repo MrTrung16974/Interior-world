@@ -1,4 +1,4 @@
-package com.example.mongodb.model;
+package com.example.mongodb.dto;
 
 public class Image {
     private String imageOne;

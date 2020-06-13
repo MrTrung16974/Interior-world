@@ -1,5 +1,7 @@
 package com.example.mongodb.model;
 
+import com.example.mongodb.dto.ProductModel;
+import com.example.mongodb.dto.Promotion;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;

@@ -2,7 +2,7 @@ package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
 import com.example.mongodb.model.Product;
-import com.example.mongodb.model.ProductModel;
+import com.example.mongodb.dto.ProductModel;
 import com.example.mongodb.model.User;
 import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
@@ -19,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 
@@ -67,7 +66,7 @@ public class HomeApiController {
                 response.setMessage("Login Success");
                 response.setData(tokenAuthenticationService.generateJWT(user.getId()));
             } else {
-                response.setCode("00");
+                response.setCode("400");
                 response.setMessage("Error");
                 response.setData(null);
             }

@@ -1,5 +1,8 @@
 package com.example.mongodb.model;
 
+import com.example.mongodb.dto.Comment;
+import com.example.mongodb.dto.Image;
+import com.example.mongodb.dto.Promotion;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -18,6 +21,8 @@ public class Product {
     private String description;
     @Field("image")
     private Image image;
+    @Field("comment")
+    private Comment comment;
     @Field("promotion")
     private Promotion promotion;
     @Field("color")
@@ -71,6 +76,14 @@ public class Product {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     public Promotion getPromotion() {

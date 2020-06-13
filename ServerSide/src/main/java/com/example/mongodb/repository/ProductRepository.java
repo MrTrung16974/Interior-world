@@ -1,7 +1,6 @@
 package com.example.mongodb.repository;
 
 import com.example.mongodb.model.Product;
-import com.example.mongodb.model.ProductModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -11,4 +10,8 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends MongoRepository<Product,String> {
     Page<Product> findByNameContaining(String name, Pageable pageable);
 
+//    @Query(value = "SELECT * FROM PRODUCT WHERE LOWER(NAME) LIKE %?1%",
+//            countQuery = "SELECT count(*) FROM PRODUCT WHERE LOWER(NAME) = %?1%",
+//            nativeQuery = true)
+//    Page<Product> findByName(String name, Pageable pageable);
 }
