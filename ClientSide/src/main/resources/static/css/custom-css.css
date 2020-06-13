@@ -75,3 +75,12 @@ div.login-nav.login>div.box-up>div>ul>li>a {
     font-size: 16px;
     text-transform: capitalize;
 }
+
+.single-product-wrapper .product-description .ratings-cart .cart>a>i {
+    color: red;
+    line-height: 29px;
+    padding-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+}

@@ -155,6 +155,30 @@ function searchProduct(page) {
     });
 }
 
+function sortProduct() {
+    let sort = $("#sortBydate").val();
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=10&sort=" + sort,
+        processData: false,
+        contentType: 'application/json',
+        success: function (response) {
+            // server trả về HTTP status code là 200 => Thành công
+            //hàm đc thực thi khi request thành công không có lỗi
+            if(response.code == "00") {
+                rederData(response.data.content);
+                let totalPage = response.data.totalPages;
+                forPagination(totalPage);
+            }
+            else {
+                rederData(response.data);
+                forPagination(1);
+                console.log(response.message);
+            }
+        }
+    });
+}
+
 // cart product
 
 if(user != "" && username != "") {

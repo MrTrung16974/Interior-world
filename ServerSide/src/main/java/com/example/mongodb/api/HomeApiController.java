@@ -135,13 +135,26 @@ public class HomeApiController {
                                @RequestParam(value = "material", required = false)Integer material,
                                @RequestParam(value = "color", required = false)Integer color,
                                @RequestParam(value = "type", required = false)Integer type,
-                               @RequestParam(value = "endPrice", required = false)Long endPrice,
-                               @RequestParam(value = "startPrice", required = false)Long startPrice,
+                               @RequestParam(value = "sort", defaultValue = "1")Integer sort,
                                @RequestParam("page") int page,
                                @RequestParam("perPage") int perPage){
         BaseResponse response = new BaseResponse();
         try {
-            Pageable pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.ASC,"id"));
+            Pageable pageable;
+            switch (sort) {
+                case 1:
+                    pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.ASC,"createAt"));
+                    break;
+                case 2:
+                    pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.ASC,"price"));
+                    break;
+                case 3:
+                    pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.DESC,"price"));
+                    break;
+                default:
+                    pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.ASC,"id"));
+                    break;
+            }
             Page<Product> listProduct = productRepository.findByNameContaining(name, pageable);
             if (!listProduct.isEmpty()) {
                 response.setCode("00");

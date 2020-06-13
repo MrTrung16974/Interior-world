@@ -32,10 +32,11 @@ function rederData(data) {
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="hidden"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
+                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                     <a onclick="addToCastDB(${item.id})" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                 </div>
                             </div>
