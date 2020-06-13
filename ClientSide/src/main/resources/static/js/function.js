@@ -47,6 +47,10 @@ function loginUser() {
                 window.location.href = "http://localhost:8089/login?error=true"
                 console.log(response.message);
             }
+        },
+        error: function () {
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            console.log(response.message);
         }
     });
 }
@@ -74,6 +78,10 @@ function registerUser() {
             else {
                 console.log(response.message);
             }
+        },
+        error: function () {
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            console.log(response.message);
         }
     });
 }
@@ -98,6 +106,10 @@ function logoutUser() {
             }else {
                 console.log(response.message);
             }
+        },
+        error: function () {
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            console.log(response.message);
         }
     });
 }
@@ -135,7 +147,7 @@ function searchProduct(page) {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=10",
+        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=10&sort=" + sort,
         processData: false,
         contentType: 'application/json',
         success: function (response) {
@@ -156,7 +168,10 @@ function searchProduct(page) {
 }
 
 function sortProduct() {
-    let sort = $("#sortBydate").val();
+    let getSort = $("#sortBydate").val();
+    if(getSort != null && getSort != "") {
+        sort = getSort;
+    }
     $.ajax({
         type: "GET",
         url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=10&sort=" + sort,

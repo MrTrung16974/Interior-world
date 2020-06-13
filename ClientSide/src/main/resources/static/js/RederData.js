@@ -57,16 +57,18 @@ function rederDataCastBoxUp(data) {
         data.map(item => {
             $('#box-up-lst-prodcut-in-cast').append(
             `<tr style="position: relative;">
-                    <td class="cart_product_img">
+                    <td class="cart_product_img box-up">
                         <a href="#"><img width="50" height="50" src="${item.image.imageOne}" alt="Product"></a>
                     </td>
-                    <td class="cart_product_desc">
-                        <h5>${item.name}</h5>
+                    <td class="cart_product_desc box-up">
+                        <a href="/product-details?id=${item.id}" >
+                            <h5>${item.name}</h5>
+                        </a>
                     </td>
-                    <td class="price">
+                    <td class="price box-up">
                         <span>$${item.price}</span>
                     </td>
-                    <td style="position: relative;" onclick="deleteItem(${item.id})" class="remove-item">
+                    <td style="position: relative;" onclick="deleteItem(${item.id})" class="remove-item box-up">
                         <span>x</span>
                     </td>
                 </tr>`
@@ -89,7 +91,9 @@ function rederDataCast(data) {
                     <a href="#"><img src="${item.image.imageOne}" alt="Product"></a>
                 </td>
                 <td class="cart_product_desc">
-                    <h5>${item.name}</h5>
+                    <a href="/product-details?id=${item.id}" >
+                        <h5>${item.name}</h5>
+                    </a>
                 </td>
                 <td class="price">
                     <span>$${item.price}</span>
