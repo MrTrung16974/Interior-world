@@ -2,6 +2,7 @@
 var user = getCookie("user");
 var username = getCookie("username");
 var keyword = "";
+var checkLogin = false;
 var sort = 1;
 var pageDefault = 0;
 var cart = {

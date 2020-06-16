@@ -38,6 +38,7 @@ function loginUser() {
                 if(response.data != null) {
                     setCookie("user", response.data);
                     user = response.data;
+                    checkLogin = true;
                     toastr.error('Logic success!', response.message);
                 }
                 if(user != "" && user != null) {
@@ -97,7 +98,8 @@ function logoutUser() {
             //hàm đc thực thi khi request thành công không có lỗi
                 if(response.code == "00") {
                     deleteCookie("user");
-                    deleteCookie("username")
+                    deleteCookie("username");
+                    checkLogin = false;
                     toastr.error('Logout success!', response.message);
                 if(user != "" && user != null) {
                     window.location.href = "http://localhost:8089/login"
@@ -116,7 +118,6 @@ function logoutUser() {
 }
 
 if(user != null && user != "") {
-
     $.ajax({
         url: "http://localhost:8099/v1/api/getInfoUser",
         type: "GET",
@@ -130,6 +131,7 @@ if(user != null && user != "") {
         success: function (response) {
             if(response.code == "00") {
                 console.log(response.data);
+                checkLogin = true;
             }else {
                 toastr.error('Find not data!', response.message);
             }
@@ -197,7 +199,7 @@ function sortProduct() {
 
 // cart product
 
-if(user != "" && username != "") {
+if(checkLogin) {
     getProductInCast();
 }else {
     $('#login-user').css("display", "block");
@@ -285,7 +287,7 @@ function getProductInCast() {
 // }
 
 function addToCastDB(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name: user,
             listProductCast: [{
@@ -323,7 +325,7 @@ function addToCastDB(idProduct) {
 }
 
 function deleteItem(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name: user,
             listProductCast: [{
@@ -365,7 +367,7 @@ function deleteItem(idProduct) {
 }
 
 function addItem(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name:  user,
             listProductCast: [{
@@ -407,7 +409,7 @@ function addItem(idProduct) {
 }
 
 function removeItem(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name: user,
             listProductCast: [{
