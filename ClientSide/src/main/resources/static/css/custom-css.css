@@ -38,11 +38,20 @@ a {
 /* start ./ product */
 
 .single-product-wrapper .product-description .ratings-cart .cart>a>i {
-    color: red;
     line-height: 29px;
     padding-right: 10px;
     font-size: 16px;
     cursor: pointer;
+    color: #A6A6A6;
+    cursor: pointer;
+    -webkit-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+.single-product-wrapper .product-description .ratings-cart .cart>a>i:hover {
+    color: red;
+    /*background-color: red;*/
 }
 /* end ./ product */
 

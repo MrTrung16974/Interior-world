@@ -205,6 +205,7 @@ if(checkLogin) {
     $('#login-user').css("display", "block");
     $('#logout-user').css("display", "none");
 }
+
 function getProductInCast() {
     $.ajax({
         url: "http://localhost:8099/order/products/" + username,
@@ -215,7 +216,6 @@ function getProductInCast() {
                 if(cart.listProduct != null) {
                     getTotalProductInCast(cart);
                     rederDataCast(cart.listProduct);
-                    rederUserInfo(cart);
                     rederDataCastBoxUp(cart.listProduct);
                     if(cart.listProduct[0] != null) {
                         getPriceProductInCast(cart);

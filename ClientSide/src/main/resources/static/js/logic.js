@@ -18,6 +18,20 @@ var origin   = window.location.origin;
 var pathname = window.location.pathname;
 // Returns path only (/path/example.html)
 
+
+$(".icon-heart").hover(function () {
+    let icon = $(".icon-heart");
+    let temp = -1;
+    if(temp != 1) {
+        console.log("C0")
+        this.icon.addClass('fa fa-heart');
+    }else {
+        console.log("Ko")
+        this.icon.addClass('fa fa-heart-o');
+    }
+    temp *= -1;
+});
+
 // reder chung
 switch (pathname) {
         case "/home":
