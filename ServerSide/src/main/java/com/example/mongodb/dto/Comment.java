@@ -1,15 +1,24 @@
 package com.example.mongodb.dto;
 
 public class Comment {
-    private String name;
+    private String image;
+    private String buyer;
     private String comtent;
 
-    public String getName() {
-        return name;
+    public String getImage() {
+        return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(String buyer) {
+        this.buyer = buyer;
     }
 
     public String getComtent() {

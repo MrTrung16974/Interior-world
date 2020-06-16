@@ -2,6 +2,7 @@
 var user = getCookie("user");
 var username = getCookie("username");
 var keyword = "";
+var checkLogin = false;
 var sort = 1;
 var pageDefault = 0;
 var cart = {
@@ -16,6 +17,20 @@ var url      = window.location.href;
 var origin   = window.location.origin;
 var pathname = window.location.pathname;
 // Returns path only (/path/example.html)
+
+
+$(".icon-heart").hover(function () {
+    let icon = $(".icon-heart");
+    let temp = -1;
+    if(temp != 1) {
+        console.log("C0")
+        this.icon.addClass('fa fa-heart');
+    }else {
+        console.log("Ko")
+        this.icon.addClass('fa fa-heart-o');
+    }
+    temp *= -1;
+});
 
 // reder chung
 switch (pathname) {

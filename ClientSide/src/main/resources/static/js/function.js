@@ -40,6 +40,7 @@ function loginUser() {
                     user = response.data;
                     $('#login-user').css("display", "block");
                     $('#logout-user').css("display", "none");
+                    checkLogin = true;
                     toastr.error('Logic success!', response.message);
                 }
                 if(user != "" && user != null) {
@@ -102,6 +103,7 @@ function logoutUser() {
                     deleteCookie("username");
                     $('#login-user').css("display", "none");
                     $('#logout-user').css("display", "block");
+                    checkLogin = false;
                     toastr.error('Logout success!', response.message);
                 if(user != "" && user != null) {
                     window.location.href = "http://localhost:8089/login"
@@ -133,6 +135,7 @@ if(user != null && user != "") {
             if(response.code == "00") {
                 console.log(response.data);
                 setCookie("username", response.data.name);
+                checkLogin = true;
             }else {
                 toastr.error('Find not data!', response.message);
             }
@@ -200,9 +203,10 @@ function sortProduct() {
 
 // cart product
 
-if(user != "" && username != "") {
+if(checkLogin) {
     getProductInCast();
 }
+
 function getProductInCast() {
     $.ajax({
         url: "http://localhost:8099/order/products/" + username,
@@ -213,7 +217,6 @@ function getProductInCast() {
                 if(cart.listProduct != null) {
                     getTotalProductInCast(cart);
                     rederDataCast(cart.listProduct);
-                    rederUserInfo(cart);
                     rederDataCastBoxUp(cart.listProduct);
                     if(cart.listProduct[0] != null) {
                         getPriceProductInCast(cart);
@@ -285,7 +288,7 @@ function getProductInCast() {
 // }
 
 function addToCastDB(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name: user,
             listProductCast: [{
@@ -323,7 +326,7 @@ function addToCastDB(idProduct) {
 }
 
 function deleteItem(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name: user,
             listProductCast: [{
@@ -365,7 +368,7 @@ function deleteItem(idProduct) {
 }
 
 function addItem(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name:  user,
             listProductCast: [{
@@ -407,7 +410,7 @@ function addItem(idProduct) {
 }
 
 function removeItem(idProduct) {
-    if(user != "") {
+    if(checkLogin) {
         let updateCastRequest = {
             name: user,
             listProductCast: [{
