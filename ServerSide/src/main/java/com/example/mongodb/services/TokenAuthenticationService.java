@@ -12,6 +12,11 @@ import java.util.Optional;
 
 @Service
 public class TokenAuthenticationService {
+    @Autowired
+    TokenAuthenticationService tokenAuthenticationService;
+    @Autowired
+    UserRepository userRepository;
+
     static final long EXPIRATIONTIME = 864_000_000;
     static final String SECRET = "trungth";
 
@@ -35,10 +40,6 @@ public class TokenAuthenticationService {
         }
         return null;
     }
-    @Autowired
-    TokenAuthenticationService tokenAuthenticationService;
-    @Autowired
-    UserRepository userRepository;
 
     public boolean validateToKen(String token) {
         try {

@@ -84,13 +84,6 @@ function getPriceProductInCast(cast) {
 }
 
 //logic user name
-function saveUserName() {
-    let username = $("#username").val().trim();
-    if(username != null) {
-        setCookie("username", username);
-    }
-    console.log(username);
-}
 
 function loadPageCast() {
     if(user != null && user != "") {

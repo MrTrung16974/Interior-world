@@ -101,9 +101,17 @@ public class HomeApiController {
             if(!tokenAuthenticationService.validateToKen(token)) {
                 throw new Exception("Token invalid");
             }
-            response.setCode("00");
-            response.setMessage("get data thanh công");
-            response.setData("User info");
+            String userId = tokenAuthenticationService.readJWT(token);
+            Optional<User> user = userRepository.findById(userId);
+            if(user.isPresent()) {
+                response.setCode("00");
+                response.setMessage("get data thanh công");
+                response.setData(user.get());
+            }else {
+                response.setCode("400");
+                response.setMessage("Find not Data");
+                response.setData(null);
+            }
         }catch (Exception e) {
             response.setCode("99");
             response.setMessage("Error" );

@@ -38,6 +38,8 @@ function loginUser() {
                 if(response.data != null) {
                     setCookie("user", response.data);
                     user = response.data;
+                    $('#login-user').css("display", "block");
+                    $('#logout-user').css("display", "none");
                     toastr.error('Logic success!', response.message);
                 }
                 if(user != "" && user != null) {
@@ -97,7 +99,9 @@ function logoutUser() {
             //hàm đc thực thi khi request thành công không có lỗi
                 if(response.code == "00") {
                     deleteCookie("user");
-                    deleteCookie("username")
+                    deleteCookie("username");
+                    $('#login-user').css("display", "none");
+                    $('#logout-user').css("display", "block");
                     toastr.error('Logout success!', response.message);
                 if(user != "" && user != null) {
                     window.location.href = "http://localhost:8089/login"
@@ -116,7 +120,6 @@ function logoutUser() {
 }
 
 if(user != null && user != "") {
-
     $.ajax({
         url: "http://localhost:8099/v1/api/getInfoUser",
         type: "GET",
@@ -126,10 +129,10 @@ if(user != null && user != "") {
             xhr.setRequestHeader ("Authorization", user);
         },
         contentType: "application/json",
-        // data: '{ "comment" }',
         success: function (response) {
             if(response.code == "00") {
                 console.log(response.data);
+                setCookie("username", response.data.name);
             }else {
                 toastr.error('Find not data!', response.message);
             }
@@ -199,9 +202,6 @@ function sortProduct() {
 
 if(user != "" && username != "") {
     getProductInCast();
-}else {
-    $('#login-user').css("display", "block");
-    $('#logout-user').css("display", "none");
 }
 function getProductInCast() {
     $.ajax({
@@ -447,3 +447,46 @@ function removeItem(idProduct) {
         toastr.error('Bạn cần đăng nhâp!', "HAHA");
     }
 }
+
+// comment
+// function addComment(idUser) {
+//     if(user != "") {
+//         let updateCastRequest = {
+//             name:  user,
+//             listProductCast: [{
+//                 id: idProduct,
+//                 number: 1,
+//                 type: 1
+//             }]
+//         };
+//         $.ajax({
+//             url: "http://localhost:8099/order/update/" + cart.id,
+//             type: "POST",
+//             data: JSON.stringify(updateCastRequest),
+//             contentType: "application/json",
+//             success: function (response) {
+//                 if (response.code = "00") {
+//                     cart = response.data;
+//                     if(user != "") {
+//                         if(cart.listProduct != null) {
+//                             getTotalProductInCast(cart);
+//                             rederDataCast(cart.listProduct);
+//                             rederDataCastBoxUp(cart.listProduct);
+//                             if(cart.listProduct[0] != null) {
+//                                 getPriceProductInCast(cart);
+//                                 toastr.error('Add product success!', "HAHA");
+//                             }
+//                         }
+//                     }else {
+//                         toastr.error('Bạn cần đăng nhâp!',  "HAHA");
+//                     }
+//                 }
+//             },
+//             error: function (error) {
+//                 toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+//             }
+//         });
+//     }else {
+//         toastr.error('Bạn cần đăng nhâp!', "HAHA");
+//     }
+// }
