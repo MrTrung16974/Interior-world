@@ -22,10 +22,6 @@ ul {
     list-style-type: none;
 }
 
-body {
-    font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
-}
-
 
 a {
     cursor: pointer;
@@ -153,6 +149,7 @@ div#box-up-lst-prodcut-in-cast tr td.box-up span{
  * Lista de Comentarios
  =======================*/
 .comments-container {
+    font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
     margin: 60px 0px 0px 15px;
     width: 768px;
 }
