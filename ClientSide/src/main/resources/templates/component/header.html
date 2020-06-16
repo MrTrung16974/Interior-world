@@ -28,15 +28,15 @@
         <!-- Amado Nav -->
         <nav class="amado-nav">
             <ul>
-                <li class="home"><a th:href="@{/home}">Trang chủ</a></li>
-                <li class="shop"><a th:href="@{shop}">Cửa hàng</a></li>
-                <li class="cart"><a onclick="loadPageCast()">Giỏ hàng</a></li>
+                <li class="home"><a th:href="@{/home}">Home</a></li>
+                <li class="shop"><a th:href="@{shop}">Shop</a></li>
+                <li class="cart"><a onclick="loadPageCast()">Cart</a></li>
             </ul>
         </nav>
         <!-- Button Group -->
         <div class="amado-btn-group mt-30 mb-100">
-            <a href="#" class="btn amado-btn mb-15">Giảm giá</a>
-            <a href="#" class="btn amado-btn active">Mới tuần này</a>
+            <a href="#" class="btn amado-btn mb-15">%Discount%</a>
+            <a href="#" class="btn amado-btn active">New this week</a>
         </div>
         <!-- Cart Menu -->
         <div class="cart-fav-search mb-100">
@@ -45,21 +45,24 @@
                 <img width="20" th:src="@{/img/core-img/login.png}" alt="" />
                 <span class="name" id="name-user">Name User</span>
                 <div class="box-up">
-                    <div id="box-up-info-user">
-
+                    <div class="user-info">
+                        <ul>
+                            <li><a href="#">Tài khoản của tôi</a></li>
+                            <li><a onclick="logoutUser()">Đăng Xuất</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <a onclick="loadPageCast()" class="cart-nav cart">
-                <img th:src="@{/img/core-img/cart.png}" alt=""> Giỏ hàng <span id="total-cast">(0)</span>
+                <img th:src="@{/img/core-img/cart.png}" alt=""> Cart <span id="total-cast">(0)</span>
                 <div class="box-up">
                     <div id="box-up-lst-prodcut-in-cast">
 
                     </div>
                 </div>
             </a>
-            <a href="#" class="fav-nav"><img th:src="@{/img/core-img/favorites.png}" alt=""> Yêu thích</a>
-            <a href="#" class="search-nav"><img th:src="@{/img/core-img/search.png}" alt=""> Tìm Kiếm</a>
+            <a href="#" class="fav-nav"><img th:src="@{/img/core-img/favorites.png}" alt=""> Favourite</a>
+            <a href="#" class="search-nav"><img th:src="@{/img/core-img/search.png}" alt=""> Search</a>
         </div>
         <!-- Social Button -->
         <div class="social-info d-flex justify-content-between">

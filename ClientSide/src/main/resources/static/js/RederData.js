@@ -118,19 +118,3 @@ function rederDataCast(data) {
         $('#lst-product-in-cast').html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
     }
 }
-
-//reder user
-function rederUserInfo(data) {
-    $("#box-up-info-user").empty();
-    if(data != null) {
-        $('#box-up-info-user').append(
-            `<ul>
-                <li><a href="#">Tài khoản của tôi</a></li>
-                <li><a onclick="logoutUser()">Đăng Xuất</a></li>
-            </ul>`
-        );
-        $('#name-user').text(data.buyer);
-        $('#login-user').css("display", "none");
-        $('#logout-user').css("display", "block");
-    }
-}
