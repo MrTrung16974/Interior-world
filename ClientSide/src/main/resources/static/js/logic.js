@@ -7,11 +7,17 @@ var sort = 1;
 var pageDefault = 0;
 var cart = {
     id: "",
+    image: "",
     buyer: "",
     listProduct: [],
     status: ""
 };
-
+var comment = {
+    image: "",
+    buyer: "",
+    content: "",
+    createAt: ""
+};
 
 var url      = window.location.href;
 var origin   = window.location.origin;

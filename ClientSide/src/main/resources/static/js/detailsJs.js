@@ -11,6 +11,8 @@ $(document).ready(function () {
             if(response.code == "00") {
                 console.log(response.data);
                 rederDataProductDetail(response.data);
+                comment = response.data.comment;
+                rederComentProduct(comment);
             }
             else {
                 console.log(response.message);
@@ -20,25 +22,26 @@ $(document).ready(function () {
 
     function rederDataProductDetail(item) {
         if(item != null) {
-            $("#imageOneStyle").css('background-image',`url(${item.image.imageOne})`);
-            $("#imageTwoStyle").css('background-image',`url(${item.image.imageTwo})`);
-            $("#imageThreeStyle").css('background-image',`url(${item.image.imageThree})`);
-            $("#imageFourStyle").css('background-image',`url(${item.image.imageFour})`);
-            $("#imageOneHref").attr("href",`${item.image.imageOne}`);
-            $("#imageTwoHref").attr("href",`${item.image.imageTwo}`);
-            $("#imageThreeHref").attr("href",`${item.image.imageThree}`);
-            $("#imageFourHref").attr("href", `${item.image.imageFour}`);
-            $("#imageOneSrc").attr("src",  `${item.image.imageOne}`);
-            $("#imageTwoSrc").attr("src", `${item.image.imageTwo}`);
-            $("#imageThreeSrc").attr("src", `${item.image.imageThree}`);
-            $("#imageFourSrc").attr("src", `${item.image.imageFour}`);
+            $("#imageOneStyle").css('background-image',`url(${item.image.imageOne ? item.image.imageOne : ""})`);
+            $("#imageTwoStyle").css('background-image',`url(${item.image.imageTwo  ? item.image.imageTwo : ""})`);
+            $("#imageThreeStyle").css('background-image',`url(${item.image.imageThree  ? item.image.imageThree : ""})`);
+            $("#imageFourStyle").css('background-image',`url(${item.image.imageFour  ? item.image.imageFour : ""})`);
+            $("#imageOneHref").attr("href",`${item.image.imageOne  ? item.image.imageOne : ""}`);
+            $("#imageTwoHref").attr("href",`${item.image.imageTwo  ? item.image.imageTwo : ""}`);
+            $("#imageThreeHref").attr("href",`${item.image.imageThree ? item.image.imageThree : ""}`);
+            $("#imageFourHref").attr("href", `${item.image.imageFour ? item.image.imageFour : ""}`);
+            $("#imageOneSrc").attr("src",  `${item.image.imageOne ? item.image.imageOne : ""}`);
+            $("#imageTwoSrc").attr("src", `${item.image.imageTwo ? item.image.imageTwo : ""}`);
+            $("#imageThreeSrc").attr("src", `${item.image.imageThree ? item.image.imageThree : ""}`);
+            $("#imageFourSrc").attr("src", `${item.image.imageFour ? item.image.imageFour : ""}`);
 
-            $("#price-product").text(`$${item.price}`);
-            $("#name-product").text(`${item.name}`);
-            $("#breadcrumb-item-name").text(`${item.name}`);
-            $("#description-product").text(`${item.description}`);
+            $("#price-product").text(`$${item.price ? item.price : ""}`);
+            $("#name-product").text(`${item.name ? item.name : ""}`);
+            $("#breadcrumb-item-name").text(`${item.name ? item.name : ""}`);
+            $("#description-product").text(`${item.description ? item.description : ""}`);
 
             $("button#addtocart").attr("onclick", `addToCastDB('${item.id}')`);
+            $("button#addtoComent").attr("onclick", `addComment('${item.id}')`);
         }else{
             $("#single-product-detail").text("Sản phẩm không tồn tại");
         }

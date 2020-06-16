@@ -14,6 +14,10 @@ public class User {
     private String name;
     @Field("password")
     private String password;
+    @Field("address")
+    private String address;
+    @Field("phone")
+    private String phone;
     @Field("roles")
     private List<String> roles;
 
@@ -47,5 +51,21 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -1,3 +1,30 @@
+if(user != null && user != "") {
+    $.ajax({
+        url: "http://localhost:8099/v1/api/getInfoUser",
+        type: "GET",
+        dataType: 'json',
+        async: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", user);
+        },
+        contentType: "application/json",
+        success: function (response) {
+            if(response.code == "00") {
+                console.log(response.data);
+                setCookie("username", response.data.name);
+                $('#login-user').css("display", "none");
+                $('#logout-user').css("display", "block");
+                checkLogin = true;
+            }else {
+                toastr.error('Find not data!', response.message);
+            }
+        },
+        error: function (result) {
+            window.location.href = "http://localhost:8089/login"
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+        }
+    });
+}
 
 //check the user already logged
 // find product all
@@ -38,8 +65,6 @@ function loginUser() {
                 if(response.data != null) {
                     setCookie("user", response.data);
                     user = response.data;
-                    $('#login-user').css("display", "block");
-                    $('#logout-user').css("display", "none");
                     checkLogin = true;
                     toastr.error('Logic success!', response.message);
                 }
@@ -101,8 +126,8 @@ function logoutUser() {
                 if(response.code == "00") {
                     deleteCookie("user");
                     deleteCookie("username");
-                    $('#login-user').css("display", "none");
-                    $('#logout-user').css("display", "block");
+                    $('#login-user').css("display", "block");
+                    $('#logout-user').css("display", "none");
                     checkLogin = false;
                     toastr.error('Logout success!', response.message);
                 if(user != "" && user != null) {
@@ -117,31 +142,6 @@ function logoutUser() {
         error: function () {
             toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
             console.log(response.message);
-        }
-    });
-}
-
-if(user != null && user != "") {
-    $.ajax({
-        url: "http://localhost:8099/v1/api/getInfoUser",
-        type: "GET",
-        dataType: 'json',
-        async: false,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", user);
-        },
-        contentType: "application/json",
-        success: function (response) {
-            if(response.code == "00") {
-                console.log(response.data);
-                setCookie("username", response.data.name);
-                checkLogin = true;
-            }else {
-                toastr.error('Find not data!', response.message);
-            }
-        },
-        error: function (result) {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
         }
     });
 }
@@ -217,6 +217,7 @@ function getProductInCast() {
                 if(cart.listProduct != null) {
                     getTotalProductInCast(cart);
                     rederDataCast(cart.listProduct);
+                    rederUserInfo(cart);
                     rederDataCastBoxUp(cart.listProduct);
                     if(cart.listProduct[0] != null) {
                         getPriceProductInCast(cart);
@@ -452,44 +453,42 @@ function removeItem(idProduct) {
 }
 
 // comment
-// function addComment(idUser) {
-//     if(user != "") {
-//         let updateCastRequest = {
-//             name:  user,
-//             listProductCast: [{
-//                 id: idProduct,
-//                 number: 1,
-//                 type: 1
-//             }]
-//         };
-//         $.ajax({
-//             url: "http://localhost:8099/order/update/" + cart.id,
-//             type: "POST",
-//             data: JSON.stringify(updateCastRequest),
-//             contentType: "application/json",
-//             success: function (response) {
-//                 if (response.code = "00") {
-//                     cart = response.data;
-//                     if(user != "") {
-//                         if(cart.listProduct != null) {
-//                             getTotalProductInCast(cart);
-//                             rederDataCast(cart.listProduct);
-//                             rederDataCastBoxUp(cart.listProduct);
-//                             if(cart.listProduct[0] != null) {
-//                                 getPriceProductInCast(cart);
-//                                 toastr.error('Add product success!', "HAHA");
-//                             }
-//                         }
-//                     }else {
-//                         toastr.error('Bạn cần đăng nhâp!',  "HAHA");
-//                     }
-//                 }
-//             },
-//             error: function (error) {
-//                 toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
-//             }
-//         });
-//     }else {
-//         toastr.error('Bạn cần đăng nhâp!', "HAHA");
-//     }
-// }
+function addComment(idProduct) {
+    if(user != "") {
+        let contentComment = $("textarea#coment-content").val().trim();
+        if (contentComment != null && contentComment != "") {
+            console.log(contentComment);
+            console.log(cart.image);
+            console.log(cart.buyer);
+
+            let comment = {
+                image: cart.image,
+                buyer: cart.buyer,
+                comtent: contentComment
+            };
+            $.ajax({
+                url: "http://localhost:8099/v1/api/comment/" + idProduct,
+                type: "POST",
+                data: JSON.stringify(comment),
+                contentType: "application/json",
+                success: function (response) {
+                    if (response.code = "00") {
+                        if (response.data != null) {
+                            console.log(response.data);
+                            comment = response.data.comment;
+                            rederComentProduct(comment);
+                            toastr.error('Comment product success!', "HAHA");
+                        }
+                    }
+                },
+                error: function (error) {
+                    toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                }
+            });
+        }else {
+            toastr.error('Bạn cần nhập nội dung!', "HAHA");
+        }
+    }else {
+        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+    }
+}

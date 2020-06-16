@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "product")
 public class Product {
@@ -22,7 +23,7 @@ public class Product {
     @Field("image")
     private Image image;
     @Field("comment")
-    private Comment comment;
+    private List<Comment> comment;
     @Field("promotion")
     private Promotion promotion;
     @Field("color")
@@ -78,11 +79,11 @@ public class Product {
         this.image = image;
     }
 
-    public Comment getComment() {
+    public List<Comment> getComment() {
         return comment;
     }
 
-    public void setComment(Comment comment) {
+    public void setComment(List<Comment> comment) {
         this.comment = comment;
     }
 

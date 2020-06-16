@@ -154,12 +154,14 @@ div#box-up-lst-prodcut-in-cast tr td.box-up span{
 /* end ./ box up in cart */
 
 /* start ./ comment */
+div.comment {
+    width: 100%;
+}
 /** ====================
  * Lista de Comentarios
  =======================*/
 .comments-container {
     font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
-    margin: 60px 0px 0px 15px;
     width: 768px;
 }
 
