@@ -11,7 +11,7 @@ if(user != null && user != "") {
         success: function (response) {
             if(response.code == "00") {
                 console.log(response.data);
-                setCookie("username", response.data.name);
+                setCookie("username", response.data.id);
                 $('#login-user').css("display", "none");
                 $('#logout-user').css("display", "block");
                 checkLogin = true;
@@ -214,13 +214,13 @@ function getProductInCast() {
         success: function (response) {
             if(response.code = '00') {
                 cart = response.data;
+                rederUserInfo(cart);
+                rederDataCast(cart.listProduct);
+                rederDataCastBoxUp(cart.listProduct);
                 if(cart.listProduct != null) {
-                    getTotalProductInCast(cart);
-                    rederDataCast(cart.listProduct);
-                    rederUserInfo(cart);
-                    rederDataCastBoxUp(cart.listProduct);
                     if(cart.listProduct[0] != null) {
                         getPriceProductInCast(cart);
+                        getTotalProductInCast(cart);
                     }
                 }
             }

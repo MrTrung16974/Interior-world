@@ -36,8 +36,8 @@
             </div>
             <div class="card-body">
                 <form autocomplete="off" id="login_form">
-                    <label class="error" style="margin-bottom: 10px" th:if="${param.error != null}">Login information is not valid. Please check again!</label>
-                    <label class="error" style="margin-bottom: 10px" th:if="${param.lock != null}">Username has been locked because of wrong password in succession 5 times</label>
+                    <label class="error" style="color: #fff;margin-bottom: 10px" th:if="${param.error != null}">Login information is not valid. Please check again!</label>
+                    <label class="error" style="color: #fff;margin-bottom: 10px" th:if="${param.lock != null}">Username has been locked because of wrong password in succession 5 times</label>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
