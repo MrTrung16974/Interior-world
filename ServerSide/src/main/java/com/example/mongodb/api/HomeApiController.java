@@ -1,6 +1,7 @@
 package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
+import com.example.mongodb.dto.UserDto;
 import com.example.mongodb.model.Product;
 import com.example.mongodb.dto.ProductModel;
 import com.example.mongodb.model.User;
@@ -104,9 +105,23 @@ public class HomeApiController {
             String userId = tokenAuthenticationService.readJWT(token);
             Optional<User> user = userRepository.findById(userId);
             if(user.isPresent()) {
+                User exitUser = user.get();
+                UserDto userDto = new UserDto();
+                if(exitUser.getId() != null) {
+                    userDto.setId(exitUser.getId());
+                }
+                if(exitUser.getName() != null) {
+                    userDto.setName(exitUser.getName());
+                }
+                if(exitUser.getAddress() != null) {
+                    userDto.setAddress(exitUser.getAddress());
+                }
+                if(exitUser.getPhone() != null) {
+                    userDto.setPhone(exitUser.getPhone());
+                }
                 response.setCode("00");
                 response.setMessage("get data thanh công");
-                response.setData(user.get());
+                response.setData(userDto);
             }else {
                 response.setCode("400");
                 response.setMessage("Find not Data");

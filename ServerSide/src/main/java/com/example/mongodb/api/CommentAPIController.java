@@ -59,4 +59,39 @@ public class CommentAPIController {
         return response;
     }
 
+//    @PostMapping("/comment/{idProduct}")
+//    public BaseResponse  FavouriteComment(@PathVariable("idProduct") String idProduct,
+//                                   @RequestBody Comment comment) {
+//        BaseResponse response = new BaseResponse();
+//        try {
+//            Optional<Product> optProduct = productRepository.findById(idProduct);
+//            if(!optProduct.isPresent()) {
+//                response.setCode("500");
+//                response.setMessage("Null data");
+//                response.setData(null);
+//            }else {
+//                Product exitproduct = optProduct.get();
+//                comment.setCreateAt(new Date());
+//                List<Comment> lstComent = new ArrayList<>() ;
+//                if(exitproduct.getComment() != null) {
+//                    lstComent = exitproduct.getComment();
+//                }
+//                if(comment != null) {
+//                    lstComent.add(comment);
+//                    exitproduct.setComment(lstComent);
+//                }
+//                Product product = productRepository.save(exitproduct);
+//                response.setCode("00");
+//                response.setMessage("Success!");
+//                response.setData(product);
+//            }
+//        }catch (Exception e) {
+//            response.setCode("99");
+//            response.setMessage("Error" + e.getMessage());
+//            response.setData(null);
+//        }
+//
+//        return response;
+//    }
+
 }

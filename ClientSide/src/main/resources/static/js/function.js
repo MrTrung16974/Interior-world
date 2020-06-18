@@ -14,6 +14,7 @@ if(user != null && user != "") {
                 setCookie("username", response.data.id);
                 $('#login-user').css("display", "none");
                 $('#logout-user').css("display", "block");
+                rederUserInfo(response.data);
                 checkLogin = true;
             }else {
                 toastr.error('Find not data!', response.message);
@@ -64,7 +65,7 @@ function loginUser() {
             if(response.code == "00") {
                 if(response.data != null) {
                     setCookie("user", response.data);
-                    user = response.data;
+                    // user = response.data;
                     checkLogin = true;
                     toastr.error('Logic success!', response.message);
                 }
@@ -214,7 +215,6 @@ function getProductInCast() {
         success: function (response) {
             if(response.code = '00') {
                 cart = response.data;
-                rederUserInfo(cart);
                 rederDataCast(cart.listProduct);
                 rederDataCastBoxUp(cart.listProduct);
                 if(cart.listProduct != null) {

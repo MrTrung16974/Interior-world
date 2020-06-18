@@ -130,7 +130,7 @@ function rederUserInfo(data) {
                 <li><a onclick="logoutUser()">Đăng Xuất</a></li>
             </ul>`
         );
-        $('#name-user').text(data.buyer);
+        $('#name-user').text(data.id);
     };
 }
 
@@ -151,7 +151,7 @@ function rederComentProduct(data) {
                         <div class="comment-box">
                             <div class="comment-head">
                                 <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">${item.buyer ? item.buyer : "Anonymously"}</a></h6>
-                                <span>hace ${item.createAt ? item.createAt : "0"} minutos</span>
+                                <span>hace ${item.createAt ? item.createAt : "0"}</span>
                                 <i class="fa fa-heart"></i>
                             </div>
                             <div class="comment-content">
