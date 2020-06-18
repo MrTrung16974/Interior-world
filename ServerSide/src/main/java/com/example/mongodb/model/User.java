@@ -18,6 +18,8 @@ public class User {
     private String address;
     @Field("phone")
     private String phone;
+    @Field("favourite")
+    private List<Product> favourite;
     @Field("roles")
     private List<String> roles;
 
@@ -39,6 +41,14 @@ public class User {
 
     public String getId() {
         return id;
+    }
+
+    public List<Product> getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(List<Product> favourite) {
+        this.favourite = favourite;
     }
 
     public void setId(String id) {
