@@ -26,10 +26,6 @@ public class OrderServices {
         if(!name.isEmpty()  && name != null){
             query.addCriteria(Criteria.where("name").regex(name));
         }
-        //check giá lớn hơn 0  mới thêm điều kiện search
-        if(startPrice > 0 && endPrice>0  && startPrice != null && endPrice != null){
-            query.addCriteria(Criteria.where("price").lte(startPrice).gt(endPrice));
-        }
         if(type > 0 && type != null) {
             query.addCriteria(Criteria.where("type").in(type));
         }

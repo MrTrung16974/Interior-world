@@ -225,7 +225,7 @@ function addFavouriteUser(idProduct) {
                     }
                     rederDataFavourite(response.data);
                     rederDataFavouriteBoxUp(response.data);
-                    getTotalProductInFavourite(response.data.lstFavourite);
+                    getTotalProductInFavourite(response.data);
                 }
             },
             error: function (error) {

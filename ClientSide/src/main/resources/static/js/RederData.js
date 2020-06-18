@@ -45,7 +45,7 @@ function rederData(data) {
                 </div>`);
     });
     }else{
-        $("#lst-product").html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
+        $("#lst-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
 function rederDataCastBoxUp(data) {
@@ -75,7 +75,7 @@ function rederDataCastBoxUp(data) {
         );
     });
     }else{
-        $("#box-up-lst-prodcut-in-cast").html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
+        $("#box-up-lst-prodcut-in-cast").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
 function rederDataCast(data) {
@@ -115,7 +115,7 @@ function rederDataCast(data) {
         );
     });
     } else {
-        $('#lst-product-in-cast').html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
+        $('#lst-product-in-cast').html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
 
@@ -133,7 +133,7 @@ function rederUserInfo(data) {
     };
 }
 
-//reder product
+//reder coment
 //    reder coment product
 function rederComentProduct(data) {
     $("#comments-list").empty();
@@ -202,7 +202,7 @@ function rederDataFavourite(data) {
             );
         });
     } else {
-        $('#lst-product-in-favourite').html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
+        $('#lst-product-in-favourite').html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
 function rederDataFavouriteBoxUp(data) {
@@ -232,7 +232,7 @@ function rederDataFavouriteBoxUp(data) {
             );
         });
     }else{
-        $("#box-up-lst-prodcut-in-favourite").html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
+        $("#box-up-lst-prodcut-in-favourite").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
 
