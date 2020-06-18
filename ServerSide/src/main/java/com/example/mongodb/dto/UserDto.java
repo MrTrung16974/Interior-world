@@ -1,10 +1,15 @@
 package com.example.mongodb.dto;
 
+import com.example.mongodb.model.Product;
+
+import java.util.List;
+
 public class UserDto {
     private String id;
     private String name;
     private String address;
     private String phone;
+    private List<Product> LstFavourite;
 
     public String getId() {
         return id;
@@ -36,5 +41,13 @@ public class UserDto {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Product> getLstFavourite() {
+        return LstFavourite;
+    }
+
+    public void setLstFavourite(List<Product> lstFavourite) {
+        LstFavourite = lstFavourite;
     }
 }

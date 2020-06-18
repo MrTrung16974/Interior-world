@@ -10,11 +10,15 @@ if(user != null && user != "") {
         contentType: "application/json",
         success: function (response) {
             if(response.code == "00") {
-                console.log(response.data);
                 setCookie("username", response.data.id);
                 $('#login-user').css("display", "none");
                 $('#logout-user').css("display", "block");
+                getProductInCast();
                 rederUserInfo(response.data);
+                rederDataFavourite(response.data.lstFavourite);
+                rederDataFavouriteBoxUp(response.data.lstFavourite);
+                getTotalProductInFavourite(response.data.lstFavourite);
+                console.log(response.data.lstFavourite);
                 checkLogin = true;
             }else {
                 toastr.error('Find not data!', response.message);
@@ -40,7 +44,6 @@ $.ajax({
     success: function (response) {
         if(response.code == "00") {
             rederData(response.data.content);
-            console.log(response.data.content);
             let totalPage = response.data.totalPages;
             forPagination(totalPage);
         }else {
@@ -147,6 +150,8 @@ function logoutUser() {
     });
 }
 
+
+// product
 function searchProduct(page) {
     pageDefault = page;
     keyword = $('#keysearch').val().trim().toLocaleLowerCase();
@@ -202,12 +207,37 @@ function sortProduct() {
     });
 }
 
-// cart product
-
-if(checkLogin) {
-    getProductInCast();
+function addFavouriteUser(idProduct) {
+    if(user != "") {
+        $.ajax({
+            url: "http://localhost:8099/v1/api/user/favourite/?idUser="+
+                cart.buyer + "&idProduct=" + idProduct,
+            type: "PUT",
+            success: function (response) {
+                if (response.data != null) {
+                    if (response.code == "200") {
+                        console.log(response.data);
+                        toastr.error('add favourite user Success!', "HAHA");
+                    }
+                    if (response.code == "00") {
+                        console.log(response.data);
+                        toastr.error('remove favourite user Success!', "HAHA");
+                    }
+                    rederDataFavourite(response.data);
+                    rederDataFavouriteBoxUp(response.data);
+                    getTotalProductInFavourite(response.data.lstFavourite);
+                }
+            },
+            error: function (error) {
+                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            }
+        });
+    }else {
+        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+    }
 }
 
+// cart product
 function getProductInCast() {
     $.ajax({
         url: "http://localhost:8099/order/products/" + username,

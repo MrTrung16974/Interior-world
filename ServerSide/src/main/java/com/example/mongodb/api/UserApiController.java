@@ -1,7 +1,9 @@
 package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
+import com.example.mongodb.dto.Comment;
 import com.example.mongodb.dto.UserDto;
+import com.example.mongodb.model.Product;
 import com.example.mongodb.model.User;
 import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
@@ -13,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -111,6 +115,9 @@ public class UserApiController {
                 if(exitUser.getPhone() != null) {
                     userDto.setPhone(exitUser.getPhone());
                 }
+                if(exitUser.getLstFavourite() != null) {
+                    userDto.setLstFavourite(exitUser.getLstFavourite());
+                }
                 response.setCode("00");
                 response.setMessage("get data thanh công");
                 response.setData(userDto);
@@ -127,4 +134,55 @@ public class UserApiController {
         return response;
     }
 
+    @PutMapping("/user/favourite")
+        public BaseResponse favouriteUser(@RequestParam("idUser") String idUser,
+                                      @RequestParam("idProduct") String idProduct){
+        BaseResponse response = new BaseResponse();
+        Optional<User> optUser = userRepository.findById(idUser);
+        Optional<Product> optProduct = productRepository.findById(idProduct);
+        User exitUser = optUser.get();
+        Product exitProduct = optProduct.get();
+        List<Product> lstProduct = new ArrayList<>();;
+        Product removeProduct = null;
+        boolean isHaveInList = false;
+
+        if(!optUser.isPresent() && !optProduct.isPresent()) {
+            response.setCode("99");
+            response.setMessage("Found not data");
+            response.setData(null);
+            return response;
+        }
+        if (exitUser.getLstFavourite() != null) {
+            lstProduct = exitUser.getLstFavourite();
+            for (Product p : lstProduct) {
+                if(p.getId().equals(exitProduct.getId())) {
+                    isHaveInList = true;
+                    removeProduct = p;
+                }
+            }
+        }
+//        check lst Product equal null add product (frist product)
+        if(lstProduct.isEmpty()) {
+            lstProduct.add(exitProduct);
+            response.setCode("200");
+            response.setMessage("add favourite user Success");
+        }else {
+            if(!isHaveInList) {
+//              add  favourite in user
+                lstProduct.add(exitProduct);
+                response.setCode("200");
+                response.setMessage("add favourite user Success");
+            } else {
+//              remove  favourite in user
+                lstProduct.remove(removeProduct);
+                response.setCode("00");
+                response.setMessage("remove favourite user Success");
+            }
+        }
+        exitUser.setLstFavourite(lstProduct);
+        userRepository.save(exitUser);
+        response.setData(lstProduct);
+
+        return response;
+    }
 }

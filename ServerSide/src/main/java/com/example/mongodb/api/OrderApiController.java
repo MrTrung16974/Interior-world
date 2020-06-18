@@ -73,9 +73,7 @@ public class OrderApiController {
             return response;
         }
 
-        ProductModel productAdd = null;
         ProductModel productDelete = null;
-        Boolean checkAddProduct = true;
 //        List get from clent
         List<ProductModel> productInCart = exitsOrder.getListProduct();
         //        checkname

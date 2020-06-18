@@ -31,6 +31,7 @@
                 <li class="home"><a th:href="@{/home}">Home</a></li>
                 <li class="shop"><a th:href="@{shop}">Shop</a></li>
                 <li class="cart"><a onclick="loadPageCast()">Cart</a></li>
+                <li class="favourite"><a onclick="loadPageFavourite()">Favourite</a></li>
             </ul>
         </nav>
         <!-- Button Group -->
@@ -57,7 +58,13 @@
                     </div>
                 </div>
             </a>
-            <a href="#" class="fav-nav"><img th:src="@{/img/core-img/favorites.png}" alt=""> Favourite</a>
+            <a onclick="loadPageFavourite()" class="fav-nav"><img th:src="@{/img/core-img/favorites.png}" alt=""> Favourite <span id="total-favourite">(0)</span>
+                <div class="box-up">
+                    <div id="box-up-lst-prodcut-in-favourite">
+
+                    </div>
+                </div>
+            </a>
             <a href="#" class="search-nav"><img th:src="@{/img/core-img/search.png}" alt=""> Search</a>
         </div>
         <!-- Social Button -->

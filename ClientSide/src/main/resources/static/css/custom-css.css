@@ -69,7 +69,8 @@ td.remove-item {
     border: none;
 }
 a.cart-nav.cart,
-div.login-nav.login{
+div.login-nav.login,
+a.fav-nav{
     position: relative;
 }
 div.login-nav.login {
@@ -112,21 +113,25 @@ div.box-up {
 }
 
 a.cart-nav.cart:hover div.box-up,
-div.login-nav.login:hover div.box-up{
+div.login-nav.login:hover div.box-up,
+a.fav-nav:hover div.box-up{
     display: block !important;
 }
 
-div.login-nav.login>div.box-up>div>ul>li {
+div.login-nav.login>div.box-up>div>ul>li,
+a.fav-nav>div.box-up>div>ul>li{
     width: 180px;
     color: #131212;
     padding: 2px 10px;
 }
-div.login-nav.login>div.box-up>div>ul>li>a {
+div.login-nav.login>div.box-up>div>ul>li>a,s
+a.fav-nav>div.box-up>div>ul>li>a{
     font-size: 16px;
     text-transform: capitalize;
 }
 
-div#box-up-lst-prodcut-in-cast tr.lst-product-cart {
+div#box-up-lst-prodcut-in-cast tr.lst-product-cart,
+div#box-up-lst-prodcut-in-favourite tr.lst-product-cart{
     position: relative;
     padding: 0px .75rem;
     width: 296px;
@@ -134,7 +139,8 @@ div#box-up-lst-prodcut-in-cast tr.lst-product-cart {
     max-width: 296px;
 }
 
-div#box-up-lst-prodcut-in-cast tr td.box-up {
+div#box-up-lst-prodcut-in-cast tr td.box-up,
+div#box-up-lst-prodcut-in-favourite tr td.box-up{
     padding: 10px;
     border: none;
     -webkit-box-flex: 0;
@@ -143,13 +149,20 @@ div#box-up-lst-prodcut-in-cast tr td.box-up {
     width: 25%;
     max-width: 25%;
 }
-div#box-up-lst-prodcut-in-cast tr td.box-up>a{
+div#box-up-lst-prodcut-in-cast tr td.box-up>a,
+div#box-up-lst-prodcut-in-favourite tr td.box-up>a{
     padding: 0;
 }
-div#box-up-lst-prodcut-in-cast tr td.box-up h5,
-div#box-up-lst-prodcut-in-cast tr td.box-up span{
+div#box-up-lst-prodcut-in-cast tr ,
+div#box-up-lst-prodcut-in-cast tr td.box-up span ,
+div#box-up-lst-prodcut-in-favourite td.box-up h5,
+div#box-up-lst-prodcut-in-favourite tr td.box-up span{
     font-size: 13px;
     text-transform: capitalize;
+}
+#lst-product-in-favourite tr td.star>div.ratings>i {
+    font-size: 13px;
+    color: red;
 }
 /* end ./ box up in cart */
 

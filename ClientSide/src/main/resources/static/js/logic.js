@@ -91,6 +91,14 @@ function getTotalProductInCast(cast) {
         $("#total-in-cast").text(`${total} sản phẩm`);
     }
 }
+function getTotalProductInFavourite(data) {
+    let total = data.length;
+    if (total <= 0) {
+        $("#total-favourite").text(`(0)`);
+    } else {
+        $("#total-favourite").text(`(${total})`);
+    }
+}
 
 function getPriceProductInCast(cast) {
     let price_number = 0;
@@ -109,6 +117,15 @@ function getPriceProductInCast(cast) {
 function loadPageCast() {
     if(user != null && user != "") {
         window.location.href = "http://localhost:8089/cart"
+    }else {
+        window.location.href = "http://localhost:8089/login"
+
+    }
+}
+
+function loadPageFavourite() {
+    if(user != null && user != "") {
+        window.location.href = "http://localhost:8089/favourite"
     }else {
         window.location.href = "http://localhost:8089/login"
 

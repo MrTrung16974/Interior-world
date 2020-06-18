@@ -36,7 +36,7 @@ function rederData(data) {
                                     <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                    <a onclick="addFavouriteUser(${item.id})" ><i class="fa fa-heart" aria-hidden="true"></i></a>
                                     <a onclick="addToCastDB(${item.id})" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                 </div>
                             </div>
@@ -48,7 +48,6 @@ function rederData(data) {
         $("#lst-product").html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
     }
 }
-
 function rederDataCastBoxUp(data) {
     $("#box-up-lst-prodcut-in-cast").empty();
     if(typeof data != "undefined"
@@ -152,7 +151,6 @@ function rederComentProduct(data) {
                             <div class="comment-head">
                                 <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">${item.buyer ? item.buyer : "Anonymously"}</a></h6>
                                 <span>hace ${item.createAt ? item.createAt : "0"}</span>
-                                <i class="fa fa-heart"></i>
                             </div>
                             <div class="comment-content">
                                 ${item.comtent ? item.comtent : ""}
@@ -166,3 +164,76 @@ function rederComentProduct(data) {
         $('#comments-list').html("<p style='color: #1abc9c;'>Product has not been evaluated</p>");
     }
 }
+
+//reder favourite
+function rederDataFavourite(data) {
+    $("#lst-product-in-favourite").empty();
+    if (typeof data != "undefined"
+        && data != null
+        && data.length != null
+        && data.length > 0) {
+        data.map(item => {
+            $('#lst-product-in-favourite').append(
+                `<tr style="position: relative;">
+                <td class="cart_product_img">
+                    <a href="#"><img src="${item.image.imageOne}" alt="Product"></a>
+                </td>
+                <td class="cart_product_desc">
+                    <a href="/product-details?id=${item.id}" >
+                        <h5>${item.name}</h5>
+                    </a>
+                </td>
+                <td class="price">
+                    <span>$${item.price}</span>
+                </td>
+                <td class="star">
+                    <div class="ratings">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="hidden"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </div>
+                </td>
+                <td onclick="addFavouriteUser(${item.id})" class="remove-item">
+                    <span>x</span>
+                </td>
+            </tr>`
+            );
+        });
+    } else {
+        $('#lst-product-in-favourite').html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
+    }
+}
+function rederDataFavouriteBoxUp(data) {
+    $("#box-up-lst-prodcut-in-favourite").empty();
+    if(typeof data != "undefined"
+        && data != null
+        && data.length != null
+        && data.length > 0 != null) {
+        data.map(item => {
+            $('#box-up-lst-prodcut-in-favourite').append(
+                `<tr class="lst-product-cart">
+                <td class="cart_product_img box-up">
+                    <a href="#"><img width="50" height="50" src="${item.image.imageOne}" alt="Product"></a>
+                </td>
+                <td class="cart_product_desc box-up">
+                    <a href="/product-details?id=${item.id}" >
+                        <h5>${item.name}</h5>
+                    </a>
+                </td>
+                <td class="price box-up">
+                    <span>$${item.price}</span>
+                </td>
+                <td onclick="addFavouriteUser(${item.id})" class="remove-item box-up">
+                    <span>x</span>
+                </td>
+            </tr>`
+            );
+        });
+    }else{
+        $("#box-up-lst-prodcut-in-favourite").html("<h3 style='padding: 20px;'>Sản phẩm không tồn tại</h3>");
+    }
+}
+
+

@@ -19,7 +19,7 @@ public class User {
     @Field("phone")
     private String phone;
     @Field("favourite")
-    private List<Product> favourite;
+    private List<Product> lstFavourite;
     @Field("roles")
     private List<String> roles;
 
@@ -43,12 +43,12 @@ public class User {
         return id;
     }
 
-    public List<Product> getFavourite() {
-        return favourite;
+    public List<Product> getLstFavourite() {
+        return lstFavourite;
     }
 
-    public void setFavourite(List<Product> favourite) {
-        this.favourite = favourite;
+    public void setLstFavourite(List<Product> lstFavourite) {
+        this.lstFavourite = lstFavourite;
     }
 
     public void setId(String id) {
