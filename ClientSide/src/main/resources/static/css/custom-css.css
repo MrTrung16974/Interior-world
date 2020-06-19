@@ -53,6 +53,12 @@ a {
     color: red;
     /*background-color: red;*/
 }
+.widget.color .widget-desc ul li a {
+    border: 1px solid #959595;
+}
+.widget.color .widget-desc ul li a:hover {
+    border: 2px solid #fbb710;
+}
 /* end ./ product */
 
 /* start ./ login */

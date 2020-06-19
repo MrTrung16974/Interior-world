@@ -17,8 +17,9 @@ if(user != null && user != "") {
                 rederUserInfo(response.data);
                 rederDataFavourite(response.data.lstFavourite);
                 rederDataFavouriteBoxUp(response.data.lstFavourite);
-                getTotalProductInFavourite(response.data.lstFavourite);
-                console.log(response.data.lstFavourite);
+                if(response.data.lstFavourite != null) {
+                    getTotalProductInFavourite(response.data.lstFavourite);
+                }
                 checkLogin = true;
             }else {
                 toastr.error('Find not data!', response.message);
@@ -72,7 +73,7 @@ function loginUser() {
                     checkLogin = true;
                     toastr.error('Logic success!', response.message);
                 }
-                if(user != "" && user != null) {
+                if(checkLogin) {
                     window.location.href = "http://localhost:8089/home"
                 }
             }
@@ -155,6 +156,7 @@ function logoutUser() {
 function searchProduct(page) {
     pageDefault = page;
     keyword = $('#keysearch').val().trim().toLocaleLowerCase();
+    console.log(keyword);
     if (keyword == null) {
         keyword = '';
     }
@@ -225,7 +227,9 @@ function addFavouriteUser(idProduct) {
                     }
                     rederDataFavourite(response.data);
                     rederDataFavouriteBoxUp(response.data);
-                    getTotalProductInFavourite(response.data);
+                    if(response.data != null) {
+                        getTotalProductInFavourite(response.data);
+                    }
                 }
             },
             error: function (error) {
