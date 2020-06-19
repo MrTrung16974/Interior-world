@@ -52,6 +52,9 @@ switch (pathname) {
         case "/checkout":
             $("li.checkout").addClass("active");
             break;
+        case "/favourite":
+            $("li.favourite").addClass("active");
+            break;
         default :
             $("li").removeClass("active");
             break;
