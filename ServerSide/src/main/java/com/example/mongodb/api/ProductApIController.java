@@ -88,7 +88,7 @@ public class ProductApIController {
                     pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.ASC,"id"));
                     break;
             }
-            Page<Product> listProduct = productRepository.findByNameContaining(name, pageable);
+            Page<Product> listProduct = productRepository.findByNameContainingIgnoreCase(name, pageable);
             if (!listProduct.isEmpty()) {
                 response.setCode("00");
                 response.setMessage("List actor search by key: " + name);

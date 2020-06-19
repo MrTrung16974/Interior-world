@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends MongoRepository<Product,String> {
-    Page<Product> findByNameContaining(String name, Pageable pageable);
+    Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
 //    @Query(value = "SELECT * FROM PRODUCT WHERE LOWER(NAME) LIKE %?1%",
 //            countQuery = "SELECT count(*) FROM PRODUCT WHERE LOWER(NAME) = %?1%",
