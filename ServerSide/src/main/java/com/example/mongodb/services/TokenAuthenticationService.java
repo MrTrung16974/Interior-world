@@ -1,5 +1,6 @@
 package com.example.mongodb.services;
 
+import ch.qos.logback.classic.pattern.DateConverter;
 import com.example.mongodb.model.User;
 import com.example.mongodb.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
@@ -7,6 +8,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -52,5 +55,16 @@ public class TokenAuthenticationService {
         }catch (Exception e) {
             return false;
         }
+    }
+
+    public Date simpleDateFormat(Date date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String strDate = sdf.format(date);
+        System.out.println("Current date in String Format: "+strDate);
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date newDate = sdf1.parse(strDate);
+        System.out.println("Current date in Date Format: "+newDate);
+        return newDate;
     }
 }

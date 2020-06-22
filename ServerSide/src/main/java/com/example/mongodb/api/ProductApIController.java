@@ -18,6 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -130,7 +132,7 @@ public class ProductApIController {
 
     @PostMapping("/product")
     public BaseResponse createProduct(
-            @RequestBody ProductModel productRequest){
+            @RequestBody ProductModel productRequest) throws ParseException {
         BaseResponse response = new BaseResponse();
         if(productRequest == null) {
             response.setCode("99");
@@ -148,7 +150,7 @@ public class ProductApIController {
         product.setMaterial(productRequest.getMaterial());
         product.setColor(productRequest.getColor());
         product.setStar(productRequest.getStar());
-        product.setCreateAt(new Date());
+        product.setCreateAt(tokenAuthenticationService.simpleDateFormat(new Date()));
         Product exitProduct = productRepository.save(product);
         response.setCode("00");
         response.setMessage("Success");

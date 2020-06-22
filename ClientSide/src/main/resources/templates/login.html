@@ -42,14 +42,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="username" id="username" class="form-control" placeholder="username">
+                        <input type="text" onkeypress="loginUser(event)" name="username" id="username" class="form-control" placeholder="username">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="password">
+                        <input type="password" onkeypress="loginUser(event)" name="password" id="password" class="form-control" placeholder="password">
                     </div>
                     <div class="row align-items-center remember">
                         <input type="checkbox">Remember Me
