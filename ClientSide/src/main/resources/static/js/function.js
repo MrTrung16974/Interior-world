@@ -511,6 +511,7 @@ function addComment(idProduct) {
                             console.log(response.data);
                             comment = response.data.comment;
                             rederComentProduct(comment);
+                            $("#coment-content").val("");
                             toastr.error('Comment product success!', "HAHA");
                         }
                     }
