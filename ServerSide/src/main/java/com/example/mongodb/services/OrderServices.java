@@ -19,6 +19,9 @@ public class OrderServices {
    @Autowired
     MongoTemplate mongoTemplate;
 
+   @Autowired
+   MongoTemplate mongoTemplate;
+
     //tìm kiếm product theo name và giá tiền
     public List<Product> search(String name, Integer color, Integer material, Integer type, Long startPrice,Long endPrice, Pageable pageable){
         Query query = new Query();

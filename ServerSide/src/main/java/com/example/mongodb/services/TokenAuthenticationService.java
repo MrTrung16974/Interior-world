@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -24,8 +26,11 @@ public class TokenAuthenticationService {
     static final String SECRET = "trungth";
 
     public String generateJWT(String username) {
+        Map<String,Object> roles = new HashMap();
+        roles.put("roles","ADMIN");
         String JWT = Jwts.builder()
                 .setSubject(username)
+                .setClaims(roles)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();

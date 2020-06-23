@@ -48,6 +48,17 @@ function rederData(data) {
         $("#lst-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
+// function renderStar(rate) {
+//     let data = '';
+//     for(i = > 5){
+//         if(i < rate)
+//             data += <i class="fa fa-star" aria-hidden="true"></i>else{
+//
+//             data += <i class="fa fa-star-o" aria-hidden="hidden"></i>
+//         }
+//     }
+//     return data;
+// }
 function rederDataCastBoxUp(data) {
     $("#box-up-lst-prodcut-in-cast").empty();
     if(typeof data != "undefined"
