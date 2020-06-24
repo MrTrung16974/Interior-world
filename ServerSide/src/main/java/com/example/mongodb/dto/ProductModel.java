@@ -1,22 +1,22 @@
 package com.example.mongodb.dto;
 
+import org.springframework.security.core.parameters.P;
+
+import java.util.List;
+
 public class ProductModel {
     private String id;
     private String name;
     private Double price;
+    private List<Price> priceForColor;
     private String description;
-    private Image image;
+    private List<String> image;
     private Comment comment;
     private Promotion promotion;
-    private Integer color;
-    private Integer material;
     private Integer star;
-    private Integer type;
+    private Type type;
     private Integer number;
 
-    public Image getImage() {
-        return image;
-    }
 
     public Comment getComment() {
         return comment;
@@ -40,22 +40,6 @@ public class ProductModel {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getColor() {
-        return color;
-    }
-
-    public void setColor(Integer color) {
-        this.color = color;
-    }
-
-    public Integer getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Integer material) {
-        this.material = material;
     }
 
     public Integer getStar() {
@@ -82,6 +66,14 @@ public class ProductModel {
         this.name = name;
     }
 
+    public List<Price> getPriceForColor() {
+        return priceForColor;
+    }
+
+    public void setPriceForColor(List<Price> priceForColor) {
+        this.priceForColor = priceForColor;
+    }
+
     public Double getPrice() {
         return price;
     }
@@ -90,15 +82,19 @@ public class ProductModel {
         this.price = price;
     }
 
-    public Integer getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
-    public void setImage(Image image) {
+    public List<String> getImage() {
+        return image;
+    }
+
+    public void setImage(List<String> image) {
         this.image = image;
     }
 

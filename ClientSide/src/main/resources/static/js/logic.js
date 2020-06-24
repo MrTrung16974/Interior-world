@@ -60,18 +60,70 @@ switch (pathname) {
             break;
     }
 
-// logic cart
+function findCategories(type) {
+    let category = null;
+    switch (type) {
+        case 0:
+            category = "Cabinets"
+            break;
+        case 1:
+            category = "Desk"
+            break;
+        case 2:
+            category = "Decorate"
+            break;
+        case 3:
+            category = "Belongings"
+            break;
+        case 4:
+            category = "Sofa"
+            break;
+        case 5:
+            category = "Lamp"
+            break;
+        default:
+            category = ""
+            break;
+    }
+    return category;
+}
+
+function findMaterial(type) {
+    let category = null;
+    switch (type) {
+        case 0:
+            category = "Wood"
+            break;
+        case 1:
+            category = "Plastic"
+            break;
+        case 2:
+            category = "Glass"
+            break;
+        case 3:
+            category = "Titanium alloy"
+            break;
+        case 4:
+            category = "Iron"
+            break;
+        default:
+            category = ""
+            break;
+    }
+    return category;
+}
 function forStar(star) {
     let starWrite = "";
     for (let i=1; i <= 5; i++) {
         if(i > star) {
-            starWrite += "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+            starWrite += "<i class=\"far fa-star\" aria-hidden=\"false\"></i>";
         }else {
-            starWrite += "<i class=\"fa fa-star\" aria-hidden=\"false\"></i>";
+            starWrite += "<i class=\"fas fa-star\" aria-hidden=\"true\"></i>";
         }
     }
     return starWrite;
 }
+// logic cart
 
 function forPagination(totalPage) {
     $("#pagination").empty();
@@ -89,19 +141,17 @@ function forPagination(totalPage) {
 function getTotalProductInCast(cast) {
     let total = cart.listProduct.length;
     if (total <= 0) {
-        $("#total-cast").text(`(0)`);
-        $("#total-in-cast").text(`0 sản phẩm`);
+        $("#total-cast").text(`0`);
     } else {
-        $("#total-cast").text(`(${total})`);
-        $("#total-in-cast").text(`${total} sản phẩm`);
+        $("#total-cast").text(`${total}`);
     }
 }
 function getTotalProductInFavourite(data) {
     let total = data.length;
     if (total <= 0) {
-        $("#total-favourite").text(`(0)`);
+        $("#total-favourite").text(`0`);
     } else {
-        $("#total-favourite").text(`(${total})`);
+        $("#total-favourite").text(`${total}`);
     }
 }
 
@@ -112,7 +162,8 @@ function getPriceProductInCast(cast) {
         for (let i = 0; i < length; i++) {
             price_number += (cast.listProduct[i].price * cast.listProduct[i].number);
         }
-        $("#price-number").text("$" + price_number);
+        $("#price-number").text(price_number);
+        $("#price-number-in-cart").text("$" + price_number);
     }
 
 }
@@ -136,7 +187,14 @@ function loadPageFavourite() {
 
     }
 }
+function loadPageCheckOut() {
+    if (user != null && user != "") {
+        window.location.href = "http://localhost:8080/checkout"
+    } else {
+        window.location.href = "http://localhost:8080/login"
 
+    }
+}
 // logic cookie
 function getCookie(cname) {
     var name = cname + "=";

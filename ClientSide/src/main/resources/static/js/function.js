@@ -40,14 +40,10 @@ if(user != null && user != "") {
 $.ajax({
     url: "http://localhost:8099/v1/api/product/search?name="+keyword+"&page="+pageDefault+"&perPage=12",
     type: "GET",
-    // dataType: 'json',
-    // headers: {
-    //     "Authorization": "Basic " + btoa('trungth' + ":" + '123456')
-    // },
-    // data: '{ "comment" }',
     success: function (response) {
         if(response.code == "00") {
             rederData(response.data.content);
+            console.log(response.data.content);
             let totalPage = response.data.totalPages;
             forPagination(totalPage);
         }else {
@@ -59,6 +55,40 @@ $.ajax({
     }
 });
 
+//code gà nền phải viết 2 function giống nhau(cái này là cho cick)
+function loginCickUser() {
+    let username = $("#username").val().trim();
+    let password = $("#password").val().trim();
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8099/v1/api/login?username=" + username + "&password=" + password,
+        processData: false,
+        success: function (response) {
+            // server trả về HTTP status code là 200 => Thành công
+            //hàm đc thực thi khi request thành công không có lỗi
+            if (response.code == "00") {
+                if (response.data != null) {
+                    setCookie("user", response.data);
+                    // user = response.data;
+                    checkLogin = true;
+                    toastr.error('Logic success!', response.message);
+                }
+                if (checkLogin) {
+                    window.location.href = "http://localhost:8080/home"
+                }
+            } else {
+                window.location.href = "http://localhost:8080/login?error=true"
+                console.log(response.message);
+            }
+        },
+        error: function () {
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            console.log(response.message);
+        }
+    });
+}
+
+//code gà nền phải viết 2 function giống nhau(cái này là cho keyUp)
 function loginUser(e) {
     if(e.keyCode === 13) {
         let username = $("#username").val().trim();

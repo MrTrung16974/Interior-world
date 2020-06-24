@@ -10,9 +10,10 @@ $(document).ready(function () {
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
                 console.log(response.data);
-                rederDataProductDetail(response.data);
+                // rederDataProductDetail(response.data);
+                rederDataSingleProduct(response.data);
                 comment = response.data.comment;
-                rederComentProduct(comment);
+                // rederComentProduct(comment);
             }
             else {
                 console.log(response.message);
@@ -46,4 +47,60 @@ $(document).ready(function () {
             $("#single-product-detail").text("Sản phẩm không tồn tại");
         }
     }
+    function forImage(image) {
+        let imageWrite = "";
+        data.map(item => {
+            imageWrite += `<div class="single-prd-item">
+                            <img class="img-fluid" src="${item ? item : ""}" alt="">
+                        </div>`
+        });
+        return imageWrite;
+    }
+    function rederDataSingleProduct(item) {
+        $("#single-product").empty();
+        if(typeof item != "undefined"
+            && item != null) {
+            $('#single-product').html(
+        `<div class="row s_product_inner">
+                    <div class="col-lg-6">
+                        <div class="owl-carousel owl-theme s_Product_carousel">
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src="${item.image[0] ? item.image[0] : ""}" alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="s_product_text">
+                            <h3>${item.name ? item.name : ""}</h3>
+                            <h2>$${item.price ? item.price : ""}</h2>
+                            <ul class="list">
+                                <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
+                                <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                                <li><a href="#"><span>Star</span> : ${forStar(item.star)}</a></li>
+                            </ul>
+                            <p>${item.description ? item.description : ""}</p>
+                          
+                            <div class="product_count">
+                                <a class="button primary-btn" onclick="addToCastDB('${item.id}')">Add to Cart</a>               
+                            </div>
+                            <div class="card_area d-flex align-items-center">
+                                <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+                                <a class="icon_btn" onclick="addFavouriteUser(${item.id})"><i class="lnr lnr lnr-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `);
+            $("button#addtoComent").attr("onclick", `addComment('${item.id}')`);
+        }else{
+            $("#single-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
+        }
+    }
+
 });

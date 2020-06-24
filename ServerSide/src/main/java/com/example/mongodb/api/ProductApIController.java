@@ -114,9 +114,10 @@ public class ProductApIController {
         try {
             Optional<Product> optListProduct = productRepository.findById(id);
             if (optListProduct.isPresent()) {
+                Product exitProduct = optListProduct.get();
                 response.setCode("00");
                 response.setMessage("List actor search by key: " + id);
-                response.setData(optListProduct);
+                response.setData(exitProduct);
             } else {
                 response.setCode("99");
                 response.setMessage("Data not found");
@@ -146,9 +147,8 @@ public class ProductApIController {
         product.setImage(productRequest.getImage());
         product.setType(productRequest.getType());
         product.setPrice(productRequest.getPrice());
+        product.setPriceForColor(productRequest.getPriceForColor());
         product.setPromotion(productRequest.getPromotion());
-        product.setMaterial(productRequest.getMaterial());
-        product.setColor(productRequest.getColor());
         product.setStar(productRequest.getStar());
         product.setCreateAt(tokenAuthenticationService.simpleDateFormat(new Date()));
         Product exitProduct = productRepository.save(product);
@@ -181,17 +181,14 @@ public class ProductApIController {
         if(productRequest.getImage() != null) {
             newProduct.setImage(oldProduct.getImage());
         }
-        if(productRequest.getType() > 0) {
+        if(productRequest.getType() != null) {
             newProduct.setType(oldProduct.getType());
         }
         if(productRequest.getPrice() > 0) {
             newProduct.setPrice(oldProduct.getPrice());
         }
-        if(productRequest.getColor() > 0) {
-            newProduct.setColor(oldProduct.getColor());
-        }
-        if(productRequest.getMaterial() > 0) {
-            newProduct.setMaterial(oldProduct.getMaterial());
+        if(!productRequest.getPriceForColor().isEmpty()) {
+            newProduct.setPriceForColor(oldProduct.getPriceForColor());
         }
         if(productRequest.getPromotion() != null) {
             newProduct.setPromotion(oldProduct.getPromotion());

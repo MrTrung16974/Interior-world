@@ -16,9 +16,6 @@
 .media-left, .media>.pull-left {
     padding-right: 10px;
 }
-.media-body {
-    width: 10000px !important;
-}
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
     display: block !important;
     max-width: 100% !important;
@@ -54,6 +51,9 @@ a:hover, a:focus {
     outline: none;
     z-index: 10;
 }
+a {
+    cursor: pointer;
+}
 a,li {
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -61,6 +61,15 @@ a,li {
     -ms-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
     text-decoration: none !important;
+}
+.delete-item-cart:hover i{
+    color: red !important;
+}
+.breadcrumb_bg {
+    background-image: url(../img/breadcrumb.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /* Bootstrap */
 
@@ -76,10 +85,12 @@ header .main_menu ul.nav-shop .nav-item ul.dropdown-menu {
     padding: 40px 20px 20px;
     border-radius: 0px;
     min-width: 350px;
+    max-height: 500px;
     border: none;
     left: auto;
     right: -20px;
     top: 80%;
+    overflow-y: auto;
 }
 header .main_menu ul.nav-shop .nav-item:hover ul.dropdown-menu {
     display: block !important;
@@ -95,6 +106,7 @@ header .main_menu ul.nav-shop .nav-item .dropdown-menu li {
 header .main_menu ul.nav-shop .nav-item ul.dropdown-menu li a {
     font-size: 14px;
     color: #2d3a4b;
+    cursor: pointer;
     font-weight: normal;
     padding: 15px 0px;
     margin: 0 10px;
@@ -161,7 +173,7 @@ header .main_menu ul.nav-shop .nav-item .dropdown-menu .btn {
     border-radius: 0px !important;
     border: none;
     background: #2d3a4b;
-    color: #fff;
+    color: #fff !important;
     margin: 0 2px;
     height: 23px;
     width: 23px;

@@ -26,6 +26,10 @@ public class ControllerMapping {
     public String favourite(){
         return "favourite";
     }
+    @RequestMapping("/checkout")
+    public String checkout(){
+        return "checkout";
+    }
     @RequestMapping("/confirmation")
     public String confirmation(){
         return "confirmation";

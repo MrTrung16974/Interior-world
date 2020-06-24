@@ -1,8 +1,9 @@
 package com.example.mongodb.model;
 
 import com.example.mongodb.dto.Comment;
-import com.example.mongodb.dto.Image;
+import com.example.mongodb.dto.Price;
 import com.example.mongodb.dto.Promotion;
+import com.example.mongodb.dto.Type;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -18,24 +19,22 @@ public class Product {
     private String name;
     @Field("price")
     private Double price;
+    @Field("price_for_color")
+    private List<Price> priceForColor;
     @Field("description")
     private String description;
     @Field("image")
-    private Image image;
+    private List<String> image;
     @Field("comment")
     private List<Comment> comment;
     @Field("promotion")
     private Promotion promotion;
-    @Field("color")
-    private Integer color;
-    @Field("material")
-    private Integer material;
+    @Field("type")
+    private Type type;
     @Field("star")
     private Integer star;
     @Field("number")
     private Integer number;
-    @Field("type")
-    private Integer type;
     @Field("createAt")
     private Date createAt;
 
@@ -71,11 +70,19 @@ public class Product {
         this.price = price;
     }
 
-    public Image getImage() {
+    public List<Price> getPriceForColor() {
+        return priceForColor;
+    }
+
+    public void setPriceForColor(List<Price> priceForColor) {
+        this.priceForColor = priceForColor;
+    }
+
+    public List<String> getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(List<String> image) {
         this.image = image;
     }
 
@@ -95,20 +102,12 @@ public class Product {
         this.promotion = promotion;
     }
 
-    public Integer getColor() {
-        return color;
+    public void setType(Type type) {
+        this.type = type;
     }
 
-    public void setColor(Integer color) {
-        this.color = color;
-    }
-
-    public Integer getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Integer material) {
-        this.material = material;
+    public Type getType() {
+        return type;
     }
 
     public Integer getStar() {
@@ -125,14 +124,6 @@ public class Product {
 
     public void setNumber(Integer number) {
         this.number = number;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public Date getCreateAt() {
