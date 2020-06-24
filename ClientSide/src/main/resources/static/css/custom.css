@@ -1,0 +1,137 @@
+
+/*--================ Start Header Menu Area =================--*/
+/* Bootstrap */
+.media-body, .media-left, .media-right {
+    display: table-cell;
+    vertical-align: top;
+}
+.media-left, .media>.pull-left {
+    padding-right: 10px;
+}
+.media-body {
+    width: 10000px !important;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: left;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-xs-6 {
+    width: 50%;
+}
+.dropdown-menu {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: none;
+    margin-top: 0px;
+    box-shadow: 0 5px 6px rgba(0,0,0,.1);
+}
+a:hover, a:focus {
+    color: #ffe115 !important;
+}
+.ownmenu a {
+    -o-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    transition: all .3s linear;
+    outline: none;
+    z-index: 10;
+}
+a,li {
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    text-decoration: none !important;
+}
+/* Bootstrap */
+
+
+header .main_menu ul.nav-shop .nav-item ul.dropdown-menu.user {
+    min-width: 250px !important;
+}
+header .main_menu ul.nav-shop .nav-item ul.dropdown-menu.user>li{
+    margin: 0px !important;
+}
+
+header .main_menu ul.nav-shop .nav-item ul.dropdown-menu {
+    padding: 40px 20px 20px;
+    border-radius: 0px;
+    min-width: 350px;
+    border: none;
+    left: auto;
+    right: -20px;
+    top: 80%;
+    t;
+}
+header .main_menu ul.nav-shop .nav-item:hover ul.dropdown-menu {
+    display: block !important;
+}
+header .main_menu ul.nav-shop .nav-item .dropdown-menu li {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+header .main_menu ul.nav-shop .nav-item ul.dropdown-menu li a {
+    font-size: 14px;
+    color: #2d3a4b;
+    font-weight: normal;
+    padding: 15px 0px;
+    margin: 0 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+header .main_menu ul.nav-shop .nav-item .dropdown-menu .cart-img {
+    width: 90px;
+    margin-right: 10px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    padding: 5px;
+    display: inline-block;
+}
+header .main_menu ul.nav-shop .nav-item .dropdown-menu .cart-img a {
+    display: inline-block;
+    width: 100%;
+    padding: 0px;
+}
+header .main_menu ul.nav-shop .nav-item .dropdown-menu h5 {
+    font-weight: normal;
+    font-size: 16px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+header .main_menu ul.nav-shop .nav-item .dropdown-menu .btn {
+    padding: 0px 0px;
+    width: 100%;
+    letter-spacing: 0px;
+    color: #fff;
+    border: none;
+    border: none;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 46px;
+    background: #2d3a4b;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+/*--================ End Header Menu Area =================--*/

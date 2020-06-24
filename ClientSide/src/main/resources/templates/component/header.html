@@ -1,113 +1,94 @@
-<div  xmlns:th="https://www.thymeleaf.org">
-    <head th:fragment="head">
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Trang thương mại điện tử" />
-        <meta name="author" content="Nguyễn Tiến Trung" />
-        <title>Interior World</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" th:href="@{/img/core-img/favicon.ico}" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-        <!-- Font Awesome icons (free version)-->
-        <!-- Core Style CSS -->
-        <link rel="stylesheet" th:href="@{/css/core-style.css}">
-        <link rel="stylesheet" th:href="@{/css/custom-css.css}">
-    </head>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
 
-    <!-- Header Area Start -->
-    <header th:fragment="header" class="header-area clearfix">
-        <!-- Close Icon -->
-        <div class="nav-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <!-- Logo -->
-        <div class="logo">
-            <a th:href="@{/home}"><img th:src="@{/img/core-img/logo.png}" alt=""></a>
-        </div>
-        <!-- Amado Nav -->
-        <nav class="amado-nav">
-            <ul>
-                <li class="home"><a th:href="@{/home}">Home</a></li>
-                <li class="shop"><a th:href="@{shop}">Shop</a></li>
-                <li class="cart"><a onclick="loadPageCast()">Cart</a></li>
-                <li class="favourite"><a onclick="loadPageFavourite()">Favourite</a></li>
-            </ul>
+<!--================ Start Head Link Area =================-->
+<head th:fragment="head-link">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aroma Shop - Home</title>
+    <link rel="icon" th:href="@{img/Fevicon.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{vendors/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{vendors/fontawesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{vendors/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{vendors/nice-select/nice-select.css}">
+    <link rel="stylesheet" th:href="@{vendors/owl-carousel/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{vendors/owl-carousel/owl.carousel.min.css}">
+
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/custom.css}">
+</head>
+<!--================ End head link =================-->
+
+<!--================ Start Header Menu Area =================-->
+<header th:fragment="header-area"  class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand logo_h" th:href="@{index.html}"><img src="img/logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <li class="nav-item active"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/shop}">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+                    </ul>
+
+                    <ul class="nav-shop">
+                        <li class="nav-item"><button><i class="ti-user"></i></button>
+                            <ul class="dropdown-menu user">
+                                <li>
+                                    <h6>HELLO! Jhon Smith</h6>
+                                </li>
+                                <li><a href="#">MY CART</a></li>
+                                <li><a href="#">ACCOUNT INFO</a></li>
+                                <li><a href="#">LOG OUT</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><button><i class="ti-search"></i></button></li>
+                        <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="media-left">
+                                        <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" th:src="@{img/cart/cart1.png}" alt="..."> </a> </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading">WOOD CHAIR</h6>
+                                        <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
+                                </li>
+                                <li>
+                                    <div class="media-left">
+                                        <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" th:src="@{img/cart/cart2.png}   " alt="..."> </a> </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading">WOOD STOOL</h6>
+                                        <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
+                                </li>
+                                <li>
+                                    <h5 class="text-center">SUBTOTAL: 258.00 USD</h5>
+                                </li>
+                                <li class="margin-0">
+                                    <div class="row">
+                                        <div class="col-xs-6"> <a href="shopping-cart.html" class="btn">VIEW CART</a></div>
+                                        <div class="col-xs-6 "> <a href="checkout.html" class="btn">CHECK OUT</a></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="button button-header" th:href="@{#}">Buy Now</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-        <!-- Button Group -->
-        <div class="amado-btn-group mt-30 mb-100">
-            <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-            <a href="#" class="btn amado-btn active">New this week</a>
-        </div>
-        <!-- Cart Menu -->
-        <div class="cart-fav-search mb-100">
-			<a th:href="@{/login}" id="login-user" class="login-nav"><img width="20" th:src="@{/img/core-img/login.png}" alt="" /> Đăng Nhập</a>
-            <div href="#" id="logout-user" style="display:none" class="login-nav login">
-                <img width="20" th:src="@{/img/core-img/login.png}" alt="" />
-                <span class="name" id="name-user">Name User</span>
-                <div class="box-up">
-                    <div id="box-up-info-user">
-                    </div>
-                </div>
-            </div>
-            <a onclick="loadPageCast()" class="cart-nav cart">
-                <img th:src="@{/img/core-img/cart.png}" alt=""> Cart <span id="total-cast">(0)</span>
-                <div class="box-up">
-                    <div id="box-up-lst-prodcut-in-cast">
-
-                    </div>
-                </div>
-            </a>
-            <a onclick="loadPageFavourite()" class="fav-nav"><img th:src="@{/img/core-img/favorites.png}" alt=""> Favourite <span id="total-favourite">(0)</span>
-                <div class="box-up">
-                    <div id="box-up-lst-prodcut-in-favourite">
-
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="search-nav"><img th:src="@{/img/core-img/search.png}" alt=""> Search</a>
-        </div>
-        <!-- Social Button -->
-        <div class="social-info d-flex justify-content-between">
-            <a href="https://www.pinterest.com/mrtrung0104/" target="_blank"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-            <a href="https://www.instagram.com/mr.trung0104/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/MrTrung0104" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="https://twitter.com/NguynTr48203716" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
-    </header>
-    <!-- Header Area End -->
-
-    <!-- Search Wrapper Area Start -->
-    <div th:fragment="search" class="search-wrapper section-padding-100">
-        <div class="search-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="search-content">
-                        <form>
-                            <input type="search" onkeyup="searchProduct(0)" name="search" id="keysearch" placeholder="Type your keyword...">
-                            <button onclick="searchProduct(0)" type="button"><img th:src="@{/img/core-img/search.png}" alt=""></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    <!-- Search Wrapper Area End -->
+</header>
+<!--================ End Header Menu Area =================-->
 
-    <!-- Mobile Nav (max width 767px)-->
-    <div th:fragment="logo" class="mobile-nav">
-        <!-- Navbar Brand -->
-        <div class="amado-navbar-brand">
-            <a th:href="@{/home}"><img th:src="@{/img/core-img/logo.png}" alt=""></a>
-        </div>
-        <!-- Navbar Toggler -->
-        <div class="amado-navbar-toggler">
-            <span></span><span></span><span></span>
-        </div>
-    </div>
-    <!-- Mobile Nav (max width 767px)-->
-
-</div>
+</html>

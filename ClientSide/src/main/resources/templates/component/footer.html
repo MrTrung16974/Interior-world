@@ -1,97 +1,122 @@
-<div  xmlns:th="https://www.thymeleaf.org">
-    <!-- ##### Footer Area Start ##### -->
-    <footer th:fragment="footer" class="footer_area clearfix">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Single Widget Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single_widget_area">
-                        <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            <a href="index.html"><img th:src="@{/img/core-img/logo2.png}" alt=""></a>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+
+    <!--================ Start footer Area  =================-->
+    <footer th:fragment="footer-area" class="footer">
+        <div class="footer-area">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                So seed seed green that winged cattle in. Gathering thing made fly you're no
+                                divided deep moved us lan Gathering thing us land years living.
+                            </p>
+                            <p>
+                                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+                            </p>
                         </div>
-                        <!-- Copywrite Text -->
-                        <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> & Re-distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
-                </div>
-                <!-- Single Widget Area -->
-                <div class="col-12 col-lg-8">
-                    <div class="single_widget_area">
-                        <!-- Footer Menu -->
-                        <div class="footer_menu">
-                            <nav class="navbar navbar-expand-lg justify-content-end">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-                                <div class="collapse navbar-collapse" id="footerNavContent">
-                                    <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item home">
-                                            <a class="nav-link" th:href="@{/home}">Home</a>
-                                        </li>
-                                        <li class="nav-item shop">
-                                            <a class="nav-link" th:href="@{shop}">Shop</a>
-                                        </li>
-                                        <li class="nav-item cart">
-                                            <a class="nav-link" onclick="loadPageCast()">Cart</a>
-                                        </li>
-                                        <li  class="nav-item favourite">
-                                            <a class="nav-link"  onclick="loadPageFavourite()">Favourite</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a th:href="@{#}">Home</a></li>
+                                <li><a th:href="@{#}">Shop</a></li>
+                                <li><a th:href="@{#}">Blog</a></li>
+                                <li><a th:href="@{#}">Product</a></li>
+                                <li><a th:href="@{#}">Brand</a></li>
+                                <li><a th:href="@{#}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget instafeed">
+                            <h4 class="footer_title">Gallery</h4>
+                            <ul class="list instafeed d-flex flex-wrap">
+                                <li><img th:src="@{img/gallery/r1.jpg}" alt=""></li>
+                                <li><img th:src="@{img/gallery/r2.jpg}" alt=""></li>
+                                <li><img th:src="@{img/gallery/r3.jpg}" alt=""></li>
+                                <li><img th:src="@{img/gallery/r5.jpg}" alt=""></li>
+                                <li><img th:src="@{img/gallery/r7.jpg}" alt=""></li>
+                                <li><img th:src="@{img/gallery/r8.jpg}" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Head Office
+                                </p>
+                                <p>123, Main Street, Your City</p>
+
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br>
+                                    +123 456 7890
+                                </p>
+
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    free@infoexample.com <br>
+                                    www.infoexample.com
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ##### Script Area Start ##### -->
-        <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
-        <script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
-        <!-- Popper js -->
-        <script th:src="@{/js/popper.min.js}"></script>
-        <!-- Bootstrap js -->
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-        <!-- Toastr js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <!-- Plugins js -->
-        <script th:src="@{/js/plugins.js}"></script>
-        <!-- Active js -->
-        <script th:src="@{/js/active.js}"></script>
-        <!-- Scripts js -->
-        <script th:src="@{/js/logic.js}"></script>
-        <!-- RederData js -->
-        <script th:src="@{/js/RederData.js}"></script>
-        <!-- Function js -->
-        <script th:src="@{/js/function.js}"></script>
-        <!-- ##### Script Area End ##### -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row d-flex">
+                    <p class="col-lg-12 footer-text text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a th:href="@{https://colorlib.com}" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
 
+        <!--================ Start script Area  =================-->
+        <script th:src="@{vendors/jquery/jquery-3.2.1.min.js}"></script>
+        <script th:src="@{vendors/bootstrap/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{vendors/skrollr.min.js}"></script>
+        <script th:src="@{vendors/owl-carousel/owl.carousel.min.js}"></script>
+        <script th:src="@{vendors/nice-select/jquery.nice-select.min.js}"></script>
+        <script th:src="@{vendors/jquery.ajaxchimp.min.js}"></script>
+        <script th:src="@{vendors/mail-script.js}"></script>
+        <script th:src="@{js/main.js}"></script>
+        <!--================ End script Area  =================-->
     </footer>
-    <!-- ##### Footer Area End ##### -->
+    <!--================ End footer Area  =================-->
 
-    <!-- ##### Newsletter Area Start ##### -->
-    <section th:fragment="section" class="newsletter-area section-padding-100-0">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Newsletter Text -->
-                <div class="col-12 col-lg-6 col-xl-7">
-                    <div class="newsletter-text mb-100">
-                        <h2>Subscribe for a <span>25% Discount</span></h2>
-                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
-                    </div>
-                </div>
-                <!-- Newsletter Form -->
-                <div class="col-12 col-lg-6 col-xl-5">
-                    <div class="newsletter-form mb-100">
-                        <form action="#" method="post">
-                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
-                            <input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Newsletter Area End ##### -->
-</div>
+    <!--================ Start script Area  =================-->
+    <div th:fragment="script">
+        <script th:src="@{vendors/jquery/jquery-3.2.1.min.js}"></script>
+        <script th:src="@{vendors/bootstrap/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{vendors/skrollr.min.js}"></script>
+        <script th:src="@{vendors/owl-carousel/owl.carousel.min.js}"></script>
+        <script th:src="@{vendors/nice-select/jquery.nice-select.min.js}"></script>
+        <script th:src="@{vendors/jquery.ajaxchimp.min.js}"></script>
+        <script th:src="@{vendors/mail-script.js}"></script>
+        <script th:src="@{js/main.js}"></script>
+        <script th:src="@{js/rederData.js}"></script>
+        <script th:src="@{js/function.js}"></script>
+        <script th:src="@{js/login.js}"></script>
+    </div>
+    <!--================ End script Area  =================-->
+
+</html>
