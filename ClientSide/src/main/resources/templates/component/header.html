@@ -10,6 +10,7 @@
     <title>Aroma Shop - Home</title>
     <link rel="icon" th:href="@{img/Fevicon.png}" type="image/png">
     <link rel="stylesheet" th:href="@{vendors/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" th:href="@{vendors/fontawesome/css/all.min.css}">
     <link rel="stylesheet" th:href="@{vendors/themify-icons/themify-icons.css}">
     <link rel="stylesheet" th:href="@{vendors/nice-select/nice-select.css}">
@@ -38,39 +39,43 @@
                         <li class="nav-item active"><a class="nav-link" th:href="@{/home}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/shop}">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+                        <li style="transition: all 0s ease-in-out;" id="login-user" class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
                     </ul>
 
                     <ul class="nav-shop">
-                        <li class="nav-item"><button><i class="ti-user"></i></button>
+                        <li style="transition: all 0s ease-in-out;" id="logout-user" class="nav-item"><button><i class="ti-user"></i></button>
                             <ul class="dropdown-menu user">
                                 <li>
-                                    <h6>HELLO! Jhon Smith</h6>
+                                    <h6>HELLO! Mr. <span id="name-user">Jhon Smith</span></h6>
                                 </li>
-                                <li><a href="#">MY CART</a></li>
+                                <li><a onclick="loadPageCast()">MY CART</a></li>
                                 <li><a href="#">ACCOUNT INFO</a></li>
-                                <li><a href="#">LOG OUT</a></li>
+                                <li><a onclick="logoutUser()">LOG OUT</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                        <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button>
+                        <li onclick="loadPageCast()" class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <div class="media-left">
-                                        <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" th:src="@{img/cart/cart1.png}" alt="..."> </a> </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">WOOD CHAIR</h6>
-                                        <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
-                                </li>
-                                <li>
-                                    <div class="media-left">
-                                        <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" th:src="@{img/cart/cart2.png}   " alt="..."> </a> </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">WOOD STOOL</h6>
-                                        <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
-                                </li>
+                                <ul id="box-up-lst-prodcut-in-cast" >
+                                    <li>
+                                        <div class="media-left">
+                                            <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" th:src="@{img/cart/cart1.png}" alt="..."> </a> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">WOOD CHAIR</h6>
+                                            <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media-left">
+                                            <div class="cart-img"> <a onclick="loadPageCast()"> <img class="media-object img-responsive" th:src="@{img/cart/cart2.png}   " alt="..."> </a> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">WOOD STOOL</h6>
+                                            <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span>
+                                        </div>
+                                    </li>
+                                </ul>
                                 <li>
                                     <h5 class="text-center">SUBTOTAL: 258.00 USD</h5>
                                 </li>

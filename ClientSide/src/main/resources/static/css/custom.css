@@ -1,3 +1,11 @@
+/*--================ Start Responsive Area =================--*/
+@media only screen and (max-width: 1000px) {
+    header .main_menu ul.nav-shop .nav-item ul.dropdown-menu {
+        left: -20px !important;
+    }
+}
+/*--================ End Responsive Area =================--*/
+
 
 /*--================ Start Header Menu Area =================--*/
 /* Bootstrap */
@@ -72,7 +80,6 @@ header .main_menu ul.nav-shop .nav-item ul.dropdown-menu {
     left: auto;
     right: -20px;
     top: 80%;
-    t;
 }
 header .main_menu ul.nav-shop .nav-item:hover ul.dropdown-menu {
     display: block !important;
@@ -135,3 +142,40 @@ header .main_menu ul.nav-shop .nav-item .dropdown-menu .btn {
     z-index: 1;
 }
 /*--================ End Header Menu Area =================--*/
+
+/*--================ End Pagination Area =================--*/
+.pagination {
+    float: right;
+    border: none;
+    border-radius: 0px;
+    display: inline-block;
+}
+.pagination.in-center {
+    text-align: center;
+    width: 100%;
+}
+.pagination.in-center li {
+    display: inline-block;
+}
+.pagination li a {
+    border-radius: 0px !important;
+    border: none;
+    background: #2d3a4b;
+    color: #fff;
+    margin: 0 2px;
+    height: 23px;
+    width: 23px;
+    padding: 0px;
+    text-align: center;
+    line-height: 23px;
+    font-size: 12px;
+}
+.pagination li a:hover {
+    background: #ffe115;
+    color: #2d3a4b;
+}
+.pagination li.active a {
+    background: #ffe115;
+    color: #2d3a4b;
+}
+/*--================ End Pagination Area =================--*/

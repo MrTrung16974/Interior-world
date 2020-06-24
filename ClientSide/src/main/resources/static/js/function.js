@@ -11,8 +11,8 @@ if(user != null && user != "") {
         success: function (response) {
             if(response.code == "00") {
                 setCookie("username", response.data.id);
-                $('#login-user').css("display", "none");
-                $('#logout-user').css("display", "block");
+                $('#login-user').css({"visibility": "hidden", "opacity": "0"});
+                $('#logout-user').css({"visibility": "visible", "opacity": "1"});
                 getProductInCast();
                 rederUserInfo(response.data);
                 rederDataFavourite(response.data.lstFavourite);
@@ -26,16 +26,19 @@ if(user != null && user != "") {
             }
         },
         error: function (result) {
-            window.location.href = "http://localhost:8089/login"
+            window.location.href = "http://localhost:8080/login"
             toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
         }
     });
+}else {
+    $('#login-user').css({"visibility": "visible", "opacity": "1"});
+    $('#logout-user').css({"visibility": "hidden", "opacity": "0"});
 }
 
 //check the user already logged
 // find product all
 $.ajax({
-    url: "http://localhost:8099/v1/api/product/search?name="+keyword+"&page="+pageDefault+"&perPage=10",
+    url: "http://localhost:8099/v1/api/product/search?name="+keyword+"&page="+pageDefault+"&perPage=12",
     type: "GET",
     // dataType: 'json',
     // headers: {
@@ -75,10 +78,10 @@ function loginUser(e) {
                         toastr.error('Logic success!', response.message);
                     }
                     if (checkLogin) {
-                        window.location.href = "http://localhost:8089/home"
+                        window.location.href = "http://localhost:8080/home"
                     }
                 } else {
-                    window.location.href = "http://localhost:8089/login?error=true"
+                    window.location.href = "http://localhost:8080/login?error=true"
                     console.log(response.message);
                 }
             },
@@ -107,7 +110,7 @@ function registerUser() {
                     toastr.error('Register success!', response.message);
                 }
                 // if(user != "" || user != null) {
-                //     window.location.href = "http://localhost:8089/"+ response.data;
+                //     window.location.href = "http://localhost:8080/"+ response.data;
                 // }
             }
             else {
@@ -132,12 +135,10 @@ function logoutUser() {
                 if(response.code == "00") {
                     deleteCookie("user");
                     deleteCookie("username");
-                    $('#login-user').css("display", "block");
-                    $('#logout-user').css("display", "none");
                     checkLogin = false;
                     toastr.error('Logout success!', response.message);
                 if(user != "" && user != null) {
-                    window.location.href = "http://localhost:8089/login"
+                    window.location.href = "http://localhost:8080/login"
                 }else {
                     toastr.error('Logout error!', response.message);
                 }

@@ -7,43 +7,30 @@ function rederData(data) {
         && data.length > 0 != null) {
         data.map(item => {
             $('#lst-product').append(
-            `<div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    <div  class="single-product-wrapper">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="${item.image.imageOne ? item.image.imageOne : ""}" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="${item.image.imageTwo ? item.image.imageTwo : ""}" alt="">
+                `<div class="col-md-6 col-lg-4">
+                    <div class="card text-center card-product">
+                      <div class="card-product__img">
+                        <img class="card-img" src="${item.image.imageOne ? item.image.imageOne : ""}" alt="">
+                        <ul class="card-product__imgOverlay">
+                          <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
+                          <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
+                        </ul>
+                      </div>
+                      <div class="card-body">
+                        <p>${item.type ? item.type : ""}</p>
+                        <div id="ratings" class="ratings">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="far fa-star" aria-hidden="hidden"></i>
+                            <i class="far fa-star" aria-hidden="true"></i>
                         </div>
-
-                        <!-- Product Description -->
-                        <div class="product-description d-flex align-items-center justify-content-between">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$${item.price ? item.price : ""}</p>
-                                <a href="/product-details?id=${item.id ? item.id : ""}">
-                                    <h6>${item.name ? item.name : ""}</h6>
-                                </a>
-                            </div>
-                            <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div id="ratings" class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="hidden"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a onclick="addFavouriteUser(${item.id})" ><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                    <a onclick="addToCastDB(${item.id})" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
+                        <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
+                        <p class="card-product__price">$${item.price ? item.price : ""}</p>
+                      </div>
                     </div>
                 </div>`);
-    });
+        });
     }else{
         $("#lst-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
@@ -67,22 +54,15 @@ function rederDataCastBoxUp(data) {
         && data.length > 0 != null) {
         data.map(item => {
             $('#box-up-lst-prodcut-in-cast').append(
-            `<tr class="lst-product-cart">
-                <td class="cart_product_img box-up">
-                    <a href="#"><img width="50" height="50" src="${item.image.imageOne}" alt="Product"></a>
-                </td>
-                <td class="cart_product_desc box-up">
-                    <a href="/product-details?id=${item.id}" >
-                        <h5>${item.name}</h5>
-                    </a>
-                </td>
-                <td class="price box-up">
-                    <span>$${item.price}</span>
-                </td>
-                <td onclick="deleteItem(${item.id})" class="remove-item box-up">
-                    <span>x</span>
-                </td>
-            </tr>`
+            `<li>
+                <div class="media-left">
+                    <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="${item.image.imageOne ? item.image.imageOne : ""}" alt="..."> </a> </div>
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h6>
+                    <span class="price">$${item.price ? item.price : ""}</span> <span class="qty">QTY: ${item.number ? item.number : ""}</span>
+                </div>
+            </li>`
         );
     });
     }else{
@@ -132,16 +112,7 @@ function rederDataCast(data) {
 
 //reder user
 function rederUserInfo(data) {
-    $("#box-up-info-user").empty();
-    if(data != null) {
-        $('#box-up-info-user').append(
-            `<ul>
-                <li><a href="#">Tài khoản của tôi</a></li>
-                <li><a onclick="logoutUser()">Đăng Xuất</a></li>
-            </ul>`
-        );
-        $('#name-user').text(data.id);
-    };
+    $('#name-user').text(data.id);
 }
 
 //reder coment

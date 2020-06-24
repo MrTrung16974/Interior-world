@@ -75,13 +75,15 @@ function forStar(star) {
 
 function forPagination(totalPage) {
     $("#pagination").empty();
+    $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-left"></i></a></li>`);
     for(let i = 0; i < totalPage; i++) {
         if(i == pageDefault) {
-            $("#pagination").append(`<li class="page-item active"><a class="page-link" onclick='searchProduct(${i})' >0${i+1}.</a></li>`);
+            $("#pagination").append(`<li class="active"><a onclick='searchProduct(${i})'>${i+1}</a></li>`);
         }else {
-            $("#pagination").append(`<li class="page-item"><a class="page-link" onclick='searchProduct(${i})' >0${i+1}.</a></li>`);
+            $("#pagination").append(`<li><a onclick='searchProduct(${i})'>${i+1}</a></li>`);
         }
     }
+    $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-right"></i></a></li>`);
 }
 
 function getTotalProductInCast(cast) {
@@ -119,18 +121,18 @@ function getPriceProductInCast(cast) {
 
 function loadPageCast() {
     if(user != null && user != "") {
-        window.location.href = "http://localhost:8089/cart"
+        window.location.href = "http://localhost:8080/cart"
     }else {
-        window.location.href = "http://localhost:8089/login"
+        window.location.href = "http://localhost:8080/login"
 
     }
 }
 
 function loadPageFavourite() {
     if(user != null && user != "") {
-        window.location.href = "http://localhost:8089/favourite"
+        window.location.href = "http://localhost:8080/favourite"
     }else {
-        window.location.href = "http://localhost:8089/login"
+        window.location.href = "http://localhost:8080/login"
 
     }
 }

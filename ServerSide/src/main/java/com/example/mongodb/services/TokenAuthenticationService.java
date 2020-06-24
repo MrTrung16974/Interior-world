@@ -30,7 +30,7 @@ public class TokenAuthenticationService {
         roles.put("roles","ADMIN");
         String JWT = Jwts.builder()
                 .setSubject(username)
-                .setClaims(roles)
+//                .setClaims(roles)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
@@ -52,6 +52,7 @@ public class TokenAuthenticationService {
     public boolean validateToKen(String token) {
         try {
             String userId = tokenAuthenticationService.readJWT(token);
+            System.out.println(userId);
             Optional<User> optionalUser = userRepository.findById(userId);
             if(!optionalUser.isPresent()) {
                 return false;

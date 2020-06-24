@@ -36,7 +36,7 @@ public class ControllerMapping {
     }
     @RequestMapping("/product-details")
     public String productDetails(@RequestParam("id") String id){
-        return "single-details";
+        return "single-product";
     }
     @RequestMapping("/shop")
     public String shop(){

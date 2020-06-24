@@ -44,12 +44,14 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form" action="#/" id="contactForm" >
+						<form class="row login_form" id="contactForm" >
+							<label class="error" style="color: #777;margin: 15px" th:if="${param.error != null}">Login information is not valid. Please check again!</label>
+							<label class="error" style="color: #777;margin: 15px" th:if="${param.lock != null}">Username has been locked because of wrong password in succession 5 times</label>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input onkeypress="loginUser(event)" type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input onkeypress="loginUser(event)" type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -58,7 +60,7 @@
 								</div>
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
+								<button type="button" onclick="loginUser()"  value="button" class="button button-login w-100">Log In</button>
 								<a href="#">Forgot Password?</a>
 							</div>
 						</form>
