@@ -163,7 +163,7 @@ function searchProduct(page) {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=10&sort=" + sort,
+        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=12&sort=" + sort,
         processData: false,
         contentType: 'application/json',
         success: function (response) {
