@@ -41,22 +41,40 @@ $(".icon-heart").hover(function () {
 // reder chung
 switch (pathname) {
         case "/home":
-            $("li.home").addClass("active");
+            $("title.title-page").text("Aroma Shop - Home");
             break;
         case "/shop":
-            $("li.shop").addClass("active");
+            $("title.title-page").text("Aroma Shop - Shop");
             break;
         case "/cart":
-            $("li.cart").addClass("active");
+            $("title.title-page").text("Aroma Shop - Cart");
             break;
         case "/checkout":
-            $("li.checkout").addClass("active");
+            $("title.title-page").text("Aroma Shop - Check Out");
+            break;
+        case "/product-details":
+            $("title.title-page").text("Aroma Shop - Product Details");
+            break;
+        case "/contact":
+            $("title.title-page").text("Aroma Shop - Contact");
+            break;
+        case "/login":
+            $("title.title-page").text("Aroma Shop - Login");
+            break;
+        case "/register":
+            $("title.title-page").text("Aroma Shop - Register");
+            break;
+        case "/confirmation":
+            $("title.title-page").text("Aroma Shop - Confirmation");
+            break;
+        case "/tracking-order":
+            $("title.title-page").text("Aroma Shop - Tracking Order");
             break;
         case "/favourite":
-            $("li.favourite").addClass("active");
+            $("title.title-page").text("Aroma Shop - Favourite");
             break;
         default :
-            $("li").removeClass("active");
+            $("title.title-page").text("Aroma Shop");
             break;
     }
 
