@@ -57,7 +57,7 @@ $(function() {
   }
 
   //------- single product area carousel -------//
-  $(".s_Product_carousel").owlCarousel({
+  $(".s_Product_carouselowl-stage-outer").owlCarousel({
     items:1,
     autoplay:false,
     autoplayTimeout: 5000,
