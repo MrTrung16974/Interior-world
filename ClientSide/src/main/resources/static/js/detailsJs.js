@@ -10,17 +10,16 @@ $(document).ready(function () {
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
                 console.log(response.data);
-                // rederDataProductDetail(response.data);
                 rederDataSingleProduct(response.data);
                 comment = response.data.comment;
-                // rederComentProduct(comment);
+                rederComentProduct(comment);
             }
             else {
                 console.log(response.message);
             }
         }
     });
-    
+
     function forImageLi(data) {
         let imageLiWrite = "";
         let length = data.length;

@@ -226,7 +226,7 @@ function rederComentProduct(data) {
                 `<div class="review_item">
                     <div class="media">
                         <div class="d-flex">
-                            <img src="${item.image[0]? item.image[0] : "img/product/review-1.png"}" alt="">
+                            <img src="${item.image != null? item.image[0] : "img/product/review-1.png"}" alt="">
                         </div>
                         <div class="media-body">
                             <h4>${item.buyer ? item.buyer : "Anonymously"}</h4>
