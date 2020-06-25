@@ -7,6 +7,7 @@ import java.util.List;
 public class UserDto {
     private String id;
     private String name;
+    private String image;
     private String address;
     private String phone;
     private List<Product> LstFavourite;
@@ -17,6 +18,14 @@ public class UserDto {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {

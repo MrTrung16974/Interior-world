@@ -1,10 +1,17 @@
 // khai báo biến
-var user = getCookie("user");
-var username = getCookie("username");
+var token = getCookie("token");
 var keyword = "";
 var checkLogin = false;
 var sort = 1;
 var pageDefault = 0;
+var userDto = {
+    id: "",
+    name: "",
+    image: "",
+    address: "",
+    phone: "",
+    lstFavourite: [],
+};
 var cart = {
     id: "",
     image: "",
@@ -39,6 +46,7 @@ $(".icon-heart").hover(function () {
 });
 
 // reder chung
+//    switch option
 switch (pathname) {
         case "/home":
             $("title.title-page").text("Aroma Shop - Home");
@@ -77,7 +85,6 @@ switch (pathname) {
             $("title.title-page").text("Aroma Shop");
             break;
     }
-
 function findCategories(type) {
     let category = null;
     switch (type) {
@@ -105,7 +112,6 @@ function findCategories(type) {
     }
     return category;
 }
-
 function findMaterial(type) {
     let category = null;
     switch (type) {
@@ -156,6 +162,7 @@ function forPagination(totalPage) {
     $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-right"></i></a></li>`);
 }
 
+
 function getTotalProductInCast(cast) {
     let total = cart.listProduct.length;
     if (total <= 0) {
@@ -172,7 +179,6 @@ function getTotalProductInFavourite(data) {
         $("#total-favourite").text(`${total}`);
     }
 }
-
 function getPriceProductInCast(cast) {
     let price_number = 0;
     if (cast.listProduct != null) {
@@ -187,18 +193,17 @@ function getPriceProductInCast(cast) {
 }
 
 //logic user name
-
+//Load need login page to view
 function loadPageCast() {
-    if(user != null && user != "") {
+    if(token != null && token != "") {
         window.location.href = "http://localhost:8080/cart"
     }else {
         window.location.href = "http://localhost:8080/login"
 
     }
 }
-
 function loadPageFavourite() {
-    if(user != null && user != "") {
+    if(token != null && token != "") {
         window.location.href = "http://localhost:8080/favourite"
     }else {
         window.location.href = "http://localhost:8080/login"
@@ -206,13 +211,14 @@ function loadPageFavourite() {
     }
 }
 function loadPageCheckOut() {
-    if (user != null && user != "") {
+    if (token != null && token != "") {
         window.location.href = "http://localhost:8080/checkout"
     } else {
         window.location.href = "http://localhost:8080/login"
 
     }
 }
+
 // logic cookie
 function getCookie(cname) {
     var name = cname + "=";
@@ -229,14 +235,12 @@ function getCookie(cname) {
     }
     return "";
 }
-
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-
 function deleteCookie( name, path, domain ) {
     if( getCookie( name ) ) {
         document.cookie = name + "=" +

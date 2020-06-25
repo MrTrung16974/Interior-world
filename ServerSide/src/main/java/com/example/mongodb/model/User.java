@@ -12,6 +12,8 @@ public class User {
     private String id;
     @Field("name")
     private String name;
+    @Field("image")
+    private String image;
     @Field("password")
     private String password;
     @Field("address")
@@ -41,6 +43,14 @@ public class User {
 
     public String getId() {
         return id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public List<Product> getLstFavourite() {

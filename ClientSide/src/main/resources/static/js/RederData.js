@@ -10,7 +10,7 @@ function rederData(data) {
                 `<div class="col-md-6 col-lg-4">
                     <div class="card text-center card-product">
                       <div class="card-product__img">
-                        <img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt="">
+                        <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                         <ul class="card-product__imgOverlay">
                           <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
                           <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
@@ -63,7 +63,7 @@ function rederDataCastBoxUp(data) {
         );
     });
     }else{
-        $("#box-up-lst-prodcut-in-cast").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
+        $("#box-up-lst-prodcut-in-cast").html("<p style='padding: 20px;'>Product does not exist!</p>");
     }
 }
 function rederDataCast(data) {
@@ -315,7 +315,7 @@ function rederDataFavouriteBoxUp(data) {
     if(typeof data != "undefined"
         && data != null
         && data.length != null
-        && data.length > 0 != null) {
+        && data.length > 0) {
         data.map(item => {
             $('#box-up-lst-prodcut-in-favourite').append(
                 `<li>
@@ -338,7 +338,7 @@ function rederDataFavouriteBoxUp(data) {
             );
         });
     }else{
-        $("#box-up-lst-prodcut-in-favourite").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
+        $("#box-up-lst-prodcut-in-favourite").html("<p style='padding: 20px;'>Product does not exist!</p>");
     }
 }
 

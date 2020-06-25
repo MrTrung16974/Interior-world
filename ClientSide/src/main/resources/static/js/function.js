@@ -1,16 +1,17 @@
-if(user != null && user != "") {
+if(token != null && token != "") {
     $.ajax({
         url: "http://localhost:8099/v1/api/getInfoUser",
         type: "GET",
         dataType: 'json',
         async: false,
         beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", user);
+            xhr.setRequestHeader ("Authorization", token);
         },
         contentType: "application/json",
         success: function (response) {
             if(response.code == "00") {
-                setCookie("username", response.data.id);
+                userDto = response.data;
+                console.log(userDto);
                 $('#login-user').css({"visibility": "hidden", "opacity": "0"});
                 $('#logout-user').css({"visibility": "visible", "opacity": "1"});
                 getProductInCast();
@@ -38,12 +39,11 @@ if(user != null && user != "") {
 //check the user already logged
 // find product all
 $.ajax({
-    url: "http://localhost:8099/v1/api/product/search?name="+keyword+"&page="+pageDefault+"&perPage=12",
+    url: "http://localhost:8099/v1/api/product/search?name`="+keyword+"&page="+pageDefault+"&perPage=12",
     type: "GET",
     success: function (response) {
         if(response.code == "00") {
             rederData(response.data.content);
-            console.log(response.data.content);
             let totalPage = response.data.totalPages;
             forPagination(totalPage);
         }else {
@@ -68,7 +68,7 @@ function loginCickUser() {
             //hàm đc thực thi khi request thành công không có lỗi
             if (response.code == "00") {
                 if (response.data != null) {
-                    setCookie("user", response.data);
+                    setCookie("token", response.data);
                     // user = response.data;
                     checkLogin = true;
                     toastr.error('Logic success!', response.message);
@@ -102,7 +102,7 @@ function loginUser(e) {
                 //hàm đc thực thi khi request thành công không có lỗi
                 if (response.code == "00") {
                     if (response.data != null) {
-                        setCookie("user", response.data);
+                        setCookie("token", response.data);
                         // user = response.data;
                         checkLogin = true;
                         toastr.error('Logic success!', response.message);
@@ -164,7 +164,6 @@ function logoutUser() {
             //hàm đc thực thi khi request thành công không có lỗi
                 if(response.code == "00") {
                     deleteCookie("user");
-                    deleteCookie("username");
                     checkLogin = false;
                     toastr.error('Logout success!', response.message);
                 if(user != "" && user != null) {
@@ -241,7 +240,7 @@ function sortProduct() {
 }
 
 function addFavouriteUser(idProduct) {
-    if(user != "") {
+    if(checkLogin != "") {
         $.ajax({
             url: "http://localhost:8099/v1/api/user/favourite/?idUser="+
                 cart.buyer + "&idProduct=" + idProduct,
@@ -275,7 +274,7 @@ function addFavouriteUser(idProduct) {
 // cart product
 function getProductInCast() {
     $.ajax({
-        url: "http://localhost:8099/order/products/" + username,
+        url: "http://localhost:8099/order/products/" + userDto.id,
         type: "GET",
         success: function (response) {
             if(response.code = '00') {
@@ -298,7 +297,7 @@ function getProductInCast() {
 
 // function addToCastDetailDB(idProduct, oldNumber) {
 //     let updateCastRequest = [];
-//     if(user != "") {
+//     if(checkLogin != "") {
 //         let newNumber = $("#qty").val().trim();
 //         if(newNumber > 0) {
 //             newNumber -= oldNumber;
@@ -519,7 +518,7 @@ function removeItem(idProduct) {
 
 // comment
 function addComment(idProduct) {
-    if(user != "") {
+    if(checkLogin != "") {
         let contentComment = $("textarea#coment-content").val().trim();
         if (contentComment != null && contentComment != "") {
             console.log(contentComment);
