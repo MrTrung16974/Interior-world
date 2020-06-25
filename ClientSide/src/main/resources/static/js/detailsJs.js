@@ -20,42 +20,33 @@ $(document).ready(function () {
             }
         }
     });
-
-    function rederDataProductDetail(item) {
-        if(item != null) {
-            $("#imageOneStyle").css('background-image',`url(${item.image.imageOne ? item.image.imageOne : ""})`);
-            $("#imageTwoStyle").css('background-image',`url(${item.image.imageTwo  ? item.image.imageTwo : ""})`);
-            $("#imageThreeStyle").css('background-image',`url(${item.image.imageThree  ? item.image.imageThree : ""})`);
-            $("#imageFourStyle").css('background-image',`url(${item.image.imageFour  ? item.image.imageFour : ""})`);
-            $("#imageOneHref").attr("href",`${item.image.imageOne  ? item.image.imageOne : ""}`);
-            $("#imageTwoHref").attr("href",`${item.image.imageTwo  ? item.image.imageTwo : ""}`);
-            $("#imageThreeHref").attr("href",`${item.image.imageThree ? item.image.imageThree : ""}`);
-            $("#imageFourHref").attr("href", `${item.image.imageFour ? item.image.imageFour : ""}`);
-            $("#imageOneSrc").attr("src",  `${item.image.imageOne ? item.image.imageOne : ""}`);
-            $("#imageTwoSrc").attr("src", `${item.image.imageTwo ? item.image.imageTwo : ""}`);
-            $("#imageThreeSrc").attr("src", `${item.image.imageThree ? item.image.imageThree : ""}`);
-            $("#imageFourSrc").attr("src", `${item.image.imageFour ? item.image.imageFour : ""}`);
-
-            $("#price-product").text(`$${item.price ? item.price : ""}`);
-            $("#name-product").text(`${item.name ? item.name : ""}`);
-            $("#breadcrumb-item-name").text(`${item.name ? item.name : ""}`);
-            $("#description-product").text(`${item.description ? item.description : ""}`);
-
-            $("button#addtocart").attr("onclick", `addToCastDB('${item.id}')`);
-            $("button#addtoComent").attr("onclick", `addComment('${item.id}')`);
-        }else{
-            $("#single-product-detail").text("Sản phẩm không tồn tại");
+    
+    function forImageLi(data) {
+        let imageLiWrite = "";
+        let length = data.length;
+        for (let i=0; i < length; i++) {
+            imageLiWrite += `<li data-target="#carouselExampleIndicators" data-slide-to="${i}" class="active"></li>`;
         }
+        return imageLiWrite;
     }
-    function forImage(image) {
+
+    function forImage(data) {
         let imageWrite = "";
-        data.map(item => {
-            imageWrite += `<div class="single-prd-item">
-                            <img class="img-fluid" src="${item ? item : ""}" alt="">
-                        </div>`
-        });
+        let length = data.length;
+        for (let i=0; i < length; i++) {
+            if(i == 1) {
+                imageWrite += `<div class="carousel-item active">
+                                <img height="500" class="d-block w-100" src="${data[i] ? data[i] : ""}" alt="First slide">
+                            </div>`;
+            }else {
+                imageWrite += `<div class="carousel-item">
+                                <img height="500" class="d-block w-100" src="${data[i] ? data[i] : ""}" alt="First slide">
+                            </div>`;
+            }
+        }
         return imageWrite;
     }
+
     function rederDataSingleProduct(item) {
         $("#single-product").empty();
         if(typeof item != "undefined"
@@ -63,16 +54,21 @@ $(document).ready(function () {
             $('#single-product').html(
         `<div class="row s_product_inner">
                     <div class="col-lg-6">
-                        <div class="owl-carousel owl-theme s_Product_carousel">
-                            <div class="single-prd-item">
-                                <img class="img-fluid" src="${item.image[0] ? item.image[0] : ""}" alt="">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                ${forImageLi(item.image)}
+                            </ol>
+                            <div class="carousel-inner">
+                                ${forImage(item.image)}
                             </div>
-                            <div class="single-prd-item">
-                                <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-                            </div>
-                            <div class="single-prd-item">
-                                <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-                            </div>
+                            <a  style="color: #000000;"  class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <i style="font-size: 30px" class="fas fa-chevron-left"></i>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a  style="color: #000000;"  class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <i style="font-size: 30px" class="fas fa-chevron-right"></i>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1">

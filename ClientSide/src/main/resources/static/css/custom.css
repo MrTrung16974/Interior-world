@@ -40,7 +40,7 @@
     margin-top: 0px;
     box-shadow: 0 5px 6px rgba(0,0,0,.1);
 }
-a:hover, a:focus {
+a:hover {
     color: #ffe115 !important;
 }
 .ownmenu a {
@@ -70,6 +70,12 @@ a,li {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.row.s_product_inner .carousel-indicators li {
+    background-color: rgba(4, 4, 4, 0.5) !important;
+}
+.row.s_product_inner .carousel-indicators .active {
+    background-color: #ffe602 !important;
 }
 /* Bootstrap */
 

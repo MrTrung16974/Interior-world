@@ -6,6 +6,16 @@ public class Type {
     private Integer type;
     private Integer material;
 
+
+    public Type() {
+
+    }
+
+    public Type(Integer type, Integer material) {
+        this.type = type;
+        this.material = material;
+    }
+
     public Integer getType() {
         return type;
     }
