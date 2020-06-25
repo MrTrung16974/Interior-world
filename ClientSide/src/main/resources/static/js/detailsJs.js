@@ -92,7 +92,8 @@ $(document).ready(function () {
                     </div>
                 </div>
             `);
-            $("button#addtoComent").attr("onclick", `addComment('${item.id}')`);
+            $("button#add-to-coment").attr("onclick", `addComment('${item.id}')`);
+            $("p#description-product").text(item.description ? item.description : "");
         }else{
             $("#single-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
         }
