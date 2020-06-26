@@ -38,14 +38,15 @@
             <div class="head">Browse Categories</div>
             <ul class="main-categories">
               <li class="common-filter">
-                <form action="#">
+                <form id="find-type">
                   <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="cabinets" name="brand"><label for="cabinets">Cabinets<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="desk" name="brand"><label for="desk">Desk<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="decorate" name="brand"><label for="decorate">Decorate<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="belongings" name="brand"><label for="belongings">Belongings<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="sofa" name="brand"><label for="sofa">Sofa<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="lamp" name="brand"><label for="lamp">Lamp<span> (3600)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="all-type" name="type" value="0"><label for="all-type">All<span> (3600)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="cabinets" name="type" value="1"><label for="cabinets">Cabinets<span> (3600)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="desk" name="type" value="2"><label for="desk">Desk<span> (3600)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="decorate" name="type" value="3"><label for="decorate">Decorate<span> (3600)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="belongings" name="type" value="4"><label for="belongings">Belongings<span> (3600)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="sofa" name="type" value="5"><label for="sofa">Sofa<span> (3600)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="lamp" name="type" value="6"><label for="lamp">Lamp<span> (3600)</span></label></li>
                   </ul>
                 </form>
               </li>
@@ -54,25 +55,27 @@
           <div class="sidebar-filter">
             <div class="top-filter-head">Product Filters</div>
             <div class="common-filter">
-              <div class="head">Brands</div>
-              <form action="#">
+              <div class="head">Materials</div>
+              <form id="find-material" >
                 <ul>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="wood" name="brand"><label for="wood">Wood<span> (3600)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="plastic" name="brand"><label for="plastic">Plastic<span> (3600)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="glass" name="brand"><label for="glass">Glass<span> (3600)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="piasticAlloy" name="brand"><label for="piasticAlloy">Titanium alloy<span> (3600)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="iron" name="brand"><label for="iron">Iron<span> (3600)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="all-material" name="material" value="0"><label for="all-material">All<span> (3600)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="wood" name="material" value="1"><label for="wood">Wood<span> (3600)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="plastic" name="material" value="2"><label for="plastic">Plastic<span> (3600)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="glass" name="material" value="3"><label for="glass">Glass<span> (3600)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="piastic-alloy" name="material" value="4"><label for="piastic-alloy">Titanium alloy<span> (3600)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="iron" name="material" value="5"><label for="iron">Iron<span> (3600)</span></label></li>
                 </ul>
               </form>
             </div>
             <div class="common-filter">
               <div class="head">Color</div>
-              <form action="#">
+              <form id="find-color">
                 <ul>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">Yellow<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">White<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Blue<span>(19)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="all-color" name="color" value="0"><label for="all-color">All<span> (3600)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color" value="1"><label for="black">Black<span>(29)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="yellow" name="color" value="2"><label for="yellow">Yellow<span>(29)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="white" name="color" value="3"><label for="white">White<span>(19)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="blue" name="color" value="4"><label for="blue">Blue<span>(19)</span></label></li>
                 </ul>
               </form>
             </div>

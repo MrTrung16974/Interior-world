@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,7 +61,7 @@ public class UserApiController {
                     throw new Exception("Password invalid");
                 }
                 response.setCode("00");
-                response.setMessage("Login Success");
+                response.setMessage("Success");
                 response.setData(tokenAuthenticationService.generateJWT(user.getId()));
             } else {
                 response.setCode("400");
@@ -90,6 +91,34 @@ public class UserApiController {
         return response;
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public BaseResponse AddUser(@RequestParam("username") String username,
+                          @RequestParam("password") String password,
+                          @RequestParam("name") String name) {
+        BaseResponse response = new BaseResponse();
+        try {
+            if (!username.isEmpty() && !password.isEmpty() && !name.isEmpty()) {
+                User user = new User();
+                user.setId(username);
+                user.setPassword(passwordEncoder.encode(password));
+                user.setName(name);
+                user.setRoles(Arrays.asList("USER"));
+                User exitUser =  userRepository.save(user);
+                response.setCode("00");
+                response.setMessage("Success");
+                response.setData(tokenAuthenticationService.generateJWT(exitUser.getId()));
+            } else {
+                response.setCode("400");
+                response.setMessage("Find not data!");
+                response.setData(null);
+            }
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error");
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
 
     @GetMapping("/getInfoUser")
     public BaseResponse getInfo(@RequestHeader("Authorization") String token) {

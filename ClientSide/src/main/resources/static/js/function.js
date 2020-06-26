@@ -39,7 +39,7 @@ if(token != null && token != "") {
 //check the user already logged
 // find product all
 $.ajax({
-    url: "http://localhost:8099/v1/api/product/search?name`="+keyword+"&page="+pageDefault+"&perPage=12",
+    url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=12",
     type: "GET",
     success: function (response) {
         if(response.code == "00") {
@@ -59,6 +59,14 @@ $.ajax({
 function loginCickUser() {
     let username = $("#username").val().trim();
     let password = $("#password").val().trim();
+    if(username == null || username == "") {
+        toastr.error('You have not entered a username ');
+        return;
+    }
+    if(password == null || password == "") {
+        toastr.error('You have not entered a password ');
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "http://localhost:8099/v1/api/login?username=" + username + "&password=" + password,
@@ -71,7 +79,7 @@ function loginCickUser() {
                     setCookie("token", response.data);
                     // user = response.data;
                     checkLogin = true;
-                    toastr.error('Logic success!', response.message);
+                    toastr.success('Logic success!', response.message);
                 }
                 if (checkLogin) {
                     window.location.href = "http://localhost:8080/home"
@@ -93,6 +101,14 @@ function loginUser(e) {
     if(e.keyCode === 13) {
         let username = $("#username").val().trim();
         let password = $("#password").val().trim();
+        if(username == null || username == "") {
+            toastr.error('You have not entered a username ');
+            return;
+        }
+        if(password == null || password == "") {
+            toastr.error('You have not entered a password ');
+            return;
+        }
         $.ajax({
             type: "POST",
             url: "http://localhost:8099/v1/api/login?username=" + username + "&password=" + password,
@@ -105,7 +121,7 @@ function loginUser(e) {
                         setCookie("token", response.data);
                         // user = response.data;
                         checkLogin = true;
-                        toastr.error('Logic success!', response.message);
+                        toastr.success('Logic success!', response.message);
                     }
                     if (checkLogin) {
                         window.location.href = "http://localhost:8080/home"
@@ -123,27 +139,51 @@ function loginUser(e) {
     }
 }
 
-function registerUser() {
+function registerClickUser() {
     let name = $("#regiter-name").val().trim();
     let username = $("#regiter-username").val().trim();
     let password = $("#regiter-passwprd").val().trim();
+    let confirmPassword = $("#confirm-regiter-password").val().trim();
+    if(name == null || name == "") {
+        toastr.error('You have not entered a name ');
+        return;
+    }
+    if(username == null || username == "") {
+        toastr.error('You have not entered a username ');
+        return;
+    }
+    if(password == null || password == "") {
+        toastr.error('You have not entered a password ');
+        return;
+    }
+    if(confirmPassword == null || confirmPassword == "") {
+        toastr.error('You have not entered a name ');
+        return;
+    }
+    if(password != confirmPassword) {
+        toastr.error('Password and confirm password must be the same ', response.message);
+        return;
+    }
     $.ajax({
         type: "POST",
-        url: "http://localhost:8099/register?username="+username+"&password="+ password+"&name="+ name,
+        url: "http://localhost:8099/v1/api/register?username="+username+"&password="+
+            password+"&name="+ name,
         processData: false,
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
                 if(response.data != null) {
-                    setCookie("user", response.data);
-                    toastr.error('Register success!', response.message);
+                    setCookie("token", response.data);
+                    checkLogin = true;
+                    toastr.success('Register success!', response.message);
                 }
-                // if(user != "" || user != null) {
-                //     window.location.href = "http://localhost:8080/"+ response.data;
-                // }
+                if(token != "" || token != null) {
+                    window.location.href = "http://localhost:8080/home";
+                }
             }
             else {
+                toastr.error('Null Data', response.message);
                 console.log(response.message);
             }
         },
@@ -152,6 +192,67 @@ function registerUser() {
             console.log(response.message);
         }
     });
+}
+
+function registerUser(e) {
+    if(e.keyCode === 13) {
+        let name = $("#regiter-name").val().trim();
+        let username = $("#regiter-username").val().trim();
+        let password = $("#regiter-passwprd").val().trim();
+        let confirmPassword = $("#confirm-regiter-password").val().trim();
+        if(name == null || name == "") {
+            toastr.error('You have not entered a name ');
+            return;
+        }
+        if(username == null || username == "") {
+            toastr.error('You have not entered a username ');
+            return;
+        }
+        if(password == null || password == "") {
+            toastr.error('You have not entered a password ');
+            return;
+        }
+        if(confirmPassword == null || confirmPassword == "") {
+            toastr.error('You have not entered a name ');
+            return;
+        }
+        if(password != confirmPassword) {
+            toastr.error('Password and confirm password must be the same ', response.message);
+            return;
+        }
+        if(password != confirmPassword) {
+            toastr.error('Password and confirm password must be the same ', response.message);
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8099/register?username="+username+"&password="+
+                password+"&name="+ name,
+            processData: false,
+            success: function (response) {
+                // server trả về HTTP status code là 200 => Thành công
+                //hàm đc thực thi khi request thành công không có lỗi
+                if(response.code == "00") {
+                    if(response.data != null) {
+                        setCookie("token", response.data);
+                        checkLogin = true;
+                        toastr.success('Register success!', response.message);
+                    }
+                    if(token != "" || token != null) {
+                        window.location.href = "http://localhost:8080/home";
+                    }
+                }
+                else {
+                    toastr.error('Null Data', response.message);
+                    console.log(response.message);
+                }
+            },
+            error: function () {
+                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                console.log(response.message);
+            }
+        });
+    }
 }
 
 function logoutUser() {
@@ -163,13 +264,13 @@ function logoutUser() {
             // server trả về HTTP status code là 200 => Thành công
             //hàm đc thực thi khi request thành công không có lỗi
                 if(response.code == "00") {
-                    deleteCookie("user");
+                    deleteCookie("token");
                     checkLogin = false;
-                    toastr.error('Logout success!', response.message);
-                if(user != "" && user != null) {
+                    toastr.success('Logout success!', response.message);
+                if(token != "" && token != null) {
                     window.location.href = "http://localhost:8080/login"
                 }else {
-                    toastr.error('Logout error!', response.message);
+                    toastr.success('Logout error!', response.message);
                 }
             }else {
                 console.log(response.message);
@@ -183,6 +284,24 @@ function logoutUser() {
 }
 
 // product
+
+//Advanced search product
+$('#find-type input').on('change', function() {
+    type = $('input[name=type]:checked', '#find-type').val();
+    searchProduct(0);
+});
+
+$('#find-material input').on('change', function() {
+    material = $('input[name=type]:checked', '#find-material').val();
+    searchProduct(0);
+});
+
+$('#find-color input').on('change', function() {
+    color = $('input[name=type]:checked', '#find-color').val();
+    searchProduct(0);
+});
+
+//Quick search product Advanced
 function searchProduct(page) {
     pageDefault = page;
     keyword = $('#keysearch').val().trim().toLocaleLowerCase();
@@ -192,7 +311,9 @@ function searchProduct(page) {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=12&sort=" + sort,
+        url: "http://localhost:8099/v1/api/product/search?name=" +
+            keyword + "&page="+pageDefault+"&perPage=12&sort=" + sort
+            + "&type=" + type + "&material=" + material + "&color=" + color,
         processData: false,
         contentType: 'application/json',
         success: function (response) {
@@ -249,11 +370,11 @@ function addFavouriteUser(idProduct) {
                 if (response.data != null) {
                     if (response.code == "200") {
                         console.log(response.data);
-                        toastr.error('add favourite user Success!', "HAHA");
+                        toastr.success('add favourite user Success!', "HAHA");
                     }
                     if (response.code == "00") {
                         console.log(response.data);
-                        toastr.error('remove favourite user Success!', "HAHA");
+                        toastr.success('remove favourite user Success!', "HAHA");
                     }
                     rederDataFavourite(response.data);
                     rederDataFavouriteBoxUp(response.data);
@@ -304,7 +425,7 @@ function getProductInCast() {
 //             console.log(newNumber);
 //             if(newNumber < oldNumber) {
 //                 updateCastRequest = {
-//                     name: user,
+//                     name: userDto.id,
 //                     listProductCast: [{
 //                         id: idProduct,
 //                         number: newNumber,
@@ -313,7 +434,7 @@ function getProductInCast() {
 //                 };
 //             }else {
 //                 updateCastRequest = {
-//                     name: user,
+//                     name: userDto.id,
 //                     listProductCast: [{
 //                         id: idProduct,
 //                         number: newNumber,
@@ -335,7 +456,7 @@ function getProductInCast() {
 //                             rederDataCastBoxUp(cart.listProduct);
 //                             if (cart.listProduct[0] != null) {
 //                                 getPriceProductInCast(cart);
-//                                 toastr.error('Add product success!', "HAHA");
+//                                 toastr.success('Add product success!', "HAHA");
 //                             }
 //                         }
 //                     }
@@ -355,7 +476,7 @@ function getProductInCast() {
 function addToCastDB(idProduct) {
     if(checkLogin) {
         let updateCastRequest = {
-            name: user,
+            name: userDto.id,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -376,7 +497,7 @@ function addToCastDB(idProduct) {
                         rederDataCastBoxUp(cart.listProduct);
                         if (cart.listProduct[0] != null) {
                             getPriceProductInCast(cart);
-                            toastr.error('Add product success!', "HAHA");
+                            toastr.success('Add product success!', "HAHA");
                         }
                     }
                 }
@@ -393,7 +514,7 @@ function addToCastDB(idProduct) {
 function deleteItem(idProduct) {
     if(checkLogin) {
         let updateCastRequest = {
-            name: user,
+            name: userDto.id,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -408,14 +529,14 @@ function deleteItem(idProduct) {
             success: function (response) {
                 if (response.code = "00") {
                     cart = response.data;
-                    if (user != "") {
+                    if (checkLogin) {
                         if (cart.listProduct != null) {
                             getTotalProductInCast(cart);
                             rederDataCast(cart.listProduct);
                             rederDataCastBoxUp(cart.listProduct);
                             if (cart.listProduct[0] != null) {
                                 getPriceProductInCast(cart);
-                                toastr.error('Delete product success!', "HAHA");
+                                toastr.success('Delete product success!', "HAHA");
                             }
                         }
                     } else {
@@ -435,7 +556,7 @@ function deleteItem(idProduct) {
 function addItem(idProduct) {
     if(checkLogin) {
         let updateCastRequest = {
-            name:  user,
+            name:  userDto.id,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -450,14 +571,14 @@ function addItem(idProduct) {
             success: function (response) {
                 if (response.code = "00") {
                     cart = response.data;
-                    if(user != "") {
+                    if(checkLogin) {
                         if(cart.listProduct != null) {
                             getTotalProductInCast(cart);
                             rederDataCast(cart.listProduct);
                             rederDataCastBoxUp(cart.listProduct);
                             if(cart.listProduct[0] != null) {
                                 getPriceProductInCast(cart);
-                                toastr.error('Add product success!', "HAHA");
+                                toastr.success('Add product success!', "HAHA");
                             }
                         }
                     }else {
@@ -477,7 +598,7 @@ function addItem(idProduct) {
 function removeItem(idProduct) {
     if(checkLogin) {
         let updateCastRequest = {
-            name: user,
+            name: userDto.id,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -492,14 +613,14 @@ function removeItem(idProduct) {
             success: function (response) {
                 if (response.code = "00") {
                     cart = response.data;
-                    if (user != "") {
+                    if (checkLogin) {
                         if (cart.listProduct != null) {
                             getTotalProductInCast(cart);
                             rederDataCast(cart.listProduct);
                             rederDataCastBoxUp(cart.listProduct);
                             if (cart.listProduct[0] != null) {
                                 getPriceProductInCast(cart);
-                                toastr.error('Delete product success!', "HAHA")
+                                toastr.success('Delete product success!', "HAHA")
                             }
                         }
                     } else {
@@ -542,7 +663,7 @@ function addComment(idProduct) {
                             comment = response.data.comment;
                             rederComentProduct(comment);
                             $("#coment-content").val("");
-                            toastr.error('Comment product success!', "HAHA");
+                            toastr.success('Comment product success!', "HAHA");
                         }
                     }
                 },

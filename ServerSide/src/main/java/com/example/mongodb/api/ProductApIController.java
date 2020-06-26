@@ -66,7 +66,7 @@ public class ProductApIController {
     }
 
     @GetMapping("/product/search")
-    public BaseResponse index(@RequestParam(value = "name", required = false)String name,
+    public BaseResponse searchProduct(@RequestParam(value = "name", required = false)String name,
                               @RequestParam(value = "material", required = false)Integer material,
                               @RequestParam(value = "color", required = false)Integer color,
                               @RequestParam(value = "type", required = false)Integer type,
@@ -76,6 +76,7 @@ public class ProductApIController {
         BaseResponse response = new BaseResponse();
         try {
             Pageable pageable;
+//            sort product
             switch (sort) {
                 case 1:
                     pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.ASC,"createAt"));
@@ -90,6 +91,7 @@ public class ProductApIController {
                     pageable = PageRequest.of(page, perPage, Sort.by(Sort.Direction.ASC,"id"));
                     break;
             }
+//            phân trang
             Page<Product> listProduct = productRepository.findByNameContainingIgnoreCase(name, pageable);
             if (!listProduct.isEmpty()) {
                 response.setCode("00");

@@ -77,6 +77,13 @@ a,li {
 .row.s_product_inner .carousel-indicators .active {
     background-color: #ffe602 !important;
 }
+.nav-item .nav-link>a {
+    color: #222;
+    text-transform: capitalize;
+}
+.nav-item .nav-link>a.active {
+    color: #384aeb
+}
 /* Bootstrap */
 
 
@@ -98,9 +105,7 @@ header .main_menu ul.nav-shop .nav-item ul.dropdown-menu {
     top: 80%;
     overflow-y: auto;
 }
-header .main_menu ul.nav-shop .nav-item:hover ul.dropdown-menu {
-    display: block !important;
-}
+
 header .main_menu ul.nav-shop .nav-item .dropdown-menu li {
     padding: 0px;
     margin: 0px;
@@ -158,6 +163,45 @@ header .main_menu ul.nav-shop .nav-item .dropdown-menu .btn {
     letter-spacing: 1px;
     position: relative;
     z-index: 1;
+}
+
+header .main_menu .media-body .ratings>i {
+    font-size: 13px !important;
+    color: red;
+}
+
+header .main_menu #search_input_box .form-control {
+    background: transparent;
+    border: 0;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 0;
+}
+header .main_menu #search_input_box {
+    position: fixed;
+    left: 50%;
+    top: 89px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1140px;
+    z-index: 999;
+    text-align: center;
+    background: #B08EAD;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+header .main_menu .search-inner {
+    padding: 5px 5px;
+}
+header .main_menu #search_input_box .btn {
+    width: 0;
+    height: 0;
+    padding: 0;
+    border: 0;
 }
 /*--================ End Header Menu Area =================--*/
 

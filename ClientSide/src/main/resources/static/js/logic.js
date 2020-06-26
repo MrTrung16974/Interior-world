@@ -1,4 +1,8 @@
 // khai báo biến
+var type = "";
+var material = "";
+var color = "";
+
 var token = getCookie("token");
 var keyword = "";
 var checkLogin = false;
@@ -31,31 +35,19 @@ var origin   = window.location.origin;
 var pathname = window.location.pathname;
 // Returns path only (/path/example.html)
 
-
-$(".icon-heart").hover(function () {
-    let icon = $(".icon-heart");
-    let temp = -1;
-    if(temp != 1) {
-        console.log("C0")
-        this.icon.addClass('fa fa-heart');
-    }else {
-        console.log("Ko")
-        this.icon.addClass('fa fa-heart-o');
-    }
-    temp *= -1;
-});
-
-// reder chung
 //    switch option
 switch (pathname) {
         case "/home":
             $("title.title-page").text("Aroma Shop - Home");
+            $("li.home").addClass("active");
             break;
         case "/shop":
             $("title.title-page").text("Aroma Shop - Shop");
+            $("li.shop").addClass("active");
             break;
         case "/cart":
             $("title.title-page").text("Aroma Shop - Cart");
+            $("li.cart").addClass("active");
             break;
         case "/checkout":
             $("title.title-page").text("Aroma Shop - Check Out");
@@ -65,12 +57,15 @@ switch (pathname) {
             break;
         case "/contact":
             $("title.title-page").text("Aroma Shop - Contact");
+            $("li.contact").addClass("active");
             break;
         case "/login":
             $("title.title-page").text("Aroma Shop - Login");
+            $("div.nav-link>a.login").addClass("active");
             break;
         case "/register":
             $("title.title-page").text("Aroma Shop - Register");
+            $("div.nav-link>a.register").addClass("active");
             break;
         case "/confirmation":
             $("title.title-page").text("Aroma Shop - Confirmation");
@@ -147,8 +142,6 @@ function forStar(star) {
     }
     return starWrite;
 }
-// logic cart
-
 function forPagination(totalPage) {
     $("#pagination").empty();
     $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-left"></i></a></li>`);
@@ -161,7 +154,24 @@ function forPagination(totalPage) {
     }
     $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-right"></i></a></li>`);
 }
+// End reder chung
 
+// search all page
+let inputSearch = $("div#search_input_box");
+$("#search-all-page").on('click', function () {
+    let isopened =
+        $('#search_input_box').css("display");
+    if(isopened != "block" ) {
+        inputSearch.show(500);
+    }else {
+        inputSearch.hide(500);
+    }
+});
+$("#close_search").on('click', function () {
+    inputSearch.hide(500);
+});
+
+// logic cart
 
 function getTotalProductInCast(cast) {
     let total = cart.listProduct.length;

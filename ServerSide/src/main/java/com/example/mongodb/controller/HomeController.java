@@ -35,16 +35,4 @@ public class HomeController {
         model.addAttribute("lstProduct",lstProduct);
         return "index";
     }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String AddUser(@RequestParam("username") String username,
-                          @RequestParam("password") String password,
-                          @RequestParam("name") String name) {
-        User user = new User();
-        user.setId(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setRoles(Arrays.asList("ADMIN", "USER", "VIP"));
-        userRepository.save(user);
-        return "redirect:/login?regisSuccess=true";
-    }
 }

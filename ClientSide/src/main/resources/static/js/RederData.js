@@ -18,7 +18,7 @@ function rederData(data) {
                       </div>
                       <div class="card-body">
                         <p>${findCategories(item.type.type != null? item.type.type : 10)}</p>
-                        <div id="ratings" class="ratings">
+                        <div class="ratings">
                             ${forStar(item.star)}
                         </div>
                         <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
@@ -31,17 +31,7 @@ function rederData(data) {
         $("#lst-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
-// function renderStar(rate) {
-//     let data = '';
-//     for(i = > 5){
-//         if(i < rate)
-//             data += <i class="fa fa-star" aria-hidden="true"></i>else{
-//
-//             data += <i class="fa fa-star-o" aria-hidden="hidden"></i>
-//         }
-//     }
-//     return data;
-// }
+
 function rederDataCastBoxUp(data) {
     $("#box-up-lst-prodcut-in-cast").empty();
     if(typeof data != "undefined"
@@ -154,10 +144,9 @@ function rederDataCast(data) {
     
                   </td>
                   <td>
-    
+                      <h5>Shipping</h5>
                   </td>
                   <td>
-                      <h5>Shipping</h5>
                   </td>
                   <td>
                       <div class="shipping_box">
@@ -211,7 +200,7 @@ function rederDataCast(data) {
 
 //reder user
 function rederUserInfo(data) {
-    $('#name-user').text(data.id);
+    $('#name-user').text(data.name);
 }
 
 //reder coment
@@ -325,18 +314,16 @@ function rederDataFavouriteBoxUp(data) {
                     <div class="media-body">
                         <h6 class="media-heading"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h6>
                         <span class="price">$${item.price ? item.price : ""}</span>
-                        <div id="ratings" class="ratings">
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <i class="far fa-star" aria-hidden="hidden"></i>
-                            <i class="far fa-star" aria-hidden="true"></i>
-                        </div>
+                        <span class="ratings">
+                            ${forStar(item.star)}
+                        </span>
+                        </span>
                         <button style="margin-left: 20px; " class="delete-item-cart" onclick="addFavouriteUser('${item.id ? item.id : ""}')"><i class="fas fa-trash-alt"></i></button>
+                        </span>
                     </div>
                 </li>`
             );
-        });
+        })
     }else{
         $("#box-up-lst-prodcut-in-favourite").html("<p style='padding: 20px;'>Product does not exist!</p>");
     }
