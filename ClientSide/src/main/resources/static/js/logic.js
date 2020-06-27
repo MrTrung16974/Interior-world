@@ -4,10 +4,13 @@ var material = "";
 var color = "";
 
 var token = getCookie("token");
-var keyword = "";
 var checkLogin = false;
+var keyword = "";
 var sort = 1;
-var pageDefault = 0;
+var currentPage = 0;
+var listAllProduct = [];
+var singleProduct = null;
+
 var userDto = {
     id: "",
     name: "",
@@ -29,6 +32,17 @@ var comment = {
     content: "",
     createAt: ""
 };
+
+const debounce = (func, delay) => {
+    let debounceTimer
+    return function() {
+        const context = this
+        const args = arguments
+        clearTimeout(debounceTimer)
+        debounceTimer
+            = setTimeout(() => func.apply(context, args), delay)
+    }
+}
 
 var url      = window.location.href;
 var origin   = window.location.origin;
@@ -75,6 +89,9 @@ switch (pathname) {
             break;
         case "/favourite":
             $("title.title-page").text("Aroma Shop - Favourite");
+            break;
+        case "/account-info":
+            $("title.title-page").text("Aroma Shop - Account Info");
             break;
         default :
             $("title.title-page").text("Aroma Shop");
@@ -146,13 +163,37 @@ function forPagination(totalPage) {
     $("#pagination").empty();
     $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-left"></i></a></li>`);
     for(let i = 0; i < totalPage; i++) {
-        if(i == pageDefault) {
+        if(i == currentPage) {
             $("#pagination").append(`<li class="active"><a onclick='searchProduct(${i})'>${i+1}</a></li>`);
         }else {
             $("#pagination").append(`<li><a onclick='searchProduct(${i})'>${i+1}</a></li>`);
         }
     }
     $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-right"></i></a></li>`);
+}
+function forImageLi(data) {
+    let imageLiWrite = "";
+    let length = data.length;
+    for (let i=0; i < length; i++) {
+        imageLiWrite += `<li data-target="#carouselExampleIndicators" data-slide-to="${i}" class="active"></li>`;
+    }
+    return imageLiWrite;
+}
+function forImage(data) {
+    let imageWrite = "";
+    let length = data.length;
+    for (let i=0; i < length; i++) {
+        if(i == 1) {
+            imageWrite += `<div class="carousel-item active">
+                                <img height="500" class="d-block w-100" src="${data[i] ? data[i] : ""}" alt="First slide">
+                            </div>`;
+        }else {
+            imageWrite += `<div class="carousel-item">
+                                <img height="500" class="d-block w-100" src="${data[i] ? data[i] : ""}" alt="First slide">
+                            </div>`;
+        }
+    }
+    return imageWrite;
 }
 // End reder chung
 
@@ -203,27 +244,26 @@ function getPriceProductInCast(cast) {
 }
 
 //logic user name
+//show vs hide pass user
+$(document).ready(function() {
+    $(".hide-eye-pass, .show-eye-pass").on('click', function() {
+        var passwordId = $(this).parents('div:first').find('input').attr('id');
+        if ($(this).hasClass('hide-eye-pass')) {
+            $("#" + passwordId).attr("type", "text");
+            $(this).parent().find(".hide-eye-pass").hide();
+            $(this).parent().find(".show-eye-pass").show();
+        } else {
+            $("#" + passwordId).attr("type", "password");
+            $(this).parent().find(".show-eye-pass").hide();
+            $(this).parent().find(".hide-eye-pass").show();
+        }
+    });
+});
 //Load need login page to view
-function loadPageCast() {
+function loadPage(url) {
     if(token != null && token != "") {
-        window.location.href = "http://localhost:8080/cart"
+        window.location.href = "http://localhost:8080/" + url;
     }else {
-        window.location.href = "http://localhost:8080/login"
-
-    }
-}
-function loadPageFavourite() {
-    if(token != null && token != "") {
-        window.location.href = "http://localhost:8080/favourite"
-    }else {
-        window.location.href = "http://localhost:8080/login"
-
-    }
-}
-function loadPageCheckOut() {
-    if (token != null && token != "") {
-        window.location.href = "http://localhost:8080/checkout"
-    } else {
         window.location.href = "http://localhost:8080/login"
 
     }

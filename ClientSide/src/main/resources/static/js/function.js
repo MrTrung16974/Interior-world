@@ -1,28 +1,28 @@
-if(token != null && token != "") {
+// check user login not yet
+var loadUserDto = () => {
     $.ajax({
         url: "http://localhost:8099/v1/api/getInfoUser",
         type: "GET",
         dataType: 'json',
         async: false,
         beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", token);
+            xhr.setRequestHeader("Authorization", token);
         },
         contentType: "application/json",
         success: function (response) {
-            if(response.code == "00") {
+            if (response.code == "00") {
                 userDto = response.data;
-                console.log(userDto);
                 $('#login-user').css({"visibility": "hidden", "opacity": "0"});
                 $('#logout-user').css({"visibility": "visible", "opacity": "1"});
                 getProductInCast();
                 rederUserInfo(response.data);
                 rederDataFavourite(response.data.lstFavourite);
                 rederDataFavouriteBoxUp(response.data.lstFavourite);
-                if(response.data.lstFavourite != null) {
+                if (response.data.lstFavourite != null) {
                     getTotalProductInFavourite(response.data.lstFavourite);
                 }
                 checkLogin = true;
-            }else {
+            } else {
                 toastr.error('Find not data!', response.message);
             }
         },
@@ -31,18 +31,23 @@ if(token != null && token != "") {
             toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
         }
     });
-}else {
+}
+if(token != null && token != "") {
+    loadUserDto();
+} else {
     $('#login-user').css({"visibility": "visible", "opacity": "1"});
     $('#logout-user').css({"visibility": "hidden", "opacity": "0"});
 }
 
+
 //check the user already logged
 // find product all
 $.ajax({
-    url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=12",
+    url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
     type: "GET",
     success: function (response) {
         if(response.code == "00") {
+            listAllProduct = response.data.content;
             rederData(response.data.content);
             let totalPage = response.data.totalPages;
             forPagination(totalPage);
@@ -55,6 +60,12 @@ $.ajax({
     }
 });
 
+//code gà nền phải viết 2 function giống nhau(cái này là cho keyUp)
+function loginUser(e) {
+    if(e.keyCode === 13) {
+        loginCickUser();
+    }
+}
 //code gà nền phải viết 2 function giống nhau(cái này là cho cick)
 function loginCickUser() {
     let username = $("#username").val().trim();
@@ -97,49 +108,15 @@ function loginCickUser() {
 }
 
 //code gà nền phải viết 2 function giống nhau(cái này là cho keyUp)
-function loginUser(e) {
+function registerUser(e) {
     if(e.keyCode === 13) {
-        let username = $("#username").val().trim();
-        let password = $("#password").val().trim();
-        if(username == null || username == "") {
-            toastr.error('You have not entered a username ');
-            return;
-        }
-        if(password == null || password == "") {
-            toastr.error('You have not entered a password ');
-            return;
-        }
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8099/v1/api/login?username=" + username + "&password=" + password,
-            processData: false,
-            success: function (response) {
-                // server trả về HTTP status code là 200 => Thành công
-                //hàm đc thực thi khi request thành công không có lỗi
-                if (response.code == "00") {
-                    if (response.data != null) {
-                        setCookie("token", response.data);
-                        // user = response.data;
-                        checkLogin = true;
-                        toastr.success('Logic success!', response.message);
-                    }
-                    if (checkLogin) {
-                        window.location.href = "http://localhost:8080/home"
-                    }
-                } else {
-                    window.location.href = "http://localhost:8080/login?error=true"
-                    console.log(response.message);
-                }
-            },
-            error: function () {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
-                console.log(response.message);
-            }
-        });
+        registerClickUser();
     }
 }
 
+//code gà nền phải viết 2 function giống nhau(cái này là cho cick)
 function registerClickUser() {
+    var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})");
     let name = $("#regiter-name").val().trim();
     let username = $("#regiter-username").val().trim();
     let password = $("#regiter-passwprd").val().trim();
@@ -161,7 +138,11 @@ function registerClickUser() {
         return;
     }
     if(password != confirmPassword) {
-        toastr.error('Password and confirm password must be the same ', response.message);
+        toastr.error('Password and confirm password must be the same ');
+        return;
+    }
+    if(!mediumRegex.test(password)) {
+        toastr.error('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
         return;
     }
     $.ajax({
@@ -192,67 +173,6 @@ function registerClickUser() {
             console.log(response.message);
         }
     });
-}
-
-function registerUser(e) {
-    if(e.keyCode === 13) {
-        let name = $("#regiter-name").val().trim();
-        let username = $("#regiter-username").val().trim();
-        let password = $("#regiter-passwprd").val().trim();
-        let confirmPassword = $("#confirm-regiter-password").val().trim();
-        if(name == null || name == "") {
-            toastr.error('You have not entered a name ');
-            return;
-        }
-        if(username == null || username == "") {
-            toastr.error('You have not entered a username ');
-            return;
-        }
-        if(password == null || password == "") {
-            toastr.error('You have not entered a password ');
-            return;
-        }
-        if(confirmPassword == null || confirmPassword == "") {
-            toastr.error('You have not entered a name ');
-            return;
-        }
-        if(password != confirmPassword) {
-            toastr.error('Password and confirm password must be the same ', response.message);
-            return;
-        }
-        if(password != confirmPassword) {
-            toastr.error('Password and confirm password must be the same ', response.message);
-            return;
-        }
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8099/register?username="+username+"&password="+
-                password+"&name="+ name,
-            processData: false,
-            success: function (response) {
-                // server trả về HTTP status code là 200 => Thành công
-                //hàm đc thực thi khi request thành công không có lỗi
-                if(response.code == "00") {
-                    if(response.data != null) {
-                        setCookie("token", response.data);
-                        checkLogin = true;
-                        toastr.success('Register success!', response.message);
-                    }
-                    if(token != "" || token != null) {
-                        window.location.href = "http://localhost:8080/home";
-                    }
-                }
-                else {
-                    toastr.error('Null Data', response.message);
-                    console.log(response.message);
-                }
-            },
-            error: function () {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
-                console.log(response.message);
-            }
-        });
-    }
 }
 
 function logoutUser() {
@@ -302,29 +222,31 @@ $('#find-color input').on('change', function() {
 });
 
 //Quick search product Advanced
+var debounceSearchProduct = debounce(function (page) {
+    searchProduct(page);
+}, 500);
+
 function searchProduct(page) {
-    pageDefault = page;
+    currentPage = page;
     keyword = $('#keysearch').val().trim().toLocaleLowerCase();
-    console.log(keyword);
     if (keyword == null) {
         keyword = '';
     }
     $.ajax({
         type: "GET",
         url: "http://localhost:8099/v1/api/product/search?name=" +
-            keyword + "&page="+pageDefault+"&perPage=12&sort=" + sort
+            keyword + "&page=" + currentPage + "&perPage=12&sort=" + sort
             + "&type=" + type + "&material=" + material + "&color=" + color,
         processData: false,
         contentType: 'application/json',
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công
             //hàm đc thực thi khi request thành công không có lỗi
-            if(response.code == "00") {
+            if (response.code == "00") {
                 rederData(response.data.content);
                 let totalPage = response.data.totalPages;
                 forPagination(totalPage);
-            }
-            else {
+            } else {
                 rederData(response.data);
                 forPagination(1);
                 console.log(response.message);
@@ -340,7 +262,7 @@ function sortProduct() {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+pageDefault+"&perPage=10&sort=" + sort,
+        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=10&sort=" + sort,
         processData: false,
         contentType: 'application/json',
         success: function (response) {
@@ -369,17 +291,15 @@ function addFavouriteUser(idProduct) {
             success: function (response) {
                 if (response.data != null) {
                     if (response.code == "200") {
-                        console.log(response.data);
                         toastr.success('add favourite user Success!', "HAHA");
                     }
                     if (response.code == "00") {
-                        console.log(response.data);
                         toastr.success('remove favourite user Success!', "HAHA");
                     }
-                    rederDataFavourite(response.data);
-                    rederDataFavouriteBoxUp(response.data);
-                    if(response.data != null) {
-                        getTotalProductInFavourite(response.data);
+                    loadUserDto();
+                    rederData(listAllProduct);
+                    if(pathname = "/product-detforImageails") {
+                        rederDataSingleProduct(singleProduct);
                     }
                 }
             },

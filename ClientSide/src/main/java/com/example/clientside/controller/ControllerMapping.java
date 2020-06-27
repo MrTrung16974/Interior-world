@@ -14,6 +14,10 @@ public class ControllerMapping {
     public String register() {
         return "register";
     }
+    @RequestMapping("/account-info")
+    public String accountInfo() {
+        return "account-info";
+    }
     @RequestMapping("/home")
     public String home(){
         return "index";

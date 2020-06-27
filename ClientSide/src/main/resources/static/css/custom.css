@@ -84,6 +84,22 @@ a,li {
 .nav-item .nav-link>a.active {
     color: #384aeb
 }
+i.eye-pass {
+    position: absolute;
+    right: 30px;
+    top: 35%;
+}
+.show-eye-pass {
+    display: none;
+}
+.from-content {
+    max-width: 500px;
+    margin: 20px auto;
+}
+.form-header {
+    border-bottom: 1px solid #dec9c9;
+    padding-bottom: 20px;
+}
 /* Bootstrap */
 
 

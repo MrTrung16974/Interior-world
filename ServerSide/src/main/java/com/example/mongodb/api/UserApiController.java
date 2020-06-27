@@ -96,8 +96,12 @@ public class UserApiController {
                           @RequestParam("password") String password,
                           @RequestParam("name") String name) {
         BaseResponse response = new BaseResponse();
+        String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
         try {
             if (!username.isEmpty() && !password.isEmpty() && !name.isEmpty()) {
+                if(!password.matches(pattern)) {
+                    throw new Exception("Password invalid");
+                }
                 User user = new User();
                 user.setId(username);
                 user.setPassword(passwordEncoder.encode(password));
@@ -111,6 +115,35 @@ public class UserApiController {
                 response.setCode("400");
                 response.setMessage("Find not data!");
                 response.setData(null);
+            }
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error");
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
+    public BaseResponse resetPassUser(@RequestParam("username") String username,
+                                @RequestParam("password") String password) {
+        BaseResponse response = new BaseResponse();
+        String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
+        try {
+            if (!username.isEmpty() && !password.isEmpty()) {
+                Optional<User> optUser = userRepository.findById(username);
+                if(!password.matches(pattern)) {
+                    throw new Exception("Password invalid");
+                }
+                if (!optUser.isPresent()) {
+                    throw new Exception("username or password invalid");
+                }
+                User user = optUser.get();
+                user.setPassword(passwordEncoder.encode(password));
+                User exitUser = userRepository.save(user);
+                response.setCode("00");
+                response.setMessage("Success");
+                response.setData(tokenAuthenticationService.generateJWT(exitUser.getId()));
             }
         }catch (Exception e) {
             response.setCode("99");

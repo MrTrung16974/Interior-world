@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+
+<body>
+<!--================ Start Header Menu Area =================-->
+<header th:replace="/component/header :: header-area"></header>
+<!--================ End Header Menu Area =================-->
+
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-5">
+                <div class="account">
+<!--                    "${item.image != null? item.image[0] :-->
+                    <div class="row">
+                        <div class="col-12 col-md-4 ol-xl-4 col-lg-4">
+                            <img src="img/product/review-1.png" alt="">
+                        </div>
+                        <div class="col-12 col-md-8 ol-xl-8 col-lg-8 media-body">
+                            <h6>Anonymously</h6>
+                            <a class="edit-user"><i class="fas fa-user-edit"></i><span>Edit user profile</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-categories">
+                    <div class="head">My Account</div>
+                    <ul>
+                        <li><a class="user-profile">User profile</a></li>
+                        <li><a class="address">Address</a></li>
+                        <li><a class="change-pass">Change Password</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                <div class="Info-user-profile">
+                    <div class="title-user form-header">
+                        <h3>User Profile</h3>
+                        <p>Manage profile information for account security</p>
+                    </div>
+                    <form class="content-user-profile from-content" >
+                        <div class="col-md-12 form-group">
+                            <label for="username">User Name : </label>
+                            <span class="form-control" id="username">mr.trung0104@gmail.com</span>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="name">Name : </label>
+                            <input class="form-control" type="text" name="name" id="name" />
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="phone">Phone : </label>
+                            <span class="form-control" id="phone">0376213798</span>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="sex">Sex : </label>
+                            <br>
+                            <input type="radio" name="sex" id="male">
+                            <label for="male">Male</label>
+                            <input type="radio" name="sex" id="female">
+                            <label for="female">Female</label>
+                            <input type="radio" name="sex" id="order">
+                            <label for="order">Order</label>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="birthday">BirthDay : </label>
+                            <input class="form-control" type="date" name="birthday" id="birthday" />
+                        </div>
+                    </form>
+                </div>
+                <div class="Info-address">
+                    <div class="title-user form-header">
+                        <h3>My Address</h3>
+                        <button>+ Add new address</button>
+                    </div>
+                    <div class="content-address from-content">
+                        <ul>
+                            <li>
+                                <div class="row">
+                                    <div class="col-12 col-xl-2 col-lg-2 col-md-2">
+                                        <div>
+                                            <span>Name</span>
+                                        </div>
+                                        <div>
+                                            <span>Phone</span>
+                                        </div>
+                                        <div>
+                                            <span>Address</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+                                        <div>
+                                            <span>Nguyễn Tiến Trung   </span>
+                                            <span>  Default</span>
+                                        </div>
+                                        <div>
+                                            <span>(+84)0376213798</span>
+                                        </div>
+                                        <div>
+                                            <span>Số nhà 19/Tổ 8B/Thôn Thụy Hà/Xã Bắc Hồng/Huyện Đông Anh/Thành phố Hà Nội</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-4">
+                                        <div>
+                                            <span><a>Sửa</a></span>
+                                            <span><a>Xóa</a></span>
+                                        </div>
+                                        <div>
+                                            <span><a>Default settings</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="change-password-profile">
+                    <div class="title-user form-header">
+                        <h3>User Profile</h3>
+                        <p>Manage profile information for account security</p>
+                    </div>
+                    <form class="content-password from-content">
+                        <label for="current-password">Current Password : </label>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" name="current-password" id="current-password" />
+                            <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+                            <i class="show-eye-pass eye-pass fas fa-eye"></i>
+                        </div>
+                        <label for="new-password">New Password : </label>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control"  name="new-password" id="new-password" />
+                            <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+                            <i class="show-eye-pass eye-pass fas fa-eye"></i>
+                        </div>
+                        <label for="confirm-password">Confirm Password : </label>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control"  name="confirm-password" id="confirm-password" />
+                            <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+                            <i class="show-eye-pass eye-pass fas fa-eye"></i>
+                        </div>
+                        <button type="button">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
+
+
+
+<!--================ Start footer Area  =================-->
+<footer th:replace="/component/footer :: footer-area"></footer>
+<!--================ End footer Area  =================-->
+
+</body>
+</html>

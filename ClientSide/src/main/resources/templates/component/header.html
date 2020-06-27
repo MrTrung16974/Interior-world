@@ -54,8 +54,8 @@
                                 <li>
                                     <h6>HELLO! Mr. <span id="name-user">Jhon Smith</span></h6>
                                 </li>
-                                <li><a onclick="loadPageCast()">MY CART</a></li>
-                                <li><a href="#">ACCOUNT INFO</a></li>
+                                <li><a onclick="loadPage('cart')">MY CART</a></li>
+                                <li><a onclick="loadPage('account-info')">ACCOUNT INFO</a></li>
                                 <li><a onclick="logoutUser()">LOG OUT</a></li>
                             </ul>
                         </li>
@@ -63,15 +63,15 @@
                         <li class="nav-item"><button id="cart-menu" type="button" data-toggle="dropdown"><i class="ti-shopping-cart"></i><span id="total-cast" class="nav-shop__circle">0</span></button>
                             <ul class="dropdown-menu" aria-labelledby="cart-menu">
                                 <ul id="box-up-lst-prodcut-in-cast" >
-                                    <p style="text-align: center">You have no items in the basket</p>
+                                    <p style="text-align: center">You need to log in to see the product</p>
                                 </ul>
                                 <li>
                                     <h5 class="text-center">SUBTOTAL: <span id="price-number">0</span> USD</h5>
                                 </li>
                                 <li class="margin-0">
                                     <div class="row">
-                                        <div class="col-xs-6"> <a onclick="loadPageCast()" class="btn">VIEW CART</a></div>
-                                        <div class="col-xs-6 "> <a onclick="loadPageCheckOut()" class="btn">CHECK OUT</a></div>
+                                        <div class="col-xs-6"> <a onclick="loadPage('cart')" class="btn">VIEW CART</a></div>
+                                        <div class="col-xs-6 "> <a onclick="loadPage('checkout')" class="btn">CHECK OUT</a></div>
                                     </div>
                                 </li>
                             </ul>
@@ -79,14 +79,14 @@
                         <li class="nav-item"><button  id="favourite-menu" type="button" data-toggle="dropdown"><i class="ti-heart"></i><span id="total-favourite" class="nav-shop__circle">0</span></button>
                             <ul class="dropdown-menu" aria-labelledby="favourite-menu">
                                 <ul id="box-up-lst-prodcut-in-favourite">
-                                    <p style="text-align: center">You have no items in the basket</p>
+                                    <p style="text-align: center">You need to log in to see the product</p>
                                 </ul>
                                 <li class="margin-0">
-                                    <div class="w-100 text-center"> <a onclick="loadPageFavourite()" class="w-75  btn">VIEW FAVOURITE</a></div>
+                                    <div class="w-100 text-center"> <a onclick="loadPage('favourite')" class="w-75  btn">VIEW FAVOURITE</a></div>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="button button-header" th:href="@{/checkout}">Buy Now</a></li>
+                        <li class="nav-item"><a class="button button-header" onclick="loadPage('checkout')">Buy Now</a></li>
                     </ul>
                 </div>
             </div>

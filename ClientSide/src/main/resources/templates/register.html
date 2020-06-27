@@ -46,16 +46,20 @@
 						<h3>Create an account</h3>
 						<form class="row login_form" id="register_form" >
 							<div class="col-md-12 form-group">
-								<input type="text" onkeypress="registerUser(event)" class="form-control" id="regiter-name" name="regiter-name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
-							</div>
-							<div class="col-md-12 form-group">
 								<input type="email" onkeypress="registerUser(event)" class="form-control" id="regiter-username" name="regiter-username" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
 							</div>
 							<div class="col-md-12 form-group">
+								<input type="text" onkeypress="registerUser(event)" class="form-control" id="regiter-name" name="regiter-name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+							</div>
+							<div class="col-md-12 form-group">
 								<input type="password" onkeypress="registerUser(event)" class="form-control" id="regiter-passwprd" name="regiter-passwprd" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+								<i class="show-eye-pass eye-pass fas fa-eye"></i>
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="password" onkeypress="registerUser(event)" class="form-control" id="confirm-regiter-password" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+								<i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+								<i class="show-eye-pass eye-pass fas fa-eye"></i>
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">

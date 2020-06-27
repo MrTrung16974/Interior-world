@@ -1,13 +1,42 @@
 // reder cast
 function rederData(data) {
+    let checkFavourite = false;
     $("#lst-product").empty();
     if(typeof data != "undefined"
         && data != null
         && data.length != null
         && data.length > 0 != null) {
         data.map(item => {
-            $('#lst-product').append(
-                `<div class="col-md-6 col-lg-4">
+            userDto.lstFavourite.map(favourite => {
+                if(favourite.id == item.id) {
+                    checkFavourite = true;
+                }
+            });
+            if(checkFavourite) {
+                $('#lst-product').append(
+                    `<div class="col-md-6 col-lg-4">
+                            <div class="card text-center card-product">
+                              <div class="card-product__img">
+                                <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
+                                <ul class="card-product__imgOverlay">
+                                  <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
+                                  <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                </ul>
+                              </div>
+                              <div class="card-body">
+                                <p>${findCategories(item.type.type != null? item.type.type : 10)}</p>
+                                <div class="ratings">
+                                    ${forStar(item.star)}
+                                </div>
+                                <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
+                                <p class="card-product__price">$${item.price ? item.price : ""}</p>
+                              </div>
+                            </div>
+                        </div>`
+                );
+            }else {
+                $('#lst-product').append(
+                    `<div class="col-md-6 col-lg-4">
                     <div class="card text-center card-product">
                       <div class="card-product__img">
                         <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
@@ -26,9 +55,117 @@ function rederData(data) {
                       </div>
                     </div>
                 </div>`);
+            }
+            checkFavourite = false;
         });
     }else{
-        $("#lst-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
+        $("#lst-product").html("<h3 style='padding: 20px;'>There are no products matching your search!</h3>");
+    }
+}
+
+function rederDataSingleProduct(item) {
+    let checkFavourite = false;
+    $("#single-product").empty();
+    if(typeof item != "undefined"
+        && item != null) {
+        userDto.lstFavourite.map(favourite => {
+            if(favourite.id == item.id) {
+                checkFavourite = true;
+            }
+        });
+        if(checkFavourite) {
+            $('#single-product').html(
+                `<div class="row s_product_inner">
+                        <div class="col-lg-6">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    ${forImageLi(item.image)}
+                                </ol>
+                                <div class="carousel-inner">
+                                    ${forImage(item.image)}
+                                </div>
+                                <a  style="color: #000000;"  class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <i style="font-size: 30px" class="fas fa-chevron-left"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a  style="color: #000000;"  class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <i style="font-size: 30px" class="fas fa-chevron-right"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 offset-lg-1">
+                            <div class="s_product_text">
+                                <h3>${item.name ? item.name : ""}</h3>
+                                <h2>$${item.price ? item.price : ""}</h2>
+                                <ul class="list">
+                                    <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
+                                    <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                                    <li><a href="#"><span>Star</span> : ${forStar(item.star)}</a></li>
+                                </ul>
+                                <p>${item.description ? item.description : ""}</p>
+                              
+                                <div class="product_count">
+                                    <a class="button primary-btn" onclick="addToCastDB('${item.id}')">Add to Cart</a>               
+                                </div>
+                                <div class="card_area d-flex align-items-center">
+                                    <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+                                    <a class="icon_btn" onclick="addFavouriteUser(${item.id})"><i style="color: red;" class="lnr lnr lnr-heart-pulse"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+        }else {
+            $('#single-product').html(
+                `<div class="row s_product_inner">
+                            <div class="col-lg-6">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        ${forImageLi(item.image)}
+                                    </ol>
+                                    <div class="carousel-inner">
+                                        ${forImage(item.image)}
+                                    </div>
+                                    <a  style="color: #000000;"  class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <i style="font-size: 30px" class="fas fa-chevron-left"></i>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a  style="color: #000000;"  class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <i style="font-size: 30px" class="fas fa-chevron-right"></i>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 offset-lg-1">
+                                <div class="s_product_text">
+                                    <h3>${item.name ? item.name : ""}</h3>
+                                    <h2>$${item.price ? item.price : ""}</h2>
+                                    <ul class="list">
+                                        <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
+                                        <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                                        <li><a href="#"><span>Star</span> : ${forStar(item.star)}</a></li>
+                                    </ul>
+                                    <p>${item.description ? item.description : ""}</p>
+                                  
+                                    <div class="product_count">
+                                        <a class="button primary-btn" onclick="addToCastDB('${item.id}')">Add to Cart</a>               
+                                    </div>
+                                    <div class="card_area d-flex align-items-center">
+                                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+                                        <a class="icon_btn" onclick="addFavouriteUser(${item.id})"><i class="lnr lnr lnr-heart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+        }
+
+
+        $("button#add-to-coment").attr("onclick", `addComment('${item.id}')`);
+        $("p#description-product").text(item.description ? item.description : "");
+    }else{
+        $("#single-product").html("<h3 style='padding: 20px;'>Product does not exist!</h3>");
     }
 }
 
@@ -53,7 +190,7 @@ function rederDataCastBoxUp(data) {
         );
     });
     }else{
-        $("#box-up-lst-prodcut-in-cast").html("<p style='padding: 20px;'>Product does not exist!</p>");
+        $("#box-up-lst-prodcut-in-cast").html("<p style='text-align: center'>You have no items in the basket</p>");
     }
 }
 function rederDataCast(data) {
@@ -207,8 +344,6 @@ function rederUserInfo(data) {
 //    reder coment product
 function rederComentProduct(data) {
     $("#comments-list").empty();
-    let presentTime = new Date();
-    console.log(presentTime);
     if(data != null) {
         data.map(item => {
             $('#comments-list').append(
@@ -325,7 +460,7 @@ function rederDataFavouriteBoxUp(data) {
             );
         })
     }else{
-        $("#box-up-lst-prodcut-in-favourite").html("<p style='padding: 20px;'>Product does not exist!</p>");
+        $("#box-up-lst-prodcut-in-favourite").html("<p style='text-align: center'>You have no items in the basket</p>");
     }
 }
 
