@@ -208,16 +208,19 @@ function logoutUser() {
 //Advanced search product
 $('#find-type input').on('change', function() {
     type = $('input[name=type]:checked', '#find-type').val();
+    console.log(type);
     searchProduct(0);
 });
 
 $('#find-material input').on('change', function() {
-    material = $('input[name=type]:checked', '#find-material').val();
+    material = $('input[name=material]:checked', '#find-material').val();
+    console.log(material);
     searchProduct(0);
 });
 
 $('#find-color input').on('change', function() {
-    color = $('input[name=type]:checked', '#find-color').val();
+    color = $('input[name=color]:checked', '#find-color').val();
+    console.log(color);
     searchProduct(0);
 });
 

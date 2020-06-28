@@ -226,7 +226,7 @@ function rederDataCast(data) {
                           </div>
                       </td>
                       <td>
-                          <h5>${item.price && item.number ? item.price*item.number : ""}</h5>
+                          <h5>$${item.price && item.number ? item.price*item.number : ""}</h5>
                       </td>
                       <td class="delete-item-cart">
                           <i onclick="deleteItem('${item.id}')" class="fas fa-trash-alt"></i>
