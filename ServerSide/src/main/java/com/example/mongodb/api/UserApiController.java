@@ -177,6 +177,9 @@ public class UserApiController {
                 if(exitUser.getPhone() != null) {
                     userDto.setPhone(exitUser.getPhone());
                 }
+                if(exitUser.getImage() != null) {
+                    userDto.setImage(exitUser.getImage());
+                }
                 if(exitUser.getLstFavourite() != null) {
                     userDto.setLstFavourite(exitUser.getLstFavourite());
                 }

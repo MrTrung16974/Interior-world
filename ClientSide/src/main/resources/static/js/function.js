@@ -616,12 +616,12 @@ function addComment(idProduct) {
         let contentComment = $("textarea#coment-content").val().trim();
         if (contentComment != null && contentComment != "") {
             console.log(contentComment);
-            console.log(cart.image);
+            console.log(userDto.image);
             console.log(cart.buyer);
 
             let comment = {
-                image: cart.image,
-                buyer: cart.buyer,
+                image: userDto.image,
+                buyer: userDto.id,
                 comtent: contentComment
             };
             $.ajax({

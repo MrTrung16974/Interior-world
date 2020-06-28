@@ -186,7 +186,11 @@ function forImageLi(data) {
     let imageLiWrite = "";
     let length = data.length;
     for (let i=0; i < length; i++) {
-        imageLiWrite += `<li data-target="#carouselExampleIndicators" data-slide-to="${i}" class="active"></li>`;
+        if(i == 0) {
+            imageLiWrite += `<li data-target="#carouselExampleIndicators" data-slide-to="${i}" class="active"></li>`;
+        }else {
+            imageLiWrite += `<li data-target="#carouselExampleIndicators" data-slide-to="${i}"></li>`;
+        }
     }
     return imageLiWrite;
 }
@@ -194,7 +198,7 @@ function forImage(data) {
     let imageWrite = "";
     let length = data.length;
     for (let i=0; i < length; i++) {
-        if(i == 1) {
+        if(i == 0) {
             imageWrite += `<div class="carousel-item active">
                                 <img height="500" class="d-block w-100" src="${data[i] ? data[i] : ""}" alt="First slide">
                             </div>`;

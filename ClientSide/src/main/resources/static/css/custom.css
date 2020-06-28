@@ -363,3 +363,12 @@ header .main_menu #search_input_box .btn {
     }
 }
 /*--================ End Loading Area =================--*/
+
+/*--================ Start Comment Area =================--*/
+div.comments-list div.review_item div.media div.d-flex>img {
+    border-radius: 50%;
+    width: 70px;
+    height: 71px;
+}
+
+/*--================ End Comment Area =================--*/

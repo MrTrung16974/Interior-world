@@ -5,13 +5,18 @@ function rederData(data) {
     if(typeof data != "undefined"
         && data != null
         && data.length != null
-        && data.length > 0 != null) {
+        && data.length > 0) {
         data.map(item => {
-            userDto.lstFavourite.map(favourite => {
-                if(favourite.id == item.id) {
-                    checkFavourite = true;
-                }
-            });
+            if(typeof userDto.lstFavourite != "undefined"
+                && userDto.lstFavourite != null
+                && userDto.lstFavourite.length != null
+                && userDto.lstFavourite.length > 0) {
+                userDto.lstFavourite.map(favourite => {
+                    if(favourite.id == item.id) {
+                        checkFavourite = true;
+                    }
+                });
+            }
             if(checkFavourite) {
                 $('#lst-product').append(
                     `<div class="col-md-6 col-lg-4">
@@ -69,13 +74,18 @@ function rederDataTrending(data) {
     if(typeof data != "undefined"
         && data != null
         && data.length != null
-        && data.length > 0 != null) {
+        && data.length > 0) {
         data.map(item => {
-            userDto.lstFavourite.map(favourite => {
-                if(favourite.id == item.id) {
-                    checkFavourite = true;
-                }
-            });
+            if(typeof userDto.lstFavourite != "undefined"
+                && userDto.lstFavourite != null
+                && userDto.lstFavourite.length != null
+                && userDto.lstFavourite.length > 0) {
+                userDto.lstFavourite.map(favourite => {
+                    if(favourite.id == item.id) {
+                        checkFavourite = true;
+                    }
+                });
+            }
             if(checkFavourite) {
                 $('#lst-trending-product').append(
                         `<div class="col-md-6 col-lg-4 col-xl-3">
@@ -122,16 +132,20 @@ function rederDataTrending(data) {
 }
 
 function rederDataSingleProduct(item) {
-    console.log(item);
     let checkFavourite = false;
     $("#single-product").empty();
     if(typeof item != "undefined"
         && item != null) {
-        userDto.lstFavourite.map(favourite => {
-            if(favourite.id == item.id) {
-                checkFavourite = true;
-            }
+        if(typeof userDto.lstFavourite != "undefined"
+            && userDto.lstFavourite != null
+            && userDto.lstFavourite.length != null
+            && userDto.lstFavourite.length > 0) {
+            userDto.lstFavourite.map(favourite => {
+                if(favourite.id == item.id) {
+                    checkFavourite = true;
+                }
         });
+        }
         if(checkFavourite) {
             $('#single-product').html(
                 `<div class="row s_product_inner">
@@ -222,6 +236,7 @@ function rederDataSingleProduct(item) {
 
 
         $("button#add-to-coment").attr("onclick", `addComment('${item.id}')`);
+        $("p#description-product").text(item.description != null ? item.description : "");
         $("h5#width").text((item.type.width != null ? item.type.width : "") + " cm");
         $("h5#height").text((item.type.height != null ? item.type.height : "") + " cm");
         $("h5#depth").text((item.type.depth != null ? item.type.depth : "") + " cm");
@@ -415,7 +430,7 @@ function rederComentProduct(data) {
                 `<div class="review_item">
                     <div class="media">
                         <div class="d-flex">
-                            <img src="${item.image != null? item.image[0] : "img/product/review-1.png"}" alt="">
+                            <img src="${item.image ? item.image : "img/product/review-1.png"}" alt="">
                         </div>
                         <div class="media-body">
                             <h4>${item.buyer ? item.buyer : "Anonymously"}</h4>
