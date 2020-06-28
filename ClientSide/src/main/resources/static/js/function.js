@@ -60,6 +60,22 @@ $.ajax({
     }
 });
 
+$.ajax({
+    url: "http://localhost:8099/v1/api/product/trending",
+    type: "GET",
+    success: function (response) {
+        if(response.code == "00") {
+            listTrendingProduct = response.data;
+            rederDataTrending(response.data);
+        }else {
+            toastr.error('Find not data!', response.message);
+        }
+    },
+    error: function (result) {
+        toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+    }
+});
+
 //code gà nền phải viết 2 function giống nhau(cái này là cho keyUp)
 function loginUser(e) {
     if(e.keyCode === 13) {
@@ -230,6 +246,7 @@ var debounceSearchProduct = debounce(function (page) {
 }, 500);
 
 function searchProduct(page) {
+    shopLoading();
     currentPage = page;
     keyword = $('#keysearch').val().trim().toLocaleLowerCase();
     if (keyword == null) {
@@ -254,18 +271,24 @@ function searchProduct(page) {
                 forPagination(1);
                 console.log(response.message);
             }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+            hideLoading();
         }
     });
 }
 
 function sortProduct() {
+    shopLoading();
     let getSort = $("#sortBydate").val();
     if(getSort != null && getSort != "") {
         sort = getSort;
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=10&sort=" + sort,
+        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12&sort=" + sort,
         processData: false,
         contentType: 'application/json',
         success: function (response) {
@@ -281,12 +304,18 @@ function sortProduct() {
                 forPagination(1);
                 console.log(response.message);
             }
+            hideLoading()
+        },
+        error: function (error) {
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+            hideLoading()
         }
     });
 }
 
 function addFavouriteUser(idProduct) {
     if(checkLogin != "") {
+        shopLoading();
         $.ajax({
             url: "http://localhost:8099/v1/api/user/favourite/?idUser="+
                 cart.buyer + "&idProduct=" + idProduct,
@@ -301,13 +330,16 @@ function addFavouriteUser(idProduct) {
                     }
                     loadUserDto();
                     rederData(listAllProduct);
+                    rederDataTrending(listTrendingProduct);
                     if(pathname = "/product-detforImageails") {
                         rederDataSingleProduct(singleProduct);
                     }
                 }
+                hideLoading()
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                hideLoading()
             }
         });
     }else {
@@ -332,9 +364,11 @@ function getProductInCast() {
                     }
                 }
             }
+            hideLoading();
         },
         error: function (error) {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+            hideLoading();
         }
     });
 }
@@ -342,6 +376,7 @@ function getProductInCast() {
 // function addToCastDetailDB(idProduct, oldNumber) {
 //     let updateCastRequest = [];
 //     if(checkLogin != "") {
+//         shopLoading();
 //         let newNumber = $("#qty").val().trim();
 //         if(newNumber > 0) {
 //             newNumber -= oldNumber;
@@ -383,9 +418,11 @@ function getProductInCast() {
 //                             }
 //                         }
 //                     }
+//                     hideLoading();
 //                 },
 //                 error: function (error) {
-//                     toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+//                     toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+//                         hideLoading();
 //                 }
 //             });
 //         }else {
@@ -398,6 +435,7 @@ function getProductInCast() {
 
 function addToCastDB(idProduct) {
     if(checkLogin) {
+        shopLoading();
         let updateCastRequest = {
             name: userDto.id,
             listProductCast: [{
@@ -424,9 +462,11 @@ function addToCastDB(idProduct) {
                         }
                     }
                 }
+                hideLoading();
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                hideLoading();
             }
         });
     }else {
@@ -436,6 +476,7 @@ function addToCastDB(idProduct) {
 
 function deleteItem(idProduct) {
     if(checkLogin) {
+        shopLoading();
         let updateCastRequest = {
             name: userDto.id,
             listProductCast: [{
@@ -466,9 +507,11 @@ function deleteItem(idProduct) {
                         toastr.error('Bạn cần đăng nhâp!', "HAHA");
                     }
                 }
+                hideLoading();
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                hideLoading();
             }
         });
     }else {
@@ -478,6 +521,7 @@ function deleteItem(idProduct) {
 
 function addItem(idProduct) {
     if(checkLogin) {
+        shopLoading();
         let updateCastRequest = {
             name:  userDto.id,
             listProductCast: [{
@@ -508,9 +552,11 @@ function addItem(idProduct) {
                         toastr.error('Bạn cần đăng nhâp!',  "HAHA");
                     }
                 }
+                hideLoading();
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                hideLoading();
             }
         });
     }else {
@@ -520,6 +566,7 @@ function addItem(idProduct) {
 
 function removeItem(idProduct) {
     if(checkLogin) {
+        shopLoading();
         let updateCastRequest = {
             name: userDto.id,
             listProductCast: [{
@@ -550,9 +597,11 @@ function removeItem(idProduct) {
                         toastr.error('Bạn cần đăng nhâp!', "HAHA");
                     }
                 }
+                hideLoading();
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                hideLoading();
             }
         });
     }else {
@@ -563,6 +612,7 @@ function removeItem(idProduct) {
 // comment
 function addComment(idProduct) {
     if(checkLogin != "") {
+        shopLoading();
         let contentComment = $("textarea#coment-content").val().trim();
         if (contentComment != null && contentComment != "") {
             console.log(contentComment);
@@ -589,9 +639,11 @@ function addComment(idProduct) {
                             toastr.success('Comment product success!', "HAHA");
                         }
                     }
+                    hideLoading();
                 },
                 error: function (error) {
-                    toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+                    toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                    hideLoading();
                 }
             });
         }else {

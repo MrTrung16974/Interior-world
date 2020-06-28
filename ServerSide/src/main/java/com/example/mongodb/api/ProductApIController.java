@@ -14,13 +14,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -41,9 +42,6 @@ public class ProductApIController {
 
     @Autowired
     TokenAuthenticationService tokenAuthenticationService;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     @Autowired
     UserRepository userRepository;
@@ -98,6 +96,32 @@ public class ProductApIController {
                 response.setCode("00");
                 response.setMessage("List actor search by key: " + name);
                 response.setData(listProduct);
+            } else {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            }
+        } catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("System erorr : " + e.getMessage());
+            response.setData(null);
+        }
+        return response;
+    }
+
+    @GetMapping("/product/trending")
+    public BaseResponse trendingProduct(){
+        BaseResponse response = new BaseResponse();
+        try {
+            List<Product> listNewProduct = productRepository.findByStarOrderByCreateAtAsc(5);
+            List<Product> listTrendingProduct = new ArrayList<>();
+            if (!listNewProduct.isEmpty()) {
+                for (int i = 0; i < 8; i++) {
+                    listTrendingProduct.add(listNewProduct.get(i));
+                }
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listTrendingProduct);
             } else {
                 response.setCode("99");
                 response.setMessage("Data not found");

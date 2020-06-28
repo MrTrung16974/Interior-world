@@ -9,6 +9,7 @@ var keyword = "";
 var sort = 1;
 var currentPage = 0;
 var listAllProduct = [];
+var listTrendingProduct = [];
 var singleProduct = null;
 
 var userDto = {
@@ -19,6 +20,7 @@ var userDto = {
     phone: "",
     lstFavourite: [],
 };
+
 var cart = {
     id: "",
     image: "",
@@ -26,6 +28,8 @@ var cart = {
     listProduct: [],
     status: ""
 };
+
+// single commnet
 var comment = {
     image: "",
     buyer: "",
@@ -33,6 +37,7 @@ var comment = {
     createAt: ""
 };
 
+// chậm trễ thời gian gọi hàm
 const debounce = (func, delay) => {
     let debounceTimer
     return function() {
@@ -43,6 +48,12 @@ const debounce = (func, delay) => {
             = setTimeout(() => func.apply(context, args), delay)
     }
 }
+
+// formart price
+var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
 
 var url      = window.location.href;
 var origin   = window.location.origin;
@@ -101,22 +112,22 @@ function findCategories(type) {
     let category = null;
     switch (type) {
         case 0:
-            category = "Cabinets"
+            category = "Cabinets";
             break;
         case 1:
-            category = "Desk"
+            category = "Desk";
             break;
         case 2:
-            category = "Decorate"
+            category = "Decorate";
             break;
         case 3:
-            category = "Belongings"
+            category = "Belongings";
             break;
         case 4:
-            category = "Sofa"
+            category = "Sofa";
             break;
         case 5:
-            category = "Lamp"
+            category = "Lamp";
             break;
         default:
             category = ""
@@ -124,29 +135,29 @@ function findCategories(type) {
     }
     return category;
 }
-function findMaterial(type) {
-    let category = null;
-    switch (type) {
+function findMaterial(matearial) {
+    let fabric = null;
+    switch (matearial) {
         case 0:
-            category = "Wood"
+            fabric = "Wood";
             break;
         case 1:
-            category = "Plastic"
+            fabric = "Plastic";
             break;
         case 2:
-            category = "Glass"
+            fabric = "Glass";
             break;
         case 3:
-            category = "Titanium alloy"
+            fabric = "Titanium alloy";
             break;
         case 4:
-            category = "Iron"
+            fabric = "Iron";
             break;
         default:
-            category = ""
+            fabric = "";
             break;
     }
-    return category;
+    return fabric;
 }
 function forStar(star) {
     let starWrite = "";
@@ -194,6 +205,16 @@ function forImage(data) {
         }
     }
     return imageWrite;
+}
+
+// function shop vs hide loading
+function shopLoading() {
+    $("#loading").css('display', 'block');
+    $("#bg-loading").css('display', 'block');
+}
+function hideLoading() {
+    $("#loading").css('display', 'none');
+    $("#bg-loading").css('display', 'none');
 }
 // End reder chung
 

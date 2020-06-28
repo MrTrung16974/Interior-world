@@ -33,9 +33,9 @@ public class MongodbApplication {
 //            p.setName("Name " + i);
 //            p.setPriceForColor(lstPrice);
 //            p.setPrice(i*100.0);
-//            p.setType(new Type(3,2));
+//            p.setType(new Type(3,1, 111, 200, 45, 200, "Yes" ));
 //            p.setPromotion(new Promotion("1/4", 20));
-//            p.setStar(1);
+//            p.setStar(4);
 //            p.setImage(lstImage);
 //            p.setId(""+i);
 //            p.setDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?");
