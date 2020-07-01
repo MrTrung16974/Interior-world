@@ -65,9 +65,9 @@ public class ProductApIController {
 
     @GetMapping("/product/search")
     public BaseResponse searchProduct(@RequestParam(value = "name", required = false)String name,
-                              @RequestParam(value = "material", required = false)Integer material,
-                              @RequestParam(value = "color", required = false)Integer color,
-                              @RequestParam(value = "type", required = false)Integer type,
+                              @RequestParam(value = "material", defaultValue = "-1")Integer material,
+                              @RequestParam(value = "color", defaultValue = "-1")Integer color,
+                              @RequestParam(value = "type", defaultValue = "-1")Integer type,
                               @RequestParam(value = "sort", defaultValue = "1")Integer sort,
                               @RequestParam("page") int page,
                               @RequestParam("perPage") int perPage){
@@ -91,7 +91,7 @@ public class ProductApIController {
             }
 //            phân trang
 //            Page<Product> listProduct = orderServices.advancedSearch(name, color, material,type, pageable);
-            Page<Product> listProduct = productRepository.findByNameContainingIgnoreCase(name, pageable);
+            Page<Product> listProduct = orderServices.advancedSearch(name, color, material, type, pageable);
             if (!listProduct.isEmpty()) {
                 response.setCode("00");
                 response.setMessage("List actor search by key: " + name);

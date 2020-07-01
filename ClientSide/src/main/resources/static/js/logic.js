@@ -13,8 +13,9 @@ var listTrendingProduct = [];
 var singleProduct = null;
 
 var userDto = {
-    id: "",
-    name: "",
+    username: "",
+    fullName: "",
+    email: "",
     image: "",
     address: "",
     phone: "",
@@ -170,17 +171,18 @@ function forStar(star) {
     }
     return starWrite;
 }
-function forPagination(totalPage) {
+function forPagination(totalPage, page) {
     $("#pagination").empty();
-    $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-left"></i></a></li>`);
-    for(let i = 0; i < totalPage; i++) {
+    let i = 0;
+    $("#pagination").append(`<li><a onclick='searchProduct(${page == 0 ? 0 : page-1})'><i class="fa fa-angle-left"></i></a></li>`);
+    for(i; i < totalPage; i++) {
         if(i == currentPage) {
             $("#pagination").append(`<li class="active"><a onclick='searchProduct(${i})'>${i+1}</a></li>`);
         }else {
             $("#pagination").append(`<li><a onclick='searchProduct(${i})'>${i+1}</a></li>`);
         }
     }
-    $("#pagination").append(`<li><a href="#"><i class="fa fa-angle-right"></i></a></li>`);
+    $("#pagination").append(`<li><a onclick='searchProduct(${page == totalPage-1 ? totalPage-1 : page+1})'><i class="fa fa-angle-right"></i></a></li>`);
 }
 function forImageLi(data) {
     let imageLiWrite = "";
@@ -209,6 +211,29 @@ function forImage(data) {
         }
     }
     return imageWrite;
+}
+function forColor(data) {
+    let colorWrite = "";
+    let item = data.priceForColor;
+    let length = item.length;
+    for (let i=0; i < length; i++) {
+        colorWrite += `<a>
+                            <label for="${item[i].nameColor}" class="name-color">${item[i].nameColor}</label>
+                            <input type="radio" value="${item[i].color}"
+                             onclick="getPriceProduct(${data.price}, ${item[i].priceForColor})" name="color-price" id="${item[i].nameColor}">
+                        </a>`;
+    }
+    return colorWrite;
+}
+
+function getPriceProduct(price, priceColor) {
+    console.log("OK");
+    let nameColor = $(this);
+    if(price > 0) {
+        $("#price-product").text(formatter.format(price + priceColor));
+    }else {
+        $("#price-product").text(formatter.format(0));
+    }
 }
 
 // function shop vs hide loading
@@ -262,8 +287,8 @@ function getPriceProductInCast(cast) {
         for (let i = 0; i < length; i++) {
             price_number += (cast.listProduct[i].price * cast.listProduct[i].number);
         }
-        $("#price-number").text(price_number);
-        $("#price-number-in-cart").text("$" + price_number);
+        $("#price-number").text(formatter.format(price_number));
+        $("#price-number-in-cart").text(formatter.format(price_number));
     }
 
 }

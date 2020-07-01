@@ -5,20 +5,12 @@ import com.example.mongodb.model.Product;
 import java.util.List;
 
 public class UserDto {
-    private String id;
-    private String name;
+    private String username;
     private String image;
+    private String fullName;
     private String address;
     private String phone;
     private List<Product> LstFavourite;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getImage() {
         return image;
@@ -28,16 +20,24 @@ public class UserDto {
         this.image = image;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getAddress() {
         return address;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setAddress(String address) {

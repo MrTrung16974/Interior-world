@@ -42,7 +42,8 @@ if(token != null && token != "") {
 
 //check the user already logged
 // find product all
-$.ajax({
+if(pathname == "/shop") {
+    $.ajax({
     url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
     type: "GET",
     success: function (response) {
@@ -50,7 +51,7 @@ $.ajax({
             listAllProduct = response.data.content;
             rederData(response.data.content);
             let totalPage = response.data.totalPages;
-            forPagination(totalPage);
+            forPagination(totalPage, 0);
         }else {
             toastr.error('Find not data!', response.message);
         }
@@ -59,23 +60,24 @@ $.ajax({
         toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
     }
 });
-
-$.ajax({
-    url: "http://localhost:8099/v1/api/product/trending",
-    type: "GET",
-    success: function (response) {
-        if(response.code == "00") {
-            listTrendingProduct = response.data;
-            rederDataTrending(response.data);
-        }else {
-            toastr.error('Find not data!', response.message);
+}
+if(pathname == "/home") {
+    $.ajax({
+        url: "http://localhost:8099/v1/api/product/trending",
+        type: "GET",
+        success: function (response) {
+            if (response.code == "00") {
+                listTrendingProduct = response.data;
+                rederDataTrending(response.data);
+            } else {
+                toastr.error('Find not data!', response.message);
+            }
+        },
+        error: function (result) {
+            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
         }
-    },
-    error: function (result) {
-        toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
-    }
-});
-
+    });
+}
 //code gà nền phải viết 2 function giống nhau(cái này là cho keyUp)
 function loginUser(e) {
     if(e.keyCode === 13) {
@@ -134,11 +136,16 @@ function registerUser(e) {
 function registerClickUser() {
     var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})");
     let name = $("#regiter-name").val().trim();
+    let email = $("#regiter-email").val().trim();
     let username = $("#regiter-username").val().trim();
     let password = $("#regiter-passwprd").val().trim();
     let confirmPassword = $("#confirm-regiter-password").val().trim();
     if(name == null || name == "") {
         toastr.error('You have not entered a name ');
+        return;
+    }
+    if(email == null || email == "") {
+        toastr.error('You have not entered a email ');
         return;
     }
     if(username == null || username == "") {
@@ -164,7 +171,7 @@ function registerClickUser() {
     $.ajax({
         type: "POST",
         url: "http://localhost:8099/v1/api/register?username="+username+"&password="+
-            password+"&name="+ name,
+            password+"&name="+ name + "&email" + email,
         processData: false,
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công
@@ -178,6 +185,9 @@ function registerClickUser() {
                 if(token != "" || token != null) {
                     window.location.href = "http://localhost:8080/home";
                 }
+            }
+            if(response.code == "300") {
+                toastr.success('Account exit success!', response.message);
             }
             else {
                 toastr.error('Null Data', response.message);
@@ -224,19 +234,16 @@ function logoutUser() {
 //Advanced search product
 $('#find-type input').on('change', function() {
     type = $('input[name=type]:checked', '#find-type').val();
-    console.log(type);
     searchProduct(0);
 });
 
 $('#find-material input').on('change', function() {
     material = $('input[name=material]:checked', '#find-material').val();
-    console.log(material);
     searchProduct(0);
 });
 
 $('#find-color input').on('change', function() {
     color = $('input[name=color]:checked', '#find-color').val();
-    console.log(color);
     searchProduct(0);
 });
 
@@ -264,11 +271,12 @@ function searchProduct(page) {
             //hàm đc thực thi khi request thành công không có lỗi
             if (response.code == "00") {
                 rederData(response.data.content);
+                listAllProduct = response.data.content;
                 let totalPage = response.data.totalPages;
-                forPagination(totalPage);
+                forPagination(totalPage, page);
             } else {
                 rederData(response.data);
-                forPagination(1);
+                forPagination(1, 0);
                 console.log(response.message);
             }
             hideLoading();
@@ -288,7 +296,9 @@ function sortProduct() {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12&sort=" + sort,
+        url: "http://localhost:8099/v1/api/product/search?name=" +
+            keyword + "&page=" + currentPage + "&perPage=12&sort=" + sort
+            + "&type=" + type + "&material=" + material + "&color=" + color,
         processData: false,
         contentType: 'application/json',
         success: function (response) {
@@ -297,11 +307,11 @@ function sortProduct() {
             if(response.code == "00") {
                 rederData(response.data.content);
                 let totalPage = response.data.totalPages;
-                forPagination(totalPage);
+                forPagination(totalPage, 0);
             }
             else {
                 rederData(response.data);
-                forPagination(1);
+                forPagination(1, 0);
                 console.log(response.message);
             }
             hideLoading()
@@ -317,7 +327,7 @@ function addFavouriteUser(idProduct) {
     if(checkLogin != "") {
         shopLoading();
         $.ajax({
-            url: "http://localhost:8099/v1/api/user/favourite/?idUser="+
+            url: "http://localhost:8099/v1/api/user/favourite/?userName="+
                 cart.buyer + "&idProduct=" + idProduct,
             type: "PUT",
             success: function (response) {
@@ -350,7 +360,7 @@ function addFavouriteUser(idProduct) {
 // cart product
 function getProductInCast() {
     $.ajax({
-        url: "http://localhost:8099/order/products/" + userDto.id,
+        url: "http://localhost:8099/order/products/" + userDto.username,
         type: "GET",
         success: function (response) {
             if(response.code = '00') {
@@ -383,7 +393,7 @@ function getProductInCast() {
 //             console.log(newNumber);
 //             if(newNumber < oldNumber) {
 //                 updateCastRequest = {
-//                     name: userDto.id,
+//                     name: userDto.username,
 //                     listProductCast: [{
 //                         id: idProduct,
 //                         number: newNumber,
@@ -392,7 +402,7 @@ function getProductInCast() {
 //                 };
 //             }else {
 //                 updateCastRequest = {
-//                     name: userDto.id,
+//                     name: userDto.username,
 //                     listProductCast: [{
 //                         id: idProduct,
 //                         number: newNumber,
@@ -435,9 +445,10 @@ function getProductInCast() {
 
 function addToCastDB(idProduct) {
     if(checkLogin) {
+        color = $('input[name=color-price]:checked').val();
         shopLoading();
         let updateCastRequest = {
-            name: userDto.id,
+            name: userDto.username,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -478,7 +489,7 @@ function deleteItem(idProduct) {
     if(checkLogin) {
         shopLoading();
         let updateCastRequest = {
-            name: userDto.id,
+            name: userDto.username,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -523,7 +534,7 @@ function addItem(idProduct) {
     if(checkLogin) {
         shopLoading();
         let updateCastRequest = {
-            name:  userDto.id,
+            name:  userDto.username,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -568,7 +579,7 @@ function removeItem(idProduct) {
     if(checkLogin) {
         shopLoading();
         let updateCastRequest = {
-            name: userDto.id,
+            name: userDto.username,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
@@ -615,13 +626,9 @@ function addComment(idProduct) {
         shopLoading();
         let contentComment = $("textarea#coment-content").val().trim();
         if (contentComment != null && contentComment != "") {
-            console.log(contentComment);
-            console.log(userDto.image);
-            console.log(cart.buyer);
-
             let comment = {
                 image: userDto.image,
-                buyer: userDto.id,
+                buyer: userDto.username,
                 comtent: contentComment
             };
             $.ajax({
@@ -632,7 +639,6 @@ function addComment(idProduct) {
                 success: function (response) {
                     if (response.code = "00") {
                         if (response.data != null) {
-                            console.log(response.data);
                             comment = response.data.comment;
                             rederComentProduct(comment);
                             $("#coment-content").val("");

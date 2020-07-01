@@ -51,9 +51,9 @@ public class TokenAuthenticationService {
 
     public boolean validateToKen(String token) {
         try {
-            String userId = tokenAuthenticationService.readJWT(token);
-            System.out.println(userId);
-            Optional<User> optionalUser = userRepository.findById(userId);
+            String userName = tokenAuthenticationService.readJWT(token);
+            System.out.println(userName);
+            Optional<User> optionalUser = userRepository.findByUsername(userName);
             if(!optionalUser.isPresent()) {
                 return false;
             }

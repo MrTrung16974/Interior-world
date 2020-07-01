@@ -46,13 +46,59 @@ public class UserApiController {
     UserRepository userRepository;
 
 
+    @GetMapping("/getInfoUser")
+    public BaseResponse getInfoUser(@RequestHeader("Authorization") String token) {
+        BaseResponse response = new BaseResponse();
+        try {
+            if(!tokenAuthenticationService.validateToKen(token)) {
+                throw new Exception("Token invalid");
+            }
+            String userName = tokenAuthenticationService.readJWT(token);
+            Optional<User> user = userRepository.findByUsername(userName);
+            if(user.isPresent()) {
+                User exitUser = user.get();
+                UserDto userDto = new UserDto();
+                if(exitUser.getUsername() != null) {
+                    userDto.setUsername(exitUser.getUsername());
+                }
+                if(exitUser.getFullName() != null) {
+                    userDto.setFullName(exitUser.getFullName());
+                }
+                if(exitUser.getAddress() != null) {
+                    userDto.setAddress(exitUser.getAddress());
+                }
+                if(exitUser.getPhone() != null) {
+                    userDto.setPhone(exitUser.getPhone());
+                }
+                if(exitUser.getImage() != null) {
+                    userDto.setImage(exitUser.getImage());
+                }
+                if(exitUser.getLstFavourite() != null) {
+                    userDto.setLstFavourite(exitUser.getLstFavourite());
+                }
+                response.setCode("00");
+                response.setMessage("get data thanh công");
+                response.setData(userDto);
+            }else {
+                response.setCode("400");
+                response.setMessage("Find not Data");
+                response.setData(null);
+            }
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error" );
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
+
     @PostMapping("/login")
     public BaseResponse login(@RequestParam(value = "username" )String username,
                               @RequestParam(value = "password" )String password) {
         BaseResponse response = new BaseResponse();
         try {
             if (!username.isEmpty() && !password.isEmpty()) {
-                Optional<User> optUser = userRepository.findById(username);
+                Optional<User> optUser = userRepository.findByUsername(username);
                 if (!optUser.isPresent()) {
                     throw new Exception("username or password invalid");
                 }
@@ -62,7 +108,7 @@ public class UserApiController {
                 }
                 response.setCode("00");
                 response.setMessage("Success");
-                response.setData(tokenAuthenticationService.generateJWT(user.getId()));
+                response.setData(tokenAuthenticationService.generateJWT(user.getUsername()));
             } else {
                 response.setCode("400");
                 response.setMessage("Error");
@@ -94,23 +140,33 @@ public class UserApiController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public BaseResponse AddUser(@RequestParam("username") String username,
                           @RequestParam("password") String password,
-                          @RequestParam("name") String name) {
+                          @RequestParam("name") String name,
+                          @RequestParam("name") String email) {
         BaseResponse response = new BaseResponse();
         String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
         try {
             if (!username.isEmpty() && !password.isEmpty() && !name.isEmpty()) {
+                Optional<User> optUser = userRepository.findByUsername(username);
                 if(!password.matches(pattern)) {
                     throw new Exception("Password invalid");
                 }
-                User user = new User();
-                user.setId(username);
-                user.setPassword(passwordEncoder.encode(password));
-                user.setName(name);
-                user.setRoles(Arrays.asList("USER"));
-                User exitUser =  userRepository.save(user);
-                response.setCode("00");
-                response.setMessage("Success");
-                response.setData(tokenAuthenticationService.generateJWT(exitUser.getId()));
+                if(optUser.isPresent()) {
+                    response.setCode("300");
+                    response.setMessage("User exit!");
+                    response.setData(null);
+                }else {
+                    User user = new User();
+                    user.setUsername(username);
+                    user.setPassword(passwordEncoder.encode(password));
+                    user.setFullName(name);
+                    user.setEmail(email);
+                    user.setRoleID("USER");
+                    user.setStatus(1);
+                    User exitUser = userRepository.save(user);
+                    response.setCode("00");
+                    response.setMessage("Success");
+                    response.setData(tokenAuthenticationService.generateJWT(exitUser.getUsername()));
+                }
             } else {
                 response.setCode("400");
                 response.setMessage("Find not data!");
@@ -131,7 +187,7 @@ public class UserApiController {
         String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
         try {
             if (!username.isEmpty() && !password.isEmpty()) {
-                Optional<User> optUser = userRepository.findById(username);
+                Optional<User> optUser = userRepository.findByUsername(username);
                 if(!password.matches(pattern)) {
                     throw new Exception("Password invalid");
                 }
@@ -143,7 +199,7 @@ public class UserApiController {
                 User exitUser = userRepository.save(user);
                 response.setCode("00");
                 response.setMessage("Success");
-                response.setData(tokenAuthenticationService.generateJWT(exitUser.getId()));
+                response.setData(tokenAuthenticationService.generateJWT(exitUser.getUsername()));
             }
         }catch (Exception e) {
             response.setCode("99");
@@ -153,57 +209,11 @@ public class UserApiController {
         return response;
     }
 
-    @GetMapping("/getInfoUser")
-    public BaseResponse getInfo(@RequestHeader("Authorization") String token) {
-        BaseResponse response = new BaseResponse();
-        try {
-            if(!tokenAuthenticationService.validateToKen(token)) {
-                throw new Exception("Token invalid");
-            }
-            String userId = tokenAuthenticationService.readJWT(token);
-            Optional<User> user = userRepository.findById(userId);
-            if(user.isPresent()) {
-                User exitUser = user.get();
-                UserDto userDto = new UserDto();
-                if(exitUser.getId() != null) {
-                    userDto.setId(exitUser.getId());
-                }
-                if(exitUser.getName() != null) {
-                    userDto.setName(exitUser.getName());
-                }
-                if(exitUser.getAddress() != null) {
-                    userDto.setAddress(exitUser.getAddress());
-                }
-                if(exitUser.getPhone() != null) {
-                    userDto.setPhone(exitUser.getPhone());
-                }
-                if(exitUser.getImage() != null) {
-                    userDto.setImage(exitUser.getImage());
-                }
-                if(exitUser.getLstFavourite() != null) {
-                    userDto.setLstFavourite(exitUser.getLstFavourite());
-                }
-                response.setCode("00");
-                response.setMessage("get data thanh công");
-                response.setData(userDto);
-            }else {
-                response.setCode("400");
-                response.setMessage("Find not Data");
-                response.setData(null);
-            }
-        }catch (Exception e) {
-            response.setCode("99");
-            response.setMessage("Error" );
-            response.setData(e.getMessage());
-        }
-        return response;
-    }
-
     @PutMapping("/user/favourite")
-        public BaseResponse favouriteUser(@RequestParam("idUser") String idUser,
+        public BaseResponse favouriteUser(@RequestParam("userName") String userName,
                                       @RequestParam("idProduct") String idProduct){
         BaseResponse response = new BaseResponse();
-        Optional<User> optUser = userRepository.findById(idUser);
+        Optional<User> optUser = userRepository.findByUsername(userName);
         Optional<Product> optProduct = productRepository.findById(idProduct);
         User exitUser = optUser.get();
         Product exitProduct = optProduct.get();

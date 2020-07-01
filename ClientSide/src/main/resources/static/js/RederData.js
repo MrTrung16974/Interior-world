@@ -132,6 +132,7 @@ function rederDataTrending(data) {
 }
 
 function rederDataSingleProduct(item) {
+    console.log(item);
     let checkFavourite = false;
     $("#single-product").empty();
     if(typeof item != "undefined"
@@ -170,11 +171,15 @@ function rederDataSingleProduct(item) {
                         <div class="col-lg-5 offset-lg-1">
                             <div class="s_product_text">
                                 <h3>${item.name ? item.name : ""}</h3>
-                                <h2>${formatter.format(item.price ? item.price : 0)}</h2>
+                                <h2 id="price-product">${formatter.format(item.price ? item.price : 0)}</h2>
                                 <ul class="list">
                                     <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
                                     <li><a href="#"><span>Availibility</span> : In Stock</a></li>
                                     <li><a href="#"><span>Star</span> : ${forStar(item.star)}</a></li>
+                                    <li class="color-for-price">
+                                        <span>Color : </span>
+                                        ${forColor(item)}
+                                    </li>
                                 </ul>
                                 <p>${item.description ? item.description : ""}</p>
                               
@@ -213,11 +218,15 @@ function rederDataSingleProduct(item) {
                             <div class="col-lg-5 offset-lg-1">
                                 <div class="s_product_text">
                                     <h3>${item.name ? item.name : ""}</h3>
-                                    <h2>${formatter.format(item.price ? item.price : 0)}</h2>
+                                    <h2 id="price-product">${formatter.format(item.price ? item.price : 0)}</h2>
                                     <ul class="list">
                                         <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
                                         <li><a href="#"><span>Availibility</span> : In Stock</a></li>
                                         <li><a href="#"><span>Star</span> : ${forStar(item.star)}</a></li>
+                                         <li class="color-for-price my-4">
+                                             <span>Color : </span>
+                                             ${forColor(item)}
+                                        </li>
                                     </ul>
                                     <p>${item.description ? item.description : ""}</p>
                                   
@@ -417,7 +426,7 @@ function rederDataCast(data) {
 
 //reder user
 function rederUserInfo(data) {
-    $('#name-user').text(data.name);
+    $('#name-user').text(data.fullName);
 }
 
 //reder coment

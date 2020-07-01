@@ -4,6 +4,7 @@ import com.example.mongodb.dto.Comment;
 import com.example.mongodb.dto.Price;
 import com.example.mongodb.dto.Promotion;
 import com.example.mongodb.dto.Type;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "product")
+@Document(collection = "sa_product")
 public class Product {
     @Id
     private String id;
@@ -36,6 +37,7 @@ public class Product {
     @Field("number")
     private Integer number;
     @Field("createAt")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
     private Date createAt;
 
     public String getId() {

@@ -4,6 +4,7 @@ public class ProductCast {
     private String id;
     private Integer number;
     private Integer type;
+    private Integer typeColor;
 
     public String getId() {
         return id;

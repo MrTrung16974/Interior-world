@@ -372,3 +372,12 @@ div.comments-list div.review_item div.media div.d-flex>img {
 }
 
 /*--================ End Comment Area =================--*/
+
+/*--================ Start Product Area =================--*/
+/* reder color product*/
+li.color-for-price a {
+    margin-left: 10px;
+    width: auto;
+}
+
+/*--================ End Product Area =================--*/

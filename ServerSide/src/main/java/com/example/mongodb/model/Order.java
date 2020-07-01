@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "order")
+@Document(collection = "sa_order")
 public class Order {
     @Id
     private String id;
