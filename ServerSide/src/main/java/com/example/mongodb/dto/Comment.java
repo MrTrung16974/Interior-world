@@ -1,11 +1,14 @@
 package com.example.mongodb.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Comment {
     private String image;
     private String buyer;
     private String comtent;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
     private Date createAt;
 
     public String getImage() {

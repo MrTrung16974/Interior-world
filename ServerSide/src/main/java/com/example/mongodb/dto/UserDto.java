@@ -1,7 +1,9 @@
 package com.example.mongodb.dto;
 
 import com.example.mongodb.model.Product;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserDto {
@@ -9,11 +11,30 @@ public class UserDto {
     private String image;
     private String fullName;
     private String address;
+    private String email;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "Asia/Saigon")
+    private Date birthday;
     private String phone;
     private List<Product> LstFavourite;
 
     public String getImage() {
         return image;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public void setImage(String image) {

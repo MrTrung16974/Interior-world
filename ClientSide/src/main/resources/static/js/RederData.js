@@ -1,3 +1,24 @@
+// reder chung
+function rederBanner(data) {
+    $("#banner-page").html(
+    `<section style="background-image: url(${data.bgImage})" class="blog-banner-area breadcrumb_bg" id="category">
+            <div class="container h-100">
+                <div class="blog-banner">
+                    <div class="text-center">
+                        <h1>${data.namePage}</h1>
+                        <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">${namepage}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>`
+    );
+}
+
 // reder cast
 function rederData(data) {
     let checkFavourite = false;
@@ -426,7 +447,78 @@ function rederDataCast(data) {
 
 //reder user
 function rederUserInfo(data) {
-    $('#name-user').text(data.fullName);
+    if(pathname == "/account-info") {
+        if(typeof data != "undefined"
+            && data != null) {
+            $('#infomation-user').html(
+                `<div class="col-12 col-md-7 col-lg-8 col-xl-8">
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td>User Name</td>
+                                        <td>${data.username ? data.username : ""}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Full Name</td>
+                                        <td>
+                                            <input value="${data.fullName ? data.fullName : ""}" class="form-control" type="text" id="full-name" name="full-name">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>
+                                            <input value="${data.email ? data.email : ""}" class="form-control" type="email" id="email" name="email">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td>
+                                            <input  class="form-control" value="${data.phone ? data.phone : ""}" type="number" id="phone" name="phone">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sex</td>
+                                        <td>
+                                            <input type="radio" name="sex" id="male">
+                                            <label for="male">Male</label>
+                                            <input type="radio" name="sex" id="female">
+                                            <label for="female">Female</label>
+                                            <input type="radio" name="sex" id="order">
+                                            <label for="order">Order</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Birth Day</td>
+                                        <td>
+                                            <input type="date" name="birthday" id="birthday">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <input class="btn btn-primary" type="button" name="save-user" id="btn-save" value="Save" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-4 col-xl-4">
+                            <div class="col-md-12 form-group text-center">
+                                <img src="${data.image ? data.image : ""}" width="100" height="100" id="img-youface" />
+                                <input id="youface" name="youface" type="file" />
+                                <label class="btn-face" for="youface">Choose image</label>
+                                <br />
+                                <span>Size flie max 1 MB</span>
+                                <br />
+                                <span>Format: .JPG, .PND</span>
+                            </div>
+                        </div>`
+            );
+        }
+        $('#face-user').attr('src', data.image ? data.image : "img/user.png");
+        $('#name-account').text(data.fullName ? data.fullName : "Anonymously");
+    }
+    $('#name-user').text(data.fullName ? data.fullName : "Anonymously");
 }
 
 //reder coment
@@ -439,7 +531,7 @@ function rederComentProduct(data) {
                 `<div class="review_item">
                     <div class="media">
                         <div class="d-flex">
-                            <img src="${item.image ? item.image : "img/product/review-1.png"}" alt="">
+                            <img src="${item.image ? item.image : "img/user.png"}" alt="">
                         </div>
                         <div class="media-body">
                             <h4>${item.buyer ? item.buyer : "Anonymously"}</h4>

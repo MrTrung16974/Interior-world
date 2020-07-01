@@ -10,77 +10,51 @@
 <header th:replace="/component/header :: header-area"></header>
 <!--================ End Header Menu Area =================-->
 
+<!--================ Start Banner Area =================-->
+<section th:replace="/component/header :: banner-area"></section>
+<!--================ End Banner Area =================-->
+
 
 <!--================Cart Area =================-->
 <section class="cart_area">
     <div class="container">
         <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="col-xl-2 col-lg-3 col-md-4">
                 <div class="account">
 <!--                    "${item.image != null? item.image[0] :-->
                     <div class="row">
                         <div class="col-12 col-md-4 ol-xl-4 col-lg-4">
-                            <img src="img/product/review-1.png" alt="">
+                            <img width="50" height="50" id="face-user" src="" alt="">
                         </div>
                         <div class="col-12 col-md-8 ol-xl-8 col-lg-8 media-body">
-                            <h6>Anonymously</h6>
-                            <a class="edit-user"><i class="fas fa-user-edit"></i><span>Edit user profile</span></a>
+                            <h6 style="margin-top: 20px;" id="name-account">Anonymously</h6>
                         </div>
                     </div>
                 </div>
-                <div class="main-categories">
+                <div class="main-categories common-filter">
                     <div class="head">My Account</div>
                     <ul>
-                        <li><a class="user-profile">User profile</a></li>
-                        <li><a class="address">Address</a></li>
-                        <li><a class="change-pass">Change Password</a></li>
+                        <li class="filter-list"><a class="user-profile">User profile</a></li>
+                        <li class="filter-list"><a class="address">Address</a></li>
+                        <li class="filter-list"><a class="change-pass">Change Password</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-9 col-lg-8 col-md-7">
+            <div class="col-xl-10 col-lg-9 col-md-8">
                 <div class="Info-user-profile">
                     <div class="title-user form-header">
-                        <h3>User Profile</h3>
+                        <h5>User Profile</h5>
                         <p>Manage profile information for account security</p>
                     </div>
-                    <form class="content-user-profile from-content" >
-                        <div class="col-md-12 form-group">
-                            <label for="youface">You Face : </label>
-                            <input id="youface" name="youface" type="file" />
-                            <img src="" width="100" height="100" id="img-youface" />
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="username">User Name : </label>
-                            <span class="form-control" id="username">mr.trung0104@gmail.com</span>
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="name">Name : </label>
-                            <input class="form-control" type="text" name="name" id="name" />
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="phone">Phone : </label>
-                            <span class="form-control" id="phone">0376213798</span>
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="sex">Sex : </label>
-                            <br>
-                            <input type="radio" name="sex" id="male">
-                            <label for="male">Male</label>
-                            <input type="radio" name="sex" id="female">
-                            <label for="female">Female</label>
-                            <input type="radio" name="sex" id="order">
-                            <label for="order">Order</label>
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <label for="birthday">BirthDay : </label>
-                            <input class="form-control" type="date" name="birthday" id="birthday" />
+                    <form class="content-user-profile from-content">
+                        <div  id="infomation-user" class="row">
+
                         </div>
                     </form>
                 </div>
-                <div class="Info-address">
+                <div style="display: none" class="Info-address">
                     <div class="title-user form-header">
-                        <h3>My Address</h3>
-                        <button>+ Add new address</button>
+                        <h5>My Address</h5>
                     </div>
                     <div class="content-addres">
                         <ul>
@@ -123,9 +97,9 @@
                         </ul>
                     </div>
                 </div>
-                <div class="change-password-profile">
+                <div style="display: none" class="change-password-profile">
                     <div class="title-user form-header">
-                        <h3>User Profile</h3>
+                        <h5>User Profile</h5>
                         <p>Manage profile information for account security</p>
                     </div>
                     <form class="content-password from-content">

@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin
 @RestController
@@ -70,6 +67,12 @@ public class UserApiController {
                 if(exitUser.getPhone() != null) {
                     userDto.setPhone(exitUser.getPhone());
                 }
+                if(exitUser.getEmail() != null) {
+                    userDto.setEmail(exitUser.getEmail());
+                }
+                if(exitUser.getBirthday() != null) {
+                    userDto.setBirthday(exitUser.getBirthday());
+                }
                 if(exitUser.getImage() != null) {
                     userDto.setImage(exitUser.getImage());
                 }
@@ -106,6 +109,8 @@ public class UserApiController {
                 if(!passwordEncoder.matches(password, user.getPassword())) {
                     throw new Exception("Password invalid");
                 }
+                user.setLastLogin(new Date());
+                userRepository.save(user);
                 response.setCode("00");
                 response.setMessage("Success");
                 response.setData(tokenAuthenticationService.generateJWT(user.getUsername()));

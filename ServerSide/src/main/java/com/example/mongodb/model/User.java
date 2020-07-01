@@ -37,6 +37,10 @@ public class User {
     @Field("address")
     private String address;
 
+    @Field("birthday")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "Asia/Saigon")
+    private Date birthday;
+
     @Field("phone")
     private String phone;
 
@@ -46,8 +50,8 @@ public class User {
     @Field("favourite")
     private List<Product> lstFavourite;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
     @Field(name = "last_login")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
     private Date lastLogin;
 
     public String getUserId() {
@@ -72,6 +76,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getFullName() {

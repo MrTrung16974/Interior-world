@@ -12,6 +12,7 @@ var loadUserDto = () => {
         success: function (response) {
             if (response.code == "00") {
                 userDto = response.data;
+                console.log(response.data);
                 $('#login-user').css({"visibility": "hidden", "opacity": "0"});
                 $('#logout-user').css({"visibility": "visible", "opacity": "1"});
                 getProductInCast();
@@ -23,10 +24,13 @@ var loadUserDto = () => {
                 }
                 checkLogin = true;
             } else {
+                checkLogin = false;
                 toastr.error('Find not data!', response.message);
             }
         },
         error: function (result) {
+            checkLogin = false
+            ;
             window.location.href = "http://localhost:8080/login"
             toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
         }
@@ -38,6 +42,26 @@ if(token != null && token != "") {
     $('#login-user').css({"visibility": "visible", "opacity": "1"});
     $('#logout-user').css({"visibility": "hidden", "opacity": "0"});
 }
+
+// Load banner for page
+$.ajax({
+    url: "http://localhost:8099/v1/api/banners",
+    type: "GET",
+    success: function (response) {
+        if(response.code == "00") {
+            response.data.forEach(item => {
+                if(item.name == pathname) {
+                    rederBanner(item);
+                }
+            });
+        }else {
+            toastr.error('Find not data!', response.message);
+        }
+    },
+    error: function (result) {
+        toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+    }
+});
 
 
 //check the user already logged

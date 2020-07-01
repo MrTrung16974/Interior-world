@@ -95,9 +95,11 @@ function createProduct() {
            percent :$("#percentProductPromotion").val().trim()
         }],
         star: $("#productStar").val().trim(),
-        color :$("#productColor").val(),
-        material: $("#productMaterial").val(),
-        type: $("#productType").val()
+        type: [{
+            type: $("#productType").val(),
+            color :$("#productColor").val(),
+            material: $("#productMaterial").val(),
+        }]
     };
     console.log(productRequest);
     $.ajax({

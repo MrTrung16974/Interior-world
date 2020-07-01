@@ -90,7 +90,6 @@ public class ProductApIController {
                     break;
             }
 //            phân trang
-//            Page<Product> listProduct = orderServices.advancedSearch(name, color, material,type, pageable);
             Page<Product> listProduct = orderServices.advancedSearch(name, color, material, type, pageable);
             if (!listProduct.isEmpty()) {
                 response.setCode("00");

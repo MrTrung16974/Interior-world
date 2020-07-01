@@ -2,6 +2,7 @@ package com.example.mongodb.model;
 
 import com.example.mongodb.dto.ProductModel;
 import com.example.mongodb.dto.Promotion;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -20,6 +21,7 @@ public class Order {
     @Field("promotion")
     private Promotion promotion;
     @Field("createdAt")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
     private Date createdAt;
     @Field("address")
     private String address;

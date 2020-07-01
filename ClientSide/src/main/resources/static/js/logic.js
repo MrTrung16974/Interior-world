@@ -19,6 +19,7 @@ var userDto = {
     image: "",
     address: "",
     phone: "",
+    birthday: "",
     lstFavourite: [],
 };
 

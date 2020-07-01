@@ -15,6 +15,7 @@ import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class OrderServices {
@@ -27,7 +28,7 @@ public class OrderServices {
         Query query = new Query();
         //check name tồn tài mới thêm điều kiện search
         if(!name.isEmpty()  && name != null){
-            query.addCriteria(Criteria.where("name").regex(name));
+            query.addCriteria(Criteria.where("name").regex(Pattern.compile(Pattern.quote(name), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
         }
         if(type > 0 && type != null) {
             query.addCriteria(Criteria.where("type.type").is(type-1));
@@ -36,7 +37,7 @@ public class OrderServices {
             query.addCriteria(Criteria.where("type.material").is(material-1));
         }
         if(color > 0 && color != null) {
-            query.addCriteria(Criteria.where("price_for_color.color").is(color));
+            query.addCriteria(Criteria.where("price_for_color").elemMatch(Criteria.where("color").in(color)));
         }
         //nếu khác null là phân trang và sắp xếp theo pageanable
         if(pageable != null){

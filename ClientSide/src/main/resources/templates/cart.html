@@ -10,27 +10,12 @@
     <header th:replace="/component/header :: header-area"></header>
     <!--================ End Header Menu Area =================-->
 
-	<!-- ================ start banner area ================= -->	
-	<section class="blog-banner-area breadcrumb_bg" id="category">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Shopping Cart</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-        </div>
-	</section>
-	<!-- ================ end banner area ================= -->
-  
-  
 
-  <!--================Cart Area =================-->
+    <!--================ Start Banner Area =================-->
+    <section th:replace="/component/header :: banner-area"></section>
+    <!--================ End Banner Area =================-->
+
+    <!--================Cart Area =================-->
   <section class="cart_area">
       <div class="container">
           <div class="cart_inner">
