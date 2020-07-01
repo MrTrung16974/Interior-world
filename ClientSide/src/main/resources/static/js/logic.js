@@ -236,6 +236,16 @@ function getPriceProduct(price, priceColor) {
     }
 }
 
+//vallidate contain
+function validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+function validatePassword(email) {
+    const re = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})");
+    return re.test(String(email).toLowerCase());
+}
+
 // function shop vs hide loading
 function shopLoading() {
     $("#loading").css('display', 'block');

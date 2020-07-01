@@ -141,7 +141,7 @@ public class UserApiController {
     public BaseResponse AddUser(@RequestParam("username") String username,
                           @RequestParam("password") String password,
                           @RequestParam("name") String name,
-                          @RequestParam("name") String email) {
+                          @RequestParam("email") String email) {
         BaseResponse response = new BaseResponse();
         String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
         try {

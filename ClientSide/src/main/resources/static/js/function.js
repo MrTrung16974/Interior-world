@@ -96,6 +96,10 @@ function loginCickUser() {
         toastr.error('You have not entered a password ');
         return;
     }
+    if(!validatePassword(password)) {
+        toastr.error('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "http://localhost:8099/v1/api/login?username=" + username + "&password=" + password,
@@ -134,7 +138,6 @@ function registerUser(e) {
 
 //code gà nền phải viết 2 function giống nhau(cái này là cho cick)
 function registerClickUser() {
-    var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})");
     let name = $("#regiter-name").val().trim();
     let email = $("#regiter-email").val().trim();
     let username = $("#regiter-username").val().trim();
@@ -142,10 +145,6 @@ function registerClickUser() {
     let confirmPassword = $("#confirm-regiter-password").val().trim();
     if(name == null || name == "") {
         toastr.error('You have not entered a name ');
-        return;
-    }
-    if(email == null || email == "") {
-        toastr.error('You have not entered a email ');
         return;
     }
     if(username == null || username == "") {
@@ -164,8 +163,12 @@ function registerClickUser() {
         toastr.error('Password and confirm password must be the same ');
         return;
     }
-    if(!mediumRegex.test(password)) {
+    if(!validatePassword(password)) {
         toastr.error('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
+        return;
+    }
+    if(!validateEmail(email)) {
+        toastr.error('You have not entered a email ');
         return;
     }
     $.ajax({
