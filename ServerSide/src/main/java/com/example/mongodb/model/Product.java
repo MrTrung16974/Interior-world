@@ -24,6 +24,8 @@ public class Product {
     private List<Price> priceForColor;
     @Field("description")
     private String description;
+    @Field("long_description")
+    private String longDescription;
     @Field("image")
     private List<String> image;
     @Field("comment")
@@ -50,6 +52,14 @@ public class Product {
 
     public String getName() {
         return name;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
     }
 
     public void setName(String name) {

@@ -1,7 +1,7 @@
 // reder chung
 function rederBanner(data) {
     $("#banner-page").html(
-    `<section style="background-image: url(${data.bgImage})" class="blog-banner-area breadcrumb_bg" id="category">
+    `<section style="background-image: url(${data.bgBanner})" class="blog-banner-area breadcrumb_bg" id="category">
             <div class="container h-100">
                 <div class="blog-banner">
                     <div class="text-center">
@@ -9,7 +9,7 @@ function rederBanner(data) {
                         <nav aria-label="breadcrumb" class="banner-breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">${namepage}</li>
+                                <li class="breadcrumb-item active" aria-current="page">${data.namePage}</li>
                             </ol>
                         </nav>
                     </div>
@@ -45,7 +45,7 @@ function rederData(data) {
                               <div class="card-product__img">
                                 <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                                 <ul class="card-product__imgOverlay">
-                                  <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
+                                  <li><button onclick="addToCastDefaultDB('${item.id}', '${item.priceForColor[0].nameColor}', '${item.priceForColor[0].priceForColor}', '${item.price ? item.price : 0}')"><i class="ti-shopping-cart"></i></button></li>
                                   <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
                                 </ul>
                               </div>
@@ -67,8 +67,8 @@ function rederData(data) {
                       <div class="card-product__img">
                         <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                         <ul class="card-product__imgOverlay">
-                          <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
-                          <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
+                            <li><button onclick="addToCastDefaultDB('${item.id}', '${item.priceForColor[0].nameColor}', '${item.priceForColor[0].priceForColor}', '${item.price ? item.price : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                            <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
                         </ul>
                       </div>
                       <div class="card-body">
@@ -266,7 +266,7 @@ function rederDataSingleProduct(item) {
 
 
         $("button#add-to-coment").attr("onclick", `addComment('${item.id}')`);
-        $("p#description-product").text(item.description != null ? item.description : "");
+        $("p#description-product").text(item.longDescription != null ? item.longDescription : "");
         $("h5#width").text((item.type.width != null ? item.type.width : "") + " cm");
         $("h5#height").text((item.type.height != null ? item.type.height : "") + " cm");
         $("h5#depth").text((item.type.depth != null ? item.type.depth : "") + " cm");
@@ -304,6 +304,7 @@ function rederDataCastBoxUp(data) {
     }
 }
 function rederDataCast(data) {
+    console.log(data);
     $("#lst-product-in-cast").empty();
     if (typeof data != "undefined"
         && data != null
@@ -319,6 +320,7 @@ function rederDataCast(data) {
                               </div>
                               <div class="media-body">
                                   <a  href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a>
+                                  <p>Color: <span>${item.nameColor ? item.nameColor : ""}</span></p>
                               </div>
                           </div>
                       </td>
@@ -330,16 +332,16 @@ function rederDataCast(data) {
                               <input type="text" disabled="disabled" name="qty" id="sst" maxlength="12" value="${item.number ? item.number : 0}" title="Quantity:"
                                   class="input-text qty">
                               <button 
-                                  class="increase items-count" onclick="addItem('${item.id}')" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                  class="increase items-count" onclick="addItem('${item.id}', '${item.nameColor}')" type="button"><i class="lnr lnr-chevron-up"></i></button>
                               <button 
-                                  class="reduced items-count" onclick="removeItem('${item.id}')" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                  class="reduced items-count" onclick="removeItem('${item.id}', '${item.nameColor}')" type="button"><i class="lnr lnr-chevron-down"></i></button>
                           </div>
                       </td>
                       <td>
-                          <h5>$${item.price && item.number ? item.price*item.number : ""}</h5>
+                          <h5>${formatter.format(item.price && item.number ? item.price*item.number : "")}</h5>
                       </td>
                       <td class="delete-item-cart">
-                          <i onclick="deleteItem('${item.id}')" class="fas fa-trash-alt"></i>
+                          <i onclick="deleteItem('${item.id }', '${item.nameColor}')" class="fas fa-trash-alt"></i>
                       </td>
                 </tr>`
             );
@@ -504,9 +506,9 @@ function rederUserInfo(data) {
                         </div>
                         <div class="col-12 col-md-5 col-lg-4 col-xl-4">
                             <div class="col-md-12 form-group text-center">
-                                <img src="${data.image ? data.image : ""}" width="100" height="100" id="img-youface" />
-                                <input id="youface" name="youface" type="file" />
-                                <label class="btn-face" for="youface">Choose image</label>
+                                <img src="${data.image ? data.image : ""}" width="100" height="100" class="face-user" id="img-youface" />
+                                <input id="image-face" class="image-face" name="image-face" type="file" />
+                                <label class="btn-face" for="image-face">Choose image</label>
                                 <br />
                                 <span>Size flie max 1 MB</span>
                                 <br />

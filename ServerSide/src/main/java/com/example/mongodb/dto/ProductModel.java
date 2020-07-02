@@ -14,9 +14,17 @@ public class ProductModel {
     private Comment comment;
     private Promotion promotion;
     private Integer star;
+    private String nameColor;
     private Type type;
     private Integer number;
 
+    public String getNameColor() {
+        return nameColor;
+    }
+
+    public void setNameColor(String nameColor) {
+        this.nameColor = nameColor;
+    }
 
     public Comment getComment() {
         return comment;

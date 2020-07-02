@@ -4,7 +4,8 @@ public class ProductCast {
     private String id;
     private Integer number;
     private Integer type;
-    private Integer typeColor;
+    private String nameColor;
+    private Double price;
 
     public String getId() {
         return id;
@@ -28,5 +29,21 @@ public class ProductCast {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getNameColor() {
+        return nameColor;
+    }
+
+    public void setNameColor(String nameColor) {
+        this.nameColor = nameColor;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

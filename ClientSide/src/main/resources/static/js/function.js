@@ -32,7 +32,7 @@ var loadUserDto = () => {
             checkLogin = false
             ;
             window.location.href = "http://localhost:8080/login"
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            toastr.error('An error occurred . Please try again', response.message);
         }
     });
 }
@@ -50,7 +50,7 @@ $.ajax({
     success: function (response) {
         if(response.code == "00") {
             response.data.forEach(item => {
-                if(item.name == pathname) {
+                if(item.id == pathname) {
                     rederBanner(item);
                 }
             });
@@ -59,7 +59,7 @@ $.ajax({
         }
     },
     error: function (result) {
-        toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+        toastr.error('An error occurred . Please try again', response.message);
     }
 });
 
@@ -81,7 +81,7 @@ if(pathname == "/shop") {
         }
     },
     error: function (result) {
-        toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+        toastr.error('An error occurred . Please try again', response.message);
     }
 });
 }
@@ -98,7 +98,7 @@ if(pathname == "/home") {
             }
         },
         error: function (result) {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            toastr.error('An error occurred . Please try again', response.message);
         }
     });
 }
@@ -147,7 +147,7 @@ function loginCickUser() {
             }
         },
         error: function () {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            toastr.error('An error occurred . Please try again', response.message);
             console.log(response.message);
         }
     });
@@ -222,7 +222,7 @@ function registerClickUser() {
             }
         },
         error: function () {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            toastr.error('An error occurred . Please try again', response.message);
             console.log(response.message);
         }
     });
@@ -250,7 +250,7 @@ function logoutUser() {
             }
         },
         error: function () {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', response.message);
+            toastr.error('An error occurred . Please try again', response.message);
             console.log(response.message);
         }
     });
@@ -309,7 +309,7 @@ function searchProduct(page) {
             hideLoading();
         },
         error: function (error) {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+            toastr.error('An error occurred . Please try again', error.message);
             hideLoading();
         }
     });
@@ -344,7 +344,7 @@ function sortProduct() {
             hideLoading()
         },
         error: function (error) {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+            toastr.error('An error occurred . Please try again', error.message);
             hideLoading()
         }
     });
@@ -375,12 +375,12 @@ function addFavouriteUser(idProduct) {
                 hideLoading()
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                toastr.error('An error occurred . Please try again', error.message);
                 hideLoading()
             }
         });
     }else {
-        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+        toastr.error('You need login!', "HAHA");
     }
 }
 
@@ -404,7 +404,7 @@ function getProductInCast() {
             hideLoading();
         },
         error: function (error) {
-            toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+            toastr.error('An error occurred . Please try again', error.message);
             hideLoading();
         }
     });
@@ -438,7 +438,7 @@ function getProductInCast() {
 //                 };
 //             }
 //             $.ajax({
-//                 url: "http://localhost:8099/order/update/" + cart.id,
+//                 url: "http://localhost:8099/order/update/" + cart.buyer,
 //                 type: "POST",
 //                 data: JSON.stringify(updateCastRequest),
 //                 contentType: "application/json",
@@ -458,7 +458,7 @@ function getProductInCast() {
 //                     hideLoading();
 //                 },
 //                 error: function (error) {
-//                     toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+//                     toastr.error('An error occurred . Please try again', error.message);
 //                         hideLoading();
 //                 }
 //             });
@@ -466,53 +466,116 @@ function getProductInCast() {
 //             toastr.error('Bạn nhập nhâp số vào nếu ko thì chết đó làm khó nhau vcl! Mịa!',  "HAHA");
 //         }
 //     }else {
-//         toastr.error('Bạn cần đăng nhâp!',  "HAHA");
+//         toastr.error('You need login!',  "HAHA");
 //     }
 // }
 
 function addToCastDB(idProduct) {
     if(checkLogin) {
-        color = $('input[name=color-price]:checked').val();
-        shopLoading();
-        let updateCastRequest = {
-            name: userDto.username,
-            listProductCast: [{
-                id: idProduct,
-                number: 1,
-                type: 1
-            }]
-        };
-        $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.id,
-            type: "POST",
-            data: JSON.stringify(updateCastRequest),
-            contentType: "application/json",
-            success: function (response) {
-                if (response.code = "00") {
-                    cart = response.data;
-                    if (cart.listProduct != null) {
-                        getTotalProductInCast(cart);
-                        rederDataCast(cart.listProduct);
-                        rederDataCastBoxUp(cart.listProduct);
-                        if (cart.listProduct[0] != null) {
-                            getPriceProductInCast(cart);
-                            toastr.success('Add product success!', "HAHA");
+        let nameColor = $('input[name="color-price"]:checked').val();
+        let priceForColor = $('h2#price-product').text();
+        console.log(nameColor);
+        if(nameColor != null && nameColor != undefined
+            && priceForColor != null && priceForColor != undefined) {
+            shopLoading();
+            let price = parseInt(priceForColor.match(/(\d+)/));
+            console.log(price);
+            let updateCastRequest = {
+                name: userDto.username,
+                listProductCast: [{
+                    id: idProduct,
+                    number: 1,
+                    type: 1,
+                    nameColor: nameColor,
+                    price: price
+                }]
+            };
+            $.ajax({
+                url: "http://localhost:8099/order/update/" + cart.buyer,
+                type: "POST",
+                data: JSON.stringify(updateCastRequest),
+                contentType: "application/json",
+                success: function (response) {
+                    if (response.code = "00") {
+                        cart = response.data;
+                        if (cart.listProduct != null) {
+                            getTotalProductInCast(cart);
+                            rederDataCast(cart.listProduct);
+                            rederDataCastBoxUp(cart.listProduct);
+                            if (cart.listProduct[0] != null) {
+                                getPriceProductInCast(cart);
+                                toastr.success('Add product success!', "HAHA");
+                            }
                         }
                     }
+                    hideLoading();
+                },
+                error: function (error) {
+                    toastr.error('An error occurred . Please try again', error.message);
+                    hideLoading();
                 }
-                hideLoading();
-            },
-            error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
-                hideLoading();
-            }
-        });
+            });
+        }else {
+            toastr.error('You need choose color for product!', "HAHA");
+        }
     }else {
-        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+        toastr.error('You need login!', "HAHA");
     }
 }
 
-function deleteItem(idProduct) {
+// add default product color frist (colorForPrice[0])
+function addToCastDefaultDB(idProduct, nameColor, priceColor, price) {
+    if(checkLogin) {
+        console.log(typeof priceColor);
+        if(nameColor != null && nameColor != undefined
+            && priceColor != null && priceColor != undefined
+            && price != null && price != undefined) {
+            let addPriceColor = price + priceColor;
+            shopLoading();
+            let updateCastRequest = {
+                name: userDto.username,
+                listProductCast: [{
+                    id: idProduct,
+                    number: 1,
+                    type: 1,
+                    nameColor: nameColor,
+                    price: addPriceColor
+                }]
+            };
+            $.ajax({
+                url: "http://localhost:8099/order/update/" + cart.buyer,
+                type: "POST",
+                data: JSON.stringify(updateCastRequest),
+                contentType: "application/json",
+                success: function (response) {
+                    if (response.code = "00") {
+                        cart = response.data;
+                        if (cart.listProduct != null) {
+                            getTotalProductInCast(cart);
+                            rederDataCast(cart.listProduct);
+                            rederDataCastBoxUp(cart.listProduct);
+                            if (cart.listProduct[0] != null) {
+                                getPriceProductInCast(cart);
+                                toastr.success('Add product success!', "HAHA");
+                            }
+                        }
+                    }
+                    hideLoading();
+                },
+                error: function (error) {
+                    toastr.error('An error occurred . Please try again', error.message);
+                    hideLoading();
+                }
+            });
+        }else {
+            toastr.error('An error occurred . Please try again');
+        }
+    }else {
+        toastr.error('You need login!', "HAHA");
+    }
+}
+
+function deleteItem(idProduct, nameColor) {
     if(checkLogin) {
         shopLoading();
         let updateCastRequest = {
@@ -520,11 +583,12 @@ function deleteItem(idProduct) {
             listProductCast: [{
                 id: idProduct,
                 number: 1,
-                type: 3
+                type: 3,
+                nameColor: nameColor
             }]
         };
         $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.id,
+            url: "http://localhost:8099/order/update/" + cart.buyer,
             type: "POST",
             data: JSON.stringify(updateCastRequest),
             contentType: "application/json",
@@ -542,22 +606,22 @@ function deleteItem(idProduct) {
                             }
                         }
                     } else {
-                        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+                        toastr.error('You need login!', "HAHA");
                     }
                 }
                 hideLoading();
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                toastr.error('An error occurred . Please try again', error.message);
                 hideLoading();
             }
         });
     }else {
-        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+        toastr.error('You need login!', "HAHA");
     }
 }
 
-function addItem(idProduct) {
+function addItem(idProduct, nameColor) {
     if(checkLogin) {
         shopLoading();
         let updateCastRequest = {
@@ -565,11 +629,12 @@ function addItem(idProduct) {
             listProductCast: [{
                 id: idProduct,
                 number: 1,
-                type: 1
+                type: 1,
+                nameColor: nameColor
             }]
         };
         $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.id,
+            url: "http://localhost:8099/order/update/" + cart.buyer,
             type: "POST",
             data: JSON.stringify(updateCastRequest),
             contentType: "application/json",
@@ -587,22 +652,22 @@ function addItem(idProduct) {
                             }
                         }
                     }else {
-                        toastr.error('Bạn cần đăng nhâp!',  "HAHA");
+                        toastr.error('You need login!',  "HAHA");
                     }
                 }
                 hideLoading();
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                toastr.error('An error occurred . Please try again', error.message);
                 hideLoading();
             }
         });
     }else {
-        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+        toastr.error('You need login!', "HAHA");
     }
 }
 
-function removeItem(idProduct) {
+function removeItem(idProduct, nameColor) {
     if(checkLogin) {
         shopLoading();
         let updateCastRequest = {
@@ -610,11 +675,12 @@ function removeItem(idProduct) {
             listProductCast: [{
                 id: idProduct,
                 number: 1,
-                type: 2
+                type: 2,
+                nameColor: nameColor
             }]
         };
         $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.id,
+            url: "http://localhost:8099/order/update/" + cart.buyer,
             type: "POST",
             data: JSON.stringify(updateCastRequest),
             contentType: "application/json",
@@ -632,18 +698,18 @@ function removeItem(idProduct) {
                             }
                         }
                     } else {
-                        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+                        toastr.error('You need login!', "HAHA");
                     }
                 }
                 hideLoading();
             },
             error: function (error) {
-                toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                toastr.error('An error occurred . Please try again', error.message);
                 hideLoading();
             }
         });
     }else {
-        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+        toastr.error('You need login!', "HAHA");
     }
 }
 
@@ -675,14 +741,40 @@ function addComment(idProduct) {
                     hideLoading();
                 },
                 error: function (error) {
-                    toastr.error('có lỗi xảy ra . Xin vui lòng thử lại', error.message);
+                    toastr.error('An error occurred . Please try again', error.message);
                     hideLoading();
                 }
             });
         }else {
-            toastr.error('Bạn cần nhập nội dung!', "HAHA");
+            toastr.error('You need import content!', "HAHA");
         }
     }else {
-        toastr.error('Bạn cần đăng nhâp!', "HAHA");
+        toastr.error('You need login!', "HAHA");
     }
+}
+
+// upload file image
+let imageFace = $("input.image-face");
+let newFace = $("img.face-user");
+for (var i = 0; i < imageFace.length; i++) {
+    let imageProduct = imageFace[i];
+    let newFaceImage = newFace[i];
+    imageProduct.addEventListener('change', function () {
+        var formData = new FormData();
+        formData.append('file', imageProduct.files[0]);
+        $.ajax({
+            url: 'http://localhost:8099/v1/api/upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                newFaceImage.src = data;
+                toastr.success('Upload image success! ', 'Haha!');
+            },
+            error: function () {
+                toastr.error('An error occurred . Please try again', 'Inconceivable!');
+            }
+        });
+    });
 }

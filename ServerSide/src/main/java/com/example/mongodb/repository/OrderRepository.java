@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends MongoRepository<Order,String> {
     Optional<Order> findByBuyerAndStatus(String id, Integer status);
+    Optional<Order> findByBuyer(String id);
 }

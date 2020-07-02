@@ -176,7 +176,7 @@ public class ProductApIController {
         product.setPriceForColor(productRequest.getPriceForColor());
         product.setPromotion(productRequest.getPromotion());
         product.setStar(productRequest.getStar());
-        product.setCreateAt(tokenAuthenticationService.simpleDateFormat(new Date()));
+        product.setCreateAt(new Date());
         Product exitProduct = productRepository.save(product);
         response.setCode("00");
         response.setMessage("Success");

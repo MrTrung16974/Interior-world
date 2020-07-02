@@ -13,6 +13,12 @@ public class Banner {
     @Field("bg-banner")
     private String bgBanner;
 
+    public Banner(String id, String namePage, String bgBanner) {
+        this.id = id;
+        this.namePage = namePage;
+        this.bgBanner = bgBanner;
+    }
+
     public String getId() {
         return id;
     }

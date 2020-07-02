@@ -220,7 +220,7 @@ function forColor(data) {
     for (let i=0; i < length; i++) {
         colorWrite += `<a>
                             <label for="${item[i].nameColor}" class="name-color">${item[i].nameColor}</label>
-                            <input type="radio" value="${item[i].color}"
+                            <input type="radio" value="${item[i].nameColor}"
                              onclick="getPriceProduct(${data.price}, ${item[i].priceForColor})" name="color-price" id="${item[i].nameColor}">
                         </a>`;
     }

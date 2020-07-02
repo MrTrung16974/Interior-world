@@ -34,7 +34,7 @@ public class BannerApiController {
                 response.setData(null);
             }else {
                 response.setCode("00");
-                response.setMessage("'Find banner success!");
+                response.setMessage("Find banner success!");
                 response.setData(lstBanner);
             }
         }catch (Exception e) {

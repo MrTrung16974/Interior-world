@@ -58,7 +58,7 @@ public class OrderApiController {
     public  BaseResponse updateCast(@PathVariable("id") String id,
             @RequestBody UpdateCastRequest updateCastRequest) {
         BaseResponse response = new BaseResponse();
-        Optional<Order> optOrder = orderRepository.findById(id);
+        Optional<Order> optOrder = orderRepository.findByBuyer(id);
         if (!optOrder.isPresent()) {
             response.setCode("99");
             response.setMessage("Data not found");
@@ -96,12 +96,13 @@ public class OrderApiController {
                     //lấy thông tin sản phẩm trong DB
                     Product exitsProduct = productRepository.findById(p.getId()).get();
                     //Thêm giá
-                    productModel.setPrice(exitsProduct.getPrice());
+                    productModel.setPrice(p.getPrice());
                     //Thêm name
                     productModel.setName(exitsProduct.getName());
                     //Thêm ảnh
                     productModel.setImage(exitsProduct.getImage());
-
+                    // thêm màu
+                    productModel.setNameColor(p.getNameColor());
                     //Thêm sản phẩm vưa tạo vào Danh sách sẩn phẩm trong giỏ
                     productInCart.add(productModel);
 
@@ -116,7 +117,8 @@ public class OrderApiController {
                         //pm.getNumber là số sản phẩm hiện tại trong gio hàng của DB
                         //so sánh mã số sản phẩm hiện tại trong DB và mã người dùng
                         //gửi lên nếu = nhau tăng số lượng lên
-                        if (p.getId().equals(pm.getId()) && p.getNumber() > 0) {
+                        if (p.getId().equals(pm.getId()) && p.getNumber() > 0
+                                && p.getNameColor().equals(pm.getNameColor())) {
                             //Đặt lại số lượng của sản phẩm trong giỏ hàng
                             pm.setNumber(pm.getNumber() + p.getNumber());
                             isHaveInList = true;
@@ -136,9 +138,10 @@ public class OrderApiController {
                         productModel.setId(p.getId());
                         //lấy thông tin sản phẩm trong DB
                         Product exitsProduct = productRepository.findById(p.getId()).get();
-                        productModel.setPrice(exitsProduct.getPrice());
+                        productModel.setPrice(p.getPrice());
                         productModel.setName(exitsProduct.getName());
                         productModel.setImage(exitsProduct.getImage());
+                        productModel.setNameColor(p.getNameColor());
 
                         //lưu lại sản phẩm vào giỏ hàng
                         productInCart.add(productModel);
@@ -160,7 +163,8 @@ public class OrderApiController {
                     //và mã sp người dùng gửi lên
                     //nếu trùng thực hiện giảm số lượng sản phẩm
                     if(p.getId().equals(pm.getId()) && p.getNumber() > 0 &&
-                            p.getNumber() <= pm.getNumber()){
+                            p.getNumber() <= pm.getNumber()
+                            && p.getNameColor().equals(pm.getNameColor())){
 
                         //Giẩm số lượng sản phẩm
                         pm.setNumber(pm.getNumber() - p.getNumber());
@@ -188,7 +192,8 @@ public class OrderApiController {
 //                    check sô sản phẩm hiện tại trong DB lớn hon number
                     if (p.getId().equals(pm.getId())
                             && p.getNumber() > 0 &&
-                            p.getNumber() <= pm.getNumber()) {
+                            p.getNumber() <= pm.getNumber() &&
+                            p.getNameColor().equals(pm.getNameColor())) {
                         productDelete = pm;
                         response.setMessage("đã xóa sản phẩm");
                     } else {

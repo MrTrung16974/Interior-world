@@ -62,15 +62,4 @@ public class TokenAuthenticationService {
             return false;
         }
     }
-
-    public Date simpleDateFormat(Date date) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String strDate = sdf.format(date);
-        System.out.println("Current date in String Format: "+strDate);
-
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date newDate = sdf1.parse(strDate);
-        System.out.println("Current date in Date Format: "+newDate);
-        return newDate;
-    }
 }

@@ -37,7 +37,7 @@ public class OrderServices {
             query.addCriteria(Criteria.where("type.material").is(material-1));
         }
         if(color > 0 && color != null) {
-            query.addCriteria(Criteria.where("price_for_color").elemMatch(Criteria.where("color").in(color)));
+            query.addCriteria(Criteria.where("price_for_color").elemMatch(Criteria.where("color").is(color)));
         }
         //nếu khác null là phân trang và sắp xếp theo pageanable
         if(pageable != null){
