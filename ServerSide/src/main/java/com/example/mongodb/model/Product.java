@@ -1,9 +1,6 @@
 package com.example.mongodb.model;
 
-import com.example.mongodb.dto.Comment;
-import com.example.mongodb.dto.Price;
-import com.example.mongodb.dto.Promotion;
-import com.example.mongodb.dto.Type;
+import com.example.mongodb.dto.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

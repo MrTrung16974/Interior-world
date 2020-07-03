@@ -109,7 +109,7 @@ function rederDataTrending(data) {
             }
             if(checkFavourite) {
                 $('#lst-trending-product').append(
-                        `<div class="col-md-6 col-lg-4 col-xl-3">
+                    `<div class="col-md-6 col-lg-4 col-xl-3">
                             <div class="card text-center card-product">
                               <div class="card-product__img">
                                 <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
@@ -151,9 +151,96 @@ function rederDataTrending(data) {
         $("#lst-trending-product").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
     }
 }
+function rederDataCatetory(data) {
+    $("#catetory-product-1").empty();
+    $("#catetory-product-2").empty();
+    $("#catetory-product-3").empty();
+    $("#catetory-product-4").empty();
+    // $("#catetory-product").empty();
+    // let count = 0;
+    if(typeof data != "undefined"
+        && data != null
+        && data.length != null
+        && data.length > 0) {
+        // data.map(item => {
+        //     if(typeof userDto.lstFavourite != "undefined"
+        //         && userDto.lstFavourite != null
+        //         && userDto.lstFavourite.length != null
+        //         && userDto.lstFavourite.length > 0) {
+        //             if(count == 0) {
+        //                 $('#catetory-product').append(
+        //                     `<div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+        //                         <div id="catetory-product-1" class="single-search-product-wrapper">`
+        //                 );
+        //             }
+        //             $('#catetory-product').append(
+        //                 `<div class="single-search-product d-flex">
+        //                     <a href="#"><img src="${data[i].image[0]}" alt=""></a>
+        //                     <div class="desc">
+        //                         <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
+        //                     <div class="price">${formatter.format(data[i].price)}</div>
+        //                     </div>
+        //                 </div>`
+        //             );
+        //             if(count == 2) {
+        //                 $('#catetory-product').append(
+        //                     `</div>
+        //                 </div>`);
+        //                 count = 0;
+        //             }
+        //         count++;
+        //     }
+        //     });
+        for (let i = 0; i <= 2; i++) {
+            $('#catetory-product-1').append(
+                `<div class="single-search-product d-flex">
+                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
+                  <div class="desc">
+                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
+                      <div class="price">${formatter.format(data[i].price)}</div>
+                  </div>
+                </div>`
+            );
+        }
+        for (let i = 3; i <= 5; i++) {
+            $('#catetory-product-2').append(
+                `<div class="single-search-product d-flex">
+                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
+                  <div class="desc">
+                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
+                      <div class="price">${formatter.format(data[i].price)}</div>
+                  </div>
+                </div>`
+            );
+        }
+        for (let i = 6; i <= 8; i++) {
+            $('#catetory-product-3').append(
+                `<div class="single-search-product d-flex">
+                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
+                  <div class="desc">
+                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
+                      <div class="price">${formatter.format(data[i].price)}</div>
+                  </div>
+                </div>`
+            );
+        }
+        for (let i = 9; i <= 11; i++) {
+            $('#catetory-product-4').append(
+                `<div class="single-search-product d-flex">
+                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
+                  <div class="desc">
+                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
+                      <div class="price">${formatter.format(data[i].price)}</div>
+                  </div>
+                </div>`
+            );
+        }
+    }else{
+        $("#catetory-product-1").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
+    }
+}
 
 function rederDataSingleProduct(item) {
-    console.log(item);
     let checkFavourite = false;
     $("#single-product").empty();
     if(typeof item != "undefined"
@@ -196,7 +283,7 @@ function rederDataSingleProduct(item) {
                                 <ul class="list">
                                     <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
                                     <li><a href="#"><span>Availibility</span> : In Stock</a></li>
-                                    <li><a href="#"><span>Star</span> : ${forStar(item.star)}</a></li>
+                                    <li><a href="#"><span>Star</span> : <span id="single-star-product">${forStar(item.star)}</span></a></li>
                                     <li class="color-for-price">
                                         <span>Color : </span>
                                         ${forColor(item)}
@@ -243,7 +330,7 @@ function rederDataSingleProduct(item) {
                                     <ul class="list">
                                         <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
                                         <li><a href="#"><span>Availibility</span> : In Stock</a></li>
-                                        <li><a href="#"><span>Star</span> : ${forStar(item.star)}</a></li>
+                                        <li><a href="#"><span>Star</span> : <span id="single-star-product">${forStar(item.star)}</span></a></li>
                                          <li class="color-for-price my-4">
                                              <span>Color : </span>
                                              ${forColor(item)}
@@ -294,7 +381,7 @@ function rederDataCastBoxUp(data) {
                 <div class="media-body">
                     <h6 class="media-heading"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h6>
                     <span class="price">${formatter.format(item.price ? item.price : 0)}</span> <span class="qty">QTY: ${item.number ? item.number : ""}</span>
-                    <button style="margin-left: 20px; " class="delete-item-cart" onclick="deleteItem('${item.id ? item.id : ""}')"><i class="fas fa-trash-alt"></i></button>
+                    <button style="margin-left: 20px; " class="delete-item-cart" onclick="deleteItem('${item.id }', '${item.nameColor}')"><i class="fas fa-trash-alt"></i></button>
                 </div>
             </li>`
         );
@@ -304,7 +391,6 @@ function rederDataCastBoxUp(data) {
     }
 }
 function rederDataCast(data) {
-    console.log(data);
     $("#lst-product-in-cast").empty();
     if (typeof data != "undefined"
         && data != null
@@ -439,8 +525,8 @@ function rederDataCast(data) {
                   </td>
                   <td>
                       <div class="checkout_btn_inner d-flex align-items-center">
-                          <a class="gray_btn" href="#">Continue Shopping</a>
-                          <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                          <a class="gray_btn" href="/shop">Continue Shopping</a>
+                          <a class="primary-btn ml-2" href="/checkout">Proceed to checkout</a>
                       </div>
                   </td>
               </tr>`
@@ -448,85 +534,197 @@ function rederDataCast(data) {
 }
 
 //reder user
-function rederUserInfo(data) {
+function rederUserInfo() {
     if(pathname == "/account-info") {
-        if(typeof data != "undefined"
-            && data != null) {
-            $('#infomation-user').html(
-                `<div class="col-12 col-md-7 col-lg-8 col-xl-8">
-                            <table width="100%">
-                                <tbody>
-                                    <tr>
-                                        <td>User Name</td>
-                                        <td>${data.username ? data.username : ""}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Full Name</td>
-                                        <td>
-                                            <input value="${data.fullName ? data.fullName : ""}" class="form-control" type="text" id="full-name" name="full-name">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>
-                                            <input value="${data.email ? data.email : ""}" class="form-control" type="email" id="email" name="email">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone</td>
-                                        <td>
-                                            <input  class="form-control" value="${data.phone ? data.phone : ""}" type="number" id="phone" name="phone">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sex</td>
-                                        <td>
-                                            <input type="radio" name="sex" id="male">
-                                            <label for="male">Male</label>
-                                            <input type="radio" name="sex" id="female">
-                                            <label for="female">Female</label>
-                                            <input type="radio" name="sex" id="order">
-                                            <label for="order">Order</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Birth Day</td>
-                                        <td>
-                                            <input type="date" name="birthday" id="birthday">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>
-                                            <input class="btn btn-primary" type="button" name="save-user" id="btn-save" value="Save" />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-12 col-md-5 col-lg-4 col-xl-4">
-                            <div class="col-md-12 form-group text-center">
-                                <img src="${data.image ? data.image : ""}" width="100" height="100" class="face-user" id="img-youface" />
-                                <input id="image-face" class="image-face" name="image-face" type="file" />
-                                <label class="btn-face" for="image-face">Choose image</label>
-                                <br />
-                                <span>Size flie max 1 MB</span>
-                                <br />
-                                <span>Format: .JPG, .PND</span>
+        if(typeof userDto != "undefined"
+            && userDto != null) {
+            $('#user-info').html(
+                `<div class="Info-user-profile">
+                    <div class="title-user form-header">
+                        <h5>User Profile</h5>
+                        <p>Manage profile information for account security</p>
+                    </div>
+                    <form class="content-user-profile from-content">
+                        <div class="row">
+                            <div class="col-12 col-md-7 col-lg-8 col-xl-8">
+                                <table width="100%">
+                                    <tbody class="login_form">
+                                        <tr>
+                                            <td>User Name</td>
+                                            <td id="user-name">${userDto.username ? userDto.username : ""}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Full Name</td>
+                                            <td class="form-group">
+                                                <input value="${userDto.fullName ? userDto.fullName : ""}" class="form-control" type="text" id="full-name-user" name="full-name-user">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td class="form-group">
+                                                <input value="${userDto.email ? userDto.email : ""}" class="form-control" type="email" id="email-user" name="email-user">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone</td>
+                                            <td class="form-group">
+                                                <input  class="form-control" value="${userDto.phone ? userDto.phone : ""}" type="number" id="phone-user" name="phone-user">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sex</td>
+                                            <td>
+                                                <input type="radio" value="0" name="sex" id="male">
+                                                <label for="male">Male</label>
+                                                <input type="radio" value="1" name="sex" id="female">
+                                                <label for="female">Female</label>
+                                                <input type="radio" value="2" name="sex" id="order">
+                                                <label for="order">Order</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Birth Day</td>
+                                            <td class="form-group">
+<!--                                                <input type="date" name="birthday-user" id="birthday-user">-->
+                                                <input type="date" class="form-control" id="birthday-user" name="birthday-user" value="${ChangeDateFormatAgain(userDto.birthday ? userDto.birthday : 0)}" placeholder="dd-mm-yyyy" />
+                                            </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>`
+                            <div class="col-12 col-md-5 col-lg-4 col-xl-4">
+                                <div class="col-md-12 form-group text-center">
+                                    <img src="${userDto.image ? userDto.image : ""}" width="100" height="100" class="face-user" id="img-youface" />
+                                    <input id="image-face" class="image-face" name="image-face" type="file" />
+                                    <label class="btn-face" for="image-face">Choose image</label>
+                                    <br />
+                                    <span>Size flie max 1 MB</span>
+                                    <br />
+                                    <span>Format: .JPG, .PND</span>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-5">
+                                <input class="btn btn-primary" onclick="updateUser()" type="button" name="save-user" id="btn-save" value="Save" />
+                            </div>
+                        </div>
+                    </form>
+                </div>`
             );
         }
-        $('#face-user').attr('src', data.image ? data.image : "img/user.png");
-        $('#name-account').text(data.fullName ? data.fullName : "Anonymously");
+        if(userDto.sex != null && userDto.sex != "") {
+            $('"input[value="+ userDto.sex +"]"').attr("checked", "checked");
+        }
+        $('#face-user').attr('src', userDto.image ? userDto.image : "img/user.png");
+        $('#name-account').text(userDto.fullName ? userDto.fullName : "Anonymously");
     }
-    $('#name-user').text(data.fullName ? data.fullName : "Anonymously");
+    $('#name-user').text(userDto.fullName ? userDto.fullName : "Anonymously");
 }
+function rederUsesAddress() {
+    if(pathname == "/account-info") {
+        if(typeof userDto.address != "undefined"
+            && userDto.address != null) {
+            $('#user-info').html(
+                `<div class="Info-address">
+                        <div class="title-user form-header">
+                            <h5>My Address</h5>
+                        </div>
+                        <div id="content-adddress" class="content-addres">
+                            <ul>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-12 col-xl-2 col-lg-2 col-md-2">
+                                            <div>
+                                                <span>Name</span>
+                                            </div>
+                                            <div>
+                                                <span>Phone</span>
+                                            </div>
+                                            <div>
+                                                <span>Address</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+                                            <div>
+                                                <span>${userDto.fullName} </span>
+                                            </div>
+                                            <div>
+                                                <span>${userDto.phone}</span>
+                                            </div>
+                                            <div>
+                                                <span>${userDto.address}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-4 col-lg-4 col-md-4">
+                                            <div>
+                                                <span><a ><i class="fas fa-edit"></i></a></span>
+                                                <span><a ><i class="fas fa-trash-alt"></i></a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>`
+            );
+        }else {
+            $('#user-info').html(
+                `<ul class="login_form">
+                    <li  class="form-group">
+                        <p>You do not have an address!</p>
+                        <hr/>
+                    </li>
+                    <li class="form-group">
+                        <textarea rows="3" id="user-address" class="form-control" placeholder="Your Address!"></textarea>
+                    </li> 
+                    <li class="form-group">
+                    <button onclick="updateUserAddress()" class="btn btn-success">+  Add</button>
+                    </li>
+                </ul>`
+            );
+        }
+    }
+}
+function rederChangePassword() {
+    if(pathname == "/account-info") {
+        $('#user-info').html(
+            `<div class="change-password-profile">
+                <div class="title-user form-header">
+                    <h5>Change Password</h5>
+                    <p>For account security, please do not share the password with others</p>
+                </div>
+                <form class="content-password login_form from-content">
+                    <label for="current-password">Current Password : </label>
+                    <div class="col-md-12 form-group">
+                        <input type="password" class="form-control" name="current-password" id="current-password" />
+                        <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+                        <i class="show-eye-pass eye-pass fas fa-eye"></i>
+                    </div>
+                    <label for="new-password">New Password : </label>
+                    <div class="col-md-12 form-group">
+                        <input type="password" class="form-control"  name="new-password" id="new-password" />
+                        <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+                        <i class="show-eye-pass eye-pass fas fa-eye"></i>
+                    </div>
+                    <label for="confirm-password">Confirm Password : </label>
+                    <div class="col-md-12 form-group">
+                        <input type="password" class="form-control"  name="confirm-password" id="confirm-password" />
+                        <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
+                        <i class="show-eye-pass eye-pass fas fa-eye"></i>
+                    </div>
+                    <button class="btn btn-primary" type="button">Change</button>
+                </form>
+            </div>`
+        );
+    }
+}
+
 
 //reder coment
 //    reder coment product
 function rederComentProduct(data) {
     $("#comments-list").empty();
+    console.log(data);
     if(data != null) {
         data.map(item => {
             $('#comments-list').append(
@@ -538,6 +736,10 @@ function rederComentProduct(data) {
                         <div class="media-body">
                             <h4>${item.buyer ? item.buyer : "Anonymously"}</h4>
                             <h5>${item.createAt ? item.createAt : "0"}</h5>
+                            <a class="reply_btn" onclick="likeCommet('${item.id}', '${item.buyer}')">
+                                <i class="far fa-thumbs-up"></i>
+                                <span class="number-like">${item.like != null ? item.like : "0"}</span>
+                            </a>
                         </div>
                     </div>
                     <p>${item.comtent ? item.comtent : ""}</p>

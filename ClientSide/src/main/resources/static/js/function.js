@@ -16,7 +16,7 @@ var loadUserDto = () => {
                 $('#login-user').css({"visibility": "hidden", "opacity": "0"});
                 $('#logout-user').css({"visibility": "visible", "opacity": "1"});
                 getProductInCast();
-                rederUserInfo(response.data);
+                rederUserInfo();
                 rederDataFavourite(response.data.lstFavourite);
                 rederDataFavouriteBoxUp(response.data.lstFavourite);
                 if (response.data.lstFavourite != null) {
@@ -102,6 +102,24 @@ if(pathname == "/home") {
         }
     });
 }
+function catetoryProduct(type) {
+    $.ajax({
+        url: "http://localhost:8099/v1/api/product/catetory/" + type,
+        type: "GET",
+        success: function (response) {
+            if (response.code == "00") {
+                listTrendingProduct = response.data;
+                rederDataCatetory(response.data);
+            } else {
+                toastr.error('Find not data!', response.message);
+            }
+        },
+        error: function (result) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
+}
+
 //code gà nền phải viết 2 function giống nhau(cái này là cho keyUp)
 function loginUser(e) {
     if(e.keyCode === 13) {
@@ -120,10 +138,7 @@ function loginCickUser() {
         toastr.error('You have not entered a password ');
         return;
     }
-    if(!validatePassword(password)) {
-        toastr.error('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
-        return;
-    }
+    shopLoading();
     $.ajax({
         type: "POST",
         url: "http://localhost:8099/v1/api/login?username=" + username + "&password=" + password,
@@ -141,12 +156,15 @@ function loginCickUser() {
                 if (checkLogin) {
                     window.location.href = "http://localhost:8080/home"
                 }
+                hideLoading();
             } else {
+                hideLoading();
                 window.location.href = "http://localhost:8080/login?error=true"
                 console.log(response.message);
             }
         },
         error: function () {
+            hideLoading();
             toastr.error('An error occurred . Please try again', response.message);
             console.log(response.message);
         }
@@ -195,6 +213,7 @@ function registerClickUser() {
         toastr.error('You have not entered a email ');
         return;
     }
+    shopLoading();
     $.ajax({
         type: "POST",
         url: "http://localhost:8099/v1/api/register?username="+username+"&password="+
@@ -212,23 +231,27 @@ function registerClickUser() {
                 if(token != "" || token != null) {
                     window.location.href = "http://localhost:8080/home";
                 }
+                hideLoading();
             }
             if(response.code == "300") {
                 toastr.success('Account exit success!', response.message);
-            }
-            else {
+                hideLoading();
+            }else {
                 toastr.error('Null Data', response.message);
                 console.log(response.message);
+                hideLoading();
             }
         },
         error: function () {
             toastr.error('An error occurred . Please try again', response.message);
+            hideLoading();
             console.log(response.message);
         }
     });
 }
 
 function logoutUser() {
+    shopLoading();
     $.ajax({
         type: "POST",
         url: "http://localhost:8099/v1/api/logout",
@@ -236,20 +259,131 @@ function logoutUser() {
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công
             //hàm đc thực thi khi request thành công không có lỗi
-                if(response.code == "00") {
-                    deleteCookie("token");
-                    checkLogin = false;
-                    toastr.success('Logout success!', response.message);
+            if(response.code == "00") {
+                deleteCookie("token");
+                checkLogin = false;
+                toastr.success('Logout success!', response.message);
                 if(token != "" && token != null) {
                     window.location.href = "http://localhost:8080/login"
                 }else {
                     toastr.success('Logout error!', response.message);
                 }
+                hideLoading();
             }else {
+                hideLoading();
+                toastr.success('Logout server error !', response.message);
                 console.log(response.message);
             }
         },
         error: function () {
+            hideLoading();
+            toastr.error('An error occurred . Please try again', response.message);
+            console.log(response.message);
+        }
+    });
+}
+
+function updateUser() {
+    let username =  $("#user-name").text();
+    let image = $("#img-youface").attr('src');
+    let fullName = $("#full-name-user").val();
+    let email = $("#email-user").val();
+    let phone = $("#phone-user").val();
+    let sex = $('input[name="sex"]:checked').val();
+    let birthday = $("#birthday-user").val();
+    console.log(changeDateFormatTo(birthday));
+    if(image == null || image == "") {
+        toastr.error('You have not entered a image ');
+        return;
+    }
+    if(fullName == null || fullName == "") {
+        toastr.error('You have not entered a fullName ');
+        return;
+    }
+    if(phone == null || phone == "") {
+        toastr.error('You have not entered a phone ');
+        return;
+    }
+    if(sex == null || sex == "") {
+        toastr.error('You have not entered a sex ');
+        return;
+    }
+    if(birthday == null || birthday == "") {
+        toastr.error('You have not entered a birthday ');
+        return;
+    }
+    if(!validateEmail(email)) {
+        toastr.error('You have not entered a email ');
+        return;
+    }
+    shopLoading();
+    let UserDto = {
+        username:username,
+        image: image,
+        fullName: fullName,
+        email: email,
+        birthday: changeDateFormatTo(birthday),
+        phone: phone,
+        sex: sex
+    };
+    $.ajax({
+        url: "http://localhost:8099/v1/api/user/" + userDto.username,
+        type: "PUT",
+        data: JSON.stringify(UserDto),
+        contentType: "application/json; charset=utf-8",
+        processData: false,
+        success: function (response) {
+            // server trả về HTTP status code là 200 => Thành công
+            //hàm đc thực thi khi request thành công không có lỗi
+            if(response.code == "00") {
+                userDto = response.data;
+                rederUserInfo();
+                toastr.success('Edit user success!', response.message);
+                hideLoading();
+            }else {
+                hideLoading();
+                toastr.success('Logout server error !', response.message);
+                console.log(response.message);
+            }
+        },
+        error: function () {
+            hideLoading();
+            toastr.error('An error occurred . Please try again');
+        }
+    });
+}
+function updateUserAddress() {
+    let address = $("#user-address").val();
+    if(address == null || address == "") {
+        toastr.error('You have not entered a address ');
+        return;
+    }
+    shopLoading();
+    let UserDto = {
+        address: address,
+    };
+    $.ajax({
+        type: "PUT",
+        url: "http://localhost:8099/v1/api/user/" + userDto.username,
+        data: JSON.stringify(UserDto),
+        contentType: "application/json",
+        processData: false,
+        success: function (response) {
+            // server trả về HTTP status code là 200 => Thành công
+            //hàm đc thực thi khi request thành công không có lỗi
+            if(response.code == "00") {
+                userDto = response.data;
+                rederUserInfo();
+                toastr.success('Edit user success!', response.message);
+                hideLoading();
+            }else {
+                hideLoading();
+                toastr.success('Logout server error !', response.message);
+                console.log(response.message);
+            }
+        },
+        error: function () {
+            hideLoading();
             toastr.error('An error occurred . Please try again', response.message);
             console.log(response.message);
         }
@@ -351,37 +485,37 @@ function sortProduct() {
 }
 
 function addFavouriteUser(idProduct) {
-    if(checkLogin != "") {
-        shopLoading();
-        $.ajax({
-            url: "http://localhost:8099/v1/api/user/favourite/?userName="+
-                cart.buyer + "&idProduct=" + idProduct,
-            type: "PUT",
-            success: function (response) {
-                if (response.data != null) {
-                    if (response.code == "200") {
-                        toastr.success('add favourite user Success!', "HAHA");
-                    }
-                    if (response.code == "00") {
-                        toastr.success('remove favourite user Success!', "HAHA");
-                    }
-                    loadUserDto();
-                    rederData(listAllProduct);
-                    rederDataTrending(listTrendingProduct);
-                    if(pathname = "/product-detforImageails") {
-                        rederDataSingleProduct(singleProduct);
-                    }
-                }
-                hideLoading()
-            },
-            error: function (error) {
-                toastr.error('An error occurred . Please try again', error.message);
-                hideLoading()
-            }
-        });
-    }else {
+    if(!checkLogin) {
         toastr.error('You need login!', "HAHA");
+        return;
     }
+    shopLoading();
+    $.ajax({
+        url: "http://localhost:8099/v1/api/user/favourite/?userName="+
+            cart.buyer + "&idProduct=" + idProduct,
+        type: "PUT",
+        success: function (response) {
+            if (response.data != null) {
+                if (response.code == "200") {
+                    toastr.success('add favourite user Success!', "HAHA");
+                }
+                if (response.code == "00") {
+                    toastr.success('remove favourite user Success!', "HAHA");
+                }
+                loadUserDto();
+                rederData(listAllProduct);
+                rederDataTrending(listTrendingProduct);
+                if(pathname = "/product-detforImageails") {
+                    rederDataSingleProduct(singleProduct);
+                }
+            }
+            hideLoading()
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading()
+        }
+    });
 }
 
 // cart product
@@ -400,6 +534,8 @@ function getProductInCast() {
                         getTotalProductInCast(cart);
                     }
                 }
+            }else {
+                toastr.error('An error occurred . Please try again', error.message);
             }
             hideLoading();
         },
@@ -471,166 +607,79 @@ function getProductInCast() {
 // }
 
 function addToCastDB(idProduct) {
-    if(checkLogin) {
-        let nameColor = $('input[name="color-price"]:checked').val();
-        let priceForColor = $('h2#price-product').text();
-        console.log(nameColor);
-        if(nameColor != null && nameColor != undefined
-            && priceForColor != null && priceForColor != undefined) {
-            shopLoading();
-            let price = parseInt(priceForColor.match(/(\d+)/));
-            console.log(price);
-            let updateCastRequest = {
-                name: userDto.username,
-                listProductCast: [{
-                    id: idProduct,
-                    number: 1,
-                    type: 1,
-                    nameColor: nameColor,
-                    price: price
-                }]
-            };
-            $.ajax({
-                url: "http://localhost:8099/order/update/" + cart.buyer,
-                type: "POST",
-                data: JSON.stringify(updateCastRequest),
-                contentType: "application/json",
-                success: function (response) {
-                    if (response.code = "00") {
-                        cart = response.data;
-                        if (cart.listProduct != null) {
-                            getTotalProductInCast(cart);
-                            rederDataCast(cart.listProduct);
-                            rederDataCastBoxUp(cart.listProduct);
-                            if (cart.listProduct[0] != null) {
-                                getPriceProductInCast(cart);
-                                toastr.success('Add product success!', "HAHA");
-                            }
+    if(!checkLogin) {
+        toastr.error('You need login!', "HAHA");
+        return;
+    }
+    let nameColor = $('input[name="color-price"]:checked').val();
+    let priceForColor = $('h2#price-product').text();
+    console.log(nameColor);
+    if(nameColor != null && nameColor != undefined
+        && priceForColor != null && priceForColor != undefined) {
+        shopLoading();
+        let price = parseInt(priceForColor.match(/(\d+)/));
+        console.log(price);
+        let updateCastRequest = {
+            name: userDto.username,
+            listProductCast: [{
+                id: idProduct,
+                number: 1,
+                type: 1,
+                nameColor: nameColor,
+                price: price
+            }]
+        };
+        $.ajax({
+            url: "http://localhost:8099/order/update/" + cart.buyer,
+            type: "POST",
+            data: JSON.stringify(updateCastRequest),
+            contentType: "application/json",
+            success: function (response) {
+                if (response.code = "00") {
+                    cart = response.data;
+                    if (cart.listProduct != null) {
+                        getTotalProductInCast(cart);
+                        rederDataCast(cart.listProduct);
+                        rederDataCastBoxUp(cart.listProduct);
+                        if (cart.listProduct[0] != null) {
+                            getPriceProductInCast(cart);
+                            toastr.success('Add product success!', "HAHA");
                         }
                     }
-                    hideLoading();
-                },
-                error: function (error) {
-                    toastr.error('An error occurred . Please try again', error.message);
-                    hideLoading();
                 }
-            });
-        }else {
-            toastr.error('You need choose color for product!', "HAHA");
-        }
+                hideLoading();
+            },
+            error: function (error) {
+                toastr.error('An error occurred . Please try again', error.message);
+                hideLoading();
+            }
+        });
     }else {
-        toastr.error('You need login!', "HAHA");
+        toastr.error('You need choose color for product!', "HAHA");
+        hideLoading();
     }
 }
 
 // add default product color frist (colorForPrice[0])
 function addToCastDefaultDB(idProduct, nameColor, priceColor, price) {
-    if(checkLogin) {
-        console.log(typeof priceColor);
-        if(nameColor != null && nameColor != undefined
-            && priceColor != null && priceColor != undefined
-            && price != null && price != undefined) {
-            let addPriceColor = price + priceColor;
-            shopLoading();
-            let updateCastRequest = {
-                name: userDto.username,
-                listProductCast: [{
-                    id: idProduct,
-                    number: 1,
-                    type: 1,
-                    nameColor: nameColor,
-                    price: addPriceColor
-                }]
-            };
-            $.ajax({
-                url: "http://localhost:8099/order/update/" + cart.buyer,
-                type: "POST",
-                data: JSON.stringify(updateCastRequest),
-                contentType: "application/json",
-                success: function (response) {
-                    if (response.code = "00") {
-                        cart = response.data;
-                        if (cart.listProduct != null) {
-                            getTotalProductInCast(cart);
-                            rederDataCast(cart.listProduct);
-                            rederDataCastBoxUp(cart.listProduct);
-                            if (cart.listProduct[0] != null) {
-                                getPriceProductInCast(cart);
-                                toastr.success('Add product success!', "HAHA");
-                            }
-                        }
-                    }
-                    hideLoading();
-                },
-                error: function (error) {
-                    toastr.error('An error occurred . Please try again', error.message);
-                    hideLoading();
-                }
-            });
-        }else {
-            toastr.error('An error occurred . Please try again');
-        }
-    }else {
+    if(!checkLogin) {
         toastr.error('You need login!', "HAHA");
+        return;
     }
-}
-
-function deleteItem(idProduct, nameColor) {
-    if(checkLogin) {
+    console.log(typeof priceColor);
+    if(nameColor != null && nameColor != undefined
+        && priceColor != null && priceColor != undefined
+        && price != null && price != undefined) {
+        let addPriceColor = parseInt(price) + parseInt(priceColor);
         shopLoading();
         let updateCastRequest = {
             name: userDto.username,
-            listProductCast: [{
-                id: idProduct,
-                number: 1,
-                type: 3,
-                nameColor: nameColor
-            }]
-        };
-        $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.buyer,
-            type: "POST",
-            data: JSON.stringify(updateCastRequest),
-            contentType: "application/json",
-            success: function (response) {
-                if (response.code = "00") {
-                    cart = response.data;
-                    if (checkLogin) {
-                        if (cart.listProduct != null) {
-                            getTotalProductInCast(cart);
-                            rederDataCast(cart.listProduct);
-                            rederDataCastBoxUp(cart.listProduct);
-                            if (cart.listProduct[0] != null) {
-                                getPriceProductInCast(cart);
-                                toastr.success('Delete product success!', "HAHA");
-                            }
-                        }
-                    } else {
-                        toastr.error('You need login!', "HAHA");
-                    }
-                }
-                hideLoading();
-            },
-            error: function (error) {
-                toastr.error('An error occurred . Please try again', error.message);
-                hideLoading();
-            }
-        });
-    }else {
-        toastr.error('You need login!', "HAHA");
-    }
-}
-
-function addItem(idProduct, nameColor) {
-    if(checkLogin) {
-        shopLoading();
-        let updateCastRequest = {
-            name:  userDto.username,
             listProductCast: [{
                 id: idProduct,
                 number: 1,
                 type: 1,
-                nameColor: nameColor
+                nameColor: nameColor,
+                price: addPriceColor
             }]
         };
         $.ajax({
@@ -641,18 +690,14 @@ function addItem(idProduct, nameColor) {
             success: function (response) {
                 if (response.code = "00") {
                     cart = response.data;
-                    if(checkLogin) {
-                        if(cart.listProduct != null) {
-                            getTotalProductInCast(cart);
-                            rederDataCast(cart.listProduct);
-                            rederDataCastBoxUp(cart.listProduct);
-                            if(cart.listProduct[0] != null) {
-                                getPriceProductInCast(cart);
-                                toastr.success('Add product success!', "HAHA");
-                            }
+                    if (cart.listProduct != null) {
+                        getTotalProductInCast(cart);
+                        rederDataCast(cart.listProduct);
+                        rederDataCastBoxUp(cart.listProduct);
+                        if (cart.listProduct[0] != null) {
+                            getPriceProductInCast(cart);
+                            toastr.success('Add product success!', "HAHA");
                         }
-                    }else {
-                        toastr.error('You need login!',  "HAHA");
                     }
                 }
                 hideLoading();
@@ -663,94 +708,223 @@ function addItem(idProduct, nameColor) {
             }
         });
     }else {
-        toastr.error('You need login!', "HAHA");
+        toastr.error('An error occurred . Please try again');
+        hideLoading();
     }
 }
 
-function removeItem(idProduct, nameColor) {
-    if(checkLogin) {
-        shopLoading();
-        let updateCastRequest = {
-            name: userDto.username,
-            listProductCast: [{
-                id: idProduct,
-                number: 1,
-                type: 2,
-                nameColor: nameColor
-            }]
-        };
-        $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.buyer,
-            type: "POST",
-            data: JSON.stringify(updateCastRequest),
-            contentType: "application/json",
-            success: function (response) {
-                if (response.code = "00") {
-                    cart = response.data;
-                    if (checkLogin) {
-                        if (cart.listProduct != null) {
-                            getTotalProductInCast(cart);
-                            rederDataCast(cart.listProduct);
-                            rederDataCastBoxUp(cart.listProduct);
-                            if (cart.listProduct[0] != null) {
-                                getPriceProductInCast(cart);
-                                toastr.success('Delete product success!', "HAHA")
-                            }
-                        }
-                    } else {
-                        toastr.error('You need login!', "HAHA");
-                    }
-                }
-                hideLoading();
-            },
-            error: function (error) {
-                toastr.error('An error occurred . Please try again', error.message);
-                hideLoading();
-            }
-        });
-    }else {
+function deleteItem(idProduct, nameColor) {
+    if(!checkLogin) {
         toastr.error('You need login!', "HAHA");
+        return;
     }
+    shopLoading();
+    let updateCastRequest = {
+        name: userDto.username,
+        listProductCast: [{
+            id: idProduct,
+            number: 1,
+            type: 3,
+            nameColor: nameColor
+        }]
+    };
+    $.ajax({
+        url: "http://localhost:8099/order/update/" + cart.buyer,
+        type: "POST",
+        data: JSON.stringify(updateCastRequest),
+        contentType: "application/json",
+        success: function (response) {
+            if (response.code = "00") {
+                cart = response.data;
+                if (cart.listProduct != null) {
+                    getTotalProductInCast(cart);
+                    rederDataCast(cart.listProduct);
+                    rederDataCastBoxUp(cart.listProduct);
+                    if (cart.listProduct[0] != null) {
+                        getPriceProductInCast(cart);
+                        toastr.success('Delete product success!', "HAHA");
+                }
+            }
+            hideLoading();
+            }
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
+}
+function addItem(idProduct, nameColor) {
+    if(!checkLogin) {
+        toastr.error('You need login!', "HAHA");
+        return;
+    }
+    shopLoading();
+    let updateCastRequest = {
+        name:  userDto.username,
+        listProductCast: [{
+            id: idProduct,
+            number: 1,
+            type: 1,
+            nameColor: nameColor
+        }]
+    };
+    $.ajax({
+        url: "http://localhost:8099/order/update/" + cart.buyer,
+        type: "POST",
+        data: JSON.stringify(updateCastRequest),
+        contentType: "application/json",
+        success: function (response) {
+            if (response.code = "00") {
+                cart = response.data;
+                if(checkLogin) {
+                    if(cart.listProduct != null) {
+                        getTotalProductInCast(cart);
+                        rederDataCast(cart.listProduct);
+                        rederDataCastBoxUp(cart.listProduct);
+                        if(cart.listProduct[0] != null) {
+                            getPriceProductInCast(cart);
+                            toastr.success('Add product success!', "HAHA");
+                        }
+                    }
+                }else {
+                    toastr.error('You need login!',  "HAHA");
+                }
+            }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
+}
+
+function removeItem(idProduct, nameColor) {
+    if(!checkLogin) {
+        toastr.error('You need login!', "HAHA");
+        return;
+    }
+    shopLoading();
+    let updateCastRequest = {
+        name: userDto.username,
+        listProductCast: [{
+            id: idProduct,
+            number: 1,
+            type: 2,
+            nameColor: nameColor
+        }]
+    };
+    $.ajax({
+        url: "http://localhost:8099/order/update/" + cart.buyer,
+        type: "POST",
+        data: JSON.stringify(updateCastRequest),
+        contentType: "application/json",
+        success: function (response) {
+            if (response.code = "00") {
+                cart = response.data;
+                if (checkLogin) {
+                    if (cart.listProduct != null) {
+                        getTotalProductInCast(cart);
+                        rederDataCast(cart.listProduct);
+                        rederDataCastBoxUp(cart.listProduct);
+                        if (cart.listProduct[0] != null) {
+                            getPriceProductInCast(cart);
+                            toastr.success('Delete product success!', "HAHA")
+                        }
+                    }
+                } else {
+                    toastr.error('You need login!', "HAHA");
+                }
+            }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
 }
 
 // comment
 function addComment(idProduct) {
-    if(checkLogin != "") {
-        shopLoading();
-        let contentComment = $("textarea#coment-content").val().trim();
-        if (contentComment != null && contentComment != "") {
-            let comment = {
-                image: userDto.image,
-                buyer: userDto.username,
-                comtent: contentComment
-            };
-            $.ajax({
-                url: "http://localhost:8099/v1/api/comment/" + idProduct,
-                type: "POST",
-                data: JSON.stringify(comment),
-                contentType: "application/json",
-                success: function (response) {
-                    if (response.code = "00") {
-                        if (response.data != null) {
-                            comment = response.data.comment;
-                            rederComentProduct(comment);
-                            $("#coment-content").val("");
-                            toastr.success('Comment product success!', "HAHA");
-                        }
-                    }
-                    hideLoading();
-                },
-                error: function (error) {
-                    toastr.error('An error occurred . Please try again', error.message);
-                    hideLoading();
-                }
-            });
-        }else {
-            toastr.error('You need import content!', "HAHA");
-        }
-    }else {
+    if(!checkLogin) {
         toastr.error('You need login!', "HAHA");
+        return;
     }
+    let contentComment = $("textarea#coment-content").val().trim();
+    if(typeof star == "undefined"
+        || star == null
+        || star == "") {
+        toastr.error('You need to rate the product!', "HAHA");
+        return;
+    }
+    if (contentComment == null || contentComment == ""){
+        toastr.error('You need import content!', "HAHA");
+        return;
+    }
+    shopLoading();
+    let comment = {
+        image: userDto.image,
+        buyer: userDto.username,
+        comtent: contentComment,
+        star: parseInt(star)
+    };
+    $.ajax({
+        url: "http://localhost:8099/v1/api/comment/" + idProduct,
+        type: "POST",
+        data: JSON.stringify(comment),
+        contentType: "application/json",
+        success: function (response) {
+            if (response.code = "00") {
+                if (response.data != null) {
+                    comment = response.data.comment;
+                    rederComentProduct(comment);
+                    $("#single-star-product").html(forStar(response.data.star));
+                    $("#coment-content").val("");
+                    toastr.success('Comment product success!', "HAHA");
+                }
+            }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
+}
+function likeCommet(idCommet) {
+    var idProduct = getParameterByName('id');
+    console.log(idProduct);
+    if(!checkLogin) {
+        toastr.error('You need login!', "HAHA");
+        return;
+    }
+    if(idProduct == null && idProduct == "") {
+        toastr.error('An error occurred . Please try again!', "HAHA");
+        return;
+    }
+    shopLoading();
+    $.ajax({
+        url: "http://localhost:8099/v1/api/like-comment?idProduct=" + idProduct
+            + "&idUser=" + userDto.username + "&idCommet=" + idCommet + "&type=" + 1,
+        type: "PUT",
+        success: function (response) {
+            if (response.code = "00") {
+                if (response.data != null) {
+                    comment = response.data.comment;
+                    rederComentProduct(comment);
+                    $("#coment-content").val("");
+                    toastr.success('Like product success!', "HAHA");
+                }
+            }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
 }
 
 // upload file image

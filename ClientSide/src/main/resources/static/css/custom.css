@@ -417,5 +417,68 @@ li.color-for-price a {
     margin-left: 10px;
     width: auto;
 }
+/* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type:none;
+    display: inline-block;
+    padding:0;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+    display:inline-block;
 
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+    font-size: 1em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+    color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+    color:#FF912C;
+}
 /*--================ End Product Area =================--*/
+
+/*--================ Start account info Area =================--*/
+section.cart_area  .main-categories.common-filter {
+    padding: 30px 12px;
+}
+
+section.cart_area  .main-categories.common-filter .head {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+section.cart_area  .main-categories.common-filter ul {
+    margin-left: 20px;
+}
+
+section.cart_area  .main-categories.common-filter ul li.filter-list {
+    padding: 5px 2px;
+}
+
+section.cart_area  .main-categories.common-filter ul li.filter-list a {
+    color: #a8a1b5;
+}
+
+section.cart_area div.account-content {
+    background-color: #fff;
+    box-shadow: 1px 1px 4px 0px #ceb8b8;
+    padding: 30px;
+}
+form.content-user-profile.from-content table tr td {
+    padding: 10px;
+}
+.content-password.login_form.from-content label {
+    margin-left: 17px;
+}
+/*--================ End account info Area =================--*/

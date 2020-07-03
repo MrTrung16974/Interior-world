@@ -14,6 +14,7 @@ public class UserDto {
     private String email;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "Asia/Saigon")
     private Date birthday;
+    private Integer sex;
     private String phone;
     private List<Product> LstFavourite;
 
@@ -35,6 +36,14 @@ public class UserDto {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
     public void setImage(String image) {

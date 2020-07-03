@@ -37,6 +37,9 @@ public class User {
     @Field("address")
     private String address;
 
+    @Field("sex")
+    private Integer sex;
+
     @Field("birthday")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "Asia/Saigon")
     private Date birthday;
@@ -78,8 +81,17 @@ public class User {
         this.password = password;
     }
 
+
     public Date getBirthday() {
         return birthday;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
     public void setBirthday(Date birthday) {

@@ -134,6 +134,32 @@ public class ProductApIController {
         return response;
     }
 
+    @GetMapping("/product/catetory/{type}")
+    public BaseResponse catetoryProduct(@PathVariable("type") Integer type){
+        BaseResponse response = new BaseResponse();
+        try {
+            List<Product> listNewProduct = orderServices.findByCatetory(type);
+            List<Product> listCatetoryProduct = new ArrayList<>();
+            if (!listNewProduct.isEmpty()) {
+                for (int i = 0; i < 12; i++) {
+                    listCatetoryProduct.add(listNewProduct.get(i));
+                }
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listCatetoryProduct);
+            } else {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            }
+        } catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("System erorr : " + e.getMessage());
+            response.setData(null);
+        }
+        return response;
+    }
+
     @GetMapping("/product/{id}")
     public BaseResponse getSingleProduct(@PathVariable("id") String id){
         BaseResponse response = new BaseResponse();
@@ -197,32 +223,31 @@ public class ProductApIController {
             return response;
         }
         Product oldProduct = optProduct.get();
-        Product newProduct = new Product();
         if(!productRequest.getName().isEmpty()) {
-            newProduct.setName(oldProduct.getName());
+            oldProduct.setName(productRequest.getName());
         }
         if(productRequest.getNumber() > 0) {
-            newProduct.setNumber(0);
+            oldProduct.setNumber(0);
         }
         if(productRequest.getImage() != null) {
-            newProduct.setImage(oldProduct.getImage());
+            oldProduct.setImage(productRequest.getImage());
         }
         if(productRequest.getType() != null) {
-            newProduct.setType(oldProduct.getType());
+            oldProduct.setType(productRequest.getType());
         }
         if(productRequest.getPrice() > 0) {
-            newProduct.setPrice(oldProduct.getPrice());
+            oldProduct.setPrice(productRequest.getPrice());
         }
         if(!productRequest.getPriceForColor().isEmpty()) {
-            newProduct.setPriceForColor(oldProduct.getPriceForColor());
+            oldProduct.setPriceForColor(productRequest.getPriceForColor());
         }
         if(productRequest.getPromotion() != null) {
-            newProduct.setPromotion(oldProduct.getPromotion());
+            oldProduct.setPromotion(productRequest.getPromotion());
         }
         if(productRequest.getStar() > 0) {
-            newProduct.setStar(oldProduct.getStar());
+            oldProduct.setStar(productRequest.getStar());
         }
-        Product exitProduct = productRepository.save(newProduct);
+        Product exitProduct = productRepository.save(oldProduct);
         response.setCode("00");
         response.setMessage("Edit Success");
         response.setData(exitProduct);

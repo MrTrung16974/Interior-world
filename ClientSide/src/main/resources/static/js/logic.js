@@ -7,6 +7,8 @@ var token = getCookie("token");
 var checkLogin = false;
 var keyword = "";
 var sort = 1;
+var star = "";
+let temp = -1;
 var currentPage = 0;
 var listAllProduct = [];
 var listTrendingProduct = [];
@@ -18,6 +20,7 @@ var userDto = {
     email: "",
     image: "",
     address: "",
+    sex: "",
     phone: "",
     birthday: "",
     lstFavourite: [],
@@ -35,6 +38,8 @@ var cart = {
 var comment = {
     image: "",
     buyer: "",
+    like: "",
+    star: "",
     content: "",
     createAt: ""
 };
@@ -50,7 +55,15 @@ const debounce = (func, delay) => {
             = setTimeout(() => func.apply(context, args), delay)
     }
 }
-
+// format data (DD/MM/YYYY)
+const ChangeDateFormatAgain = date => {
+    const [dd, mm, yy] = date.split(/\//g);
+    return `${yy}-${mm}-${dd}`;
+};
+const changeDateFormatTo = date => {
+    const [yy, mm, dd] = date.split(/-/g);
+    return `${dd}/${mm}/${yy}`;
+};
 // formart price
 var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -274,7 +287,6 @@ $("#close_search").on('click', function () {
 });
 
 // logic cart
-
 function getTotalProductInCast(cast) {
     let total = cart.listProduct.length;
     if (total <= 0) {
@@ -304,6 +316,7 @@ function getPriceProductInCast(cast) {
 
 }
 
+
 //logic user name
 //show vs hide pass user
 $(document).ready(function() {
@@ -319,7 +332,55 @@ $(document).ready(function() {
             $(this).parent().find(".hide-eye-pass").show();
         }
     });
+    // Rating Initialization
+    /* 1. Visualizing things on Hover - See next part for action on click */
+    $('#stars li').on('mouseover', function(){
+        var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+        // Now highlight all the stars that's not after the current hovered star
+        $(this).parent().children('li.star').each(function(e){
+            if (e < onStar) {
+                $(this).addClass('hover');
+            }
+            else {
+                $(this).removeClass('hover');
+            }
+        });
+
+    }).on('mouseout', function(){
+        $(this).parent().children('li.star').each(function(e){
+            $(this).removeClass('hover');
+        });
+    });
+
+    /* 2. Action to perform on click */
+    $('#stars li').on('click', function(){
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+        for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+        }
+
+        for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+        }
+
+        // JUST RESPONSE (Not needed)
+        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        var msg = "";
+        if (ratingValue > 1) {
+            msg = "Thanks! You rated this " + ratingValue + " stars.";
+        }
+        else {
+            msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+        }
+        toastr.error(msg);
+        star = ratingValue;
+    });
+    
+
 });
+
 //Load need login page to view
 function loadPage(url) {
     if(token != null && token != "") {
@@ -329,6 +390,17 @@ function loadPage(url) {
 
     }
 }
+// get parameter form url
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 
 // logic cookie
 function getCookie(cname) {

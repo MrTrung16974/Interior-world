@@ -12,6 +12,7 @@ import java.util.List;
 public interface ProductRepository extends MongoRepository<Product,String> {
     Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
     List<Product> findByStarOrderByCreateAtAsc(Integer star);
+    List<Product> findByType(Integer star);
 
 //    @Query(value = "SELECT * FROM PRODUCT WHERE LOWER(NAME) LIKE %?1%",
 //            countQuery = "SELECT count(*) FROM PRODUCT WHERE LOWER(NAME) = %?1%",

@@ -11,6 +11,7 @@ $(document).ready(function () {
             if(response.code == "00") {
                 rederDataSingleProduct(response.data);
                 singleProduct = response.data;
+                catetoryProduct(response.data.type.type);
                 comment = response.data.comment;
                 rederComentProduct(comment);
             }

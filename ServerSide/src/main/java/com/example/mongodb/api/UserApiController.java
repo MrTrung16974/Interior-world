@@ -2,6 +2,7 @@ package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
 import com.example.mongodb.dto.Comment;
+import com.example.mongodb.dto.ProductModel;
 import com.example.mongodb.dto.UserDto;
 import com.example.mongodb.model.Product;
 import com.example.mongodb.model.User;
@@ -70,6 +71,9 @@ public class UserApiController {
                 if(exitUser.getEmail() != null) {
                     userDto.setEmail(exitUser.getEmail());
                 }
+                if(exitUser.getSex() != null) {
+                    userDto.setSex(exitUser.getSex());
+                }
                 if(exitUser.getBirthday() != null) {
                     userDto.setBirthday(exitUser.getBirthday());
                 }
@@ -127,7 +131,7 @@ public class UserApiController {
         return response;
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @PostMapping(value = "/logout")
     public BaseResponse logout() {
         BaseResponse response = new BaseResponse();
         try {
@@ -142,7 +146,7 @@ public class UserApiController {
         return response;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public BaseResponse AddUser(@RequestParam("username") String username,
                           @RequestParam("password") String password,
                           @RequestParam("name") String name,
@@ -185,7 +189,82 @@ public class UserApiController {
         return response;
     }
 
-    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
+    @PutMapping("/user/{id}")
+    public BaseResponse updateUser(@PathVariable("id") String id,
+                                    @RequestBody UserDto userDto){
+        BaseResponse response = new BaseResponse();
+        Optional<User> optUser = userRepository.findByUsername(id);
+        try {
+            if(!optUser.isPresent()) {
+                response.setCode("99");
+                response.setMessage("Found not data");
+                response.setData(null);
+                return response;
+            }
+            User oldUser = optUser.get();
+            if(!userDto.getFullName().isEmpty()) {
+                oldUser.setFullName(userDto.getFullName());
+            }
+            if(!userDto.getEmail().isEmpty()) {
+                oldUser.setEmail(userDto.getEmail());
+            }
+            if(!userDto.getPhone().isEmpty()) {
+                oldUser.setPhone(userDto.getPhone());
+            }
+            if(!userDto.getImage().isEmpty()) {
+                oldUser.setImage(userDto.getImage());
+            }
+            if(userDto.getSex() != null) {
+                oldUser.setSex(userDto.getSex());
+            }
+            if(userDto.getAddress() != null) {
+                oldUser.setAddress(userDto.getAddress());
+            }
+            if(userDto.getBirthday() != null) {
+                oldUser.setBirthday(userDto.getBirthday());
+            }
+            User exitUser = userRepository.save(oldUser);
+            UserDto exitUserDto = new UserDto();
+            if(exitUser.getUsername() != null) {
+                exitUserDto.setUsername(exitUser.getUsername());
+            }
+            if(exitUser.getFullName() != null) {
+                exitUserDto.setFullName(exitUser.getFullName());
+            }
+            if(exitUser.getAddress() != null) {
+                exitUserDto.setAddress(exitUser.getAddress());
+            }
+            if(exitUser.getPhone() != null) {
+                exitUserDto.setPhone(exitUser.getPhone());
+            }
+            if(exitUser.getEmail() != null) {
+                exitUserDto.setEmail(exitUser.getEmail());
+            }
+            if(exitUser.getSex() != null) {
+                exitUserDto.setSex(exitUser.getSex());
+            }
+            if(exitUser.getBirthday() != null) {
+                userDto.setBirthday(exitUser.getBirthday());
+            }
+            if(exitUser.getImage() != null) {
+                exitUserDto.setImage(exitUser.getImage());
+            }
+            if(exitUser.getLstFavourite() != null) {
+                exitUserDto.setLstFavourite(exitUser.getLstFavourite());
+            }
+            response.setCode("00");
+            response.setMessage("Edit Success");
+            response.setData(exitUserDto);
+
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error");
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
+
+    @PostMapping(value = "/forgot-password")
     public BaseResponse resetPassUser(@RequestParam("username") String username,
                                 @RequestParam("password") String password) {
         BaseResponse response = new BaseResponse();
