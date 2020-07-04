@@ -1,7 +1,7 @@
 package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
-import com.example.mongodb.dto.ProductModel;
+import com.example.mongodb.dto.product.ProductModel;
 import com.example.mongodb.model.Product;
 import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -114,8 +113,9 @@ public class ProductApIController {
         try {
             List<Product> listNewProduct = productRepository.findByStarOrderByCreateAtAsc(5);
             List<Product> listTrendingProduct = new ArrayList<>();
+            Integer length = listNewProduct.size() <= 12 ? listNewProduct.size() : 12;
             if (!listNewProduct.isEmpty()) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < length; i++) {
                     listTrendingProduct.add(listNewProduct.get(i));
                 }
                 response.setCode("00");
@@ -140,8 +140,9 @@ public class ProductApIController {
         try {
             List<Product> listNewProduct = orderServices.findByCatetory(type);
             List<Product> listCatetoryProduct = new ArrayList<>();
+            Integer length = listNewProduct.size() <= 12 ? listNewProduct.size() : 12;
             if (!listNewProduct.isEmpty()) {
-                for (int i = 0; i < 12; i++) {
+                for (int i = 0; i < length; i++) {
                     listCatetoryProduct.add(listNewProduct.get(i));
                 }
                 response.setCode("00");

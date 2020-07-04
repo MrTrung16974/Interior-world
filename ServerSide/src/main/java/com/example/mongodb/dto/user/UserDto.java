@@ -1,4 +1,4 @@
-package com.example.mongodb.dto;
+package com.example.mongodb.dto.user;
 
 import com.example.mongodb.model.Product;
 import com.fasterxml.jackson.annotation.JsonFormat;

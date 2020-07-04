@@ -1,7 +1,8 @@
 package com.example.mongodb.api;
 
 import com.example.mongodb.dto.*;
-import com.example.mongodb.model.Order;
+import com.example.mongodb.dto.product.Comment;
+import com.example.mongodb.dto.product.Like;
 import com.example.mongodb.model.Product;
 import com.example.mongodb.repository.ProductRepository;
 import com.example.mongodb.repository.UserRepository;
@@ -81,29 +82,52 @@ public class CommentAPIController {
                 response.setMessage("Null data");
                 response.setData(null);
             }else {
-                Integer numberLike = 0;
                 Product exitproduct = optProduct.get();
+                boolean isHaveInList = false;
+                Like removeLike = null;
+                List<Like> lstLike = new ArrayList<>();;
                 List<Comment> lstComment = exitproduct.getComment();
                 Comment comment = new Comment();
                 Integer length = lstComment.size();
                 if(exitproduct.getComment() != null) {
                     for (int i = 0; i < length; i++) {
                         if(lstComment.get(i).getId().equals(idCommet)) {
-                            if(lstComment.get(i).getBuyer().equals(idUser) ) {
-                                numberLike += 1;
-                            }else {
-                                numberLike = lstComment.get(i).getLike() + 1;
+                            comment = lstComment.get(i);
+                            if (lstComment.get(i).getLike() != null) {
+                                lstLike = comment.getLike();
+                                for (Like like : lstLike) {
+                                    if(like.getBuyer().equals(idUser)) {
+                                        isHaveInList = true;
+                                        removeLike = like;
+                                    }
+                                }
                             }
-                            lstComment.get(i).setLike(numberLike);
                         }
                     }
                 }
+//              check lst Comment equal null add like (frist product)
+                if(lstLike.isEmpty()) {
+                    lstLike.add(new Like(idUser));
+                    response.setCode("200");
+                    response.setMessage("like product Success!");
+                }else {
+                    if(!isHaveInList) {
+//              add  favourite in user
+                        lstLike.add(new Like(idUser));
+                        response.setCode("200");
+                        response.setMessage("like product Success");
+                    } else {
+//              remove  favourite in user
+                        lstLike.remove(removeLike);
+                        response.setCode("00");
+                        response.setMessage("uplike product Success");
+                    }
+                }
                 if(comment != null) {
+                    comment.setLike(lstLike);
                     exitproduct.setComment(lstComment);
                 }
                 Product product = productRepository.save(exitproduct);
-                response.setCode("00");
-                response.setMessage("Success!");
                 response.setData(product);
             }
         }catch (Exception e) {

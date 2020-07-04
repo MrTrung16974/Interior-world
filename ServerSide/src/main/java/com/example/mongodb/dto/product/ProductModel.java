@@ -1,6 +1,4 @@
-package com.example.mongodb.dto;
-
-import org.springframework.security.core.parameters.P;
+package com.example.mongodb.dto.product;
 
 import java.util.List;
 

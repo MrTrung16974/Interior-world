@@ -91,6 +91,7 @@ function rederData(data) {
 
 function rederDataTrending(data) {
     let checkFavourite = false;
+    let count = 0;
     $("#lst-trending-product").empty();
     if(typeof data != "undefined"
         && data != null
@@ -107,15 +108,35 @@ function rederDataTrending(data) {
                     }
                 });
             }
-            if(checkFavourite) {
-                $('#lst-trending-product').append(
-                    `<div class="col-md-6 col-lg-4 col-xl-3">
+            if(count < 8){
+               if(checkFavourite) {
+                    $('#lst-trending-product').append(
+                        `<div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card text-center card-product">
+                                  <div class="card-product__img">
+                                    <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
+                                    <ul class="card-product__imgOverlay">
+                                      <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
+                                      <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                    </ul>
+                                  </div>
+                                  <div class="card-body">
+                                    <p>${findCategories(item.type.type != null? item.type.type : 10)}</p>
+                                    <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
+                                    <p class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
+                                  </div>
+                                </div>
+                            </div>`
+                    );
+               }else {
+                    $('#lst-trending-product').append(
+                        `<div class="col-md-6 col-lg-4 col-xl-3">
                             <div class="card text-center card-product">
                               <div class="card-product__img">
                                 <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                                 <ul class="card-product__imgOverlay">
                                   <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
-                                  <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                  <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
                                 </ul>
                               </div>
                               <div class="card-body">
@@ -124,119 +145,65 @@ function rederDataTrending(data) {
                                 <p class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
                               </div>
                             </div>
-                        </div>`
-                );
-            }else {
-                $('#lst-trending-product').append(
-                    `<div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="card text-center card-product">
-                          <div class="card-product__img">
-                            <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
-                            <ul class="card-product__imgOverlay">
-                              <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
-                              <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
-                            </ul>
-                          </div>
-                          <div class="card-body">
-                            <p>${findCategories(item.type.type != null? item.type.type : 10)}</p>
-                            <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
-                            <p class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
-                          </div>
-                        </div>
-                    </div>`);
+                        </div>`);
+               }
             }
             checkFavourite = false;
+            count++;
         });
     }else{
         $("#lst-trending-product").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
     }
 }
 function rederDataCatetory(data) {
-    $("#catetory-product-1").empty();
-    $("#catetory-product-2").empty();
-    $("#catetory-product-3").empty();
-    $("#catetory-product-4").empty();
-    // $("#catetory-product").empty();
-    // let count = 0;
+    $("#catetory-product").empty();
     if(typeof data != "undefined"
         && data != null
         && data.length != null
         && data.length > 0) {
-        // data.map(item => {
-        //     if(typeof userDto.lstFavourite != "undefined"
-        //         && userDto.lstFavourite != null
-        //         && userDto.lstFavourite.length != null
-        //         && userDto.lstFavourite.length > 0) {
-        //             if(count == 0) {
-        //                 $('#catetory-product').append(
-        //                     `<div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-        //                         <div id="catetory-product-1" class="single-search-product-wrapper">`
-        //                 );
-        //             }
-        //             $('#catetory-product').append(
-        //                 `<div class="single-search-product d-flex">
-        //                     <a href="#"><img src="${data[i].image[0]}" alt=""></a>
-        //                     <div class="desc">
-        //                         <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
-        //                     <div class="price">${formatter.format(data[i].price)}</div>
-        //                     </div>
-        //                 </div>`
-        //             );
-        //             if(count == 2) {
-        //                 $('#catetory-product').append(
-        //                     `</div>
-        //                 </div>`);
-        //                 count = 0;
-        //             }
-        //         count++;
-        //     }
-        //     });
-        for (let i = 0; i <= 2; i++) {
-            $('#catetory-product-1').append(
-                `<div class="single-search-product d-flex">
-                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
-                  <div class="desc">
-                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
-                      <div class="price">${formatter.format(data[i].price)}</div>
-                  </div>
-                </div>`
+        data.map(item => {
+            $('#catetory-product').append(
+                `<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-0 mb-4">
+                    <div id="catetory-product-1" class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
+                            <div class="desc">
+                                <a href="/product-details?id=${item.id}" class="title">${item.name ? item.name : ""}</a>
+                            <div class="price">${formatter.format(item.price ? item.price : "")}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    `
             );
-        }
-        for (let i = 3; i <= 5; i++) {
-            $('#catetory-product-2').append(
-                `<div class="single-search-product d-flex">
-                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
-                  <div class="desc">
-                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
-                      <div class="price">${formatter.format(data[i].price)}</div>
-                  </div>
-                </div>`
-            );
-        }
-        for (let i = 6; i <= 8; i++) {
-            $('#catetory-product-3').append(
-                `<div class="single-search-product d-flex">
-                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
-                  <div class="desc">
-                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
-                      <div class="price">${formatter.format(data[i].price)}</div>
-                  </div>
-                </div>`
-            );
-        }
-        for (let i = 9; i <= 11; i++) {
-            $('#catetory-product-4').append(
-                `<div class="single-search-product d-flex">
-                  <a href="#"><img src="${data[i].image[0]}" alt=""></a>
-                  <div class="desc">
-                      <a href="/product-details?id=${data[i].id}" class="title">${data[i].name}</a>
-                      <div class="price">${formatter.format(data[i].price)}</div>
-                  </div>
-                </div>`
-            );
-        }
+        });
     }else{
-        $("#catetory-product-1").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
+        $("#catetory-product").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
+    }
+}
+function rederDataTop(data) {
+    $("#top-product").empty();
+    if(typeof data != "undefined"
+        && data != null
+        && data.length != null
+        && data.length > 0) {
+        data.map(item => {
+            $('#top-product').append(
+                `<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-0 mb-4">
+                    <div id="catetory-product-1" class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="#"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
+                            <div class="desc">
+                                <a href="/product-details?id=${data[i].id}" class="title">${item.name ? item.name : ""}</a>
+                            <div class="price">${formatter.format(item.price ? item.price : "")}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            );
+        });
+    }else{
+        $("#top-product").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
     }
 }
 
@@ -295,7 +262,6 @@ function rederDataSingleProduct(item) {
                                     <a class="button primary-btn" onclick="addToCastDB('${item.id}')">Add to Cart</a>               
                                 </div>
                                 <div class="card_area d-flex align-items-center">
-                                    <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
                                     <a class="icon_btn" onclick="addFavouriteUser(${item.id})"><i style="color: red;" class="lnr lnr lnr-heart-pulse"></i></a>
                                 </div>
                             </div>
@@ -342,7 +308,6 @@ function rederDataSingleProduct(item) {
                                         <a class="button primary-btn" onclick="addToCastDB('${item.id}')">Add to Cart</a>               
                                     </div>
                                     <div class="card_area d-flex align-items-center">
-                                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
                                         <a class="icon_btn" onclick="addFavouriteUser(${item.id})"><i class="lnr lnr lnr-heart"></i></a>
                                     </div>
                                 </div>
@@ -574,19 +539,18 @@ function rederUserInfo() {
                                         <tr>
                                             <td>Sex</td>
                                             <td>
-                                                <input type="radio" value="0" name="sex" id="male">
+                                                <input type="radio" class="sex" value="0" name="sex" id="male">
                                                 <label for="male">Male</label>
-                                                <input type="radio" value="1" name="sex" id="female">
+                                                <input type="radio" class="sex" value="1" name="sex" id="female">
                                                 <label for="female">Female</label>
-                                                <input type="radio" value="2" name="sex" id="order">
-                                                <label for="order">Order</label>
+                                                <input type="radio" class="sex" value="2" name="sex" id="other">
+                                                <label for="other">Other</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Birth Day</td>
                                             <td class="form-group">
-<!--                                                <input type="date" name="birthday-user" id="birthday-user">-->
-                                                <input type="date" class="form-control" id="birthday-user" name="birthday-user" value="${ChangeDateFormatAgain(userDto.birthday ? userDto.birthday : 0)}" placeholder="dd-mm-yyyy" />
+                                                <input type="date" class="form-control" id="birthday-user" name="birthday-user" value="${ChangeDateFormatAgain(userDto.birthday != null ? userDto.birthday : "00/00/0000")}" placeholder="dd-mm-yyyy" />
                                             </td>
                                         </tr>
                                        
@@ -612,8 +576,9 @@ function rederUserInfo() {
                 </div>`
             );
         }
-        if(userDto.sex != null && userDto.sex != "") {
-            $('"input[value="+ userDto.sex +"]"').attr("checked", "checked");
+        if(userDto.sex != null) {
+            let valSex = userDto.sex;
+            $(`input[value=${valSex}].sex`).attr("checked", "checked");
         }
         $('#face-user').attr('src', userDto.image ? userDto.image : "img/user.png");
         $('#name-account').text(userDto.fullName ? userDto.fullName : "Anonymously");
@@ -644,21 +609,20 @@ function rederUsesAddress() {
                                                 <span>Address</span>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-xl-6 col-lg-6 col-md-6">
+                                        <div class="col-12 col-xl-8 col-lg-8 col-md-8">
                                             <div>
                                                 <span>${userDto.fullName} </span>
                                             </div>
                                             <div>
                                                 <span>${userDto.phone}</span>
                                             </div>
-                                            <div>
-                                                <span>${userDto.address}</span>
+                                            <div class="form-group">
+                                                <span id="input-user-address">${userDto.address}</span>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-xl-4 col-lg-4 col-md-4">
-                                            <div>
-                                                <span><a ><i class="fas fa-edit"></i></a></span>
-                                                <span><a ><i class="fas fa-trash-alt"></i></a></span>
+                                        <div class="col-12 col-xl-2 col-lg-2 col-md-2">
+                                            <div id="shop-edit-user">
+                                                <span><a ><i onclick="editAddressUser()" class="fas fa-edit"></i></a></span>
                                             </div>
                                         </div>
                                     </div>
@@ -678,7 +642,7 @@ function rederUsesAddress() {
                         <textarea rows="3" id="user-address" class="form-control" placeholder="Your Address!"></textarea>
                     </li> 
                     <li class="form-group">
-                    <button onclick="updateUserAddress()" class="btn btn-success">+  Add</button>
+                        <button onclick="updateUserAddress()" class="btn btn-success">+  Add</button>
                     </li>
                 </ul>`
             );
@@ -712,7 +676,7 @@ function rederChangePassword() {
                         <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
                         <i class="show-eye-pass eye-pass fas fa-eye"></i>
                     </div>
-                    <button class="btn btn-primary" type="button">Change</button>
+                    <button onclick="changePassword()" class="btn btn-primary" type="button">Change</button>
                 </form>
             </div>`
         );
@@ -735,10 +699,13 @@ function rederComentProduct(data) {
                         </div>
                         <div class="media-body">
                             <h4>${item.buyer ? item.buyer : "Anonymously"}</h4>
+                            <span class="ratings">
+                                   ${forStar(item.star)}                     
+                            </span>
                             <h5>${item.createAt ? item.createAt : "0"}</h5>
                             <a class="reply_btn" onclick="likeCommet('${item.id}', '${item.buyer}')">
                                 <i class="far fa-thumbs-up"></i>
-                                <span class="number-like">${item.like != null ? item.like : "0"}</span>
+                                <span class="number-like">${item.like != null ? item.like.length : "0"}</span>
                             </a>
                         </div>
                     </div>

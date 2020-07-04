@@ -1,4 +1,4 @@
-package com.example.mongodb.dto;
+package com.example.mongodb.dto.product;
 
 public class Color {
     private String id;

@@ -85,23 +85,26 @@ if(pathname == "/shop") {
     }
 });
 }
-if(pathname == "/home") {
-    $.ajax({
-        url: "http://localhost:8099/v1/api/product/trending",
-        type: "GET",
-        success: function (response) {
-            if (response.code == "00") {
-                listTrendingProduct = response.data;
+$.ajax({
+    url: "http://localhost:8099/v1/api/product/trending",
+    type: "GET",
+    success: function (response) {
+        if (response.code == "00") {
+            listTrendingProduct = response.data;
+            if(pathname == "/home") {
                 rederDataTrending(response.data);
-            } else {
-                toastr.error('Find not data!', response.message);
             }
-        },
-        error: function (result) {
-            toastr.error('An error occurred . Please try again', response.message);
+            if(pathname == "/shop") {
+                rederDataTop(response.data);
+            }
+        } else {
+            toastr.error('Find not data!', response.message);
         }
-    });
-}
+    },
+    error: function (result) {
+        toastr.error('An error occurred . Please try again', response.message);
+    }
+});
 function catetoryProduct(type) {
     $.ajax({
         url: "http://localhost:8099/v1/api/product/catetory/" + type,
@@ -149,7 +152,6 @@ function loginCickUser() {
             if (response.code == "00") {
                 if (response.data != null) {
                     setCookie("token", response.data);
-                    // user = response.data;
                     checkLogin = true;
                     toastr.success('Logic success!', response.message);
                 }
@@ -217,7 +219,7 @@ function registerClickUser() {
     $.ajax({
         type: "POST",
         url: "http://localhost:8099/v1/api/register?username="+username+"&password="+
-            password+"&name="+ name + "&email" + email,
+            password+"&name="+ name + "&email=" + email,
         processData: false,
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công
@@ -232,13 +234,13 @@ function registerClickUser() {
                     window.location.href = "http://localhost:8080/home";
                 }
                 hideLoading();
-            }
-            if(response.code == "300") {
-                toastr.success('Account exit success!', response.message);
-                hideLoading();
             }else {
                 toastr.error('Null Data', response.message);
                 console.log(response.message);
+                hideLoading();
+            }
+            if(response.code == "300") {
+                toastr.success('Account exit success!', response.message);
                 hideLoading();
             }
         },
@@ -283,42 +285,100 @@ function logoutUser() {
     });
 }
 
+function changePassword() {
+    let currentPassword = $("#current-password").val().trim();
+    let newPassword = $("#new-password").val().trim();
+    let confirmPassword = $("#confirm-password").val().trim();
+    if(username == null || username == "") {
+        toastr.error('You have not entered a username ');
+        return;
+    }
+    if(currentPassword == null || currentPassword == "") {
+        toastr.error('You have not entered a password ');
+        return;
+    }
+    if(newPassword == null || newPassword == "") {
+        toastr.error('You have not entered a password ');
+        return;
+    }
+    if(confirmPassword == null || confirmPassword == "") {
+        toastr.error('You have not entered a name ');
+        return;
+    }
+    if(password != confirmPassword) {
+        toastr.error('Password and confirm password must be the same ');
+        return;
+    }
+    if(!validatePassword(currentPassword) ||
+        !validatePassword(newPassword) ||
+        !validatePassword(confirmPassword)) {
+        toastr.error('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
+        return;
+    }
+    shopLoading();
+    $.ajax({
+        type: "PUT",
+        url: "http://localhost:8099/v1/api/change-password?username="+ userDto.username
+            +"&current-password="+ currentPassword + "&new-password=" + newPassword +
+            "&confirm-password=" + confirmPassword,
+        processData: false,
+        success: function (response) {
+            // server trả về HTTP status code là 200 => Thành công
+            //hàm đc thực thi khi request thành công không có lỗi
+            if(response.code == "00") {
+                if(response.data != null) {
+                    setCookie("token", response.data);
+                    checkLogin = true;
+                    toastr.success('Change Password success!', response.message);
+                    rederChangePassword();
+                }
+            }else {
+                toastr.error('Null Data', response.message);
+                console.log(response.message);
+            }
+            hideLoading();
+        },
+        error: function () {
+            toastr.error('An error occurred . Please try again', response.message);
+            hideLoading();
+            console.log(response.message);
+        }
+    });
+}
+
 function updateUser() {
-    let username =  $("#user-name").text();
     let image = $("#img-youface").attr('src');
     let fullName = $("#full-name-user").val();
     let email = $("#email-user").val();
     let phone = $("#phone-user").val();
     let sex = $('input[name="sex"]:checked').val();
     let birthday = $("#birthday-user").val();
-    console.log(changeDateFormatTo(birthday));
     if(image == null || image == "") {
-        toastr.error('You have not entered a image ');
+        toastr.error('You have not entered a image');
         return;
     }
     if(fullName == null || fullName == "") {
-        toastr.error('You have not entered a fullName ');
+        toastr.error('You have not entered a fullName');
         return;
     }
     if(phone == null || phone == "") {
-        toastr.error('You have not entered a phone ');
+        toastr.error('You have not entered a phone');
         return;
     }
     if(sex == null || sex == "") {
-        toastr.error('You have not entered a sex ');
+        toastr.error('You have not entered a sex');
         return;
     }
     if(birthday == null || birthday == "") {
-        toastr.error('You have not entered a birthday ');
+        toastr.error('You have not entered a birthday');
         return;
     }
     if(!validateEmail(email)) {
-        toastr.error('You have not entered a email ');
+        toastr.error('You have not entered a email');
         return;
     }
     shopLoading();
     let UserDto = {
-        username:username,
         image: image,
         fullName: fullName,
         email: email,
@@ -337,8 +397,9 @@ function updateUser() {
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
                 userDto = response.data;
-                rederUserInfo();
+                console.log(userDto);
                 toastr.success('Edit user success!', response.message);
+                rederUserInfo();
                 hideLoading();
             }else {
                 hideLoading();
@@ -360,7 +421,7 @@ function updateUserAddress() {
     }
     shopLoading();
     let UserDto = {
-        address: address,
+        address: address
     };
     $.ajax({
         type: "PUT",
@@ -373,7 +434,7 @@ function updateUserAddress() {
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
                 userDto = response.data;
-                rederUserInfo();
+                rederUsesAddress();
                 toastr.success('Edit user success!', response.message);
                 hideLoading();
             }else {
@@ -904,19 +965,27 @@ function likeCommet(idCommet) {
         toastr.error('An error occurred . Please try again!', "HAHA");
         return;
     }
+    if(idCommet == null && idCommet == "") {
+        toastr.error('An error occurred . Please try again!', "HAHA");
+        return;
+    }
     shopLoading();
     $.ajax({
         url: "http://localhost:8099/v1/api/like-comment?idProduct=" + idProduct
-            + "&idUser=" + userDto.username + "&idCommet=" + idCommet + "&type=" + 1,
+            + "&idUser=" + userDto.username + "&idCommet=" + idCommet,
         type: "PUT",
         success: function (response) {
-            if (response.code = "00") {
-                if (response.data != null) {
-                    comment = response.data.comment;
-                    rederComentProduct(comment);
-                    $("#coment-content").val("");
-                    toastr.success('Like product success!', "HAHA");
+            if (response.data != null) {
+                if (response.code == "200") {
+                    toastr.success('Like product success!!', "HAHA");
                 }
+                if (response.code == "00") {
+                    toastr.success('Uplike product success!!', "HAHA");
+                }
+                comment = response.data.comment;
+                rederComentProduct(comment);
+            }else {
+                toastr.success('Null data', "HAHA")
             }
             hideLoading();
         },

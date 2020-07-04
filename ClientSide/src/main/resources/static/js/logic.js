@@ -38,7 +38,7 @@ var cart = {
 var comment = {
     image: "",
     buyer: "",
-    like: "",
+    like: [],
     star: "",
     content: "",
     createAt: ""
@@ -318,6 +318,13 @@ function getPriceProductInCast(cast) {
 
 
 //logic user name
+function editAddressUser () {
+    $("span#input-user-address").html(
+        `<textarea rows="3" id="user-address" class="form-control different-control w-100" placeholder="Your Address!"></textarea>
+                <button onclick="updateUserAddress()" class="btn btn-success mt-3">Edit Address</button>`
+    );
+    $("div#shop-edit-user").attr("style", "display:none;");
+}
 //show vs hide pass user
 $(document).ready(function() {
     $(".hide-eye-pass, .show-eye-pass").on('click', function() {

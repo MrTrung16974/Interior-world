@@ -1,4 +1,4 @@
-package com.example.mongodb.dto;
+package com.example.mongodb.dto.product;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 

@@ -99,6 +99,9 @@ i.eye-pass {
     border-bottom: 1px solid #dec9c9;
     padding-bottom: 20px;
 }
+i.fas.fa-star {
+    color: #efe30f;
+}
 /* Bootstrap */
 
 
@@ -180,9 +183,9 @@ header .main_menu ul.nav-shop .nav-item .dropdown-menu .btn {
     z-index: 1;
 }
 
-header .main_menu .media-body .ratings>i {
+header .main_menu .media-body .ratings>i,
+.comments-list .media-body .ratings>i{
     font-size: 13px !important;
-    color: red;
 }
 
 header .main_menu #search_input_box .form-control {
@@ -480,5 +483,10 @@ form.content-user-profile.from-content table tr td {
 }
 .content-password.login_form.from-content label {
     margin-left: 17px;
+}
+
+.content-addres div.row span {
+    padding: 10px 12px;
+    display: flow-root;
 }
 /*--================ End account info Area =================--*/

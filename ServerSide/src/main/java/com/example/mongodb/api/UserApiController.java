@@ -1,9 +1,7 @@
 package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
-import com.example.mongodb.dto.Comment;
-import com.example.mongodb.dto.ProductModel;
-import com.example.mongodb.dto.UserDto;
+import com.example.mongodb.dto.user.UserDto;
 import com.example.mongodb.model.Product;
 import com.example.mongodb.model.User;
 import com.example.mongodb.repository.OrderRepository;
@@ -189,6 +187,45 @@ public class UserApiController {
         return response;
     }
 
+    @PutMapping(value = "/change-password")
+    public BaseResponse changePassUser(@RequestParam("username") String username,
+                                       @RequestParam("current-password") String currentPassword,
+                                       @RequestParam("new-password") String newPassword,
+                                       @RequestParam("confirm-password") String confirmPassword) {
+        BaseResponse response = new BaseResponse();
+        String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
+        try {
+            if (!username.isEmpty() && !currentPassword.isEmpty()
+                    && !newPassword.isEmpty() && !confirmPassword.isEmpty()) {
+                Optional<User> optUser = userRepository.findByUsername(username);
+                if (!optUser.isPresent()) {
+                    throw new Exception("username or password invalid");
+                }
+                User user = optUser.get();
+                if(!currentPassword.matches(pattern) &&
+                        newPassword.matches(pattern) && confirmPassword.matches(pattern)) {
+                    throw new Exception("Password invalid");
+                }
+                if(!passwordEncoder.matches(currentPassword, user.getPassword())) {
+                    throw new Exception("Password invalid");
+                }
+                if(!newPassword.equals(confirmPassword)) {
+                    throw new Exception("Password invalid");
+                }
+                user.setPassword(passwordEncoder.encode(newPassword));
+                User exitUser = userRepository.save(user);
+                response.setCode("00");
+                response.setMessage("Success");
+                response.setData(tokenAuthenticationService.generateJWT(exitUser.getUsername()));
+            }
+        }catch (Exception e) {
+            response.setCode("99");
+            response.setMessage("Error");
+            response.setData(e.getMessage());
+        }
+        return response;
+    }
+
     @PutMapping("/user/{id}")
     public BaseResponse updateUser(@PathVariable("id") String id,
                                     @RequestBody UserDto userDto){
@@ -202,16 +239,16 @@ public class UserApiController {
                 return response;
             }
             User oldUser = optUser.get();
-            if(!userDto.getFullName().isEmpty()) {
+            if(userDto.getFullName() != null) {
                 oldUser.setFullName(userDto.getFullName());
             }
-            if(!userDto.getEmail().isEmpty()) {
+            if(userDto.getEmail()!= null) {
                 oldUser.setEmail(userDto.getEmail());
             }
-            if(!userDto.getPhone().isEmpty()) {
+            if(userDto.getPhone() != null) {
                 oldUser.setPhone(userDto.getPhone());
             }
-            if(!userDto.getImage().isEmpty()) {
+            if(userDto.getImage() != null) {
                 oldUser.setImage(userDto.getImage());
             }
             if(userDto.getSex() != null) {
@@ -244,7 +281,7 @@ public class UserApiController {
                 exitUserDto.setSex(exitUser.getSex());
             }
             if(exitUser.getBirthday() != null) {
-                userDto.setBirthday(exitUser.getBirthday());
+                exitUserDto.setBirthday(exitUser.getBirthday());
             }
             if(exitUser.getImage() != null) {
                 exitUserDto.setImage(exitUser.getImage());

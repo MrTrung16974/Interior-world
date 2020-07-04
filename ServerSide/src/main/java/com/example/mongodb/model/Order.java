@@ -1,7 +1,7 @@
 package com.example.mongodb.model;
 
-import com.example.mongodb.dto.ProductModel;
-import com.example.mongodb.dto.Promotion;
+import com.example.mongodb.dto.product.ProductModel;
+import com.example.mongodb.dto.product.Promotion;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

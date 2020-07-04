@@ -1,10 +1,5 @@
 package com.example.mongodb;
 
-import com.example.mongodb.dto.Price;
-import com.example.mongodb.dto.Promotion;
-import com.example.mongodb.dto.Type;
-import com.example.mongodb.model.Banner;
-import com.example.mongodb.model.Product;
 import com.example.mongodb.repository.*;
 import com.example.mongodb.services.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,29 +51,29 @@ public class MongodbApplication implements CommandLineRunner {
 
 
 //        List<String> lstImage = new ArrayList<>();
-//        List<Price> lstPrice = new ArrayList<>();
-//        lstImage.add("http://localhost:8099/link/1590817275-1.jpg");
-//        lstImage.add("http://localhost:8099/link/1590817280-3.jpg");
-//        lstImage.add("http://localhost:8099/link/1591186178-7.jpg");
-//        lstImage.add("http://localhost:8099/link/1591186190-8.jpg");
-//        lstPrice.add(new Price(1, "Black", 200.0));
-//        lstPrice.add(new Price(2, "White", 300.0));
-//        lstPrice.add(new Price(3, "Yellow", 400.0));
-//        lstPrice.add(new Price(4,"Blue", 500.0));
-//        for (int i =80; i <90; i++) {
-//            Product p = new Product();
-//            p.setName("Name " + i);
-//            p.setPriceForColor(lstPrice);
-//            p.setPrice(i*100.0);
-//            p.setType(new Type(2,0, 1121, 2000, 45, 50, "Yes" ));
-//            p.setPromotion(new Promotion("1/4", 20));
-//            p.setStar(5);
-//            p.setImage(lstImage);
-//            p.setId(""+i);
-//            p.setDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?");
-//            p.setLongDescription("Error ornare autem maiores pariatur donec! Consectetuer pharetra, distinctio ridiculus mollitia! Labore excepteur blanditiis fugit, diam porta placeat? Fermentum numquam suscipit, aliquet orci tempor. Fringilla, voluptas, sint tincidunt, vestibulum ac tempus? Maecenas ad lectus quam mauris consequuntur hac magna magnis impedit libero, ullamco mi soluta, doloribus purus nonummy inceptos officiis suspendisse ac rhoncus mollit, felis ducimus sodales do est aliquid! Lacus alias rerum potenti qui minus primis rutrum, dolorem sollicitudin officiis voluptates, ante reprehenderit fames excepteur reprehenderit. Mollit, quos nemo? Fringilla fuga porttitor nostrud? Ex enim accusamus hendrerit fuga atque! Perspiciatis cubilia. Venenatis nunc mollit purus pellentesque sodales. Earum pellentesque occaecat, error, ipsam sapien penatibus etiam dictumst veritatis, metus praesentium alias porttitor in reiciendis felis voluptatem maecenas voluptates irure aliqua, fugit? Fugiat dolorem felis varius! Lacinia sociosqu labore, facilis tempore quidem animi, nostrum laborum ridiculus vehicula quos penatibus. Aliquid nam? Mauris, egestas, senectus, esse. Voluptatum dui rerum facilisis, ullam ratione anim voluptates illum ullamco integer hac cupiditate, cupiditate pulvinar explicabo interdum. Aliquam. Quaerat augue. Venenatis, voluptates cupidatat ex! Voluptate diam perferendis illum aenean quisque iste, accusantium. Nesciunt ut eum lorem, venenatis, beatae aliquip? Animi, diam, soluta! Lorem duis veniam netus tempor morbi, deserunt illum potenti? Sociis, unde fusce perferendis asperiores? Numquam dictum autem veniam. Posuere aliqua quas donec ipsam diam? Magna pede cupiditate varius consectetuer fames risus dignissimos facere dolorem, dictumst? Et accumsan wisi, expedita! Dignissim porro nec, faucibus vehicula deleniti minim sodales unde, curabitur tenetur excepturi, congue adipisicing metus? Aliquid laudantium tristique facere, nostra ipsum iaculis, hendrerit, primis explicabo minim ridiculus eveniet, quis, ridiculus ut quisquam curabitur aliquip viverra. Nulla posuere fames quisquam! Incididunt inventore tellus facilisis aptent tristique, iste aliquam, dignissim numquam euismod. Amet, laoreet quas autem, gravida adipisci class habitasse doloribus et, varius diam fames, lacinia, massa voluptatum dolores porttitor adipisicing, platea excepteur nunc anim inceptos sem. Provident, sapien distinctio quas phasellus nobis nisi per nullam class lacinia minim illo mi vivamus. Vehicula nostrud nulla ducimus asperiores. Nisl euismod quos justo. Quas ullamcorper nonummy eros elementum condimentum? Iaculis rem! Anim, orci, cupiditate deserunt, mi maxime error curae laoreet molestiae blandit, id. Unde corporis molestie voluptas blandit ultrices.");
-//            p.setCreateAt(new Date());
-//            productRepository.save(p);
+//            List<Price> lstPrice = new ArrayList<>();
+//            lstImage.add("http://localhost:8099/link/1590817275-1.jpg");
+//            lstImage.add("http://localhost:8099/link/1590817280-3.jpg");
+//            lstImage.add("http://localhost:8099/link/1591186178-7.jpg");
+//            lstImage.add("http://localhost:8099/link/1591186190-8.jpg");
+//            lstPrice.add(new Price(1, "Black", 200.0));
+//            lstPrice.add(new Price(2, "White", 300.0));
+//            lstPrice.add(new Price(3, "Yellow", 400.0));
+//            lstPrice.add(new Price(4,"Blue", 500.0));
+//            for (int i =90; i <100; i++) {
+//                Product p = new Product();
+//                p.setName("Name " + i);
+//                p.setPriceForColor(lstPrice);
+//                p.setPrice(i*100.0);
+//                p.setType(new Type(4,2, 1121, 2000, 45, 50, "Yes" ));
+//                p.setPromotion(new Promotion("1/4", 20));
+//                p.setStar(5);
+//                p.setImage(lstImage);
+//                p.setId(""+i);
+//                p.setDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?");
+//                p.setLongDescription("Error ornare autem maiores pariatur donec! Consectetuer pharetra, distinctio ridiculus mollitia! Labore excepteur blanditiis fugit, diam porta placeat? Fermentum numquam suscipit, aliquet orci tempor. Fringilla, voluptas, sint tincidunt, vestibulum ac tempus? Maecenas ad lectus quam mauris consequuntur hac magna magnis impedit libero, ullamco mi soluta, doloribus purus nonummy inceptos officiis suspendisse ac rhoncus mollit, felis ducimus sodales do est aliquid! Lacus alias rerum potenti qui minus primis rutrum, dolorem sollicitudin officiis voluptates, ante reprehenderit fames excepteur reprehenderit. Mollit, quos nemo? Fringilla fuga porttitor nostrud? Ex enim accusamus hendrerit fuga atque! Perspiciatis cubilia. Venenatis nunc mollit purus pellentesque sodales. Earum pellentesque occaecat, error, ipsam sapien penatibus etiam dictumst veritatis, metus praesentium alias porttitor in reiciendis felis voluptatem maecenas voluptates irure aliqua, fugit? Fugiat dolorem felis varius! Lacinia sociosqu labore, facilis tempore quidem animi, nostrum laborum ridiculus vehicula quos penatibus. Aliquid nam? Mauris, egestas, senectus, esse. Voluptatum dui rerum facilisis, ullam ratione anim voluptates illum ullamco integer hac cupiditate, cupiditate pulvinar explicabo interdum. Aliquam. Quaerat augue. Venenatis, voluptates cupidatat ex! Voluptate diam perferendis illum aenean quisque iste, accusantium. Nesciunt ut eum lorem, venenatis, beatae aliquip? Animi, diam, soluta! Lorem duis veniam netus tempor morbi, deserunt illum potenti? Sociis, unde fusce perferendis asperiores? Numquam dictum autem veniam. Posuere aliqua quas donec ipsam diam? Magna pede cupiditate varius consectetuer fames risus dignissimos facere dolorem, dictumst? Et accumsan wisi, expedita! Dignissim porro nec, faucibus vehicula deleniti minim sodales unde, curabitur tenetur excepturi, congue adipisicing metus? Aliquid laudantium tristique facere, nostra ipsum iaculis, hendrerit, primis explicabo minim ridiculus eveniet, quis, ridiculus ut quisquam curabitur aliquip viverra. Nulla posuere fames quisquam! Incididunt inventore tellus facilisis aptent tristique, iste aliquam, dignissim numquam euismod. Amet, laoreet quas autem, gravida adipisci class habitasse doloribus et, varius diam fames, lacinia, massa voluptatum dolores porttitor adipisicing, platea excepteur nunc anim inceptos sem. Provident, sapien distinctio quas phasellus nobis nisi per nullam class lacinia minim illo mi vivamus. Vehicula nostrud nulla ducimus asperiores. Nisl euismod quos justo. Quas ullamcorper nonummy eros elementum condimentum? Iaculis rem! Anim, orci, cupiditate deserunt, mi maxime error curae laoreet molestiae blandit, id. Unde corporis molestie voluptas blandit ultrices.");
+//                p.setCreateAt(new Date());
+//                productRepository.save(p);
 //       }
 //        System.out.println("End");
 

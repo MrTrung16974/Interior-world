@@ -1,16 +1,17 @@
-package com.example.mongodb.dto;
+package com.example.mongodb.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
+import java.util.List;
 
 public class Comment {
     @Id
     private String id;
     private String image;
     private String buyer;
-    private Integer like;
+    private List<Like> like;
     private Integer star;
     private String comtent;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
@@ -36,11 +37,11 @@ public class Comment {
         return image;
     }
 
-    public Integer getLike() {
+    public List<Like> getLike() {
         return like;
     }
 
-    public void setLike(Integer like) {
+    public void setLike(List<Like> like) {
         this.like = like;
     }
 

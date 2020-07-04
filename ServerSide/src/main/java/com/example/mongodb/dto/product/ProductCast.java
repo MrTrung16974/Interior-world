@@ -1,4 +1,4 @@
-package com.example.mongodb.dto;
+package com.example.mongodb.dto.product;
 
 public class ProductCast {
     private String id;

@@ -55,12 +55,11 @@ public class OrderServices {
 
     public List<Product> findByCatetory(Integer type){
         Query query = new Query();
-        //check name tồn tài mới thêm điều kiện search
-        if(type > 0 && type != null) {
-            query.addCriteria(Criteria.where("star").is(5));
-        }
-        if(type > 0 && type != null) {
-            query.addCriteria(Criteria.where("type.type").is(type - 1));
+
+        query.addCriteria(Criteria.where("star").is(5));
+
+        if(type >= 0 && type != null) {
+            query.addCriteria(Criteria.where("type.type").is(type));
         }
         List<Product> lstProduct = mongoTemplate.find(query, Product.class);
         return lstProduct;

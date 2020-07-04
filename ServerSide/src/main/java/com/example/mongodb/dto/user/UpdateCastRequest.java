@@ -1,4 +1,6 @@
-package com.example.mongodb.dto;
+package com.example.mongodb.dto.user;
+
+import com.example.mongodb.dto.product.ProductCast;
 
 import java.util.List;
 
