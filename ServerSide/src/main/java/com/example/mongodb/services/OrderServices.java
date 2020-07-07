@@ -57,7 +57,7 @@ public class OrderServices {
         Query query = new Query();
 
         query.addCriteria(Criteria.where("star").is(5));
-
+        query.limit(12);
         if(type >= 0 && type != null) {
             query.addCriteria(Criteria.where("type.type").is(type));
         }

@@ -206,6 +206,25 @@ function rederDataTop(data) {
         $("#top-product").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
     }
 }
+function rederDataLatest(data) {
+    let content = "";
+    if(typeof data != "undefined"
+        && data != null
+        && data.length != null
+        && data.length > 0) {
+        data.map(item => {
+            content += (`<div class="hero-carousel__slide">
+                <img width="330" height="287" src="${item.image[0] ? item.image[0] : ''}" alt="" class="img-fluid">
+                <a href="#" class="hero-carousel__slideOverlay">
+                    <h3>${item.name ? item.name : ""}</h3>
+                    <p>${findCategories(item.type.type)}</p>
+                </a>
+            </div>`);
+
+        });
+        $("#hero-carousel").html(content);
+    }
+}
 
 function rederDataSingleProduct(item) {
     let checkFavourite = false;
@@ -380,8 +399,7 @@ function rederDataCast(data) {
                       </td>
                       <td>
                           <div class="product_count">
-                              <input type="text" disabled="disabled" name="qty" id="sst" maxlength="12" value="${item.number ? item.number : 0}" title="Quantity:"
-                                  class="input-text qty">
+                              <input type="text" disabled="disabled" name="qty" maxlength="12" value="${item.number ? item.number : 0}" title="Quantity:" class="input-text qty">
                               <button 
                                   class="increase items-count" onclick="addItem('${item.id}', '${item.nameColor}')" type="button"><i class="lnr lnr-chevron-up"></i></button>
                               <button 
@@ -403,7 +421,6 @@ function rederDataCast(data) {
     $('#lst-product-in-cast').append(
         `<tr class="bottom_button">
               <td>
-                  <a class="button" href="#">Update Cart</a>
               </td>
               <td>
     
@@ -454,24 +471,23 @@ function rederDataCast(data) {
               <td>
                   <div class="shipping_box">
                       <ul class="list">
-                          <li><a href="#">Flat Rate: $5.00</a></li>
-                          <li><a href="#">Free Shipping</a></li>
-                          <li><a href="#">Flat Rate: $10.00</a></li>
-                          <li class="active"><a href="#">Local Delivery: $2.00</a></li>
+                          <li><a>
+                                <label for="5.00">Flat Rate: $5.00</label>
+                                <input type="radio" name="shipping-rete" value="5" id="5.00">
+                          </a></li>
+                          <li><a>
+                            <label for="free">Free Shipping</label>
+                            <input type="radio" name="shipping-rete" value="0" id="free">
+                          </a></li>
+                          <li><a>
+                              <label for="10.00">Flat Rate: $10.00</label>
+                              <input type="radio" name="shipping-rete" value="10" id="10.00">
+                           </a></li>
+                          <li><a>
+                                <label for="2.00">Local Delivery: $2.00</label>
+                                <input type="radio" name="shipping-rete" value="2" id="2.00">
+                          </a></li>
                       </ul>
-                      <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-                      <select class="shipping_select">
-                          <option value="1">Bangladesh</option>
-                          <option value="2">India</option>
-                          <option value="4">Pakistan</option>
-                      </select>
-                      <select class="shipping_select">
-                          <option value="1">Select a State</option>
-                          <option value="2">Select a State</option>
-                          <option value="4">Select a State</option>
-                      </select>
-                      <input type="text" placeholder="Postcode/Zipcode">
-                      <a class="gray_btn" href="#">Update Details</a>
                   </div>
               </td>
           </tr>
@@ -491,11 +507,32 @@ function rederDataCast(data) {
                   <td>
                       <div class="checkout_btn_inner d-flex align-items-center">
                           <a class="gray_btn" href="/shop">Continue Shopping</a>
-                          <a class="primary-btn ml-2" href="/checkout">Proceed to checkout</a>
+                          <a class="primary-btn ml-2" onclick="checkout()">Proceed to checkout</a>
                       </div>
                   </td>
               </tr>`
     );
+}
+function rederDataCheckout() {
+    $("#lst-product-in-cast").empty();
+    if(typeof order.listProduct != "undefined"
+        && order.listProduct != null
+        && order.listProduct.length != null
+        && order.listProduct.length > 0) {
+        $('#list-product-checkout').append(
+            `<li><a href="#"><h4>Product <span>Total</span></h4></a></li>`
+        );
+        order.listProduct.map(item => {
+            $('#list-product-checkout').append(
+                `<li><a href="#">${item.name}<span class="middle">x ${item.number}</span> <span class="last">${formatter.format(item.price)}</span></a></li>`
+            );
+        });
+        $("#total-price-product").text(formatter.format(order.totalPrice));
+        $("#flat-rate-shipping").text(formatter.format(order.flatRateShipping));
+        $("#total-product-order").text(order.totalProductOrder);
+    }else {
+        $('#lst-product-in-cast').html("<p style='color: #1abc9c; padding: 20px;'>Checkout does not exist!</p>");
+    }
 }
 
 //reder user

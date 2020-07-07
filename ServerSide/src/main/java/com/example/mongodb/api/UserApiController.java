@@ -103,7 +103,7 @@ public class UserApiController {
         BaseResponse response = new BaseResponse();
         try {
             if (!username.isEmpty() && !password.isEmpty()) {
-                Optional<User> optUser = userRepository.findByUsername(username);
+                Optional<User> optUser = userRepository.findByUsername(username.toLowerCase());
                 if (!optUser.isPresent()) {
                     throw new Exception("username or password invalid");
                 }
@@ -163,7 +163,7 @@ public class UserApiController {
                     response.setData(null);
                 }else {
                     User user = new User();
-                    user.setUsername(username);
+                    user.setUsername(username.toLowerCase());
                     user.setPassword(passwordEncoder.encode(password));
                     user.setFullName(name);
                     user.setEmail(email);

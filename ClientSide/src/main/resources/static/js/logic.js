@@ -34,6 +34,18 @@ var cart = {
     status: ""
 };
 
+var order = {
+    id: "",
+    image: "",
+    buyer: "",
+    shippingRates: "",
+    totalPrice: "",
+    flatRateShipping: "",
+    totalProductOrder: "",
+    listProduct: [],
+    status: ""
+};
+
 // single commnet
 var comment = {
     image: "",
@@ -272,19 +284,19 @@ function hideLoading() {
 // End reder chung
 
 // search all page
-let inputSearch = $("div#search_input_box");
-$("#search-all-page").on('click', function () {
-    let isopened =
-        $('#search_input_box').css("display");
-    if(isopened != "block" ) {
-        inputSearch.show(500);
-    }else {
-        inputSearch.hide(500);
-    }
-});
-$("#close_search").on('click', function () {
-    inputSearch.hide(500);
-});
+// let inputSearch = $("div#search_input_box");
+// $("#search-all-page").on('click', function () {
+//     let isopened =
+//         $('#search_input_box').css("display");
+//     if(isopened != "block" ) {
+//         inputSearch.show(500);
+//     }else {
+//         inputSearch.hide(500);
+//     }
+// });
+// $("#close_search").on('click', function () {
+//     inputSearch.hide(500);
+// });
 
 // logic cart
 function getTotalProductInCast(cast) {
@@ -313,7 +325,6 @@ function getPriceProductInCast(cast) {
         $("#price-number").text(formatter.format(price_number));
         $("#price-number-in-cart").text(formatter.format(price_number));
     }
-
 }
 
 

@@ -9,28 +9,6 @@ $(function() {
   //------- Active Nice Select --------//
   $('select').niceSelect();
 
-  //------- hero carousel -------//
-  $(".hero-carousel").owlCarousel({
-    items:3,
-    margin: 10,
-    autoplay:false,
-    autoplayTimeout: 5000,
-    loop:true,
-    nav:false,
-    dots:false,
-    responsive:{
-      0:{
-        items:1
-      },
-      600:{
-        items: 2
-      },
-      810:{
-        items:3
-      }
-    }
-  });
-
   //------- Best Seller Carousel -------//
   if($('.owl-carousel').length > 0){
     $('#bestSellerCarousel').owlCarousel({
@@ -55,16 +33,6 @@ $(function() {
       }
     })
   }
-
-  //------- single product area carousel -------//
-  $(".s_Product_carouselowl-stage-outer").owlCarousel({
-    items:1,
-    autoplay:false,
-    autoplayTimeout: 5000,
-    loop:true,
-    nav:false,
-    dots:false
-  });
 
   //------- mailchimp --------//  
 	function mailChimp() {

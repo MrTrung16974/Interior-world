@@ -54,9 +54,9 @@ public class ControllerMapping {
     public String notPo(){
         return "403";
     }
-    @RequestMapping("/traking-order")
+    @RequestMapping("/tracking-order")
     public String trakingOrder(){
-        return "traking-order";
+        return "tracking-order";
     }
 
 }

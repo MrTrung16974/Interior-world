@@ -66,24 +66,91 @@ $.ajax({
 
 //check the user already logged
 // find product all
+if(pathname == "/home") {
+    //------- hero carousel -------//
+    $(".hero-carousel").owlCarousel({
+        items:3,
+        margin: 10,
+        autoplay:false,
+        autoplayTimeout: 5000,
+        loop:true,
+        nav:false,
+        dots:false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items: 2
+            },
+            810:{
+                items:3
+            }
+        }
+    });
+    function ProductLatest(carouserHero) {
+        $.ajax({
+            url: "http://localhost:8099/v1/api/product/latest",
+            type: "GET",
+            success: function (response) {
+                if (response.code == "00") {
+                    if(response.data != null && response.data.length > 0) {
+                        rederDataLatest(response.data);
+                    }
+                    console.log(response.data);
+                } else {
+                    toastr.error('Find not data!', response.message);
+                }
+            },
+            error: function (response) {
+                toastr.error('An error occurred . Please try again', response.message);
+            }
+        });
+        carouserHero();
+    }
+
+    ProductLatest(carouserHero());
+}
 if(pathname == "/shop") {
     $.ajax({
-    url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
-    type: "GET",
-    success: function (response) {
-        if(response.code == "00") {
-            listAllProduct = response.data.content;
-            rederData(response.data.content);
-            let totalPage = response.data.totalPages;
-            forPagination(totalPage, 0);
-        }else {
-            toastr.error('Find not data!', response.message);
+        url: "http://localhost:8099/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
+        type: "GET",
+        success: function (response) {
+            if(response.code == "00") {
+                listAllProduct = response.data.content;
+                rederData(response.data.content);
+                let totalPage = response.data.totalPages;
+                forPagination(totalPage, 0);
+            }else {
+                toastr.error('Find not data!', response.message);
+            }
+        },
+        error: function (result) {
+            toastr.error('An error occurred . Please try again', response.message);
         }
-    },
-    error: function (result) {
-        toastr.error('An error occurred . Please try again', response.message);
-    }
-});
+    });
+}
+if(pathname == "/checkout") {
+    $.ajax({
+        url: "http://localhost:8099/order/did-checkout-products/"+ userDto.username,
+        type: "GET",
+        success: function (response) {
+            if(response.code == "00") {
+                order = response.data;
+                if(typeof order.listProduct != "undefined"
+                    && order.listProduct != null
+                    && order.listProduct.length != null
+                    && order.listProduct.length > 0) {
+                    rederDataCheckout();
+                }
+            }else {
+                toastr.error('Find not data!', response.message);
+            }
+        },
+        error: function (result) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
 }
 $.ajax({
     url: "http://localhost:8099/v1/api/product/trending",
@@ -587,6 +654,7 @@ function getProductInCast() {
         success: function (response) {
             if(response.code = '00') {
                 cart = response.data;
+                console.log(cart);
                 rederDataCast(cart.listProduct);
                 rederDataCastBoxUp(cart.listProduct);
                 if(cart.listProduct != null) {
@@ -596,7 +664,7 @@ function getProductInCast() {
                     }
                 }
             }else {
-                toastr.error('An error occurred . Please try again', error.message);
+                toastr.error('Hehe', response.message);
             }
             hideLoading();
         },
@@ -906,6 +974,59 @@ function removeItem(idProduct, nameColor) {
         }
     });
 }
+
+function checkout() {
+    console.log(cart);
+    let shippingRates = $('input[name="shipping-rete"]:checked').val();
+    console.log(shippingRates);
+    if(typeof cart.listProduct == "undefined"
+    || cart.listProduct == null
+    || cart.listProduct.length == null
+    || cart.listProduct .length < 0) {
+        toastr.error('You do not have products to checkout', 'Please select a product');
+        return;
+    }
+    console.log(order);
+    if(order.listProduct .length < 0) {
+        toastr.error('You need to contact us to pay for old orders! To be able to continue ordering!');
+        return;
+    }
+    if(shippingRates == "" || shippingRates == null) {
+        toastr.error('You need to choose shipping rate');
+        return;
+    }
+    shopLoading();
+    $.ajax({
+        url: "http://localhost:8099/order/checkout-products?idUser=" + userDto.username + "&shippingRates=" + shippingRates,
+        type: "PUT",
+        processData: false,
+        success: function (response) {
+            // server trả về HTTP status code là 200 => Thành công
+            //hàm đc thực thi khi request thành công không có lỗi
+            if(response.code == "00") {
+                order = response.data;
+                toastr.success('Checkout success!', response.message);
+                if(typeof order.listProduct != "undefined"
+                    && order.listProduct != null
+                    && order.listProduct.length != null
+                    && order.listProduct.length > 0) {
+                    window.location.href = "http://localhost:8080/checkout"
+                }else {
+                    toastr.success('Checkout error!', response.message);
+                }
+            }else {
+                toastr.success('Checkout server error !', response.message);
+                console.log(response.message);
+            }
+            hideLoading();
+        },
+        error: function () {
+            hideLoading();
+            toastr.error('An error occurred . Please try again');
+        }
+    });
+}
+
 
 // comment
 function addComment(idProduct) {

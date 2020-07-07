@@ -54,11 +54,31 @@ public class OrderApiController {
         return response;
     }
 
+    //    get product did checkout prodcut now in user
+    @RequestMapping("/did-checkout-products/{idUser}")
+    public BaseResponse getListProductCheckoutedInCast(@PathVariable("idUser") String idUser) {
+        BaseResponse response = new BaseResponse();
+        Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
+//        1, new account
+//        2, Just Order
+        if (!optionalOrder.isPresent()) {
+            response.setCode("99");
+            response.setMessage("Data not found");
+            response.setData(null);
+        }else {
+            Order exits = optionalOrder.get();
+            response.setCode("00");
+            response.setMessage("'Find order thành công for" + idUser);
+            response.setData(exits);
+        }
+        return response;
+    }
+
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public  BaseResponse updateCast(@PathVariable("id") String id,
             @RequestBody UpdateCastRequest updateCastRequest) {
         BaseResponse response = new BaseResponse();
-        Optional<Order> optOrder = orderRepository.findByBuyer(id);
+        Optional<Order> optOrder = orderRepository.findByBuyerAndStatus(id, 1);
         if (!optOrder.isPresent()) {
             response.setCode("99");
             response.setMessage("Data not found");
@@ -211,6 +231,95 @@ public class OrderApiController {
         response.setCode("00");
         response.setMessage("Update giỏ hàng thành công");
         response.setData(orderRepository.save(exitsOrder));
+        return response;
+    }
+
+    //    checkout product now in user
+    @PutMapping("/checkout-products")
+    public BaseResponse checkoutProductInCast(@RequestParam("idUser") String idUser,
+                                              @RequestParam("shippingRates") Integer shippingRates) {
+        BaseResponse response = new BaseResponse();
+        Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 1);
+        Optional<Order> optionalCheckoutOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
+//        1, new account
+//        2, Just Order
+        try{
+            if(optionalCheckoutOrder.isPresent()) {
+                throw new Exception("You need to contact us to pay for old orders! To be able to continue ordering!");
+            }
+            if(shippingRates == null) {
+                throw new Exception("You need to choose shipping rate!");
+            }
+            if(idUser == null) {
+                throw new Exception("You need login!");
+            }
+            if (!optionalOrder.isPresent()) {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            } else {
+                Order exits = optionalOrder.get();
+                Double price_number = 0.0;
+                exits.setStatus(2);
+                for (ProductModel p : exits.getListProduct()) {
+                    price_number += (p.getPrice() * p.getNumber());
+                }
+                exits.setTotalPrice(price_number);
+                exits.setFlatRateShipping(price_number+shippingRates);
+                exits.setTotalProductOrder(exits.getListProduct().size());
+                exits.setShippingRates(shippingRates);
+                exits.setCreatedAt(new Date());
+                orderRepository.save(exits);
+                response.setCode("00");
+                response.setMessage("'Find order thành công for" + idUser);
+                response.setData(exits);
+            }
+        }catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("Error" + e.getMessage());
+            response.setData(null);
+        }
+        return response;
+    }
+
+    //    contactus product now in user
+    @PutMapping("/contactus-products")
+    public BaseResponse contactusProductInCast(@RequestParam("idUser") String idUser,
+                                              @RequestParam("shippingRates") Integer shippingRates) {
+        BaseResponse response = new BaseResponse();
+        Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 1);
+        Optional<Order> optionalCheckoutOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
+//        1, new account
+//        2, Just Order
+        try{
+            if(optionalCheckoutOrder.isPresent()) {
+                throw new Exception("You need to contact us to pay for old orders! To be able to continue ordering!");
+            }
+            if(shippingRates == null) {
+                throw new Exception("You need to choose shipping rate!");
+            }
+            if(idUser == null) {
+                throw new Exception("You need login!");
+            }
+            if (!optionalOrder.isPresent()) {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            } else {
+                Order exits = optionalOrder.get();
+                exits.setStatus(3);
+                exits.setShippingRates(shippingRates);
+                exits.setCreatedAt(new Date());
+                orderRepository.save(exits);
+                response.setCode("00");
+                response.setMessage("'Find order thành công for" + idUser);
+                response.setData(exits);
+            }
+        }catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("Error" + e.getMessage());
+            response.setData(null);
+        }
         return response;
     }
 

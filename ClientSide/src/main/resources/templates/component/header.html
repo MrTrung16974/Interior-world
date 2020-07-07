@@ -59,7 +59,7 @@
                                 <li><a onclick="logoutUser()">LOG OUT</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><button id="search-all-page"><i class="ti-search"></i></button></li>
+<!--                        <li class="nav-item"><button id="search-all-page"><i class="ti-search"></i></button></li>-->
                         <li class="nav-item"><button id="cart-menu" type="button" data-toggle="dropdown"><i class="ti-shopping-cart"></i><span id="total-cast" class="nav-shop__circle">0</span></button>
                             <ul class="dropdown-menu" aria-labelledby="cart-menu">
                                 <ul id="box-up-lst-prodcut-in-cast" >
@@ -71,7 +71,7 @@
                                 <li class="margin-0">
                                     <div class="row">
                                         <div class="col-xs-6"> <a onclick="loadPage('cart')" class="btn">VIEW CART</a></div>
-                                        <div class="col-xs-6 "> <a onclick="loadPage('checkout')" class="btn">CHECK OUT</a></div>
+                                        <div class="col-xs-6 "> <a th:href="@{/checkout}" class="btn">CHECK OUT</a></div>
                                     </div>
                                 </li>
                             </ul>
@@ -86,19 +86,19 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="button button-header" onclick="loadPage('checkout')">Buy Now</a></li>
+                        <li class="nav-item"><a class="button button-header" onclick="loadPage('cart')">Buy Now</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="search_input" style="display: none;" aria-labelledby="search-menu" id="search_input_box">
-                <div class="container">
-                    <form class="d-flex justify-content-between search-inner">
-                        <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                        <button type="submit" class="btn"></button>
-                        <span class="ti-close" id="close_search" title="Close Search"></span>
-                    </form>
-                </div>
-            </div>
+<!--            <div class="search_input" style="display: none;" aria-labelledby="search-menu" id="search_input_box">-->
+<!--                <div class="container">-->
+<!--                    <form class="d-flex justify-content-between search-inner">-->
+<!--                        <input type="text" class="form-control" id="search_input" placeholder="Search Here">-->
+<!--                        <button type="submit" class="btn"></button>-->
+<!--                        <span class="ti-close" id="close_search" title="Close Search"></span>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
         </nav>
     </div>
 </header>

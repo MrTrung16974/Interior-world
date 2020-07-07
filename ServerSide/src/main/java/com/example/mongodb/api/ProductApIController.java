@@ -107,17 +107,34 @@ public class ProductApIController {
         return response;
     }
 
+    @GetMapping("/product/latest")
+    public BaseResponse latestProduct(){
+        BaseResponse response = new BaseResponse();
+        try {
+            List<Product> listLatestProduct = productRepository.findTop6ByOrderByCreateAtAsc();
+            if (!listLatestProduct.isEmpty()) {
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listLatestProduct);
+            } else {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            }
+        } catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("System erorr : " + e.getMessage());
+            response.setData(null);
+        }
+        return response;
+    }
+
     @GetMapping("/product/trending")
     public BaseResponse trendingProduct(){
         BaseResponse response = new BaseResponse();
         try {
-            List<Product> listNewProduct = productRepository.findByStarOrderByCreateAtAsc(5);
-            List<Product> listTrendingProduct = new ArrayList<>();
-            Integer length = listNewProduct.size() <= 12 ? listNewProduct.size() : 12;
-            if (!listNewProduct.isEmpty()) {
-                for (int i = 0; i < length; i++) {
-                    listTrendingProduct.add(listNewProduct.get(i));
-                }
+            List<Product> listTrendingProduct = productRepository.findTop12ByStarOrderByCreateAtAsc(5);
+            if (!listTrendingProduct.isEmpty()) {
                 response.setCode("00");
                 response.setMessage("success");
                 response.setData(listTrendingProduct);
@@ -138,13 +155,8 @@ public class ProductApIController {
     public BaseResponse catetoryProduct(@PathVariable("type") Integer type){
         BaseResponse response = new BaseResponse();
         try {
-            List<Product> listNewProduct = orderServices.findByCatetory(type);
-            List<Product> listCatetoryProduct = new ArrayList<>();
-            Integer length = listNewProduct.size() <= 12 ? listNewProduct.size() : 12;
-            if (!listNewProduct.isEmpty()) {
-                for (int i = 0; i < length; i++) {
-                    listCatetoryProduct.add(listNewProduct.get(i));
-                }
+            List<Product> listCatetoryProduct = orderServices.findByCatetory(type);
+            if (!listCatetoryProduct.isEmpty()) {
                 response.setCode("00");
                 response.setMessage("success");
                 response.setData(listCatetoryProduct);

@@ -20,6 +20,14 @@ public class Order {
     private List<ProductModel> listProduct;
     @Field("promotion")
     private Promotion promotion;
+    @Field("shipping_rates")
+    private Integer shippingRates;
+    @Field("total_price")
+    private Double totalPrice;
+    @Field("flat_rate_shipping")
+    private Double flatRateShipping;
+    @Field("total_product_order")
+    private Integer totalProductOrder;
     @Field("createdAt")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
     private Date createdAt;
@@ -54,6 +62,38 @@ public class Order {
 
     public Promotion getPromotion() {
         return promotion;
+    }
+
+    public Integer getShippingRates() {
+        return shippingRates;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Double getFlatRateShipping() {
+        return flatRateShipping;
+    }
+
+    public void setFlatRateShipping(Double flatRateShipping) {
+        this.flatRateShipping = flatRateShipping;
+    }
+
+    public Integer getTotalProductOrder() {
+        return totalProductOrder;
+    }
+
+    public void setTotalProductOrder(Integer totalProductOrder) {
+        this.totalProductOrder = totalProductOrder;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setShippingRates(Integer shippingRates) {
+        this.shippingRates = shippingRates;
     }
 
     public void setPromotion(Promotion promotion) {
