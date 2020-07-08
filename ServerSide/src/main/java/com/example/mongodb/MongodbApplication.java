@@ -77,13 +77,13 @@ public class MongodbApplication implements CommandLineRunner {
 //       }
 //        System.out.println("End");
 
-////        User user = new User();
-////        user.setUserId("1");
-////        user.setUsername("trung123");
-////        user.setPassword(passwordEncoder.encode("123456"));
-////        user.setEmail("admin@gmail.com");
-////        user.setRoleID("USER");
-////        user.setStatus(1);
+//        User user = new User();
+//        user.setUserId("1");
+//        user.setUsername("trung123");
+//        user.setPassword(passwordEncoder.encode("123456"));
+//        user.setEmail("admin@gmail.com");
+//        user.setRoleID("USER");
+//        user.setStatus(1);
 //
 ////        Role role = new Role();
 ////        role.setRoleID("USER");

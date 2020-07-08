@@ -35,6 +35,7 @@ var loadUserDto = () => {
             toastr.error('An error occurred . Please try again', response.message);
         }
     });
+    return checkLogin;
 }
 if(token != null && token != "") {
     loadUserDto();
@@ -193,7 +194,7 @@ if(pathname == "/checkout") {
                     rederDataCheckout();
                 }
             }else {
-                toastr.error('Find not data!', response.message);
+                toastr.error('Please place a new order!', "You have no orders yet.");
             }
         },
         error: function (response) {
@@ -346,7 +347,7 @@ function registerClickUser() {
                     checkLogin = true;
                     toastr.success('Register success!', response.message);
                 }
-                if(token != "" || token != null) {
+                if(checkLogin) {
                     window.location.href = "http://localhost:8080/home";
                 }
                 hideLoading();
@@ -381,7 +382,7 @@ function logoutUser() {
                 deleteCookie("token");
                 checkLogin = false;
                 toastr.success('Logout success!', response.message);
-                if(token != "" && token != null) {
+                if(!checkLogin) {
                     window.location.href = "http://localhost:8080/login"
                 }else {
                     toastr.success('Logout error!', response.message);
@@ -401,11 +402,16 @@ function logoutUser() {
     });
 }
 
-function changePassword() {
+function changePassword(e) {
+    if(e.keyCode === 13) {
+        changeClickPassword();
+    }
+}
+function changeClickPassword() {
     let currentPassword = $("#current-password").val().trim();
     let newPassword = $("#new-password").val().trim();
     let confirmPassword = $("#confirm-password").val().trim();
-    if(username == null || username == "") {
+    if(userDto.username == null || userDto.username == "") {
         toastr.error('You have not entered a username ');
         return;
     }
@@ -421,7 +427,7 @@ function changePassword() {
         toastr.error('You have not entered a name ');
         return;
     }
-    if(password != confirmPassword) {
+    if(newPassword != confirmPassword) {
         toastr.error('Password and confirm password must be the same ');
         return;
     }
@@ -444,7 +450,6 @@ function changePassword() {
             if(response.code == "00") {
                 if(response.data != null) {
                     setCookie("token", response.data);
-                    checkLogin = true;
                     toastr.success('Change Password success!', response.message);
                     rederChangePassword();
                 }
@@ -513,7 +518,6 @@ function updateUser() {
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
                 userDto = response.data;
-                console.log(userDto);
                 toastr.success('Edit user success!', response.message);
                 rederUserInfo();
                 hideLoading();
@@ -662,7 +666,7 @@ function sortProduct() {
 }
 
 function addFavouriteUser(idProduct) {
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -725,7 +729,7 @@ function getProductInCast() {
 
 // function addToCastDetailDB(idProduct, oldNumber) {
 //     let updateCastRequest = [];
-//     if(checkLogin != "") {
+//     if(!loadUserDto()) {
 //         shopLoading();
 //         let newNumber = $("#qty").val().trim();
 //         if(newNumber > 0) {
@@ -784,7 +788,7 @@ function getProductInCast() {
 // }
 
 function addToCastDB(idProduct) {
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -839,7 +843,7 @@ function addToCastDB(idProduct) {
 
 // add default product color frist (colorForPrice[0])
 function addToCastDefaultDB(idProduct, nameColor, priceColor, price) {
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -890,7 +894,7 @@ function addToCastDefaultDB(idProduct, nameColor, priceColor, price) {
 }
 
 function deleteItem(idProduct, nameColor) {
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -931,7 +935,7 @@ function deleteItem(idProduct, nameColor) {
     });
 }
 function addItem(idProduct, nameColor) {
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -977,7 +981,7 @@ function addItem(idProduct, nameColor) {
 }
 
 function removeItem(idProduct, nameColor) {
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -1023,9 +1027,11 @@ function removeItem(idProduct, nameColor) {
 }
 
 function checkout() {
-    console.log(cart);
     let shippingRates = $('input[name="shipping-rete"]:checked').val();
-    console.log(shippingRates);
+    if(!loadUserDto()) {
+        toastr.error('You need login!', "HAHA");
+        return;
+    }
     if(typeof cart.listProduct == "undefined"
     || cart.listProduct == null
     || cart.listProduct.length == null
@@ -1033,7 +1039,6 @@ function checkout() {
         toastr.error('You do not have products to checkout', 'Please select a product');
         return;
     }
-    console.log(order);
     if(order.listProduct .length < 0) {
         toastr.error('You need to contact us to pay for old orders! To be able to continue ordering!');
         return;
@@ -1077,7 +1082,7 @@ function checkout() {
 
 // comment
 function addComment(idProduct) {
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -1125,7 +1130,7 @@ function addComment(idProduct) {
 function likeCommet(idCommet) {
     var idProduct = getParameterByName('id');
     console.log(idProduct);
-    if(!checkLogin) {
+    if(!loadUserDto()) {
         toastr.error('You need login!', "HAHA");
         return;
     }
@@ -1167,25 +1172,29 @@ function likeCommet(idCommet) {
 // upload file image
 let imageFace = $("input.image-face");
 let newFace = $("img.face-user");
-for (var i = 0; i < imageFace.length; i++) {
-    let imageProduct = imageFace[i];
-    let newFaceImage = newFace[i];
-    imageProduct.addEventListener('change', function () {
-        var formData = new FormData();
-        formData.append('file', imageProduct.files[0]);
-        $.ajax({
-            url: 'http://localhost:8099/v1/api/upload',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                newFaceImage.src = data;
-                toastr.success('Upload image success! ', 'Haha!');
-            },
-            error: function () {
-                toastr.error('An error occurred . Please try again', 'Inconceivable!');
-            }
+if(checkLogin) {
+    for (var i = 0; i < imageFace.length; i++) {
+        let imageProduct = imageFace[i];
+        let newFaceImage = newFace[i];
+        imageProduct.addEventListener('change', function () {
+            var formData = new FormData();
+            formData.append('file', imageProduct.files[0]);
+            $.ajax({
+                url: 'http://localhost:8099/v1/api/upload',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    newFaceImage.src = data;
+                    toastr.success('Upload image success! ', 'Haha!');
+                },
+                error: function () {
+                    toastr.error('An error occurred . Please try again', 'Inconceivable!');
+                }
+            });
         });
-    });
+    }
+}else {
+    toastr.error('You need login!', "HAHA");
 }

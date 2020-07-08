@@ -329,16 +329,16 @@ function getPriceProductInCast(cast) {
 
 
 //logic user name
-function editAddressUser () {
+function editAddressUser() {
     $("span#input-user-address").html(
         `<textarea rows="3" id="user-address" class="form-control different-control w-100" placeholder="Your Address!"></textarea>
                 <button onclick="updateUserAddress()" class="btn btn-success mt-3">Edit Address</button>`
     );
     $("div#shop-edit-user").attr("style", "display:none;");
 }
-//show vs hide pass user
 $(document).ready(function() {
     $(".hide-eye-pass, .show-eye-pass").on('click', function() {
+        console.log("OK");
         var passwordId = $(this).parents('div:first').find('input').attr('id');
         if ($(this).hasClass('hide-eye-pass')) {
             $("#" + passwordId).attr("type", "text");
@@ -395,7 +395,6 @@ $(document).ready(function() {
         toastr.error(msg);
         star = ratingValue;
     });
-    
 
 });
 
@@ -418,7 +417,6 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
 
 // logic cookie
 function getCookie(cname) {

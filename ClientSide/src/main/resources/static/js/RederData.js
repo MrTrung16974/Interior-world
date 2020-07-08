@@ -223,38 +223,38 @@ function rederDataBestSellers(data) {
             }
             if(checkFavourite) {
                 $html += (`<div class="card text-center card-product">
-                                            <div class="card-product__img">
-                                                <a href="/product-details?id=${data[i].id}">
-                                                    <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
-                                                </a>
-                                                <ul class="card-product__imgOverlay">
-                                                    <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].nameColor}', '${data[i].price}', '${data[i].price ? data[i].price : 0}')"><i class="ti-shopping-cart"></i></button></li>
-                                                    <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
-                                                </ul>
-                                            </div>
-                                            <div class="card-body">
-                                                <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
-                                                <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
-                                                <p class="card-product__price">${data[i].price != null ? data[i].price : ""}</p>
-                                            </div>
-                                        </div>`);
+                                <div class="card-product__img">
+                                    <a href="/product-details?id=${data[i].id}">
+                                        <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
+                                    </a>
+                                    <ul class="card-product__imgOverlay">
+                                        <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].priceForColor != null ? data[i].priceForColor[0].nameColor : ""}', '${data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0}', '${data[i].price != null ? (data[i].price)-(data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0) : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                        <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
+                                    <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
+                                    <p class="card-product__price">${formatter.format(data[i].price != null ? data[i].price : 0)}</p>
+                                </div>
+                            </div>`);
             }else {
                 $html += (`<div class="card text-center card-product">
-                                            <div class="card-product__img">
-                                                <a href="/product-details?id=${data[i].id}">        
-                                                    <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
-                                                </a>
-                                                <ul class="card-product__imgOverlay">
-                                                    <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].nameColor}', '${data[i].price}', '${data[i].price ? data[i].price : 0}')"><i class="ti-shopping-cart"></i></button></li>
-                                                    <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart"></i></button></li>
-                                                </ul>
-                                            </div>
-                                            <div class="card-body">
-                                                <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
-                                                <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
-                                                <p class="card-product__price">${data[i].price != null ? data[i].price : ""}</p>
-                                            </div>
-                                        </div>`);
+                                <div class="card-product__img">
+                                    <a href="/product-details?id=${data[i].id}">        
+                                        <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
+                                    </a>
+                                    <ul class="card-product__imgOverlay">
+                                        <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].priceForColor != null ? data[i].priceForColor[0].nameColor : ""}', '${data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0}', '${data[i].price != null ? (data[i].price)-(data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0) : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                        <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart"></i></button></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
+                                    <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
+                                    <p class="card-product__price">${formatter.format(data[i].price != null ? data[i].price : 0)}</p>
+                                </div>
+                            </div>`);
             }
             checkFavourite = false;
         }
@@ -750,23 +750,23 @@ function rederChangePassword() {
                 <form class="content-password login_form from-content">
                     <label for="current-password">Current Password : </label>
                     <div class="col-md-12 form-group">
-                        <input type="password" class="form-control" name="current-password" id="current-password" />
+                        <input onkeypress="changePassword(event)" type="password" class="form-control" name="current-password" id="current-password" />
                         <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
                         <i class="show-eye-pass eye-pass fas fa-eye"></i>
                     </div>
                     <label for="new-password">New Password : </label>
                     <div class="col-md-12 form-group">
-                        <input type="password" class="form-control"  name="new-password" id="new-password" />
+                        <input  onkeypress="changePassword(event)" type="password" class="form-control"  name="new-password" id="new-password" />
                         <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
                         <i class="show-eye-pass eye-pass fas fa-eye"></i>
                     </div>
                     <label for="confirm-password">Confirm Password : </label>
                     <div class="col-md-12 form-group">
-                        <input type="password" class="form-control"  name="confirm-password" id="confirm-password" />
+                        <input onkeypress="changePassword(event)" type="password" class="form-control"  name="confirm-password" id="confirm-password" />
                         <i class="hide-eye-pass eye-pass fas fa-eye-slash"></i>
                         <i class="show-eye-pass eye-pass fas fa-eye"></i>
                     </div>
-                    <button onclick="changePassword()" class="btn btn-primary" type="button">Change</button>
+                    <button onclick="changeClickPassword()" class="btn btn-primary" type="button">Change</button>
                 </form>
             </div>`
         );

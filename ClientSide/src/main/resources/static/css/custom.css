@@ -89,6 +89,12 @@ i.eye-pass {
     right: 30px;
     top: 35%;
 }
+i.fa-check {
+    position: absolute;
+    right: 60px;
+    top: 35%;
+    color: #d1f50e;
+}
 .show-eye-pass {
     display: none;
 }

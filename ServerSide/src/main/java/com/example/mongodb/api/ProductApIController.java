@@ -142,8 +142,10 @@ public class ProductApIController {
                 List<ProductModel> lstProductBestSellers = new ArrayList<>();
                 List<ProductModel> lstSortProductBestSellers = new ArrayList<>();
                 for (Order order: listExitProduct) {
-                    for (ProductModel pm: order.getListProduct()) {
-                        lstProductBestSellers.add(pm);
+                    if(order.getListProduct() != null && order.getListProduct().size() > 0) {
+                        for (ProductModel pm : order.getListProduct()) {
+                            lstProductBestSellers.add(pm);
+                        }
                     }
                 }
                 Integer length = lstProductBestSellers.size() < 12 ? lstProductBestSellers.size() : 12;
