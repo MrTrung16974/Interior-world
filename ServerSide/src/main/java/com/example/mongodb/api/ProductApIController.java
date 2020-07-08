@@ -2,6 +2,7 @@ package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
 import com.example.mongodb.dto.product.ProductModel;
+import com.example.mongodb.model.Order;
 import com.example.mongodb.model.Product;
 import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
@@ -18,10 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin
 @RestController
@@ -111,15 +109,60 @@ public class ProductApIController {
     public BaseResponse latestProduct(){
         BaseResponse response = new BaseResponse();
         try {
-            List<Product> listLatestProduct = productRepository.findTop6ByOrderByCreateAtAsc();
-            if (!listLatestProduct.isEmpty()) {
-                response.setCode("00");
-                response.setMessage("success");
-                response.setData(listLatestProduct);
-            } else {
+            Optional<List<Product>> listLatestProduct = productRepository.findTop6ByOrderByCreateAtAsc();
+            if (!listLatestProduct.isPresent()) {
                 response.setCode("99");
                 response.setMessage("Data not found");
                 response.setData(null);
+            } else {
+                List<Product> listExitProduct = listLatestProduct.get();
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listLatestProduct);
+            }
+        } catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("System erorr : " + e.getMessage());
+            response.setData(null);
+        }
+        return response;
+    }
+
+    @GetMapping("/product/best-sellers")
+    public BaseResponse bestSellers(){
+        BaseResponse response = new BaseResponse();
+        try {
+            Optional<List<Order>> listLatestProduct = orderRepository.findAllByStatus(1);
+            if (!listLatestProduct.isPresent()) {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            } else {
+                List<Order> listExitProduct = listLatestProduct.get();
+                List<ProductModel> lstProductBestSellers = new ArrayList<>();
+                List<ProductModel> lstSortProductBestSellers = new ArrayList<>();
+                for (Order order: listExitProduct) {
+                    for (ProductModel pm: order.getListProduct()) {
+                        lstProductBestSellers.add(pm);
+                    }
+                }
+                Integer length = lstProductBestSellers.size() < 12 ? lstProductBestSellers.size() : 12;
+                for (int i = 1; i < length; i++) {
+                    ProductModel pm1 = lstProductBestSellers.get(i);
+                    ProductModel pm2 = lstProductBestSellers.get(i-1);
+                    if (!pm1.getId().equals(pm2.getId())) {
+                        lstSortProductBestSellers.add(pm1);
+                    }
+                }
+                Collections.sort(lstSortProductBestSellers, new Comparator<ProductModel>() {
+                    @Override
+                    public int compare(ProductModel o1, ProductModel o2) {
+                        return  o2.getNumber() - o1.getNumber();
+                    }
+                });
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(lstSortProductBestSellers);
             }
         } catch (Exception e) {
             response.setCode("90");
@@ -133,15 +176,16 @@ public class ProductApIController {
     public BaseResponse trendingProduct(){
         BaseResponse response = new BaseResponse();
         try {
-            List<Product> listTrendingProduct = productRepository.findTop12ByStarOrderByCreateAtAsc(5);
-            if (!listTrendingProduct.isEmpty()) {
-                response.setCode("00");
-                response.setMessage("success");
-                response.setData(listTrendingProduct);
-            } else {
+            Optional<List<Product>> listTrendingProduct = productRepository.findTop12ByStarOrderByCreateAtAsc(5);
+            if (!listTrendingProduct.isPresent()) {
                 response.setCode("99");
                 response.setMessage("Data not found");
                 response.setData(null);
+            } else {
+                List<Product> listExitProduct = listTrendingProduct.get();
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listExitProduct);
             }
         } catch (Exception e) {
             response.setCode("90");
@@ -156,14 +200,14 @@ public class ProductApIController {
         BaseResponse response = new BaseResponse();
         try {
             List<Product> listCatetoryProduct = orderServices.findByCatetory(type);
-            if (!listCatetoryProduct.isEmpty()) {
-                response.setCode("00");
-                response.setMessage("success");
-                response.setData(listCatetoryProduct);
-            } else {
+            if (listCatetoryProduct.isEmpty()) {
                 response.setCode("99");
                 response.setMessage("Data not found");
                 response.setData(null);
+            } else {
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listCatetoryProduct);
             }
         } catch (Exception e) {
             response.setCode("90");

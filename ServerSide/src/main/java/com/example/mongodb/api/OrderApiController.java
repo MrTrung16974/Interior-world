@@ -123,6 +123,11 @@ public class OrderApiController {
                     productModel.setImage(exitsProduct.getImage());
                     // thêm màu
                     productModel.setNameColor(p.getNameColor());
+                    // thêm type
+                    productModel.setType(exitsProduct.getType());
+                    // thêm price for color
+                    productModel.setPriceForColor(exitsProduct.getPriceForColor());
+
                     //Thêm sản phẩm vưa tạo vào Danh sách sẩn phẩm trong giỏ
                     productInCart.add(productModel);
 
@@ -162,6 +167,8 @@ public class OrderApiController {
                         productModel.setName(exitsProduct.getName());
                         productModel.setImage(exitsProduct.getImage());
                         productModel.setNameColor(p.getNameColor());
+                        productModel.setType(exitsProduct.getType());
+                        productModel.setPriceForColor(exitsProduct.getPriceForColor());
 
                         //lưu lại sản phẩm vào giỏ hàng
                         productInCart.add(productModel);

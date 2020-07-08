@@ -28,7 +28,7 @@ var loadUserDto = () => {
                 toastr.error('Find not data!', response.message);
             }
         },
-        error: function (result) {
+        error: function (response) {
             checkLogin = false
             ;
             window.location.href = "http://localhost:8080/login"
@@ -58,7 +58,7 @@ $.ajax({
             toastr.error('Find not data!', response.message);
         }
     },
-    error: function (result) {
+    error: function (response) {
         toastr.error('An error occurred . Please try again', response.message);
     }
 });
@@ -67,9 +67,15 @@ $.ajax({
 //check the user already logged
 // find product all
 if(pathname == "/home") {
-    //------- hero carousel -------//
-    $(".hero-carousel").owlCarousel({
-        items:3,
+    /* ------- hero carousel -------*/
+    //Javascript
+    $(document).ready(function(){
+        $('.hero-carousel').owlCarousel();
+    });
+
+    var owl = $('.hero-carousel');
+
+    owl.owlCarousel({
         margin: 10,
         autoplay:false,
         autoplayTimeout: 5000,
@@ -88,28 +94,71 @@ if(pathname == "/home") {
             }
         }
     });
-    function ProductLatest(carouserHero) {
-        $.ajax({
-            url: "http://localhost:8099/v1/api/product/latest",
-            type: "GET",
-            success: function (response) {
-                if (response.code == "00") {
-                    if(response.data != null && response.data.length > 0) {
-                        rederDataLatest(response.data);
-                    }
-                    console.log(response.data);
-                } else {
-                    toastr.error('Find not data!', response.message);
-                }
-            },
-            error: function (response) {
-                toastr.error('An error occurred . Please try again', response.message);
+    $.ajax({
+        url: "http://localhost:8099/v1/api/product/latest",
+        type: "GET",
+        dataType: 'json',
+        success: function(response) {
+            if(response.code == "00") {
+                rederDataLatest(response.data);
+            }else {
+                toastr.error('Find not data!', response.message);
             }
-        });
-        carouserHero();
-    }
+        },
+        error: function (response) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
+    /* ------- hero carousel -------*/
 
-    ProductLatest(carouserHero());
+    /*------- Best Seller Carousel -------*/
+    //Javascript
+    $(document).ready(function(){
+        $('#bestSellerCarousel').owlCarousel();
+    });
+
+    var owlCarousel = $('.owl-carousel');
+    var owlBestSeller = $('#bestSellerCarousel');
+
+    if(owlCarousel.length > 0){
+        owlBestSeller.owlCarousel({
+            loop:true,
+            margin:30,
+            nav:true,
+            navText: ["<i class='ti-arrow-left'></i>","<i class='ti-arrow-right'></i>"],
+            dots: false,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items: 2
+                },
+                900:{
+                    items:3
+                },
+                1130:{
+                    items:4
+                }
+            }
+        })
+    }
+    $.ajax({
+        url: "http://localhost:8099/v1/api/product/best-sellers",
+        type: "GET",
+        dataType: 'json',
+        success: function(response) {
+            if(response.code == "00") {
+                rederDataBestSellers(response.data);
+            }else {
+                toastr.error('Find not data!', response.message);
+            }
+        },
+        error: function (response) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
+    /*------- Best Seller Carousel -------*/
 }
 if(pathname == "/shop") {
     $.ajax({
@@ -125,7 +174,7 @@ if(pathname == "/shop") {
                 toastr.error('Find not data!', response.message);
             }
         },
-        error: function (result) {
+        error: function (response) {
             toastr.error('An error occurred . Please try again', response.message);
         }
     });
@@ -147,7 +196,7 @@ if(pathname == "/checkout") {
                 toastr.error('Find not data!', response.message);
             }
         },
-        error: function (result) {
+        error: function (response) {
             toastr.error('An error occurred . Please try again', response.message);
         }
     });
@@ -168,7 +217,7 @@ $.ajax({
             toastr.error('Find not data!', response.message);
         }
     },
-    error: function (result) {
+    error: function (response) {
         toastr.error('An error occurred . Please try again', response.message);
     }
 });
@@ -184,7 +233,7 @@ function catetoryProduct(type) {
                 toastr.error('Find not data!', response.message);
             }
         },
-        error: function (result) {
+        error: function (response) {
             toastr.error('An error occurred . Please try again', response.message);
         }
     });
@@ -654,7 +703,6 @@ function getProductInCast() {
         success: function (response) {
             if(response.code = '00') {
                 cart = response.data;
-                console.log(cart);
                 rederDataCast(cart.listProduct);
                 rederDataCastBoxUp(cart.listProduct);
                 if(cart.listProduct != null) {
@@ -795,7 +843,6 @@ function addToCastDefaultDB(idProduct, nameColor, priceColor, price) {
         toastr.error('You need login!', "HAHA");
         return;
     }
-    console.log(typeof priceColor);
     if(nameColor != null && nameColor != undefined
         && priceColor != null && priceColor != undefined
         && price != null && price != undefined) {

@@ -116,7 +116,7 @@ function rederDataTrending(data) {
                                   <div class="card-product__img">
                                     <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                                     <ul class="card-product__imgOverlay">
-                                      <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
+                                      <li><button onclick="addToCastDefaultDB('${item.id}', '${item.priceForColor[0].nameColor}', '${item.priceForColor[0].priceForColor}', '${item.price ? item.price : 0}')"><i class="ti-shopping-cart"></i></button></li>
                                       <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
                                     </ul>
                                   </div>
@@ -206,24 +206,77 @@ function rederDataTop(data) {
         $("#top-product").html("<p style='color: #1abc9c;padding: 20px;'>There are no products matching your search!</p>");
     }
 }
-function rederDataLatest(data) {
-    let content = "";
-    if(typeof data != "undefined"
-        && data != null
-        && data.length != null
-        && data.length > 0) {
-        data.map(item => {
-            content += (`<div class="hero-carousel__slide">
-                <img width="330" height="287" src="${item.image[0] ? item.image[0] : ''}" alt="" class="img-fluid">
-                <a href="#" class="hero-carousel__slideOverlay">
-                    <h3>${item.name ? item.name : ""}</h3>
-                    <p>${findCategories(item.type.type)}</p>
-                </a>
-            </div>`);
-
-        });
-        $("#hero-carousel").html(content);
+function rederDataBestSellers(data) {
+    let checkFavourite = false;
+    for( var i in data ){
+        if( data.hasOwnProperty(i) ){
+            var $html = '';
+            if(typeof userDto.lstFavourite != "undefined"
+                && userDto.lstFavourite != null
+                && userDto.lstFavourite.length != null
+                && userDto.lstFavourite.length > 0) {
+                userDto.lstFavourite.map(favourite => {
+                    if(favourite.id == data[i].id) {
+                        checkFavourite = true;
+                    }
+                });
+            }
+            if(checkFavourite) {
+                $html += (`<div class="card text-center card-product">
+                                            <div class="card-product__img">
+                                                <a href="/product-details?id=${data[i].id}">
+                                                    <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
+                                                </a>
+                                                <ul class="card-product__imgOverlay">
+                                                    <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].nameColor}', '${data[i].price}', '${data[i].price ? data[i].price : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                                    <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
+                                                <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
+                                                <p class="card-product__price">${data[i].price != null ? data[i].price : ""}</p>
+                                            </div>
+                                        </div>`);
+            }else {
+                $html += (`<div class="card text-center card-product">
+                                            <div class="card-product__img">
+                                                <a href="/product-details?id=${data[i].id}">        
+                                                    <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
+                                                </a>
+                                                <ul class="card-product__imgOverlay">
+                                                    <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].nameColor}', '${data[i].price}', '${data[i].price ? data[i].price : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                                    <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart"></i></button></li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
+                                                <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
+                                                <p class="card-product__price">${data[i].price != null ? data[i].price : ""}</p>
+                                            </div>
+                                        </div>`);
+            }
+            checkFavourite = false;
+        }
+        owlBestSeller.trigger('add.owl.carousel',jQuery($html));
     }
+    owlBestSeller.trigger('refresh.owl.carousel')
+}
+function rederDataLatest(data) {
+    for( var i in data ){
+        if( data.hasOwnProperty(i) ){
+            var $html = '';
+            $html += (`<div class="hero-carousel__slide">
+                                        <img src="${data[i].image[0] ? data[i].image[0] : ''}" alt="" class="img-fluid">
+                                        <a href="/product-details?id=${data[i].id}" class="hero-carousel__slideOverlay">
+                                            <h3>${data[i].name ? data[i].name : ""}</h3>
+                                            <p>${findCategories(data[i].type.type)}</p>
+                                        </a>
+                                    </div>`);
+        }
+        owl.trigger('add.owl.carousel',jQuery($html));
+    }
+    owl.trigger('refresh.owl.carousel')
 }
 
 function rederDataSingleProduct(item) {
