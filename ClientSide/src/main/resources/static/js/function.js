@@ -1172,29 +1172,25 @@ function likeCommet(idCommet) {
 // upload file image
 let imageFace = $("input.image-face");
 let newFace = $("img.face-user");
-if(checkLogin) {
-    for (var i = 0; i < imageFace.length; i++) {
-        let imageProduct = imageFace[i];
-        let newFaceImage = newFace[i];
-        imageProduct.addEventListener('change', function () {
-            var formData = new FormData();
-            formData.append('file', imageProduct.files[0]);
-            $.ajax({
-                url: 'http://localhost:8099/v1/api/upload',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                    newFaceImage.src = data;
-                    toastr.success('Upload image success! ', 'Haha!');
-                },
-                error: function () {
-                    toastr.error('An error occurred . Please try again', 'Inconceivable!');
-                }
-            });
+for (var i = 0; i < imageFace.length; i++) {
+    let imageProduct = imageFace[i];
+    let newFaceImage = newFace[i];
+    imageProduct.addEventListener('change', function () {
+        var formData = new FormData();
+        formData.append('file', imageProduct.files[0]);
+        $.ajax({
+            url: 'http://localhost:8099/v1/api/upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                newFaceImage.src = data;
+                toastr.success('Upload image success! ', 'Haha!');
+            },
+            error: function () {
+                toastr.error('An error occurred . Please try again', 'Inconceivable!');
+            }
         });
-    }
-}else {
-    toastr.error('You need login!', "HAHA");
+    });
 }

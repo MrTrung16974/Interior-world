@@ -82,6 +82,23 @@ var formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
+var shopHidePass = () => {
+    $(".hide-eye-pass, .show-eye-pass").on('click', function () {
+        console.log("OK");
+        var passwordId = $(this).parents('div:first').find('input').attr('id');
+        if ($(this).hasClass('hide-eye-pass')) {
+            $("#" + passwordId).attr("type", "text");
+            $(this).parent().find(".hide-eye-pass").hide();
+            $(this).parent().find(".show-eye-pass").show();
+        } else {
+            $("#" + passwordId).attr("type", "password");
+            $(this).parent().find(".show-eye-pass").hide();
+            $(this).parent().find(".hide-eye-pass").show();
+        }
+    });
+}
+shopHidePass();
+
 var url      = window.location.href;
 var origin   = window.location.origin;
 var pathname = window.location.pathname;
@@ -336,20 +353,8 @@ function editAddressUser() {
     );
     $("div#shop-edit-user").attr("style", "display:none;");
 }
+
 $(document).ready(function() {
-    $(".hide-eye-pass, .show-eye-pass").on('click', function() {
-        console.log("OK");
-        var passwordId = $(this).parents('div:first').find('input').attr('id');
-        if ($(this).hasClass('hide-eye-pass')) {
-            $("#" + passwordId).attr("type", "text");
-            $(this).parent().find(".hide-eye-pass").hide();
-            $(this).parent().find(".show-eye-pass").show();
-        } else {
-            $("#" + passwordId).attr("type", "password");
-            $(this).parent().find(".show-eye-pass").hide();
-            $(this).parent().find(".hide-eye-pass").show();
-        }
-    });
     // Rating Initialization
     /* 1. Visualizing things on Hover - See next part for action on click */
     $('#stars li').on('mouseover', function(){

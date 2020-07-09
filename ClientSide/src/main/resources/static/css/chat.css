@@ -1,3 +1,17 @@
+.maximize_chat {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    bottom: 0px !important;
+    right: 0px !important;
+}
+.chat_icon {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 50px;
+    color: blue;
+}
 .chat_window {
     position: fixed;
     width: calc(100% - 20px);
@@ -32,6 +46,7 @@
     margin-right: 10px;
     position: relative;
     padding: 0px;
+    cursor: pointer;
 }
 .top_menu .buttons .button.close {
     background-color: #f5886e;
@@ -39,7 +54,7 @@
 .top_menu .buttons .button.minimize {
     background-color: #fdbf68;
 }
-.top_menu .buttons .button.maximize {
+.top_menu .buttons .button.maximize{
     background-color: #a3d063;
 }
 .top_menu .title {
@@ -54,7 +69,7 @@
     list-style: none;
     padding: 20px 10px 0 10px;
     margin: 0;
-    height: 347px;
+    height: calc(100% - 130px);
     overflow: scroll;
 }
 .messages .message {

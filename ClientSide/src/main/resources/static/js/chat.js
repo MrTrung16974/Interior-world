@@ -55,4 +55,23 @@
             return sendMessage('I\'m fine, thank you!');
         }, 2000);
     });
+
+    $(function () {
+        $(".button.close").on('click', function () {
+            $(".chat_window").hide(700);
+            $(".chat_icon").show(1000);
+        });
+        $("#shop_model_chat").on('click', function () {
+            $(".chat_window").show(500);
+            $(".chat_icon").hide(300);
+        });
+        $(".button.maximize").on('click', function () {
+            $(".chat_window").addClass("maximize_chat");
+        });
+        $(".button.minimize").on('click', function () {
+            $(".chat_window").removeClass("maximize_chat");
+        });
+    });
+
 }.call(this));
+

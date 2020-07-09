@@ -771,6 +771,7 @@ function rederChangePassword() {
             </div>`
         );
     }
+    shopHidePass();
 }
 
 
