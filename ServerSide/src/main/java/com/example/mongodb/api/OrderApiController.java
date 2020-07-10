@@ -294,26 +294,19 @@ public class OrderApiController {
     public BaseResponse contactusProductInCast(@RequestParam("idUser") String idUser,
                                               @RequestParam("shippingRates") Integer shippingRates) {
         BaseResponse response = new BaseResponse();
-        Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 1);
         Optional<Order> optionalCheckoutOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
 //        1, new account
 //        2, Just Order
         try{
-            if(optionalCheckoutOrder.isPresent()) {
-                throw new Exception("You need to contact us to pay for old orders! To be able to continue ordering!");
-            }
-            if(shippingRates == null) {
-                throw new Exception("You need to choose shipping rate!");
-            }
             if(idUser == null) {
                 throw new Exception("You need login!");
             }
-            if (!optionalOrder.isPresent()) {
+            if (!optionalCheckoutOrder.isPresent()) {
                 response.setCode("99");
                 response.setMessage("Data not found");
                 response.setData(null);
             } else {
-                Order exits = optionalOrder.get();
+                Order exits = optionalCheckoutOrder.get();
                 exits.setStatus(3);
                 exits.setShippingRates(shippingRates);
                 exits.setCreatedAt(new Date());

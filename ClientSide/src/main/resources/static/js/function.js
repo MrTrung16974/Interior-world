@@ -37,6 +37,7 @@ var loadUserDto = () => {
     });
     return checkLogin;
 }
+
 if(token != null && token != "") {
     loadUserDto();
 } else {
@@ -793,104 +794,51 @@ function addToCastDB(idProduct) {
         return;
     }
     let nameColor = $('input[name="color-price"]:checked').val();
-    let priceForColor = $('h2#price-product').text();
-    console.log(nameColor);
-    if(nameColor != null && nameColor != undefined
-        && priceForColor != null && priceForColor != undefined) {
-        shopLoading();
-        let price = parseInt(priceForColor.match(/(\d+)/));
-        console.log(price);
-        let updateCastRequest = {
-            name: userDto.username,
-            listProductCast: [{
-                id: idProduct,
-                number: 1,
-                type: 1,
-                nameColor: nameColor,
-                price: price
-            }]
-        };
-        $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.buyer,
-            type: "POST",
-            data: JSON.stringify(updateCastRequest),
-            contentType: "application/json",
-            success: function (response) {
-                if (response.code = "00") {
-                    cart = response.data;
-                    if (cart.listProduct != null) {
-                        getTotalProductInCast(cart);
-                        rederDataCast(cart.listProduct);
-                        rederDataCastBoxUp(cart.listProduct);
-                        if (cart.listProduct[0] != null) {
-                            getPriceProductInCast(cart);
-                            toastr.success('Add product success!', "HAHA");
-                        }
-                    }
-                }
-                hideLoading();
-            },
-            error: function (error) {
-                toastr.error('An error occurred . Please try again', error.message);
-                hideLoading();
-            }
-        });
-    }else {
+    let priceForColor = $(`#${idProduct}-price`).text();
+    console.log(priceForColor);
+    if(nameColor == null || nameColor == undefined
+        || priceForColor == null || priceForColor == undefined) {
         toastr.error('You need choose color for product!', "HAHA");
-        hideLoading();
-    }
-}
-
-// add default product color frist (colorForPrice[0])
-function addToCastDefaultDB(idProduct, nameColor, priceColor, price) {
-    if(!loadUserDto()) {
-        toastr.error('You need login!', "HAHA");
         return;
     }
-    if(nameColor != null && nameColor != undefined
-        && priceColor != null && priceColor != undefined
-        && price != null && price != undefined) {
-        let addPriceColor = parseInt(price) + parseInt(priceColor);
-        shopLoading();
-        let updateCastRequest = {
-            name: userDto.username,
-            listProductCast: [{
-                id: idProduct,
-                number: 1,
-                type: 1,
-                nameColor: nameColor,
-                price: addPriceColor
-            }]
-        };
-        $.ajax({
-            url: "http://localhost:8099/order/update/" + cart.buyer,
-            type: "POST",
-            data: JSON.stringify(updateCastRequest),
-            contentType: "application/json",
-            success: function (response) {
-                if (response.code = "00") {
-                    cart = response.data;
-                    if (cart.listProduct != null) {
-                        getTotalProductInCast(cart);
-                        rederDataCast(cart.listProduct);
-                        rederDataCastBoxUp(cart.listProduct);
-                        if (cart.listProduct[0] != null) {
-                            getPriceProductInCast(cart);
-                            toastr.success('Add product success!', "HAHA");
-                        }
+    shopLoading();
+    let price = parseInt(priceForColor.match(/(\d+)/));
+    console.log(price);
+    let updateCastRequest = {
+        name: userDto.username,
+        listProductCast: [{
+            id: idProduct,
+            number: 1,
+            type: 1,
+            nameColor: nameColor,
+            price: price
+        }]
+    };
+    $.ajax({
+        url: "http://localhost:8099/order/update/" + cart.buyer,
+        type: "POST",
+        data: JSON.stringify(updateCastRequest),
+        contentType: "application/json",
+        success: function (response) {
+            if (response.code = "00") {
+                cart = response.data;
+                if (cart.listProduct != null) {
+                    getTotalProductInCast(cart);
+                    rederDataCast(cart.listProduct);
+                    rederDataCastBoxUp(cart.listProduct);
+                    if (cart.listProduct[0] != null) {
+                        getPriceProductInCast(cart);
+                        toastr.success('Add product success!', "HAHA");
                     }
                 }
-                hideLoading();
-            },
-            error: function (error) {
-                toastr.error('An error occurred . Please try again', error.message);
-                hideLoading();
             }
-        });
-    }else {
-        toastr.error('An error occurred . Please try again');
-        hideLoading();
-    }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
 }
 
 function deleteItem(idProduct, nameColor) {

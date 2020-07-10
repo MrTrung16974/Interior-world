@@ -11,6 +11,7 @@
     bottom: 20px;
     font-size: 50px;
     color: blue;
+    z-index: 1000000;
 }
 .chat_window {
     position: fixed;
@@ -80,7 +81,8 @@
     opacity: 0;
 }
 .messages .message.left .avatar {
-    background-color: #f5886e;
+    background-image: url("http://localhost:8099/link/1594356744-user.png");
+    background-size: contain;
     float: left;
 }
 .messages .message.left .text_wrapper {
@@ -96,6 +98,7 @@
 }
 .messages .message.right .avatar {
     background-color: #fdbf68;
+    background-size: contain;
     float: right;
 }
 .messages .message.right .text_wrapper {

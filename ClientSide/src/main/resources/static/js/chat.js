@@ -31,7 +31,7 @@
             }
             $('.message_input').val('');
             $messages = $('.messages');
-            message_side = message_side === 'left' ? 'right' : 'left';
+            // message_side = message_side === 'left' ? 'right' : 'left';
             message = new Message({
                 text: text,
                 message_side: message_side
@@ -47,16 +47,15 @@
                 return sendMessage(getMessageText());
             }
         });
-        sendMessage('Hello Philip! :)');
-        setTimeout(function () {
-            return sendMessage('Hi Sandy! How are you?');
-        }, 1000);
-        return setTimeout(function () {
-            return sendMessage('I\'m fine, thank you!');
-        }, 2000);
     });
 
     $(function () {
+        if(pathname == "/home") {
+            setTimeout(function () {
+                $(".chat_window").show(500);
+                $(".chat_icon").hide(300);
+            }, 2000);
+        }
         $(".button.close").on('click', function () {
             $(".chat_window").hide(700);
             $(".chat_icon").show(1000);

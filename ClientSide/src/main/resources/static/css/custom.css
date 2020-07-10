@@ -449,6 +449,14 @@ li.color-for-price a {
 .rating-stars ul > li.star.selected > i.fa {
     color:#FF912C;
 }
+.card-product .card-product__imgOverlay.choose-color {
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(0);
+}
+.card-product .card-product__imgOverlay.choose-color {
+    background-color: #000000ad;
+}
 /*--================ End Product Area =================--*/
 
 /*--================ Start account info Area =================--*/

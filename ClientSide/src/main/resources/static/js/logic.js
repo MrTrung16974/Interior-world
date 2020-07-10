@@ -257,26 +257,49 @@ function forImage(data) {
 }
 function forColor(data) {
     let colorWrite = "";
-    let item = data.priceForColor;
-    let length = item.length;
-    for (let i=0; i < length; i++) {
-        colorWrite += `<a>
-                            <label for="${item[i].nameColor}" class="name-color">${item[i].nameColor}</label>
-                            <input type="radio" value="${item[i].nameColor}"
-                             onclick="getPriceProduct(${data.price}, ${item[i].priceForColor})" name="color-price" id="${item[i].nameColor}">
-                        </a>`;
+    if(data.priceForColor != null && data.priceForColor.length > 0) {
+        let item = data.priceForColor;
+        let length = item.length;
+        for (let i=0; i < length; i++) {
+            colorWrite += `<a class="${data.id}-checked">
+                                <label for="${data.id}-${item[i].nameColor}" class="name-color">${item[i].nameColor}</label>
+                                <input type="radio" value="${item[i].nameColor}"
+                                 onclick="getPriceProduct(${data.id} ,${data.price}, ${item[i].priceForColor})"
+                                  name="color-price" id="${data.id}-${item[i].nameColor}">
+                            </a>`;
+        }
     }
     return colorWrite;
 }
 
-function getPriceProduct(price, priceColor) {
+function getPriceProduct(id, price, priceColor) {
     console.log("OK");
     let nameColor = $(this);
     if(price > 0) {
-        $("#price-product").text(formatter.format(price + priceColor));
+        $(`#${id}-price`).text(formatter.format(price + priceColor));
+        $(`#${id}-price-sellers`).text(formatter.format(price + priceColor));
     }else {
-        $("#price-product").text(formatter.format(0));
+        $(`#${id}-price`).text(formatter.format(0));
     }
+}
+
+function showChooseProductSellers(id) {
+    console.log("OK");
+    $(`#${id}-sellers`).show();
+}
+function hideChooseProductSellers(id, price) {
+    $(`#${id}-sellers`).hide();
+    $(`#${id}-price-sellers`).text(formatter.format(`${price}`));
+    $(`a.${id}-checked input[type="radio"]`).prop('checked', false);
+}
+
+function showChooseProduct(id) {
+    $(`#${id}`).show();
+}
+function hideChooseProduct(id, price) {
+    $(`#${id}`).hide();
+    $(`#${id}-price`).text(formatter.format(`${price}`));
+    $(`a.${id}-checked input[type="radio"]`).prop('checked', false);
 }
 
 //vallidate contain

@@ -45,8 +45,17 @@ function rederData(data) {
                               <div class="card-product__img">
                                 <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                                 <ul class="card-product__imgOverlay">
-                                  <li><button onclick="addToCastDefaultDB('${item.id}', '${item.priceForColor[0].nameColor}', '${item.priceForColor[0].priceForColor}', '${item.price ? item.price : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                  <li><button onclick="showChooseProduct(${item.id})"><i class="ti-shopping-cart"></i></button></li>
                                   <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                </ul>
+                                <ul id="${item.id}" style="display: none" class="card-product__imgOverlay choose-color">
+                                    <li class="color-for-price">
+                                        <p class="text-center text-light">Please choose</p>
+                                        ${forColor(item)} 
+                                    </li>
+                                    <br />
+                                    <li><button onclick="addToCastDB('${item.id}')"><i class="ti-shopping-cart"></i></button></li>
+                                    <li><button onclick="hideChooseProduct('${item.id}', '${item.price}')"><i class="ti-close"></i></button></li>
                                 </ul>
                               </div>
                               <div class="card-body">
@@ -55,7 +64,7 @@ function rederData(data) {
                                     ${forStar(item.star)}
                                 </div>
                                 <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
-                                <p class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
+                                <p id="${item.id}-price" class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
                               </div>
                             </div>
                         </div>`
@@ -67,8 +76,17 @@ function rederData(data) {
                       <div class="card-product__img">
                         <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                         <ul class="card-product__imgOverlay">
-                            <li><button onclick="addToCastDefaultDB('${item.id}', '${item.priceForColor[0].nameColor}', '${item.priceForColor[0].priceForColor}', '${item.price ? item.price : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                            <li><button onclick="showChooseProduct(${item.id})"><i class="ti-shopping-cart"></i></button></li>
                             <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
+                        </ul>
+                        <ul id="${item.id}" style="display: none" class="card-product__imgOverlay choose-color">
+                            <li class="color-for-price">
+                                <p class="text-center text-light">Please choose</p>
+                                ${forColor(item)} 
+                            </li>
+                            <br />
+                            <li><button onclick="addToCastDB('${item.id}')"><i class="ti-shopping-cart"></i></button></li>
+                            <li><button onclick="hideChooseProduct('${item.id}', '${item.price}')"><i class="ti-close"></i></button></li>
                         </ul>
                       </div>
                       <div class="card-body">
@@ -77,7 +95,7 @@ function rederData(data) {
                             ${forStar(item.star)}
                         </div>
                         <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
-                        <p class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
+                        <p id="${item.id}-price" class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
                       </div>
                     </div>
                 </div>`);
@@ -116,14 +134,23 @@ function rederDataTrending(data) {
                                   <div class="card-product__img">
                                     <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                                     <ul class="card-product__imgOverlay">
-                                      <li><button onclick="addToCastDefaultDB('${item.id}', '${item.priceForColor[0].nameColor}', '${item.priceForColor[0].priceForColor}', '${item.price ? item.price : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                      <li><button onclick="showChooseProduct(${item.id})"><i class="ti-shopping-cart"></i></button></li>
                                       <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                    </ul>
+                                    <ul id="${item.id}" style="display: none" class="card-product__imgOverlay choose-color">
+                                        <li class="color-for-price">
+                                            <p class="text-center text-light">Please choose</p>
+                                            ${forColor(item)} 
+                                        </li>
+                                        <br />
+                                        <li><button onclick="addToCastDB('${item.id}')"><i class="ti-shopping-cart"></i></button></li>
+                                        <li><button onclick="hideChooseProduct('${item.id}', '${item.price}')"><i class="ti-close"></i></button></li>
                                     </ul>
                                   </div>
                                   <div class="card-body">
                                     <p>${findCategories(item.type.type != null? item.type.type : 10)}</p>
                                     <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
-                                    <p class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
+                                    <p id="${item.id}-price" class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
                                   </div>
                                 </div>
                             </div>`
@@ -135,14 +162,23 @@ function rederDataTrending(data) {
                               <div class="card-product__img">
                                 <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                                 <ul class="card-product__imgOverlay">
-                                  <li><button onclick="addToCastDB(${item.id})"><i class="ti-shopping-cart"></i></button></li>
+                                  <li><button onclick="showChooseProduct(${item.id})"><i class="ti-shopping-cart"></i></button></li>
                                   <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
+                                </ul>
+                                <ul id="${item.id}" style="display: none" class="card-product__imgOverlay choose-color">
+                                    <li class="color-for-price">
+                                        <p class="text-center text-light">Please choose</p>
+                                        ${forColor(item)} 
+                                    </li>
+                                    <br />
+                                    <li><button onclick="addToCastDB('${item.id}')"><i class="ti-shopping-cart"></i></button></li>
+                                    <li><button onclick="hideChooseProduct('${item.id}', '${item.price}')"><i class="ti-close"></i></button></li>
                                 </ul>
                               </div>
                               <div class="card-body">
                                 <p>${findCategories(item.type.type != null? item.type.type : 10)}</p>
                                 <h4 class="card-product__title"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h4>
-                                <p class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
+                                <p id="${item.id}-price" class="card-product__price">${formatter.format(item.price ? item.price : 0)}</p>
                               </div>
                             </div>
                         </div>`);
@@ -228,14 +264,23 @@ function rederDataBestSellers(data) {
                                         <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
                                     </a>
                                     <ul class="card-product__imgOverlay">
-                                        <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].priceForColor != null ? data[i].priceForColor[0].nameColor : ""}', '${data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0}', '${data[i].price != null ? (data[i].price)-(data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0) : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                        <li><button onclick="showChooseProductSellers(${data[i].id})"><i class="ti-shopping-cart"></i></button></li>
                                         <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                    </ul>
+                                    <ul id="${data[i].id}-sellers" style="display: none" class="card-product__imgOverlay choose-color">
+                                        <li class="color-for-price">
+                                            <p class="text-center text-light">Please choose</p>
+                                            ${forColor(data[i])} 
+                                        </li>
+                                        <br />
+                                        <li><button onclick="addToCastDB('${data[i].id}')"><i class="ti-shopping-cart"></i></button></li>
+                                        <li><button onclick="hideChooseProductSellers('${data[i].id}', '${data[i].price}')"><i class="ti-close"></i></button></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
                                     <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
                                     <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
-                                    <p class="card-product__price">${formatter.format(data[i].price != null ? data[i].price : 0)}</p>
+                                    <p id="${data[i].id}-price-sellers" class="card-product__price">${formatter.format(data[i].price ? data[i].price : 0)}</p>
                                 </div>
                             </div>`);
             }else {
@@ -245,14 +290,23 @@ function rederDataBestSellers(data) {
                                         <img class="img-fluid" src="${data[i].image[0] != null? data[i].image[0] : ''}" alt="">
                                     </a>
                                     <ul class="card-product__imgOverlay">
-                                        <li><button onclick="addToCastDefaultDB('${data[i].id}', '${data[i].priceForColor != null ? data[i].priceForColor[0].nameColor : ""}', '${data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0}', '${data[i].price != null ? (data[i].price)-(data[i].priceForColor != null ? data[i].priceForColor[0].priceForColor : 0) : 0}')"><i class="ti-shopping-cart"></i></button></li>
+                                        <li><button onclick="showChooseProductSellers(${data[i].id})"><i class="ti-shopping-cart"></i></button></li>
                                         <li><button onclick="addFavouriteUser(${data[i].id})"><i style="color: #e5ff10;" class="ti-heart"></i></button></li>
+                                    </ul>
+                                    <ul id="${data[i].id}-sellers" style="display: none" class="card-product__imgOverlay choose-color">
+                                        <li class="color-for-price">
+                                            <p class="text-center text-light">Please choose</p>
+                                            ${forColor(data[i])} 
+                                        </li>
+                                        <br />
+                                        <li><button onclick="addToCastDB('${data[i].id}')"><i class="ti-shopping-cart"></i></button></li>
+                                        <li><button onclick="hideChooseProductSellers('${data[i].id}', '${data[i].price}')"><i class="ti-close"></i></button></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
                                     <p>${findCategories(data[i].type.type != null ? data[i].type.type : 10 )}</p>
                                     <h4 class="card-product__title"><a href="/product-details?id=${data[i].id}">${data[i].name != null? data[i].name : ""}</a></h4>
-                                    <p class="card-product__price">${formatter.format(data[i].price != null ? data[i].price : 0)}</p>
+                                    <p id="${data[i].id}-price-sellers" class="card-product__price">${formatter.format(data[i].price ? data[i].price : 0)}</p>
                                 </div>
                             </div>`);
             }
@@ -318,7 +372,7 @@ function rederDataSingleProduct(item) {
                         <div class="col-lg-5 offset-lg-1">
                             <div class="s_product_text">
                                 <h3>${item.name ? item.name : ""}</h3>
-                                <h2 id="price-product">${formatter.format(item.price ? item.price : 0)}</h2>
+                                <h2 id="${item.id}-price">${formatter.format(item.price ? item.price : 0)}</h2>
                                 <ul class="list">
                                     <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
                                     <li><a href="#"><span>Availibility</span> : In Stock</a></li>
@@ -364,7 +418,7 @@ function rederDataSingleProduct(item) {
                             <div class="col-lg-5 offset-lg-1">
                                 <div class="s_product_text">
                                     <h3>${item.name ? item.name : ""}</h3>
-                                    <h2 id="price-product">${formatter.format(item.price ? item.price : 0)}</h2>
+                                    <h2 id="${item.id}-price">${formatter.format(item.price ? item.price : 0)}</h2>
                                     <ul class="list">
                                         <li><a class="active" href="#"><span>Category</span> : ${findCategories(item.type.type != null? item.type.type : 10)}</a></li>
                                         <li><a href="#"><span>Availibility</span> : In Stock</a></li>
