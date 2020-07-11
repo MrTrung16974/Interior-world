@@ -25,6 +25,7 @@ var loadUserDto = () => {
                 checkLogin = true;
             } else {
                 checkLogin = false;
+                toastr.warning('Find not data for user dto!');
             }
         },
         error: function (response) {
@@ -78,7 +79,7 @@ $.ajax({
                 }
             });
         }else {
-            toastr.error('Find not data!', response.message);
+            toastr.warning('Find not data for banner!');
         }
     },
     error: function (response) {
@@ -125,7 +126,7 @@ if(pathname == "/home") {
             if(response.code == "00") {
                 rederDataLatest(response.data);
             }else {
-                toastr.error('Find not data!', response.message);
+                toastr.warning('Find not data latest!');
             }
         },
         error: function (response) {
@@ -175,7 +176,7 @@ if(pathname == "/home") {
                 if(response.code == "00") {
                     rederDataBestSellers(response.data);
                 }else {
-                    toastr.error('Find not data!', response.message);
+                    toastr.warning('Find not data best sellers!');
                 }
             },
             error: function (response) {
@@ -197,7 +198,7 @@ if(pathname == "/shop") {
                 let totalPage = response.data.totalPages;
                 forPagination(totalPage, 0);
             }else {
-                toastr.error('Find not data!', response.message);
+                toastr.warning('Find not data for search!');
             }
         },
         error: function (response) {
@@ -219,7 +220,7 @@ if(pathname == "/checkout") {
                     rederDataCheckout();
                 }
             }else {
-                toastr.error('Please place a new order!', "You have no orders yet.");
+                toastr.warning("Please place a new order! You have no orders yet.");
             }
         },
         error: function (response) {
@@ -240,7 +241,7 @@ $.ajax({
                 rederDataTop(response.data);
             }
         } else {
-            toastr.error('Find not data!', response.message);
+            toastr.warning('Find not data for trending!');
         }
     },
     error: function (response) {
@@ -256,7 +257,7 @@ function catetoryProduct(type) {
                 listTrendingProduct = response.data;
                 rederDataCatetory(response.data);
             } else {
-                toastr.error('Find not data!', response.message);
+                toastr.warning('Find not data for catetory!');
             }
         },
         error: function (response) {
@@ -276,11 +277,11 @@ function loginCickUser() {
     let username = $("#username").val().trim();
     let password = $("#password").val().trim();
     if(username == null || username == "") {
-        toastr.error('You have not entered a username ');
+        toastr.warning('You have not entered a username ');
         return;
     }
     if(password == null || password == "") {
-        toastr.error('You have not entered a password ');
+        toastr.warning('You have not entered a password ');
         return;
     }
     shopLoading();
@@ -304,13 +305,11 @@ function loginCickUser() {
             } else {
                 hideLoading();
                 window.location.href = "http://localhost:8080/login?error=true"
-                console.log(response.message);
             }
         },
         error: function () {
             hideLoading();
             toastr.error('An error occurred . Please try again', response.message);
-            console.log(response.message);
         }
     });
 }
@@ -330,31 +329,31 @@ function registerClickUser() {
     let password = $("#regiter-passwprd").val().trim();
     let confirmPassword = $("#confirm-regiter-password").val().trim();
     if(name == null || name == "") {
-        toastr.error('You have not entered a name ');
+        toastr.warning('You have not entered a name ');
         return;
     }
     if(username == null || username == "") {
-        toastr.error('You have not entered a username ');
+        toastr.warning('You have not entered a username ');
         return;
     }
     if(password == null || password == "") {
-        toastr.error('You have not entered a password ');
+        toastr.warning('You have not entered a password ');
         return;
     }
     if(confirmPassword == null || confirmPassword == "") {
-        toastr.error('You have not entered a name ');
+        toastr.warning('You have not entered a name ');
         return;
     }
     if(password != confirmPassword) {
-        toastr.error('Password and confirm password must be the same ');
+        toastr.warning('Password and confirm password must be the same ');
         return;
     }
     if(!validatePassword(password)) {
-        toastr.error('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
+        toastr.warning('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
         return;
     }
     if(!validateEmail(email)) {
-        toastr.error('You have not entered a email ');
+        toastr.warning('You have not entered a email ');
         return;
     }
     shopLoading();
@@ -377,8 +376,7 @@ function registerClickUser() {
                 }
                 hideLoading();
             }else {
-                toastr.error('Null Data', response.message);
-                console.log(response.message);
+                toastr.warning('Find not data for register');
                 hideLoading();
             }
             if(response.code == "300") {
@@ -395,6 +393,10 @@ function registerClickUser() {
 }
 
 function logoutUser() {
+    let confirmlogout = confirm("Are you sure you want to logout?");
+    if(confirmlogout == false) {
+        return;
+    }
     shopLoading();
     $.ajax({
         type: "POST",
@@ -437,29 +439,29 @@ function changeClickPassword() {
     let newPassword = $("#new-password").val().trim();
     let confirmPassword = $("#confirm-password").val().trim();
     if(userDto.username == null || userDto.username == "") {
-        toastr.error('You have not entered a username ');
+        toastr.warning('You have not entered a username ');
         return;
     }
     if(currentPassword == null || currentPassword == "") {
-        toastr.error('You have not entered a password ');
+        toastr.warning('You have not entered a password ');
         return;
     }
     if(newPassword == null || newPassword == "") {
-        toastr.error('You have not entered a password ');
+        toastr.warning('You have not entered a password ');
         return;
     }
     if(confirmPassword == null || confirmPassword == "") {
-        toastr.error('You have not entered a name ');
+        toastr.warning('You have not entered a name ');
         return;
     }
     if(newPassword != confirmPassword) {
-        toastr.error('Password and confirm password must be the same ');
+        toastr.warning('Password and confirm password must be the same ');
         return;
     }
     if(!validatePassword(currentPassword) ||
         !validatePassword(newPassword) ||
         !validatePassword(confirmPassword)) {
-        toastr.error('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
+        toastr.warning('Password needs uppercase, lowercase letters, numbers, greater than eight characters');
         return;
     }
     shopLoading();
@@ -479,8 +481,7 @@ function changeClickPassword() {
                     rederChangePassword();
                 }
             }else {
-                toastr.error('Null Data', response.message);
-                console.log(response.message);
+                toastr.warning("Find not data change password!");
             }
             hideLoading();
         },
@@ -500,27 +501,27 @@ function updateUser() {
     let sex = $('input[name="sex"]:checked').val();
     let birthday = $("#birthday-user").val();
     if(image == null || image == "") {
-        toastr.error('You have not entered a image');
+        toastr.warning('You have not entered a image');
         return;
     }
     if(fullName == null || fullName == "") {
-        toastr.error('You have not entered a fullName');
+        toastr.warning('You have not entered a fullName');
         return;
     }
     if(phone == null || phone == "") {
-        toastr.error('You have not entered a phone');
+        toastr.warning('You have not entered a phone');
         return;
     }
     if(sex == null || sex == "") {
-        toastr.error('You have not entered a sex');
+        toastr.warning('You have not entered a sex');
         return;
     }
     if(birthday == null || birthday == "") {
-        toastr.error('You have not entered a birthday');
+        toastr.warning('You have not entered a birthday');
         return;
     }
     if(!validateEmail(email)) {
-        toastr.error('You have not entered a email');
+        toastr.warning('You have not entered a email');
         return;
     }
     shopLoading();
@@ -549,7 +550,6 @@ function updateUser() {
             }else {
                 hideLoading();
                 toastr.success('Logout server error !', response.message);
-                console.log(response.message);
             }
         },
         error: function () {
@@ -561,7 +561,7 @@ function updateUser() {
 function updateUserAddress() {
     let address = $("#user-address").val();
     if(address == null || address == "") {
-        toastr.error('You have not entered a address ');
+        toastr.warning('You have not entered a address ');
         return;
     }
     shopLoading();
@@ -693,7 +693,7 @@ function sortProduct() {
 function addFavouriteUser(idProduct) {
     shopLoading();
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }
@@ -746,7 +746,7 @@ function getProductInCast() {
                     }
                 }
             }else {
-                toastr.error('Hehe', response.message);
+                toastr.warning('Find not data for cart!');
             }
             hideLoading();
         },
@@ -829,7 +829,7 @@ function addToCastDB(idProduct, type) {
     console.log(priceForColor);
     if(nameColor == null || nameColor == undefined
         || priceForColor == null || priceForColor == undefined) {
-        toastr.error('You need choose color for product!', "HAHA");
+        toastr.warning('You need choose color for product!');
         return;
     }
     shopLoading();
@@ -837,7 +837,7 @@ function addToCastDB(idProduct, type) {
     let price = parseFloat(formatPirceToInt(priceForColor));
     console.log(price);
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }
@@ -881,7 +881,7 @@ function addToCastDB(idProduct, type) {
 function deleteItem(idProduct, nameColor) {
     shopLoading();
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }
@@ -923,7 +923,7 @@ function deleteItem(idProduct, nameColor) {
 function addItem(idProduct, nameColor) {
     shopLoading();
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }
@@ -955,7 +955,7 @@ function addItem(idProduct, nameColor) {
                         }
                     }
                 }else {
-                    toastr.error('You need login!',  "HAHA");
+                    toastr.warning('You need login!');
                 }
             }
             hideLoading();
@@ -970,7 +970,7 @@ function addItem(idProduct, nameColor) {
 function removeItem(idProduct, nameColor) {
     shopLoading();
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }
@@ -1002,7 +1002,7 @@ function removeItem(idProduct, nameColor) {
                         }
                     }
                 } else {
-                    toastr.error('You need login!', "HAHA");
+                    toastr.warning('You need login!');
                 }
             }
             hideLoading();
@@ -1020,20 +1020,20 @@ function checkout() {
     || cart.listProduct == null
     || cart.listProduct.length == null
     || cart.listProduct .length < 0) {
-        toastr.error('You do not have products to checkout', 'Please select a product');
+        toastr.warning('You do not have products to checkout! Please select a product');
         return;
     }
     if(order.listProduct .length < 0) {
-        toastr.error('You need to contact us to pay for old orders! To be able to continue ordering!');
+        toastr.warning('You need to contact us to pay for old orders! To be able to continue ordering!');
         return;
     }
     if(shippingRates == "" || shippingRates == null) {
-        toastr.error('You need to choose shipping rate');
+        toastr.warning('You need to choose shipping rate');
         return;
     }
     shopLoading();
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }
@@ -1075,16 +1075,16 @@ function addComment(idProduct) {
     if(typeof star == "undefined"
         || star == null
         || star == "") {
-        toastr.error('You need to rate the product!', "HAHA");
+        toastr.warning('You need to rate the product!');
         return;
     }
     if (contentComment == null || contentComment == ""){
-        toastr.error('You need import content!', "HAHA");
+        toastr.warning('You need import content!');
         return;
     }
     shopLoading();
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }
@@ -1121,16 +1121,16 @@ function likeCommet(idCommet) {
     var idProduct = getParameterByName('id');
     console.log(idProduct);
     if(idProduct == null && idProduct == "") {
-        toastr.error('An error occurred . Please try again!', "HAHA");
+        toastr.warning('An error occurred . Please try again!');
         return;
     }
     if(idCommet == null && idCommet == "") {
-        toastr.error('An error occurred . Please try again!', "HAHA");
+        toastr.warning('An error occurred . Please try again!');
         return;
     }
     shopLoading();
     if(!checkLoginDto()) {
-        toastr.error('You need login!', "HAHA");
+        toastr.warning('You need login!');
         hideLoading();
         return;
     }

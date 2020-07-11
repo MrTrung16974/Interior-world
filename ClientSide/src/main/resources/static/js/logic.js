@@ -67,6 +67,7 @@ const debounce = (func, delay) => {
             = setTimeout(() => func.apply(context, args), delay)
     }
 }
+
 // format data (DD/MM/YYYY)
 const ChangeDateFormatAgain = date => {
     const [dd, mm, yy] = date.split(/\//g);
@@ -431,7 +432,7 @@ $(document).ready(function() {
         else {
             msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
         }
-        toastr.error(msg);
+        toastr.info(msg);
         star = ratingValue;
     });
 
