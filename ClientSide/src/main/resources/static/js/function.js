@@ -25,7 +25,6 @@ var loadUserDto = () => {
                 checkLogin = true;
             } else {
                 checkLogin = false;
-                toastr.error('Find not data!', response.message);
             }
         },
         error: function (response) {
@@ -33,6 +32,28 @@ var loadUserDto = () => {
             ;
             window.location.href = "http://localhost:8080/login"
             toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
+}
+var checkLoginDto = () => {
+    $.ajax({
+        url: "http://localhost:8099/v1/api/getInfoUser",
+        type: "GET",
+        dataType: 'json',
+        async: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", token);
+        },
+        contentType: "application/json",
+        success: function (response) {
+            if (response.code == "00") {
+                checkLogin = true;
+            } else {
+                checkLogin = false;
+            }
+        },
+        error: function (response) {
+            checkLogin = false;
         }
     });
     return checkLogin;
@@ -114,53 +135,56 @@ if(pathname == "/home") {
     /* ------- hero carousel -------*/
 
     /*------- Best Seller Carousel -------*/
-    //Javascript
-    $(document).ready(function(){
-        $('#bestSellerCarousel').owlCarousel();
-    });
-
-    var owlCarousel = $('.owl-carousel');
-    var owlBestSeller = $('#bestSellerCarousel');
-
-    if(owlCarousel.length > 0){
-        owlBestSeller.owlCarousel({
-            loop:true,
-            margin:30,
-            nav:true,
-            navText: ["<i class='ti-arrow-left'></i>","<i class='ti-arrow-right'></i>"],
-            dots: false,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items: 2
-                },
-                900:{
-                    items:3
-                },
-                1130:{
-                    items:4
+    var owlCarousel = null;
+    var owlBestSeller = null;
+    var bestSellers = () => {
+        //Javascript
+        $(document).ready(function(){
+            $('#bestSellerCarousel').owlCarousel();
+        });
+        owlCarousel = $('.owl-carousel');
+        owlBestSeller = $('#bestSellerCarousel');
+        if(owlCarousel.length > 0){
+            owlBestSeller.owlCarousel({
+                loop:true,
+                margin:30,
+                nav:true,
+                navText: ["<i class='ti-arrow-left'></i>","<i class='ti-arrow-right'></i>"],
+                dots: false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items: 2
+                    },
+                    900:{
+                        items:3
+                    },
+                    1130:{
+                        items:4
+                    }
                 }
-            }
-        })
-    }
-    $.ajax({
-        url: "http://localhost:8099/v1/api/product/best-sellers",
-        type: "GET",
-        dataType: 'json',
-        success: function(response) {
-            if(response.code == "00") {
-                rederDataBestSellers(response.data);
-            }else {
-                toastr.error('Find not data!', response.message);
-            }
-        },
-        error: function (response) {
-            toastr.error('An error occurred . Please try again', response.message);
+            })
         }
-    });
-    /*------- Best Seller Carousel -------*/
+        $.ajax({
+            url: "http://localhost:8099/v1/api/product/best-sellers",
+            type: "GET",
+            dataType: 'json',
+            success: function(response) {
+                if(response.code == "00") {
+                    rederDataBestSellers(response.data);
+                }else {
+                    toastr.error('Find not data!', response.message);
+                }
+            },
+            error: function (response) {
+                toastr.error('An error occurred . Please try again', response.message);
+            }
+        });
+        /*------- Best Seller Carousel -------*/
+    }
+    bestSellers();
 }
 if(pathname == "/shop") {
     $.ajax({
@@ -657,21 +681,22 @@ function sortProduct() {
                 forPagination(1, 0);
                 console.log(response.message);
             }
-            hideLoading()
+            hideLoading();
         },
         error: function (error) {
             toastr.error('An error occurred . Please try again', error.message);
-            hideLoading()
+            hideLoading();
         }
     });
 }
 
 function addFavouriteUser(idProduct) {
-    if(!loadUserDto()) {
+    shopLoading();
+    if(!checkLoginDto()) {
         toastr.error('You need login!', "HAHA");
+        hideLoading();
         return;
     }
-    shopLoading();
     $.ajax({
         url: "http://localhost:8099/v1/api/user/favourite/?userName="+
             cart.buyer + "&idProduct=" + idProduct,
@@ -686,16 +711,20 @@ function addFavouriteUser(idProduct) {
                 }
                 loadUserDto();
                 rederData(listAllProduct);
-                rederDataTrending(listTrendingProduct);
-                if(pathname = "/product-detforImageails") {
+                if(pathname = "/home") {
+                    console.log("OK");
+                    rederDataTrending(listTrendingProduct);
+                    bestSellers();
+                }
+                if(pathname = "/product-details") {
                     rederDataSingleProduct(singleProduct);
                 }
+                hideLoading();
             }
-            hideLoading()
         },
         error: function (error) {
             toastr.error('An error occurred . Please try again', error.message);
-            hideLoading()
+            hideLoading();
         }
     });
 }
@@ -730,7 +759,7 @@ function getProductInCast() {
 
 // function addToCastDetailDB(idProduct, oldNumber) {
 //     let updateCastRequest = [];
-//     if(!loadUserDto()) {
+//     if(!checkLoginDto()) {
 //         shopLoading();
 //         let newNumber = $("#qty").val().trim();
 //         if(newNumber > 0) {
@@ -788,13 +817,15 @@ function getProductInCast() {
 //     }
 // }
 
-function addToCastDB(idProduct) {
-    if(!loadUserDto()) {
-        toastr.error('You need login!', "HAHA");
-        return;
-    }
+function addToCastDB(idProduct, type) {
     let nameColor = $('input[name="color-price"]:checked').val();
-    let priceForColor = $(`#${idProduct}-price`).text();
+    let priceForColor = 0;
+    if(type == 1) {
+        priceForColor = $(`#${idProduct}-price`).text();
+    }
+    if(type == 2) {
+        priceForColor = $(`.${idProduct}-price-sellers`).text();
+    }
     console.log(priceForColor);
     if(nameColor == null || nameColor == undefined
         || priceForColor == null || priceForColor == undefined) {
@@ -802,8 +833,14 @@ function addToCastDB(idProduct) {
         return;
     }
     shopLoading();
-    let price = parseInt(priceForColor.match(/(\d+)/));
+
+    let price = parseFloat(formatPirceToInt(priceForColor));
     console.log(price);
+    if(!checkLoginDto()) {
+        toastr.error('You need login!', "HAHA");
+        hideLoading();
+        return;
+    }
     let updateCastRequest = {
         name: userDto.username,
         listProductCast: [{
@@ -842,11 +879,12 @@ function addToCastDB(idProduct) {
 }
 
 function deleteItem(idProduct, nameColor) {
-    if(!loadUserDto()) {
+    shopLoading();
+    if(!checkLoginDto()) {
         toastr.error('You need login!', "HAHA");
+        hideLoading();
         return;
     }
-    shopLoading();
     let updateCastRequest = {
         name: userDto.username,
         listProductCast: [{
@@ -883,11 +921,12 @@ function deleteItem(idProduct, nameColor) {
     });
 }
 function addItem(idProduct, nameColor) {
-    if(!loadUserDto()) {
+    shopLoading();
+    if(!checkLoginDto()) {
         toastr.error('You need login!', "HAHA");
+        hideLoading();
         return;
     }
-    shopLoading();
     let updateCastRequest = {
         name:  userDto.username,
         listProductCast: [{
@@ -929,11 +968,12 @@ function addItem(idProduct, nameColor) {
 }
 
 function removeItem(idProduct, nameColor) {
-    if(!loadUserDto()) {
+    shopLoading();
+    if(!checkLoginDto()) {
         toastr.error('You need login!', "HAHA");
+        hideLoading();
         return;
     }
-    shopLoading();
     let updateCastRequest = {
         name: userDto.username,
         listProductCast: [{
@@ -976,10 +1016,6 @@ function removeItem(idProduct, nameColor) {
 
 function checkout() {
     let shippingRates = $('input[name="shipping-rete"]:checked').val();
-    if(!loadUserDto()) {
-        toastr.error('You need login!', "HAHA");
-        return;
-    }
     if(typeof cart.listProduct == "undefined"
     || cart.listProduct == null
     || cart.listProduct.length == null
@@ -996,6 +1032,11 @@ function checkout() {
         return;
     }
     shopLoading();
+    if(!checkLoginDto()) {
+        toastr.error('You need login!', "HAHA");
+        hideLoading();
+        return;
+    }
     $.ajax({
         url: "http://localhost:8099/order/checkout-products?idUser=" + userDto.username + "&shippingRates=" + shippingRates,
         type: "PUT",
@@ -1030,10 +1071,6 @@ function checkout() {
 
 // comment
 function addComment(idProduct) {
-    if(!loadUserDto()) {
-        toastr.error('You need login!', "HAHA");
-        return;
-    }
     let contentComment = $("textarea#coment-content").val().trim();
     if(typeof star == "undefined"
         || star == null
@@ -1046,6 +1083,11 @@ function addComment(idProduct) {
         return;
     }
     shopLoading();
+    if(!checkLoginDto()) {
+        toastr.error('You need login!', "HAHA");
+        hideLoading();
+        return;
+    }
     let comment = {
         image: userDto.image,
         buyer: userDto.username,
@@ -1078,10 +1120,6 @@ function addComment(idProduct) {
 function likeCommet(idCommet) {
     var idProduct = getParameterByName('id');
     console.log(idProduct);
-    if(!loadUserDto()) {
-        toastr.error('You need login!', "HAHA");
-        return;
-    }
     if(idProduct == null && idProduct == "") {
         toastr.error('An error occurred . Please try again!', "HAHA");
         return;
@@ -1091,6 +1129,11 @@ function likeCommet(idCommet) {
         return;
     }
     shopLoading();
+    if(!checkLoginDto()) {
+        toastr.error('You need login!', "HAHA");
+        hideLoading();
+        return;
+    }
     $.ajax({
         url: "http://localhost:8099/v1/api/like-comment?idProduct=" + idProduct
             + "&idUser=" + userDto.username + "&idCommet=" + idCommet,

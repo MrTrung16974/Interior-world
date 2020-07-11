@@ -133,14 +133,17 @@ public class ProductApIController {
         BaseResponse response = new BaseResponse();
         try {
             Optional<List<Order>> listLatestProduct = orderRepository.findAllByStatus(1);
-            if (!listLatestProduct.isPresent()) {
+            Optional<List<Product>> listAllPrduct = Optional.of(productRepository.findAll());
+            if (!listLatestProduct.isPresent() && !listAllPrduct.isPresent()) {
                 response.setCode("99");
                 response.setMessage("Data not found");
                 response.setData(null);
             } else {
                 List<Order> listExitProduct = listLatestProduct.get();
+                List<Product> listAllExitProduct = listAllPrduct.get();
                 List<ProductModel> lstProductBestSellers = new ArrayList<>();
-                List<ProductModel> lstSortProductBestSellers = new ArrayList<>();
+                Set<Product> lstDuplicateProductBestSellers = new HashSet<>();
+
                 for (Order order: listExitProduct) {
                     if(order.getListProduct() != null && order.getListProduct().size() > 0) {
                         for (ProductModel pm : order.getListProduct()) {
@@ -148,23 +151,16 @@ public class ProductApIController {
                         }
                     }
                 }
-                Integer length = lstProductBestSellers.size() < 12 ? lstProductBestSellers.size() : 12;
-                for (int i = 1; i < length; i++) {
-                    ProductModel pm1 = lstProductBestSellers.get(i);
-                    ProductModel pm2 = lstProductBestSellers.get(i-1);
-                    if (!pm1.getId().equals(pm2.getId())) {
-                        lstSortProductBestSellers.add(pm1);
+                for (Product p : listAllExitProduct) {
+                    for (ProductModel pm : lstProductBestSellers) {
+                        if(p.getId().equals(pm.getId())) {
+                            lstDuplicateProductBestSellers.add(p);
+                        }
                     }
                 }
-                Collections.sort(lstSortProductBestSellers, new Comparator<ProductModel>() {
-                    @Override
-                    public int compare(ProductModel o1, ProductModel o2) {
-                        return  o2.getNumber() - o1.getNumber();
-                    }
-                });
                 response.setCode("00");
                 response.setMessage("success");
-                response.setData(lstSortProductBestSellers);
+                response.setData(lstDuplicateProductBestSellers);
             }
         } catch (Exception e) {
             response.setCode("90");

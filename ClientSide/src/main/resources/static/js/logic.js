@@ -82,6 +82,17 @@ var formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
+var formatPirceToInt = (price) => {
+    let end = price.indexOf(".")
+    let srtPrice = price.slice(1, end);
+
+    let endStr = srtPrice.indexOf(",")
+    let oneSrtPrice = srtPrice.slice(0, endStr);
+    let twoStrPrice = srtPrice.slice(endStr+1)
+    let endStrPrice = oneSrtPrice.concat(twoStrPrice);
+
+    return endStrPrice;
+}
 var shopHidePass = () => {
     $(".hide-eye-pass, .show-eye-pass").on('click', function () {
         console.log("OK");
@@ -277,19 +288,19 @@ function getPriceProduct(id, price, priceColor) {
     let nameColor = $(this);
     if(price > 0) {
         $(`#${id}-price`).text(formatter.format(price + priceColor));
-        $(`#${id}-price-sellers`).text(formatter.format(price + priceColor));
+        $(`.${id}-price-sellers`).text(formatter.format(price + priceColor));
     }else {
         $(`#${id}-price`).text(formatter.format(0));
     }
 }
 
 function showChooseProductSellers(id) {
-    console.log("OK");
-    $(`#${id}-sellers`).show();
+    $(`.${id}-sellers`).show();
 }
 function hideChooseProductSellers(id, price) {
-    $(`#${id}-sellers`).hide();
-    $(`#${id}-price-sellers`).text(formatter.format(`${price}`));
+    console.log("OK");
+    $(`.${id}-sellers`).hide();
+    $(`.${id}-price-sellers`).text(formatter.format(`${price}`));
     $(`a.${id}-checked input[type="radio"]`).prop('checked', false);
 }
 
