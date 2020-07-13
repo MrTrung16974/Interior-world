@@ -1,38 +1,52 @@
 package com.example.mongodb.controller;
 
-import com.example.mongodb.dto.BaseResponse;
-import com.example.mongodb.model.Product;
-import com.example.mongodb.model.User;
-import com.example.mongodb.repository.OrderRepository;
-import com.example.mongodb.repository.ProductRepository;
 import com.example.mongodb.repository.UserRepository;
-import com.example.mongodb.services.OrderServices;
+import com.example.mongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-
-    @Autowired
-    ProductRepository productRepository;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping("/index")
-    public String index(Model model){
-        List<Product> lstProduct = productRepository.findAll();
-        model.addAttribute("lstProduct",lstProduct);
+    @Autowired
+    UserService userService;
+
+    @RequestMapping({"/","/home"})
+    public String home(Model model){
         return "index";
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("/welcome")
+    @PreAuthorize("isAuthenticated()")
+    public String welcome(HttpServletRequest request, HttpSession session) {
+        return "welcome";
+    }
+
+    @RequestMapping("/403")
+    public String noPermission() {
+        return "403";
+    }
+
+    @RequestMapping("/404")
+    public String notFound() {
+        return "404";
+    }
+
+    @RequestMapping("/500")
+    public String internalError() {
+        return "500";
     }
 }
