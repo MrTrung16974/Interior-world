@@ -1,0 +1,37 @@
+server:
+  port: 8099
+  error:
+    whitelabel:
+      enabled: false
+  session:
+    timeout: 6000
+    cookie:
+      max-age: 600
+#  servlet:
+#    context-path: /aroma
+security:
+  basic:
+    enabled: false
+management:
+  security:
+    enabled: false
+
+ekyc:
+  security:
+    authorizations:
+      - url: /js/**,/css/**,/vendor/**,/img/**,/images/**,/v1/api/**,/order/**,/link/**,/fonts/**,/plugins/**,/login,/logout
+        access: permitAll
+      - url: /*,/**
+        access: isAuthenticated()
+    ignoring: 123
+
+default:
+  password: 12345a
+spring:
+  # Templates reloading during development
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+  # Static resources reloading during development
+  resources:
+    static-locations: file:src/main/resources/static/

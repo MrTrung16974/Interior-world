@@ -7,6 +7,10 @@ var messageArea = document.querySelector('#messageArea');
 
 var stompClient = null;
 
+if(checkLoginDto()) {
+    $(".chat-user").attr("style", "display:block");
+}
+
 function connect(event) {
     if(userDto.username) {
         var socket = new SockJS('http://localhost:8099/ws');

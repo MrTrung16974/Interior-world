@@ -2,11 +2,14 @@
 
 var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
-var usernameForm = document.querySelector('#usernameForm');
-var messageForm = document.querySelector('#create-new-product');
-var messageInput = document.querySelector('#productName');
-var messageArea = document.querySelector('#messageArea');
+var usernameForm = document.querySelector('#username-form');
+var messageForm = document.querySelector('#message-form');
+var messageInput = document.querySelector('#input-message');
+var messageArea = document.querySelector('#message-area');
 var connectingElement = document.querySelector('.connecting');
+
+var pathname = window.location.pathname;
+// Returns path only (/path/example.html)
 
 var stompClient = null;
 var username = "trung";

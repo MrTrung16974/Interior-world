@@ -202,7 +202,7 @@ function rederDataCatetory(data) {
                 `<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-0 mb-4">
                     <div id="catetory-product-1" class="single-search-product-wrapper">
                         <div class="single-search-product d-flex">
-                            <a href="#"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
+                            <a href="/product-details?id=${item.id ? item.id : ""}"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                             <div class="desc">
                                 <a href="/product-details?id=${item.id}" class="title">${item.name ? item.name : ""}</a>
                             <div class="price">${formatter.format(item.price ? item.price : "")}</div>
@@ -228,7 +228,7 @@ function rederDataTop(data) {
                 `<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-0 mb-4">
                     <div id="catetory-product-1" class="single-search-product-wrapper">
                         <div class="single-search-product d-flex">
-                            <a href="#"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
+                            <a href="/product-details?id=${item.id ? item.id : ""}"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                             <div class="desc">
                                 <a href="/product-details?id=${data[i].id}" class="title">${item.name ? item.name : ""}</a>
                             <div class="price">${formatter.format(item.price ? item.price : "")}</div>
@@ -442,7 +442,7 @@ function rederDataSingleProduct(item) {
                     `);
         }
 
-
+        $("#total-comment").text(item.comment != null? `(${item.comment.length})` : `(0)`);
         $("button#add-to-coment").attr("onclick", `addComment('${item.id}')`);
         $("p#description-product").text(item.longDescription != null ? item.longDescription : "");
         $("h5#width").text((item.type.width != null ? item.type.width : "") + " cm");
@@ -465,18 +465,19 @@ function rederDataCastBoxUp(data) {
         && data.length > 0) {
         data.map(item => {
             $('#box-up-lst-prodcut-in-cast').append(
-            `<li>
-                <div class="media-left">
-                    <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="${item.image[0] ? item.image[0] : ""}" alt="..."> </a> </div>
-                </div>
-                <div class="media-body">
-                    <h6 class="media-heading"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h6>
-                    <span class="price">${formatter.format(item.price ? item.price : 0)}</span> <span class="qty">QTY: ${item.number ? item.number : ""}</span>
-                    <button style="margin-left: 20px; " class="delete-item-cart" onclick="deleteItem('${item.id }', '${item.nameColor}')"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </li>`
-        );
-    });
+                `<li>
+                    <div class="media-left">
+                        <div class="cart-img"> <a href="/product-details?id=${item.id ? item.id : ""}"> <img class="media-object img-responsive" src="${item.image[0] ? item.image[0] : ""}" alt="..."> </a> </div>
+                    </div>
+                    <div class="media-body">
+                        <h6 class="media-heading"><a href="/product-details?id=${item.id ? item.id : ""}">${item.name ? item.name : ""}</a></h6>
+                        <span class="price">${formatter.format(item.price ? item.price : 0)}</span> <span class="qty">QTY: ${item.number ? item.number : ""}</span>
+                        <button style="margin-left: 20px; " class="delete-item-cart" onclick="deleteItem('${item.id }', '${item.nameColor}')"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </li>`
+            );
+        });
+    $("#total-comment").text(data.comment != null? `(${data.comment.length})` : `(0)`);
     }else{
         $("#box-up-lst-prodcut-in-cast").html("<p style='text-align: center'>You have no items in the basket</p>");
     }
@@ -832,8 +833,8 @@ function rederChangePassword() {
 //reder coment
 //    reder coment product
 function rederComentProduct(data) {
-    $("#comments-list").empty();
     console.log(data);
+    $("#comments-list").empty();
     if(data != null) {
         data.map(item => {
             $('#comments-list').append(
@@ -858,6 +859,7 @@ function rederComentProduct(data) {
                 </div>`
             );
         });
+        $("#total-comment").text(data != null? `(${data.length})` : `(0)`);
     }else {
         $('#comments-list').html("<p style='color: #1abc9c;'>Product has not been evaluated</p>");
     }

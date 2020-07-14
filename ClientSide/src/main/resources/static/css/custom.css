@@ -498,5 +498,11 @@ form.content-user-profile.from-content table tr td {
     padding: 10px 12px;
     display: flow-root;
 }
+a.btn.btn-user {
+    border-radius: 30px;
+    padding: 10px 5px;
+    color: #fff;
+    margin-top: 0;
+}
 /*--================ End account info Area =================--*/
 

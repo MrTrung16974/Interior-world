@@ -58,8 +58,8 @@
                 <ul>
                   <li class="filter-list"><input class="pixel-radio" type="radio" id="all-color" name="color" value="0"><label for="all-color">All</label></li>
                   <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color" value="1"><label for="black">Black</label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="yellow" name="color" value="2"><label for="yellow">Yellow</label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="white" name="color" value="3"><label for="white">White</label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="yellow" name="color" value="2"><label for="yellow">White</label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="white" name="color" value="3"><label for="white">Yellow</label></li>
                   <li class="filter-list"><input class="pixel-radio" type="radio" id="blue" name="color" value="4"><label for="blue">Blue</label></li>
                 </ul>
               </form>
@@ -149,6 +149,8 @@
   <!--================ Start footer Area  =================-->
   <footer th:replace="/component/footer :: footer-area"></footer>
   <!--================ End footer Area  =================-->
+  <!-- Chat js -->
+  <script th:src="@{/js/chat.js}"></script>
 
 </body>
 </html>
