@@ -1,5 +1,6 @@
 package com.example.mongodb.controller;
 
+import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
@@ -27,14 +28,27 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    OrderRepository orderRepository;
+
     @RequestMapping("/list")
     public ModelAndView listProduct(HttpServletRequest request,
                               Principal principal) {
-//        String tag = buildLogTag(request, principal, "List Product");
-//        LOGGER.debug(LOG_FORMAT, tag, "List product view");
+        String tag = buildLogTag(request, principal, "List Product");
+        LOGGER.debug(LOG_FORMAT, tag, "List product view");
         ModelAndView mv = new ModelAndView("product/list-product");
         mv.addObject("lstProduct",productRepository.findAll());
-//        LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
+        LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
+        return mv;
+    }
+    @RequestMapping("/order/list")
+    public ModelAndView listOrder(HttpServletRequest request,
+                                    Principal principal) {
+        String tag = buildLogTag(request, principal, "List Product");
+        LOGGER.debug(LOG_FORMAT, tag, "List product view");
+        ModelAndView mv = new ModelAndView("product/list-order");
+        mv.addObject("lstOrder",orderRepository.findAll());
+        LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
         return mv;
     }
 }

@@ -33,10 +33,10 @@ public class OrderServices {
             query.addCriteria(Criteria.where("name").regex(Pattern.compile(Pattern.quote(name), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
         }
         if(type > 0 && type != null) {
-            query.addCriteria(Criteria.where("type.type").is(type-1));
+            query.addCriteria(Criteria.where("type.type").is(type));
         }
         if(material > 0 && material != null) {
-            query.addCriteria(Criteria.where("type.material").is(material-1));
+            query.addCriteria(Criteria.where("type.material").is(material));
         }
         if(color > 0 && color != null) {
             query.addCriteria(Criteria.where("price_for_color").elemMatch(Criteria.where("color").is(color)));

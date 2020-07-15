@@ -18,6 +18,7 @@
 
         <!-- Custom styles for this page -->
         <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
         <!-- Custom styles for this template-->
         <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
@@ -66,7 +67,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User</h6>
                     <a class="collapse-item" th:href="@{/user/list}">User Account</a>
-                    <a class="collapse-item" th:href="@{/user/role/list}">Decentralization</a>
+                    <a class="collapse-item" th:href="@{/role/list}">Roles Group </a>
                 </div>
             </div>
         </li>
@@ -81,7 +82,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Product:</h6>
                     <a class="collapse-item" th:href="@{/product/list}">List Products</a>
-                    <a class="collapse-item" th:href="@{/product/list}">Order Product</a>
+                    <a class="collapse-item" th:href="@{/product/order/list}">Order Product</a>
                 </div>
             </div>
         </li>

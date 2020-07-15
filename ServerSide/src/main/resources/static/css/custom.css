@@ -655,3 +655,13 @@
     outline: none;
 }
 /*----- End of Chat ----*/
+
+/* Custom Input groud */
+.input-group>.form-control.date-picker {
+    border-radius: 6px;
+}
+.input-group>span.input-group-addon {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}

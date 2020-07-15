@@ -29,6 +29,11 @@ public class HomeController {
         return "login";
     }
 
+    @RequestMapping("/register")
+    public String register() {
+        return "register";
+    }
+
     @RequestMapping("/welcome")
     @PreAuthorize("isAuthenticated()")
     public String welcome(HttpServletRequest request, HttpSession session) {
