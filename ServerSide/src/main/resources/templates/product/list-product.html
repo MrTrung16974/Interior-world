@@ -46,7 +46,7 @@
                             <div class="row">
                                 <label class="col-sm-6 control-label no-padding-right p_top"> Category </label>
                                 <div class="col-sm-6">
-                                    <select class="select2 form-control" name="status" id="status">
+                                    <select class="select2 form-control" name="status" id="category">
                                         <option value="">All</option>
                                         <option value="1">Cabinets</option>
                                         <option value="2">Desk</option>
@@ -64,7 +64,7 @@
                             <div class="row">
                                 <label class="col-sm-6 control-label no-padding-right p_top">Material </label>
                                 <div class="col-sm-6">
-                                    <select class="select2 form-control" name="status" id="status">
+                                    <select class="select2 form-control" name="status" id="material">
                                         <option value="">All</option>
                                         <option value="1">Wood</option>
                                         <option value="2">Plastic</option>
@@ -79,7 +79,7 @@
                             <div class="row">
                                 <label class="col-sm-6 control-label no-padding-right p_top">Color </label>
                                 <div class="col-sm-6">
-                                    <select class="select2 form-control" name="status" id="status">
+                                    <select class="select2 form-control" name="status" id="color">
                                         <option value="">All</option>
                                         <option value="1">Black</option>
                                         <option value="2">Yellow</option>
@@ -94,7 +94,7 @@
                     <div class="clear"></div>
                     <div class="clearfix mt-2 mb-5 w-100 form-actions text-center">
                         <button type="button" class="btn btn-primary" onclick="doSearch();">Search</button>
-                        <a th:href="@{/user/add}" class="btn btn-warning">Add</a>
+                        <a th:href="@{/user/add}" class="btn btn-warning">Add product</a>
                     </div>
                 </div>
 
@@ -105,24 +105,30 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="table_list_product" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="table_list" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
+                                    <th>NO</th>
                                     <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Office</th>
+                                    <th>Image prduct</th>
+                                    <th>Price prduct</th>
                                     <th>Description</th>
-                                    <th>promotion</th>
+                                    <th>Category</th>
+                                    <th>Material</th>
+                                    <th>Star</th>
                                     <th>Option</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
+                                    <th>NO</th>
                                     <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
+                                    <th>Image prduct</th>
+                                    <th>Price prduct</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Material</th>
+                                    <th>Star</th>
                                     <th>Option</th>
                                 </tr>
                                 </tfoot>
@@ -176,7 +182,7 @@
      * Chuc nang tim kiem, tai lai bang du lieu dua theo thong tin loc
      * */
     jQuery(document).ready(function () {
-        var tblUser = $('#table_list_product').DataTable({
+        var tblUser = $('#table_list').DataTable({
             searching: true,
             bPaginate: true,
             bAutoWidth: false,
@@ -190,12 +196,10 @@
             "ajax": {
                 "url": searchUrl,
                 "data": function (d) {
-                    d.userName = $("#userName").val().trim();
-                    d.fullName = $("#fullName").val().trim();
-                    d.email = $("#email").val().trim();
-                    d.status = $("#status").val().trim();
-                    d.fromDate = $("#fromDate").val().trim();
-                    d.toDate = $("#toDate").val().trim();
+                    d.userName = $("#nameproduct").val().trim();
+                    d.category = $("#category").val().trim();
+                    d.material = $("#material").val().trim();
+                    d.color = $("#color").val().trim();
                 },
                 beforeSend: function (xhr) {
                     $("#tblLoading").css("display", "block");
@@ -204,30 +208,88 @@
                     $("#tblLoading").css("display", "none");
                 },
                 error: function (xhr, status, error) {
-                    showAlertError("Có lỗi xảy ra trong quá trình tải dữ liệu");
+                    toastr.error("An error occurred during data download");
                 }
             },
             columns: [
+                {"data": "id"},
                 {"data": "name"},
+                {"data": "image"},
                 {"data": "price"},
-                {"data": "fullName"},
                 {"data": "description"},
-                {"data": "long_description"},
-                {"data": "promotion"},
+                {"data": "type.type"},
+                {"data": "type.material"},
                 {"data": "star"},
             ],
             columnDefs: [
                 {
                     "render": function (data, type, row) {
-                        return row.description;
+                        return `<img src="${row.image[0]}" alt="" />`
                     },
-                    "targets": 4
+                    "targets": 2
                 },
                 {
                     "render": function (data, type, row) {
-                        return row.promotion;
+                        let category = null;
+                        switch (row.type.type) {
+                            case 0:
+                                category = "Cabinets";
+                                break;
+                            case 1:
+                                category = "Desk";
+                                break;
+                            case 2:
+                                category = "Decorate";
+                                break;
+                            case 3:
+                                category = "Belongings";
+                                break;
+                            case 4:
+                                category = "Sofa";
+                                break;
+                            case 5:
+                                category = "Lamp";
+                                break;
+                            default:
+                                category = ""
+                                break;
+                        }
+                        return category;
                     },
                     "targets": 5
+                },
+                {
+                    "render": function (data, type, row) {
+                        let fabric = null;
+                        switch (matearial) {
+                            case 0:
+                                fabric = "Wood";
+                                break;
+                            case 1:
+                                fabric = "Plastic";
+                                break;
+                            case 2:
+                                fabric = "Glass";
+                                break;
+                            case 3:
+                                fabric = "Titanium alloy";
+                                break;
+                            case 4:
+                                fabric = "Iron";
+                                break;
+                            default:
+                                fabric = "";
+                                break;
+                        }
+                        return fabric;
+                    },
+                    "targets": 6
+                },
+                {
+                    "render": function (data, type, row) {
+                        return `${row.star} star`;
+                    },
+                    "targets": 7
                 },
                 {
                     "render": function (data, type, row) {
@@ -243,7 +305,7 @@
 
                         return content;
                     },
-                    "targets": 6
+                    "targets": 8
                 },
                 {'bSortable': false, 'aTargets': ["no-sort"]}
             ]
@@ -259,16 +321,6 @@
     });
 
     function doSearch() {
-        var fromDate = $("#fromDate").val().trim().split("/");
-        var toDate = $("#toDate").val().trim().split("/");
-        if (fromDate.length === 3 && toDate.length === 3) {
-            fromTime = new Date(parseInt(fromDate[2]), parseInt(fromDate[1]) - 1, parseInt(fromDate[0])).getTime();
-            toTime = new Date(parseInt(toDate[2]), parseInt(toDate[1]) - 1, parseInt(toDate[0])).getTime();
-            if (fromTime > toTime) {
-                alert("Từ ngày không thể sau Đến ngày!");
-                return;
-            }
-        }
         $("#table_list").DataTable().ajax.reload();
     }
 

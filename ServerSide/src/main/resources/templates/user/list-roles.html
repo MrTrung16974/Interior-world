@@ -61,7 +61,7 @@
                     <div class="clear"></div>
                     <div class="clearfix mt-2 mb-5 w-100 form-actions text-center">
                         <button type="button" class="btn btn-primary" onclick="doSearch();">Search</button>
-                        <a th:href="@{/user/add}" class="btn btn-warning">Decentrailzations</a>
+                        <a th:href="@{/user/add}" class="btn btn-warning">Add role</a>
                     </div>
                 </div>
 
@@ -166,7 +166,7 @@
                     $("#tblLoading").css("display", "none");
                 },
                 error: function (xhr, status, error) {
-                    toastr.error("Có lỗi xảy ra trong quá trình tải dữ liệu");
+                    toastr.error("An error occurred during data download");
                 }
             },
             columns: [
