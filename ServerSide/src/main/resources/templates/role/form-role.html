@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/component/header :: sidebar-area"></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="/component/header :: topbar-area"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">List Roles</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <label for="rightsGroupName" class="col-sm-6 control-label no-padding-right p_top">Role group name </label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="roleCode" type="text" placeholder="Name product" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <label class="col-sm-6 control-label no-padding-right p_top">Status </label>
+                                <div class="col-sm-6">
+                                    <select class="select2 form-control" name="status" id="status">
+                                        <option value="">All</option>
+                                        <option value="1">Activate</option>
+                                        <option value="2">Lock</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="clearfix mt-2 mb-5 w-100 form-actions text-center">
+                        <button type="button" class="btn btn-primary" onclick="doSearch();">Search</button>
+                        <a th:href="@{/user/add}" class="btn btn-warning">Add role</a>
+                    </div>
+                </div>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Roles</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="table_list" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Role Code</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Option</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Role Code</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Option</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer th:replace="/component/footer :: footer-area"></footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a th:replace="/component/footer :: page-top"></a>
+
+<!-- Logout Modal-->
+<a th:replace="/component/footer :: logout-model"></a>
+
+<!-- Script -->
+<footer th:replace="/component/footer :: script-area"></footer>
+<!-- End of Script -->
+
+</body>
+
+</html>

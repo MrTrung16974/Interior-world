@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+
+<body>
+    <!--================ Start Header Menu Area =================-->
+    <header th:replace="/component/header :: header-area"></header>
+    <!--================ End Header Menu Area =================-->
+
+
+    <!--================ Start Banner Area =================-->
+    <section th:replace="/component/header :: banner-area"></section>
+    <!--================ End Banner Area =================-->
+
+    <!--================Cart Area =================-->
+  <section class="cart_area">
+      <div class="container">
+          <div class="cart_inner">
+              <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">Product</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Total</th>
+                              <th scope="col">Operation</th>
+                          </tr>
+                      </thead>
+                      <tbody id="lst-product-in-cast">
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
+
+    <!--================ Start chat Area  =================-->
+    <footer th:replace="/component/chat :: chat-area"></footer>
+    <!--================ End chat Area  =================-->
+
+    <!--================ Start footer Area  =================-->
+    <footer th:replace="/component/footer :: footer-area"></footer>
+    <!--================ End footer Area  =================-->
+    <!-- Chat js -->
+    <script th:src="@{/js/chat.js}"></script>
+
+</body>
+</html>

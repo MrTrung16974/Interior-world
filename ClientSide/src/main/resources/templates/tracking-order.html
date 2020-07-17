@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+
+<body>
+	<!--================ Start Header Menu Area =================-->
+	<header th:replace="/component/header :: header-area"></header>
+	<!--================ End Header Menu Area =================-->
+
+    <!--================ Start Banner Area =================-->
+    <section th:replace="/component/header :: banner-area"></section>
+    <!--================ End Banner Area =================-->
+  
+  
+  <!--================Tracking Box Area =================-->
+  <section class="tracking_box_area section-margin--small">
+      <div class="container">
+          <div class="tracking_box_inner">
+              <p>To track your order please enter your Order ID in the box below and press the "Track" button. This
+                  was given to you on your receipt and in the confirmation email you should have received.</p>
+              <form class="row tracking_form" action="#" method="post" novalidate="novalidate">
+                  <div class="col-md-12 form-group">
+                      <input type="text" class="form-control" id="order" name="order" placeholder="Order ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Order ID'">
+                  </div>
+                  <div class="col-md-12 form-group">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Billing Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Billing Email Address'">
+                  </div>
+                  <div class="col-md-12 form-group">
+                      <button type="submit" value="submit" class="button button-tracking">Track Order</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </section>
+  <!--================End Tracking Box Area =================-->
+
+    <!--================ Start chat Area  =================-->
+    <footer th:replace="/component/chat :: chat-area"></footer>
+    <!--================ End chat Area  =================-->
+
+	<!--================ Start footer Area  =================-->
+	<footer th:replace="/component/footer :: footer-area"></footer>
+	<!--================ End footer Area  =================-->
+    <!-- Chat js -->
+    <script th:src="@{/js/chat.js}"></script>
+
+</body>
+</html>
