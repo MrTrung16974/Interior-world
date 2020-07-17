@@ -24,122 +24,198 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
+            <!-- Begin Page Content -->
             <div class="container-fluid">
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">List Product</h1>
+                    <h1 class="h3 mb-0 text-gray-800" th:text="${titlePage}"></h1>
                 </div>
 
                 <!-- Content Row -->
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group clearfix">
-                            <div class="row">
-                                <label class="col-sm-6 control-label no-padding-right p_top"> Name Product </label>
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" id="nameproduct" placeholder="Name product" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group clearfix">
-                            <div class="row">
-                                <label class="col-sm-6 control-label no-padding-right p_top"> Category </label>
-                                <div class="col-sm-6">
-                                    <select class="select2 form-control" name="status" id="category">
-                                        <option value="">All</option>
-                                        <option value="1">Cabinets</option>
-                                        <option value="2">Desk</option>
-                                        <option value="3">Decorate</option>
-                                        <option value="4">Belongings</option>
-                                        <option value="5">Sofa</option>
-                                        <option value="6">Lamp</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                <div class="main-content">
+                    <div style="margin-bottom: 50px;" class="breadcrumbs" id="breadcrumbs">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a th:href="@{/home}"><i class="default-icon fa fa-home home-icon"></i>  Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a th:href="@{/product/list}">List Product</a></li>
+                                <li class="breadcrumb-item active" th:text="${titlePage}" aria-current="page">Data</li>
+                            </ol>
+                        </nav>
+                        <!-- /.breadcrumb -->
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group clearfix">
-                            <div class="row">
-                                <label class="col-sm-6 control-label no-padding-right p_top">Material </label>
-                                <div class="col-sm-6">
-                                    <select class="select2 form-control" name="status" id="material">
-                                        <option value="">All</option>
-                                        <option value="1">Wood</option>
-                                        <option value="2">Plastic</option>
-                                        <option value="3">Glass</option>
-                                        <option value="4">Titanium alloy</option>
-                                        <option value="5">Iron</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group clearfix">
-                            <div class="row">
-                                <label class="col-sm-6 control-label no-padding-right p_top">Color </label>
-                                <div class="col-sm-6">
-                                    <select class="select2 form-control" name="status" id="color">
-                                        <option value="">All</option>
-                                        <option value="1">Black</option>
-                                        <option value="2">Yellow</option>
-                                        <option value="3">White</option>
-                                        <option value="4">Blue</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="page-content">
+                        <div class="page-content-area">
+                            <!-- /.page-header -->
+                            <div class="col-xs-12 p-4">
+                                <div th:replace="component/header::notice_box"></div>
 
-                    <div class="clear"></div>
-                    <div class="clearfix mt-2 mb-5 w-100 form-actions text-center">
-                        <button type="button" class="btn btn-primary" onclick="doSearch();">Search</button>
-                        <a th:href="@{/user/add}" class="btn btn-warning">Add product</a>
+                                <form id="formInsert" name="formInsert" th:object="${product}" method="POST"
+                                      class="form-horizontal form-row-seperated">
+                                    <div th:replace="/component/header::alert-sub"></div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">User Name (<span class="text-red">*</span>) </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:field="*{name}" maxlength="30" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Price product (<span class="text-red">*</span>) </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:field="*{price}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Price For Color  (<span class="text-red">*</span>) </label>
+                                            <div class="col-sm-9">
+                                                <div class="price-for-color" th:each="price : ${product.priceForColor}">
+                                                    <span>Color</span>
+                                                    <input type="text" class="form-control"  th:value="${price.color}" maxlength="1"/>
+                                                    <input type="text" class="form-control"  th:value="${price.nameColor}" maxlength="30"/>
+                                                    <input type="text" class="form-control"  th:value="${price.priceForColor}" maxlength="30"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Description Product (<span class="text-red">*</span>) </label>
+                                            <div class="col-sm-9">
+                                                <textarea type="text" class="form-control" th:field="*{description}" rows="3" maxlength="500"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Detailed Description Product </label>
+                                            <div class="col-sm-9">
+                                                <textarea type="text" class="form-control" th:field="*{longDescription}" rows="6" maxlength="2000"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Image User </label>
+                                            <div class="col-sm-9 d-flex">
+                                                <div th:each="img : ${product.image}"  class="image-product px-1">
+                                                    <p> Image </p>
+                                                    <img width="100" height="100" th:src="${img}"  alt="Image Producr">
+                                                </div>
+                                                <input th:if="${product.id} == null" type="file" class="form-control" id="image user" maxlength="30"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Promotion priduct </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:field="*{promotion.name}" maxlength="30"/>
+                                                <input type="number" class="form-control" th:field="*{promotion.percent}" maxlength="30"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Category product </label>
+                                            <div class="col-sm-9">
+                                                <select class="select2 form-control" name="category" id="category">
+                                                    <option value="">All</option>
+                                                    <option value="1">Cabinets</option>
+                                                    <option value="2">Desk</option>
+                                                    <option value="3">Decorate</option>
+                                                    <option value="4">Belongings</option>
+                                                    <option value="5">Sofa</option>
+                                                    <option value="6">Lamp</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Material product </label>
+                                            <div class="col-sm-9">
+                                                <select class="select2 form-control" name="material" id="material">
+                                                    <option value="">All</option>
+                                                    <option value="1">Wood</option>
+                                                    <option value="2">Plastic</option>
+                                                    <option value="3">Glass</option>
+                                                    <option value="4">Titanium alloy</option>
+                                                    <option value="5">Iron</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Width  </label>
+                                            <div class="col-sm-9">
+                                                <input type="number"  class="form-control" th:field="*{type.width}" maxlength="10"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Height product </label>
+                                            <div class="col-sm-9">
+                                                <input type="number"  class="form-control" th:field="*{type.height}" maxlength="10"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Depth product </label>
+                                            <div class="col-sm-9">
+                                                <input type="number"  class="form-control" th:field="*{type.depth}" maxlength="10"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Weight product </label>
+                                            <div class="col-sm-9">
+                                                <input type="number"  class="form-control" th:field="*{type.weight}" maxlength="10"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Quality Checking product </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:field="*{type.qualityChecking}" maxlength="3"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Star product </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" disabled class="form-control" th:field="*{star}" maxlength="6"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix form-actions">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <input type="submit" value="Add product" class="btn btn-info" id="addForm" th:if="${product.id} == null" />
+                                            <input type="submit" value="Update product" class="btn btn-info" id="addForm" th:if="${product.id} != null and ${titlePage} != 'View product'" />
+                                            <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
+                                            <a class="btn btn-warning" th:href="@{/user/list}">Về Danh sách</a></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
                     </div>
+                    <!-- /.page-content-area -->
                 </div>
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Products</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="table_list" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>NO</th>
-                                    <th>Name</th>
-                                    <th>Image prduct</th>
-                                    <th>Price prduct</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Material</th>
-                                    <th>Star</th>
-                                    <th>Option</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>NO</th>
-                                    <th>Name</th>
-                                    <th>Image prduct</th>
-                                    <th>Price prduct</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Material</th>
-                                    <th>Star</th>
-                                    <th>Option</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
             <!-- /.container-fluid -->
 
         </div>

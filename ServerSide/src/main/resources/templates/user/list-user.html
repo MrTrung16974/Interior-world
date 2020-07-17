@@ -66,7 +66,7 @@
                                 <div class="col-sm-6">
                                     <select class="select2 form-control" name="status" id="status">
                                         <option value="">All</option>
-                                        <option value="1">Activate</option>
+                                        <option value="1">Action</option>
                                         <option value="2">Lock</option>
                                     </select>
                                 </div>
@@ -97,6 +97,7 @@
                                     <th>NO</th>
                                     <th>User Name</th>
                                     <th>Full Name</th>
+                                    <th>Email</th>
                                     <th>Roles Group</th>
                                     <th>Image User</th>
                                     <th>Sex</th>
@@ -110,6 +111,7 @@
                                     <th>NO</th>
                                     <th>User Name</th>
                                     <th>Full Name</th>
+                                    <th>Email</th>
                                     <th>Roles Group</th>
                                     <th>Image User</th>
                                     <th>Sex</th>
@@ -201,6 +203,7 @@
                 {"data": "userId"},
                 {"data": "username"},
                 {"data": "fullName"},
+                {"data": "email"},
                 {"data": "roleID"},
                 {"data": "image"},
                 {"data": "sex"},
@@ -218,7 +221,7 @@
                     "render": function (data, type, row) {
                         return `<img src='${row.image}' type="" />`;
                     },
-                    "targets": 4
+                    "targets": 5
                 },
                 {
                     "render": function (data, type, row) {
@@ -228,7 +231,7 @@
                             return "Female";
                         }
                     },
-                    "targets": 5
+                    "targets": 6
                 },
                 {
                     "render": function (data, type, row) {
@@ -238,7 +241,7 @@
                             return "Lock";
                         }
                     },
-                    "targets": 6
+                    "targets": 7
                 },
                 {
                     "render": function (data, type, row) {
@@ -267,7 +270,7 @@
 
                         return content;
                     },
-                    "targets": 7
+                    "targets": 8
                 },
                 {'bSortable': false, 'aTargets': ["no-sort"]}
             ]

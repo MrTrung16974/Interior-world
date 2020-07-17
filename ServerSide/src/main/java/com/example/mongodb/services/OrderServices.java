@@ -1,7 +1,10 @@
 package com.example.mongodb.services;
 
+import com.example.mongodb.model.Order;
 import com.example.mongodb.model.Product;
 import com.example.mongodb.repository.ProductRepository;
+import com.example.mongodb.utils.Constant;
+import com.example.mongodb.utils.Utils;
 import com.mongodb.client.MongoClient;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.DateOperators;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.repository.support.PageableExecutionUtils;
@@ -52,6 +56,27 @@ public class OrderServices {
                 lstProduct,
                 pageable,
                 () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Product.class));
+    }
+
+    //tìm kiếm product theo name và giá tiền
+    public List<Order> findOrder(Order order, String fromDate, String toDate){
+        Query query = new Query();
+        //check name tồn tài mới thêm điều kiện search
+        if(!Utils.checkNullOrEmpty(order.getBuyer())){
+            query.addCriteria(Criteria.where("buyer").regex(Pattern.compile(Pattern.quote(order.getBuyer()), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
+        }
+        if(!Utils.checkNullOrEmpty(order.getStatus())) {
+            query.addCriteria(Criteria.where("status").is(order.getStatus()));
+        }
+
+        if(!Utils.checkNullOrEmpty(fromDate) || !Utils.checkNullOrEmpty(toDate)) {
+            query.addCriteria(Criteria
+                    .where("createdAt").gte(DateOperators.dateFromString(fromDate).withFormat("mm/dd/yyyy"))
+                    .andOperator(Criteria.where("createdAt").lte(DateOperators.dateFromString(toDate).withFormat("mm/dd/yyyy"))));
+        }
+
+        List<Order> lstOrder = mongoTemplate.find(query, Order.class);
+        return lstOrder;
     }
 
     public List<Product> findByCatetory(Integer type){

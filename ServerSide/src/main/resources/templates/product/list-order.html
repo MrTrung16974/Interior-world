@@ -164,7 +164,7 @@
     // var dtViLang = /*[[@{/plugins/datatables/extensions/i18n/vi.json}]]*/ "plugins/datatables/extensions/i18n/vi.json";
     var searchUrl = /*[[@{/order/search}]]*/ "/order/search";
     var viewOrderUrl = /*[[@{/order/update_user/}]]*/ "/order/view_order/";
-    var updateOrderUrl = /*[[@{/order/update_user/}]]*/ "/order/update_order/";
+    var deleteOrderUrl = /*[[@{/order/update_user/}]]*/ "/order/delete/";
     var editOrderUrl = /*[[@{/order/edit/}]]*/ "/order/edit/";
     /**
      * Chuc nang tim kiem, tai lai bang du lieu dua theo thong tin loc
@@ -290,8 +290,10 @@
                     "render": function (data, type, row) {
                         var content = "";
                         if (true) {
-                            content = '<a class="blue" href="' + viewOrderUrl + row.roleID + '" data-toggle="tooltip" title="View info order"> <i class="default-icon fa fa-eye bigger-130"></i> </a>';
-                            content += '<a class="blue" href="'+editOrderUrl +row.userID + '" data-toggle="tooltip" title="Edit info order"> <i class="default-icon  fas fa-pencil-alt bigger-130"></i> </a>';;
+                            content = '<a class="blue" href="' + viewOrderUrl + row.id + '" data-toggle="tooltip" title="View info order"> <i class="default-icon fa fa-eye bigger-130"></i> </a>';
+                            content += '<a class="blue" href="'+editOrderUrl +row.id + '" data-toggle="tooltip" title="Edit info order"> <i class="default-icon  fas fa-pencil-alt bigger-130"></i> </a>';;
+                            content += '<a class="blue" href="'+deleteOrderUrl +row.id + '" data-toggle="tooltip" title="Delete Product"> <i class="default-icon fas fa-trash-alt bigger-130"></i> </a>';
+
                         }
 
                         return content;

@@ -37,6 +37,7 @@ import static com.example.mongodb.utils.Utils.buildLogTag;
 public class ProductController {
     private static final Logger LOGGER = LogManager.getLogger(UserController.class);
     private static final Gson gson = new Gson();
+    private static final String TITLE_VIEW = "View product";
     private static final String TITLE_ADD = "Add product";
     private static final String TITLE_EDIT = "Update info product";
     private static final String TITLE_DELETE = "Delete product";
@@ -95,6 +96,19 @@ public class ProductController {
         //Chuyen doi du lieu theo dinh dang ho tro boi jquery datatables
         return response;
     }
+
+    @RequestMapping(value = "/view_product/{id}", method = RequestMethod.GET)
+    public ModelAndView viewProductForm(@PathVariable String id, HttpServletRequest request, Principal principal) {
+        String tag = buildLogTag(request, principal, "View Product");
+        LOGGER.debug(LOG_FORMAT, tag, "Edit Product View. Product: " + id);
+        Product product = productRepository.findById(id).get();
+        if (product == null) {
+            LOGGER.debug(LOG_FORMAT, tag, "Product not found. Throw Exception. ProductID: " + id);
+            throw new RuntimeException("Invalid product! " + id);
+        }
+        return getUserModelView(product, TITLE_VIEW, null, null);
+    }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addProductForm(HttpServletRequest request, Principal principal) {
