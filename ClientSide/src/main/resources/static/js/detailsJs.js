@@ -16,8 +16,11 @@ $(document).ready(function () {
                 rederComentProduct(comment);
             }
             else {
-                console.log(response.message);
+                toastr.error('An error occurred . Please try again', response.message);
             }
+        },
+        error: function (response) {
+            toastr.error('An error occurred . Please try again', response.message);
         }
     });
 

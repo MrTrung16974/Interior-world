@@ -96,7 +96,6 @@ var formatPirceToInt = (price) => {
 }
 var shopHidePass = () => {
     $(".hide-eye-pass, .show-eye-pass").on('click', function () {
-        console.log("OK");
         var passwordId = $(this).parents('div:first').find('input').attr('id');
         if ($(this).hasClass('hide-eye-pass')) {
             $("#" + passwordId).attr("type", "text");
@@ -285,7 +284,6 @@ function forColor(data) {
 }
 
 function getPriceProduct(id, price, priceColor) {
-    console.log("OK");
     let nameColor = $(this);
     if(price > 0) {
         $(`#${id}-price`).text(formatter.format(price + priceColor));
@@ -299,7 +297,6 @@ function showChooseProductSellers(id) {
     $(`.${id}-sellers`).show();
 }
 function hideChooseProductSellers(id, price) {
-    console.log("OK");
     $(`.${id}-sellers`).hide();
     $(`.${id}-price-sellers`).text(formatter.format(`${price}`));
     $(`a.${id}-checked input[type="radio"]`).prop('checked', false);

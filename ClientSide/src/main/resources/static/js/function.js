@@ -12,7 +12,6 @@ var loadUserDto = () => {
         success: function (response) {
             if (response.code == "00") {
                 userDto = response.data;
-                console.log(response.data);
                 $('#login-user').css({"visibility": "hidden", "opacity": "0"});
                 $('#logout-user').css({"visibility": "visible", "opacity": "1"});
                 getProductInCast();
@@ -387,7 +386,6 @@ function registerClickUser() {
         error: function () {
             toastr.error('An error occurred . Please try again', response.message);
             hideLoading();
-            console.log(response.message);
         }
     });
 }
@@ -418,13 +416,11 @@ function logoutUser() {
             }else {
                 hideLoading();
                 toastr.success('Logout server error !', response.message);
-                console.log(response.message);
             }
         },
         error: function () {
             hideLoading();
             toastr.error('An error occurred . Please try again', response.message);
-            console.log(response.message);
         }
     });
 }
@@ -488,7 +484,6 @@ function changeClickPassword() {
         error: function () {
             toastr.error('An error occurred . Please try again', response.message);
             hideLoading();
-            console.log(response.message);
         }
     });
 }
@@ -585,13 +580,11 @@ function updateUserAddress() {
             }else {
                 hideLoading();
                 toastr.success('Logout server error !', response.message);
-                console.log(response.message);
             }
         },
         error: function () {
             hideLoading();
             toastr.error('An error occurred . Please try again', response.message);
-            console.log(response.message);
         }
     });
 }
@@ -644,7 +637,6 @@ function searchProduct(page) {
             } else {
                 rederData(response.data);
                 forPagination(1, 0);
-                console.log(response.message);
             }
             hideLoading();
         },
@@ -679,7 +671,6 @@ function sortProduct() {
             else {
                 rederData(response.data);
                 forPagination(1, 0);
-                console.log(response.message);
             }
             hideLoading();
         },
@@ -713,7 +704,6 @@ function addFavouriteUser(idProduct) {
                 rederData(listAllProduct);
                 if(pathname = "/home") {
                     rederDataTrending(listTrendingProduct);
-                    bestSellers();
                 }
                 if(pathname = "/product-details") {
                     rederDataSingleProduct(singleProduct);
@@ -763,7 +753,6 @@ function getProductInCast() {
 //         let newNumber = $("#qty").val().trim();
 //         if(newNumber > 0) {
 //             newNumber -= oldNumber;
-//             console.log(newNumber);
 //             if(newNumber < oldNumber) {
 //                 updateCastRequest = {
 //                     name: userDto.username,
@@ -1054,7 +1043,6 @@ function checkout() {
                 }
             }else {
                 toastr.success('Checkout server error !', response.message);
-                console.log(response.message);
             }
             hideLoading();
         },

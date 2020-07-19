@@ -24,7 +24,6 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <!-- Begin Page Content -->
             <div class="container-fluid">
 
                 <!-- Page Heading -->
@@ -204,7 +203,7 @@
                                     <div class="clearfix form-actions">
                                         <div class="col-md-offset-3 col-md-9">
                                             <input type="submit" value="Add product" class="btn btn-info" id="addForm" th:if="${product.id} == null" />
-                                            <input type="submit" value="Update product" class="btn btn-info" id="addForm" th:if="${product.id} != null and ${titlePage} != 'View product'" />
+                                            <input type="submit" value="Update product" class="btn btn-info" id="addForm" th:if="${product.id} != null and ${titlePage} != 'View info product'" />
                                             <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
                                             <a class="btn btn-warning" th:href="@{/user/list}">Về Danh sách</a></div>
                                     </div>
@@ -217,6 +216,8 @@
                     <!-- /.page-content-area -->
                 </div>
             <!-- /.container-fluid -->
+
+        </div>
 
         </div>
         <!-- End of Main Content -->

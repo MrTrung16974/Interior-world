@@ -40,7 +40,7 @@ function rederData(data) {
             }
             if(checkFavourite) {
                 $('#lst-product').append(
-                    `<div class="col-md-6 col-lg-4">
+                    `<div class="col-sm-6 col-lg-4">
                             <div class="card text-center card-product">
                               <div class="card-product__img">
                                 <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
@@ -71,7 +71,7 @@ function rederData(data) {
                 );
             }else {
                 $('#lst-product').append(
-                    `<div class="col-md-6 col-lg-4">
+                    `<div class="col-sm-6 col-lg-4">
                     <div class="card text-center card-product">
                       <div class="card-product__img">
                         <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>

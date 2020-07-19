@@ -4,6 +4,7 @@ import com.example.mongodb.dto.product.ProductModel;
 import com.example.mongodb.dto.product.Promotion;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -29,12 +30,13 @@ public class Order {
     @Field("total_product_order")
     private Integer totalProductOrder;
     @Field("createdAt")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Saigon")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "Asia/Saigon")
     private Date createdAt;
     @Field("address")
     private String address;
     @Field("status")
     private Integer status;
+
 
     public String getId() {
         return id;

@@ -1,11 +1,14 @@
 package com.example.mongodb.controller;
 
 import com.example.mongodb.dto.BaseResponse;
+import com.example.mongodb.model.Product;
 import com.example.mongodb.model.Role;
 import com.example.mongodb.model.User;
 import com.example.mongodb.repository.RoleRepository;
 import com.example.mongodb.repository.UserRepository;
 import com.example.mongodb.services.UserService;
+import com.example.mongodb.utils.Constant;
+import com.example.mongodb.utils.Utils;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,12 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
+import static com.example.mongodb.utils.Constant.DATE_FORMAT;
 import static com.example.mongodb.utils.Constant.LOG_FORMAT;
 import static com.example.mongodb.utils.Utils.buildLogTag;
 
@@ -34,7 +35,7 @@ import static com.example.mongodb.utils.Utils.buildLogTag;
 public class UserController {
     private static final Logger LOGGER = LogManager.getLogger(UserController.class);
     private static final Gson gson = new Gson();
-    private static final String VIEW_USER = "View user";
+    private static final String VIEW_USER = "View info user";
     private static final String TITLE_ADD = "Add user";
     private static final String TITLE_EDIT = "Update info user";
     private static final String PATTERN_PASSWORD = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
@@ -104,6 +105,18 @@ public class UserController {
         LOGGER.debug(LOG_FORMAT, tag, "Found: " + lstUser.size() + " users");
         //Chuyen doi du lieu theo dinh dang ho tro boi jquery datatables
         return response;
+    }
+
+    @RequestMapping(value = "/view_user/{id}", method = RequestMethod.GET)
+    public ModelAndView viewUserForm(@PathVariable String id, HttpServletRequest request, Principal principal) {
+        String tag = buildLogTag(request, principal, "View user");
+        LOGGER.debug(LOG_FORMAT, tag, "View user. Product: " + id);
+        User user = userService.getUserById(id);
+        if (user == null) {
+            LOGGER.debug(LOG_FORMAT, tag, "user not found. Throw Exception. UserID: " + id);
+            throw new RuntimeException("Invalid product! " + id);
+        }
+        return getUserModelView(user, VIEW_USER, null, null);
     }
 
     @RequestMapping(value = "/change_password", method = RequestMethod.GET)
@@ -181,15 +194,21 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView doAddUser(@RequestParam("username") String userName,
                                   @RequestParam("fullName") String fullName,
-                                  @RequestParam("role") String role,
                                   @RequestParam("email") String email,
                                   @RequestParam("password") String password,
+                                  @RequestParam("image") String image,
+                                  @RequestParam("address") String address,
+                                  @RequestParam("birthday") String birthday,
+                                  @RequestParam("phone") String phone,
+                                  @RequestParam("phone") String status,
+                                  @RequestParam("role") String role,
                                   Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add User");
-        LOGGER.debug(LOG_FORMAT + "Username: {}, fullName: {}, email: {}, role: {}", tag, " ", userName, fullName, email, role);
+        LOGGER.debug(LOG_FORMAT + "Username: {}, fullName: {}, image: {}, address: {},  birthday: {}, status: {}, role: {}",
+                tag, " ", userName, fullName, email, image, address, birthday, phone, status, role);
         User user = new User();
         boolean success = true;
-        String message = "Thêm mới người dùng " + userName + " thành công!";
+        String message = "Add user " + userName + " seccuss!";
         try {
             Optional<User> optionalUser =
                     userRepository.findByUsername(userName);
@@ -239,7 +258,7 @@ public class UserController {
     public ModelAndView editUserForm(@PathVariable String id, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
         LOGGER.debug(LOG_FORMAT, tag, "Edit User View. Username: " + id);
-        User user = userRepository.findByUsername(id).get();
+        User user = userRepository.findById(id).get();
         if (user == null) {
             LOGGER.debug(LOG_FORMAT, tag, "User not found. Throw Exception. Username: " + id);
             throw new RuntimeException("Invalid user! " + id);
@@ -251,26 +270,27 @@ public class UserController {
     public ModelAndView doUpdateUser(@PathVariable String id,
                                      @RequestParam("fullName") String fullName,
                                      @RequestParam("email") String email,
+                                     @RequestParam("image") String image,
+                                     @RequestParam("address") String address,
+                                     @RequestParam("birthday") String birthday,
+                                     @RequestParam("phone") String phone,
+                                     @RequestParam("phone") String status,
                                      @RequestParam("role") String role,
                                      Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
-        LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, role: {}", tag, "Edit User.", id, fullName, email, role);
+        LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, image: {},address:{}, birthday: {},phone:{}, status:{}, role: {}",
+                tag, "Edit User.", id, fullName, image, address, birthday, phone, status, email, role);
         User checkUser = userRepository.findByUsername(id).get();
         if (checkUser == null) {
             LOGGER.error(LOG_FORMAT, tag, "User not found:" + id);
             throw new RuntimeException("Invalid user");
         }
         boolean success = true;
-        String message = "Cập nhật thông tin người dùng thành công!";
+        String message = "Update info user success!";
         try {
             checkUser.setFullName(fullName);
             checkUser.setEmail(email);
             checkUser.setRoleID(role);
-//            LOGGER.debug(LOG_FORMAT, tag, "Edit User. user: " + gson.toJson(checkUser));
-//            Set<ConstraintViolation<User>> constraints = validator.validate(checkUser);
-//            constraints.forEach((constraint) -> {
-//                LOGGER.debug(LOG_FORMAT, tag, "Validate field: " + constraint.getMessage());
-//            });
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
             userRepository.save(checkUser);
             LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");
@@ -278,7 +298,7 @@ public class UserController {
             LOGGER.debug(LOG_FORMAT, tag, "Error while edit user: " + id);
             LOGGER.error(tag, e);
             success = false;
-            message = "Cập nhật người dùng thất bại. Vui lòng thử lại sau!";
+            message = "Update info user failure! Please try again!";
         }
 
         return getUserModelView(checkUser, TITLE_EDIT, success, message);
@@ -297,7 +317,7 @@ public class UserController {
             LOGGER.error(LOG_FORMAT, tag, "Invalid status:" + status);
             throw new RuntimeException("Invalid status");
         }
-        User checkUser = userRepository.findByUsername(id).get();
+        User checkUser = userRepository.findById(id).get();
         if (checkUser == null) {
             LOGGER.error(LOG_FORMAT, tag, "User not found:" + id);
             return modifiedCnt;

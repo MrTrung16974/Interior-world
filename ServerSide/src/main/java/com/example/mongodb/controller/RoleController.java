@@ -30,7 +30,7 @@ import static com.example.mongodb.utils.Utils.buildLogTag;
 @Controller
 @RequestMapping("/role")
 public class RoleController {
-    private static final Logger LOGGER = LogManager.getLogger(UserController.class);
+    private static final Logger LOGGER = LogManager.getLogger(RoleController.class);
     private static final Gson gson = new Gson();
     private static final String TITLE_ADD = "Add group role";
     private static final String TITLE_EDIT = "Edit group role";

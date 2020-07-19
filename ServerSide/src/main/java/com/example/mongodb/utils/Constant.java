@@ -12,6 +12,7 @@ public class Constant {
     public static final SimpleDateFormat DATE_FORMAT_SQL = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
     public static final String FORMAT_DATE_BE = "dd/MM/YYYY HH:mm";
+    public static final String FORMAT_DATE = "dd/MM/YYYY";
     //[function_user_ip] message
     public static final String LOG_FORMAT = "[{}] {}";
     //[function_user_ip] [RES: ] [ ms] message

@@ -2,6 +2,11 @@
 a {
     cursor: pointer;
 }
+.form-group span.input-group-addon {
+    position: absolute;
+    top: 7px;
+    right: 23px;
+}
 /* ---------- End * ------- */
 
 /*----- Chat ----*/
@@ -671,8 +676,49 @@ a {
     top: 7px;
     right: 7px;
 }
+
 table.table-bordered.dataTable tbody td.description {
     overflow: overlay;
     height: 100px;
     display: inline-block;
 }
+/* -----End Custom Table groud -----*/
+
+/*--================ Start Format input flie =================--*/
+input[type="file"] {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+[type="file"] + label {
+    background: #f15d22;
+    border: none;
+    border-radius: 5px;
+    color: #777;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Poppins", sans-serif;
+    font-size: inherit;
+    font-weight: 600;
+    margin: 10px 0px 1rem 0px;
+    outline: none;
+    padding: 0.5rem 25px;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    vertical-align: middle;
+}
+[type="file"] + label:hover {
+    background-color: #d3460d;
+}
+[type="file"] + label.btn-img {
+    background-color: #00000014;
+    -webkit-transition: none;
+    transition: none;
+}
+[type="file"] + label.btn-img:hover {
+    background-color: #00000024;
+}
+/*--================ End Format input flie =================--*/

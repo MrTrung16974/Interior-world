@@ -172,21 +172,19 @@
 <script th:inline="javascript">
     //<![CDATA[
     var lstProduct = [[${lstProduct}]];
-    console.log(lstProduct);
     // var token = $("meta[name='_csrf']").attr("content");
     // var header = $("meta[name='_csrf_header']").attr("content");
     // var dtViLang = /*[[@{/plugins/datatables/extensions/i18n/vi.json}]]*/ "plugins/datatables/extensions/i18n/vi.json";
     var searchUrl = /*[[@{/product/search}]]*/ "/product/search";
     var viewProductUrl = /*[[@{/product/view_product/}]]*/ "/product/view_product/";
     var editProductUrl = /*[[@{/product/edit/}]]*/ "/product/edit/";
-    var deleteProductUrl = /*[[@{/product/delete_product/}]]*/ "/product/delete/";
+    var deleteProductUrl = /*[[@{/product/delete}]]*/ "/product/delete";
 
     /**
      * Chuc nang tim kiem, tai lai bang du lieu dua theo thong tin loc
      * */
     jQuery(document).ready(function () {
         var tblUser = $('#table_list').DataTable({
-            "data": lstProduct,
             searching: true,
             bPaginate: true,
             bAutoWidth: false,
@@ -309,7 +307,8 @@
                         if (true) {
                             content = '<a class="blue" href="' + viewProductUrl + row.id + '" data-toggle="tooltip" title="View info product"> <i class="default-icon fa fa-eye bigger-130"></i> </a>';
                             content += '<a class="blue" href="'+editProductUrl +row.id + '" data-toggle="tooltip" title="Edit info product"> <i class="default-icon fas fa-pencil-alt bigger-130"></i> </a>';
-                            content += '<a class="blue" href="'+deleteProductUrl +row.id + '" data-toggle="tooltip" title="Delete Product"> <i class="default-icon fas fa-trash-alt bigger-130"></i> </a>';
+                            content += '<a class="blue" ' +
+                                'onclick="deleteProduct(\'' + row.id + '\');" ' + 'data-toggle="tooltip" title="Delete Product"> <i class="default-icon fas fa-trash-alt bigger-130"></i> </a>';
                         }
 
                         return content;
@@ -337,6 +336,30 @@
     var debounceSearchProduct = debounce(function () {
         $("#table_list").DataTable().ajax.reload();
     }, 500);
+
+    function deleteProduct(id) {
+        if (id !== undefined && status !== undefined) {
+            $("#dialogConfirm").modal('hide');
+            var datajson = {"id": id};
+            $.ajax({
+                type: "POST",
+                url: deleteProductUrl,
+                traditional: true,
+                data: datajson,
+                success: function (data) {
+                    if (data != null) {
+                        $("#table_list").DataTable().ajax.reload();
+                        toastr.success('Delete product Success!', "HAHA");
+                    }
+                },
+                error: function () {
+                    toastr.error('An error occurred . Please try again', error.message);
+                }
+            });
+            stopEventPropagation(event);
+        }
+    }
+
 </script>
 
 </body>

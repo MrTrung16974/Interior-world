@@ -33,6 +33,15 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public User getUserById(String id) {
+        User user = null;
+        Optional<User> optUser = userRepository.findById(id);
+        if(optUser.isPresent()){
+            user = optUser.get();
+        }
+        return user;
+    }
+
     public User getUserByUserName(String userName) {
         User user = null;
         Optional<User> optUser = userRepository.findByUsername(userName);

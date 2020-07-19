@@ -70,9 +70,7 @@ public class OrderServices {
         }
 
         if(!Utils.checkNullOrEmpty(fromDate) || !Utils.checkNullOrEmpty(toDate)) {
-            query.addCriteria(Criteria
-                    .where("createdAt").gte(DateOperators.dateFromString(fromDate).withFormat("mm/dd/yyyy"))
-                    .andOperator(Criteria.where("createdAt").lte(DateOperators.dateFromString(toDate).withFormat("mm/dd/yyyy"))));
+            query.addCriteria(Criteria.where("createdAt").gte(fromDate).lte(toDate));
         }
 
         List<Order> lstOrder = mongoTemplate.find(query, Order.class);

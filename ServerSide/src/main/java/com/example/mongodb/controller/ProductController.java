@@ -37,7 +37,7 @@ import static com.example.mongodb.utils.Utils.buildLogTag;
 public class ProductController {
     private static final Logger LOGGER = LogManager.getLogger(UserController.class);
     private static final Gson gson = new Gson();
-    private static final String TITLE_VIEW = "View product";
+    private static final String TITLE_VIEW = "View info product";
     private static final String TITLE_ADD = "Add product";
     private static final String TITLE_EDIT = "Update info product";
     private static final String TITLE_DELETE = "Delete product";
@@ -209,7 +209,7 @@ public class ProductController {
         return getUserModelView(checkProduct, TITLE_EDIT, success, message);
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public long deleteProduct(@RequestParam("id") String id,
                             HttpServletRequest request, Model model, Principal principal) throws ParseException {

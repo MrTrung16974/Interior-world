@@ -40,6 +40,48 @@
         </div>
     </div>
 
+    <!-- Modal Confirmation-->
+    <div th:fragment="dialog_confirm" id="dialogConfirm" title="Confirm?" class="modal fade" role="dialog"
+         data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <span id="confirm_title">Xác nhận</span>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12" id="confirm_content">Are you sure?</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnConfirm">Confirm</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:fragment="modalMessage" id="modalMessage" title="Modal form" class="modal fade reload_modal" role="dialog"
+         data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <span id="title">Xác nhận</span>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12" id="content">Bạn có chắc chắn không?</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-primary" id="btnConfirm">Xác nhận</button>-->
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Script -->
     <div th:fragment="script-area">
         <!-- Bootstrap core JavaScript-->

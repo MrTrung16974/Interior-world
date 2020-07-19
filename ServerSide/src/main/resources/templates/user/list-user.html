@@ -148,6 +148,7 @@
 
 <!-- Logout Modal-->
 <a th:replace="/component/footer :: logout-model"></a>
+<div th:replace="/component/footer::dialog_confirm"></div>
 
 <!-- Script -->
 <footer th:replace="/component/footer :: script-area"></footer>
@@ -162,6 +163,7 @@
     // var header = $("meta[name='_csrf_header']").attr("content");
     // var dtViLang = /*[[@{/plugins/datatables/extensions/i18n/vi.json}]]*/ "plugins/datatables/extensions/i18n/vi.json";
     var searchUrl = /*[[@{/user/search}]]*/ "/user/search";
+    var viewUserUrl = /*[[@{/user/view_user/}]]*/ "/user/view_user/";
     var updateUserUrl = /*[[@{/user/update_user/}]]*/ "/user/update_user/";
     var editUserUrl = /*[[@{/user/edit/}]]*/ "/user/edit/";
 
@@ -170,7 +172,6 @@
      * */
     jQuery(document).ready(function () {
         var tblUser = $('#table_list').DataTable({
-            "data": lstUser,
             searching: true,
             bPaginate: true,
             bAutoWidth: false,
@@ -247,22 +248,23 @@
                     "render": function (data, type, row) {
                         var content = "";
                         if (true) {
-                            content += '<a class="blue" href="'+editUserUrl +row.username + '" data-toggle="tooltip" title="Edit info user"> <i class="default-icon fas fa-pencil-alt bigger-130"></i> </a>';
+                            content += '<a class="blue" href="' + viewUserUrl + row.userId + '" data-toggle="tooltip" title="View info product"> <i class="default-icon fa fa-eye bigger-130"></i> </a>';
+                            content += '<a class="blue" href="'+editUserUrl +row.userId + '" data-toggle="tooltip" title="Edit info user"> <i class="default-icon fas fa-pencil-alt bigger-130"></i> </a>';
                             if (row.status !== 1) {
                                 content += '&nbsp;<a class="blue" ' +
-                                    'onclick="updateUser(\'' + row.username + '\',1);" ' +
+                                    'onclick="updateUser(\'' + row.userId + '\',1);" ' +
                                     'data-toggle="tooltip" title="Uplock user">' +
                                     '<i class="fa fa-unlock"></i>' +
                                     '</a></div>';
                             } else {
                                 content += '&nbsp<a class="red" ' +
-                                    'onclick="updateUser(\'' + row.username + '\',2);" ' +
+                                    'onclick="updateUser(\'' + row.userId + '\',2);" ' +
                                     'data-toggle="tooltip" title="Lock user">' +
                                     '<i class="fa fa-ban"></i>' +
                                     '</a>';
                             }
                             content += '&nbsp;&nbsp;<a class="blue" ' +
-                                'onclick="updateUser(\'' + row.username + '\',-1);" ' +
+                                'onclick="updateUser(\'' + row.userId + '\',-1);" ' +
                                 'data-toggle="tooltip" title="Reset pass">' +
                                 '<i class="fas fa-sync-alt"></i>' +
                                 '</a>';
@@ -290,13 +292,17 @@
     }
 
     function updateUser(id, status) {
+        console.log("OK");
         if (id !== undefined && status !== undefined) {
             if (status === 2) {
-                showDialogConfirm("Xác nhận khóa người dùng " + id, "Bạn chắc chắn muốn đổi trạng thái tài khoản này?");
+                console.log("OK2");
+                showDialogConfirm("Confirm lock user " + id, " You definitely want to change this account status?");
             } else if (status === 1) {
-                showDialogConfirm("Xác nhận mở khóa người dùng" + id, "Bạn chắc chắn muốn đổi trạng thái tài khoản này?");
+                console.log("OK1");
+                showDialogConfirm("Confirm unlock user" + id, " You definitely want to change this account status?");
             } else if (status === -1) {
-                showDialogConfirm("Xác nhận cấp lại mật khẩu cho người dùng" + id, "Bạn chắc chắn muốn cấp lại mật khẩu cho tài khoản này?");
+                console.log("OK-1");
+                showDialogConfirm("Confirm re-issue password for user" + id, "You definitely want to re-issue the password for this account?");
             }
             $("#dialogConfirm #btnConfirm").off().click(function () {
                 $("#dialogConfirm").modal('hide');
