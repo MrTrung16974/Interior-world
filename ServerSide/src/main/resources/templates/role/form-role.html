@@ -51,7 +51,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label no-padding-right p_top">Rights group name (<span class="text-red">*</span>) </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" disabled th:field="*{roleCode}" maxlength="50"/>
+                                            <input type="text" class="form-control" th:disabled="${role.roleID != null}" th:field="*{roleCode}" maxlength="50"/>
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label no-padding-right p_top">Describe rights group (<span class="text-red">*</span>) </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" th:field="*{description}" maxlength="30"/>
+                                            <input type="text" th:disabled="${titlePage} == 'View group role'" class="form-control" th:field="*{description}" maxlength="30"/>
                                         </div>
                                     </div>
                                 </div>

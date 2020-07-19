@@ -113,6 +113,9 @@ public class UserApiController {
                 if(!passwordEncoder.matches(password, user.getPassword())) {
                     throw new Exception("Password invalid");
                 }
+                if(user.getStatus() == 2) {
+                    throw new Exception("Your account has been locked! Please contact the admin to unlock!");
+                }
                 user.setLastLogin(new Date());
                 userRepository.save(user);
                 response.setCode("00");
