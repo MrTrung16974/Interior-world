@@ -213,13 +213,13 @@ public class UserController {
             Optional<User> optionalUser =
                     userRepository.findByUsername(userName);
             if (optionalUser.isPresent()) {
-                LOGGER.debug(LOG_FORMAT, tag, "Tên người dùng đã tồn tại: " + userName);
-                return getUserModelView(new User(), TITLE_ADD, Boolean.FALSE, "Tên đăng nhập đã tồn tại. Vui lòng kiểm tra lại.");
+                LOGGER.debug(LOG_FORMAT, tag, "Username already exists: " + userName);
+                return getUserModelView(new User(), TITLE_ADD, Boolean.FALSE, "Username available. Please check again.");
             }
             Pattern pattern = Pattern.compile(PATTERN_PASSWORD);
             if (!pattern.matcher(password).matches()) {
-                LOGGER.debug(LOG_FORMAT, tag, "Mật khẩu không hợp lê: " + password);
-                return getUserModelView(new User(), TITLE_ADD, Boolean.FALSE, "Mật khẩu từ 6- 20 kí tự, có chứa ít nhất 1 ký tự số, 1 ký tự chữ, 1 chữ hoa.");
+                LOGGER.debug(LOG_FORMAT, tag, "Invalid password: " + password);
+                return getUserModelView(new User(), TITLE_ADD, Boolean.FALSE, "Password is from 6 to 20 characters, containing at least 1 numeric character, 1 uppercase letter and 1 uppercase letter.");
             }
             user.setUsername(userName);
             user.setFullName(fullName);
@@ -249,7 +249,7 @@ public class UserController {
             LOGGER.debug(LOG_FORMAT, tag, "Exception while adding user!");
             LOGGER.error(tag, e);
             success = false;
-            message = "Thêm mới người dùng thất bại. Vui lòng thử lại sau!";
+            message = "Add new user failed. Please try again later!";
         }
         return getUserModelView(new User(), TITLE_ADD, success, message);
     }

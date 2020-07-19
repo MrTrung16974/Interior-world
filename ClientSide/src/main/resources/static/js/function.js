@@ -1154,7 +1154,7 @@ for (var i = 0; i < imageFace.length; i++) {
         var formData = new FormData();
         formData.append('file', imageProduct.files[0]);
         $.ajax({
-            url: 'http://localhost:8099/v1/api/upload',
+            url: 'http://localhost:8099/aroma/v1/api/upload',
             type: 'POST',
             data: formData,
             processData: false,

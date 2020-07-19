@@ -3,6 +3,7 @@ package com.example.mongodb.controller;
 import com.example.mongodb.dto.BaseResponse;
 import com.example.mongodb.model.Function;
 import com.example.mongodb.model.Role;
+import com.example.mongodb.model.User;
 import com.example.mongodb.repository.FunctionRepository;
 import com.example.mongodb.repository.RoleRepository;
 import com.example.mongodb.services.RoleService;
@@ -86,7 +87,7 @@ public class RoleController {
     }
 
     private ModelAndView getUserModelView(Role role, String title, Boolean success, String message) {
-        ModelAndView mv = new ModelAndView("role/form_role");
+        ModelAndView mv = new ModelAndView("role/form-role");
         mv.addObject("role", role);
         mv.addObject("titlePage", title);
 
@@ -103,6 +104,18 @@ public class RoleController {
             mv.addObject("message", message);
         }
         return mv;
+    }
+
+    @RequestMapping(value = "/view_role/{id}", method = RequestMethod.GET)
+    public ModelAndView viewRoleForm(@PathVariable String id, HttpServletRequest request, Principal principal) {
+        String tag = buildLogTag(request, principal, "View info role");
+        LOGGER.debug(LOG_FORMAT, tag, "View role. Role: " + id);
+        Role role = roleRepository.findById(id).get();
+        if (role == null) {
+            LOGGER.debug(LOG_FORMAT, tag, "Role not found. Throw Exception. RoleID: " + id);
+            throw new RuntimeException("Invalid Role! " + id);
+        }
+        return getUserModelView(role, TITLE_VIEW, null, null);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -211,23 +224,4 @@ public class RoleController {
         return modifiedCnt;
     }
 
-    @RequestMapping(value = "/view/{id}",
-            method = RequestMethod.GET)
-    public ModelAndView viewRole(@PathVariable String id,
-                                 HttpServletRequest request,
-                                 Principal principal) {
-        String tag = buildLogTag(request, principal, "View Role");
-        LOGGER.debug(LOG_FORMAT, tag, "View role view. ID: " + id);
-        Role role = roleRepository.findById(id).get();
-        ModelAndView mv = new ModelAndView("role/view_role");
-        List<Function> lstFuncGroup = functionRepository.findAll();
-        mv.addObject("role", role);
-        List<String> roleFunction = role.getFunctions()
-                .stream().map(item -> item.getId())
-                .collect(Collectors.toList());
-        mv.addObject("lstFuncGroup", lstFuncGroup);
-        mv.addObject("roleFunction",roleFunction);
-        mv.addObject("titlePage", TITLE_VIEW);
-        return mv;
-    }
 }

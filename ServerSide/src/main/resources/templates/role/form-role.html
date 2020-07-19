@@ -24,80 +24,88 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">List Roles</h1>
+            <!-- Content Row -->
+            <div class="main-content">
+                <div style="margin-bottom: 50px;" class="breadcrumbs" id="breadcrumbs">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a th:href="@{/home}"><i class="default-icon fa fa-home home-icon"></i>  Home</a>
+                            </li>
+                            <li class="breadcrumb-item"><a th:href="@{/role/list}">List Role</a></li>
+                            <li class="breadcrumb-item active" th:text="${titlePage}" aria-current="page">Data</li>
+                        </ol>
+                    </nav>
+                    <!-- /.breadcrumb -->
                 </div>
+                <div class="page-content">
+                    <div class="page-content-area">
+                        <!-- /.page-header -->
+                        <div class="col-xs-12 p-4">
+                            <div th:replace="component/header::notice_box"></div>
 
-                <!-- Content Row -->
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group clearfix">
-                            <div class="row">
-                                <label for="rightsGroupName" class="col-sm-6 control-label no-padding-right p_top">Role group name </label>
-                                <div class="col-sm-6">
-                                    <input class="form-control" id="roleCode" type="text" placeholder="Name product" />
+                            <form id="formInsert" name="formInsert"  action="#"  th:object="${role}" method="POST"
+                                  class="form-horizontal form-row-seperated">
+                                <div th:replace="/component/header::alert-sub"></div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Rights group name (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" th:field="*{roleCode}" maxlength="50"/>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group clearfix">
-                            <div class="row">
-                                <label class="col-sm-6 control-label no-padding-right p_top">Status </label>
-                                <div class="col-sm-6">
-                                    <select class="select2 form-control" name="status" id="status">
-                                        <option value="">All</option>
-                                        <option value="1">Activate</option>
-                                        <option value="2">Lock</option>
-                                    </select>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Describe rights group (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" th:field="*{description}" maxlength="30"/>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Function (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <div class="tabbable">
+                                                <ul class="nav nav-tabs" id="myTab" >
+                                                    <li class="active">
+                                                        <a data-toggle="tab">
+                                                            Access the system
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                                <div class="tab-content">
+                                                    <div id="functionGroup" class="tab-pane active">
+                                                        <div class="control-group">
+                                                            <div th:each="funcGroup, iterStat : ${lstFuncGroup}" class="checkbox">
+                                                                <label>
+                                                                    <input th:disabled="${titlePage} == 'View group role'" th:name="chkFunctions" th:value="${funcGroup.id}" type="checkbox" class="ace"
+                                                                           th:checked="${roleFunction != null && #lists.contains(roleFunction, funcGroup.id)}"/>
+                                                                    <span class="lbl" th:text="${'&nbsp;' + funcGroup.id}"> Choice</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix form-actions">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <input type="submit" value="Cập nhật" class="btn btn-info" id="addForm" th:if="${role.roleID} != null and ${titlePage} != 'View group role'"   />
+                                        <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
+                                        <a class="btn btn-warning" th:href="@{/order/list}">Về Danh sách</a></div>
+                                </div>
+                            </form>
                         </div>
+                        <!-- /.col -->
                     </div>
-
-                    <div class="clear"></div>
-                    <div class="clearfix mt-2 mb-5 w-100 form-actions text-center">
-                        <button type="button" class="btn btn-primary" onclick="doSearch();">Search</button>
-                        <a th:href="@{/user/add}" class="btn btn-warning">Add role</a>
-                    </div>
+                    <!-- /.row -->
                 </div>
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Roles</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="table_list" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>NO</th>
-                                    <th>Role Code</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                    <th>Option</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>NO</th>
-                                    <th>Role Code</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                    <th>Option</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- /.page-content-area -->
             </div>
             <!-- /.container-fluid -->
 
@@ -123,7 +131,64 @@
 <!-- Script -->
 <footer th:replace="/component/footer :: script-area"></footer>
 <!-- End of Script -->
+<script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var role = [[${role}]];
+    console.log(role);
+    var editUserUrl = /*[[@{/user/edit/}]]*/ "/user/edit/";
+    var addUserUrl = /*[[@{/user/add}]]*/ "/user/add";
+    jQuery(document).ready(function () {
+        $.validator.methods.roleName = function (value, element) {
+            return !/[^a-zA-Z_0-9]/.test(value);
+        };
+        //kiem tra truong role
+        $.validator.methods.chkFunctions = function (value, element) {
+            return  $( "input[name=chkFunctions]:checked").length > 0;
+        };
 
+        $("#formInsert").validate({
+            focusInvalid: true, // focus the last invalid input
+            ignore: [],
+            rules: {
+                id: {
+                    required: true,
+                    maxlength: 50,
+                    roleName: true
+                },
+                description: {
+                    required: true,
+                    maxlength: 200
+                },
+                chkFunctions: {
+                    chkFunctions: true
+                }
+            },
+            messages: {
+                id: {
+                    required: "Tên nhóm quyền là bắt buộc",
+                    maxlength: "Tên đăng nhập không được bỏ trống và không quá 50 ký tự. Chỉ cho phép ký tự số chữ và dấu _",
+                    roleName: "Tên đăng nhập không được bỏ trống và không quá 50 ký tự. Chỉ cho phép ký tự số chữ và dấu _"
+                },
+                description: {
+                    required: "Tên nhóm quyền là bắt buộc",
+                    maxlength: "Mô tả nhóm quyền không được bỏ trống và không quá 200 ký tự"
+                },
+                chkFunctions: "Vui lòng chọn ít nhất 1 quyền thao tác trong nhóm chức năng để phân quyền"
+            },
+            errorPlacement: function (error, element) {
+                if (element[0].type === 'checkbox') {
+                    error.insertBefore(element.parent().parent().parent().parent());      // radio/checkbox?
+                } else if (element.hasClass('select2')) {
+                    error.insertAfter(element.next('span'));  // select2
+                } else {
+                    error.insertAfter(element);               // default
+                }
+            }
+        });
+    });
+
+</script>
 </body>
 
 </html>
