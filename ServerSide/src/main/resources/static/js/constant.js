@@ -27,6 +27,9 @@ const debounce = (func, delay) => {
 
 //    switch option
 switch (pathname) {
+    case "/aroma/":
+        $("title.title-page").text("Aroma Admin - Home");
+        break;
     case "/aroma/home":
         $("title.title-page").text("Aroma Admin - Home");
         break;

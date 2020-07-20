@@ -31,7 +31,7 @@ public class OrderController {
     private static final Logger LOGGER = LogManager.getLogger(OrderController.class);
     private static final Gson gson = new Gson();
     private static final String TITLE_VIEW = "View info order";
-    private static final String TITLE_EDIT = "Update info order";
+    private static final String TITLE_EDIT = "Edit info order";
     private static final String TITLE_DELETE = "Delete order";
 
     @Autowired
@@ -131,7 +131,7 @@ public class OrderController {
                                       Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
         LOGGER.debug(LOG_FORMAT, tag, "Edit Order View. Order Product: " + id);
-        Order order = orderRepository.findByBuyer(id).get();
+        Order order = orderRepository.findById(id).get();
         if (order == null) {
             LOGGER.debug(LOG_FORMAT, tag, "Order not found. Throw Exception. Username: " + id);
             throw new RuntimeException("Invalid user! " + id);

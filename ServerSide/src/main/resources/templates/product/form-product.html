@@ -102,12 +102,15 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Image User </label>
-                                            <div class="col-sm-9 d-flex">
-                                                <div th:each="img : ${product.image}"  class="image-product px-1">
+                                            <div class="col-sm-9">
+                                                <div th:each="img : ${product.image}" id="image-product" class="image-product px-1  d-inline-block">
                                                     <p> Image </p>
-                                                    <img width="100" height="100" th:src="${img}"  alt="Image Producr">
+                                                    <img width="100" height="100" th:src="${img}" alt="Image Product">
                                                 </div>
-                                                <input th:if="${product.id} == null" type="file" class="form-control" id="image user" maxlength="30"/>
+                                                <div class="btn-img">
+                                                    <input th:if="${titlePage} != 'View info product'" type="file" class="img mt-2 " name="img" id="img" maxlength="30"/>
+                                                    <label th:if="${titlePage} != 'View info product'" class="btn-img" for="img">Choose image</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
