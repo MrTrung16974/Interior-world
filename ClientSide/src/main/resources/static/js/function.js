@@ -722,7 +722,7 @@ function addFavouriteUser(idProduct) {
 // cart product
 function getProductInCast() {
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/order/products/" + userDto.username,
+        url: "http://localhost:8099/aroma/v1/api/orders/" + userDto.username,
         type: "GET",
         success: function (response) {
             if(response.code = '00') {

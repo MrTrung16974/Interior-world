@@ -4394,3 +4394,362 @@ Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving temp
 2020-07-20 13:37:04,676 [cluster-ClusterId{value='5f150d51294a4f5a6ed30a33', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:12, serverValue:399388}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
 2020-07-20 13:37:06,737 [cluster-ClusterId{value='5f150d51294a4f5a6ed30a33', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:13, serverValue:546527}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
 2020-07-20 13:37:07,064 [cluster-ClusterId{value='5f150d51294a4f5a6ed30a33', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:14, serverValue:436018}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-07-20 13:40:00,023 [cluster-ClusterId{value='5f150d51294a4f5a6ed30a33', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:15, serverValue:428895}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-07-20 13:44:25,618 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:8, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:44:25,620 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:9, serverValue:540380}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:44:25,621 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:6, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:44:25,622 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:4, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:44:25,623 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:7, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:44:25,624 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:5, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:44:33,366 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2020-07-20 13:44:33,368 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-07-20 13:44:33,369 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2020-07-20 13:44:43,967 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'brokerChannelExecutor'
+2020-07-20 13:44:43,970 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-07-20 13:44:43,972 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-07-20 13:44:43,972 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-07-20 13:45:22,377 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Starting MongodbApplication on DESKTOP-TRTHTKE with PID 10252 (E:\LUCAS\Interior-world\ServerSide\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\ServerSide)
+2020-07-20 13:45:22,397 [restartedMain] INFO  c.e.mongodb.MongodbApplication - No active profile set, falling back to default profiles: default
+2020-07-20 13:45:22,780 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-20 13:45:22,781 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-20 13:45:26,976 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-20 13:45:27,250 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 253ms. Found 6 MongoDB repository interfaces.
+2020-07-20 13:45:29,301 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3f66f533' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-20 13:45:29,319 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-20 13:45:30,873 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8099 (http)
+2020-07-20 13:45:30,911 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8099"]
+2020-07-20 13:45:30,916 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-07-20 13:45:30,920 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-20 13:45:31,515 [restartedMain] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring embedded WebApplicationContext
+2020-07-20 13:45:31,519 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 8736 ms
+2020-07-20 13:45:33,285 [restartedMain] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0-fsosc.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='Cluster0-shard-0'}
+2020-07-20 13:45:35,581 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01-fsosc.mongodb.net:27017 to client view of cluster
+2020-07-20 13:45:35,666 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00-fsosc.mongodb.net:27017 to client view of cluster
+2020-07-20 13:45:35,669 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02-fsosc.mongodb.net:27017 to client view of cluster
+2020-07-20 13:45:36,413 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-07-20 13:45:39,133 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-07-20 13:45:39,172 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-07-20 13:45:39,199 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-07-20 13:45:39,695 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-07-20 13:45:40,603 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-07-20 13:45:42,847 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8099"]
+2020-07-20 13:45:42,971 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8099 (http) with context path '/aroma'
+2020-07-20 13:45:42,974 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-07-20 13:45:42,975 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-07-20 13:45:42,976 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-07-20 13:45:42,999 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Started MongodbApplication in 23.363 seconds (JVM running for 29.62)
+2020-07-20 13:45:44,348 [http-nio-8099-exec-1] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-20 13:45:44,349 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-07-20 13:45:44,377 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 27 ms
+2020-07-20 13:45:50,180 [http-nio-8099-exec-5] INFO  org.mongodb.driver.cluster - No server chosen by com.mongodb.client.internal.MongoClientDelegate$1@340299e8 from cluster description ClusterDescription{type=REPLICA_SET, connectionMode=MULTIPLE, serverDescriptions=[ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}, ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}, ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+2020-07-20 13:45:50,956 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-01-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketWriteException: Exception sending message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateWriteException(InternalStreamConnection.java:550)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:432)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendCommandMessage(InternalStreamConnection.java:272)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:256)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:83)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:33)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:60)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1367)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:750)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at com.mongodb.internal.connection.SocketStream.write(SocketStream.java:99)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:429)
+	... 9 common frames omitted
+2020-07-20 13:45:52,527 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-02-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketWriteException: Exception sending message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateWriteException(InternalStreamConnection.java:550)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:432)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendCommandMessage(InternalStreamConnection.java:272)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:256)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:83)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:33)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:60)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1367)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:750)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at com.mongodb.internal.connection.SocketStream.write(SocketStream.java:99)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:429)
+	... 9 common frames omitted
+2020-07-20 13:45:56,909 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:5, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:45:58,309 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-00-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketWriteException: Exception sending message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateWriteException(InternalStreamConnection.java:550)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:432)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendCommandMessage(InternalStreamConnection.java:272)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:256)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:83)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:33)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:60)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1367)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:750)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at com.mongodb.internal.connection.SocketStream.write(SocketStream.java:99)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:429)
+	... 9 common frames omitted
+2020-07-20 13:45:58,956 [http-nio-8099-exec-3] INFO  org.mongodb.driver.cluster - No server chosen by com.mongodb.client.internal.MongoClientDelegate$1@46cbf175 from cluster description ClusterDescription{type=REPLICA_SET, connectionMode=MULTIPLE, serverDescriptions=[ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketWriteException: Exception sending message}, caused by {java.net.SocketTimeoutException: Read timed out}}, ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketWriteException: Exception sending message}, caused by {java.net.SocketTimeoutException: Read timed out}}, ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketWriteException: Exception sending message}, caused by {java.net.SocketTimeoutException: Read timed out}}]}. Waiting for 30000 ms before timing out
+2020-07-20 13:46:02,612 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=5697501600, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff0000000000000004, setVersion=1, lastWriteDate=Mon Jul 20 13:45:50 ICT 2020, lastUpdateTimeNanos=94702493417600}
+2020-07-20 13:46:02,616 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max election id to 7fffffff0000000000000004 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:02,617 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max set version to 1 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:02,619 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:04,161 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:4, serverValue:399388}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-07-20 13:46:04,865 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=703762200, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:45:58 ICT 2020, lastUpdateTimeNanos=94704749676100}
+2020-07-20 13:46:07,429 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:6, serverValue:437807}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-07-20 13:46:08,023 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=593942300, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:45:58 ICT 2020, lastUpdateTimeNanos=94707908148100}
+2020-07-20 13:46:09,220 [http-nio-8099-exec-3] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:7, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:12,428 [http-nio-8099-exec-5] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:8, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:20,932 [http-nio-8099-exec-4] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:9, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:23,843 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:14, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:24,081 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:8, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:46:25,839 [http-nio-8099-exec-10] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:11, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:27,298 [http-nio-8099-exec-1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:13, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:28,186 [http-nio-8099-exec-10] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:11, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:46:28,196 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:15, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:28,653 [http-nio-8099-exec-8] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:10, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:28,938 [http-nio-8099-exec-8] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:10, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:46:30,301 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:12, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:31,153 [http-nio-8099-exec-6] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:16, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:46:40,548 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-07-20 13:46:56,781 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:18, serverValue:399388}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-07-20 13:46:58,902 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-02-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketWriteException: Exception sending message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateWriteException(InternalStreamConnection.java:550)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:432)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendCommandMessage(InternalStreamConnection.java:272)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:256)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:83)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:33)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:60)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:131)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.readV3Record(InputRecord.java:593)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:532)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1367)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:750)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at com.mongodb.internal.connection.SocketStream.write(SocketStream.java:99)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:429)
+	... 9 common frames omitted
+2020-07-20 13:46:58,904 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-00-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketWriteException: Exception sending message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateWriteException(InternalStreamConnection.java:550)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:432)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendCommandMessage(InternalStreamConnection.java:272)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:256)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:83)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:33)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:60)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:131)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1367)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:750)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at com.mongodb.internal.connection.SocketStream.write(SocketStream.java:99)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:429)
+	... 9 common frames omitted
+2020-07-20 13:47:19,013 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:22, serverValue:425680}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-07-20 13:47:19,941 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-00-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketReadTimeoutException: Timeout while receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:562)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessage(InternalStreamConnection.java:447)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:298)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:258)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:83)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:33)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:60)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+	at sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:933)
+	at sun.security.ssl.AppInputStream.read(AppInputStream.java:105)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:109)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:579)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessage(InternalStreamConnection.java:444)
+	... 9 common frames omitted
+2020-07-20 13:47:22,989 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:20, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:47:25,522 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2533032200, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff0000000000000004, setVersion=1, lastWriteDate=Mon Jul 20 13:47:20 ICT 2020, lastUpdateTimeNanos=94785407430400}
+2020-07-20 13:47:25,523 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:47:39,059 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:23, serverValue:437807}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-07-20 13:47:39,470 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=411109500, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:47:36 ICT 2020, lastUpdateTimeNanos=94799355052700}
+2020-07-20 13:47:54,908 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:12, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:47:54,917 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:16, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:47:54,919 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:15, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:47:58,455 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:24, serverValue:549537}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:48:00,941 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:25, serverValue:425680}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-07-20 13:48:31,783 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-02-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketWriteException: Exception sending message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateWriteException(InternalStreamConnection.java:550)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:432)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendCommandMessage(InternalStreamConnection.java:272)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:256)
+	at com.mongodb.internal.connection.CommandHelper.sendAndReceive(CommandHelper.java:83)
+	at com.mongodb.internal.connection.CommandHelper.executeCommand(CommandHelper.java:33)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initializeConnectionDescription(InternalStreamConnectionInitializer.java:103)
+	at com.mongodb.internal.connection.InternalStreamConnectionInitializer.initialize(InternalStreamConnectionInitializer.java:60)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:131)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1367)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:750)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at com.mongodb.internal.connection.SocketStream.write(SocketStream.java:99)
+	at com.mongodb.internal.connection.InternalStreamConnection.sendMessage(InternalStreamConnection.java:429)
+	... 9 common frames omitted
+2020-07-20 13:48:32,877 [http-nio-8099-exec-9] WARN  org.mongodb.driver.connection - Got socket exception on connection [connectionId{localValue:7, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017. All connections to cluster0-shard-00-02-fsosc.mongodb.net:27017 will be closed.
+2020-07-20 13:48:32,877 [http-nio-8099-exec-4] WARN  org.mongodb.driver.connection - Got socket exception on connection [connectionId{localValue:9, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017. All connections to cluster0-shard-00-02-fsosc.mongodb.net:27017 will be closed.
+2020-07-20 13:48:32,877 [http-nio-8099-exec-1] WARN  org.mongodb.driver.connection - Got socket exception on connection [connectionId{localValue:13, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017. All connections to cluster0-shard-00-02-fsosc.mongodb.net:27017 will be closed.
+2020-07-20 13:48:32,879 [http-nio-8099-exec-9] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:7, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised by this connection.
+2020-07-20 13:48:32,880 [http-nio-8099-exec-4] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:9, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised by this connection.
+2020-07-20 13:48:32,879 [http-nio-8099-exec-1] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:13, serverValue:539854}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised by this connection.
+2020-07-20 13:48:32,896 [http-nio-8099-exec-9] INFO  org.mongodb.driver.cluster - No server chosen by ReadPreferenceServerSelector{readPreference=primary} from cluster description ClusterDescription{type=REPLICA_SET, connectionMode=MULTIPLE, serverDescriptions=[ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2449614963, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:11 ICT 2020, lastUpdateTimeNanos=94841758084000}, ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2072788753, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:11 ICT 2020, lastUpdateTimeNanos=94833196216100}, ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+2020-07-20 13:48:32,896 [http-nio-8099-exec-1] INFO  org.mongodb.driver.cluster - No server chosen by ReadPreferenceServerSelector{readPreference=primary} from cluster description ClusterDescription{type=REPLICA_SET, connectionMode=MULTIPLE, serverDescriptions=[ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2449614963, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:11 ICT 2020, lastUpdateTimeNanos=94841758084000}, ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2072788753, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:11 ICT 2020, lastUpdateTimeNanos=94833196216100}, ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+2020-07-20 13:48:32,896 [http-nio-8099-exec-4] INFO  org.mongodb.driver.cluster - No server chosen by ReadPreferenceServerSelector{readPreference=primary} from cluster description ClusterDescription{type=REPLICA_SET, connectionMode=MULTIPLE, serverDescriptions=[ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2449614963, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:11 ICT 2020, lastUpdateTimeNanos=94841758084000}, ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2072788753, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:11 ICT 2020, lastUpdateTimeNanos=94833196216100}, ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+2020-07-20 13:48:33,075 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-01-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketException: cluster0-shard-00-01-fsosc.mongodb.net
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:211)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:75)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:131)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.UnknownHostException: cluster0-shard-00-01-fsosc.mongodb.net
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:929)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1324)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1277)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1193)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1127)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:203)
+	... 5 common frames omitted
+2020-07-20 13:48:33,117 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-02-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketException: cluster0-shard-00-02-fsosc.mongodb.net
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:211)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:75)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.UnknownHostException: cluster0-shard-00-02-fsosc.mongodb.net
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:929)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1324)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1277)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1193)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1127)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:203)
+	... 5 common frames omitted
+2020-07-20 13:48:33,266 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Exception in monitor thread while connecting to server cluster0-shard-00-00-fsosc.mongodb.net:27017
+com.mongodb.MongoSocketException: cluster0-shard-00-00-fsosc.mongodb.net
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:211)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:75)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:131)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.UnknownHostException: cluster0-shard-00-00-fsosc.mongodb.net
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:929)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1324)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1277)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1193)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1127)
+	at com.mongodb.ServerAddress.getSocketAddresses(ServerAddress.java:203)
+	... 5 common frames omitted
+2020-07-20 13:48:44,487 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:81, serverValue:399388}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-07-20 13:48:44,730 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=242747200, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:35 ICT 2020, lastUpdateTimeNanos=94864615448900}
+2020-07-20 13:48:45,056 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:84, serverValue:437807}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-07-20 13:48:45,307 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=250403600, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Mon Jul 20 13:48:35 ICT 2020, lastUpdateTimeNanos=94865191932200}
+2020-07-20 13:48:45,443 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:83, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:48:45,729 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=285012100, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff0000000000000004, setVersion=1, lastWriteDate=Mon Jul 20 13:48:35 ICT 2020, lastUpdateTimeNanos=94865613132700}
+2020-07-20 13:48:45,729 [cluster-ClusterId{value='5f153d8dad5fcf26b4022bc1', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:48:45,731 [http-nio-8099-exec-4] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:24, serverValue:549537}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because there was a socket exception raised on another connection from this pool.
+2020-07-20 13:48:47,530 [http-nio-8099-exec-9] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:85, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:48:47,558 [http-nio-8099-exec-1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:87, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:48:47,600 [http-nio-8099-exec-4] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:86, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:49:34,721 [http-nio-8099-exec-3] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:88, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:49:34,759 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:89, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-07-20 13:54:08,032 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2020-07-20 13:54:08,032 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-07-20 13:54:08,033 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2020-07-20 13:54:14,200 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'brokerChannelExecutor'
+2020-07-20 13:54:14,202 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-07-20 13:54:14,205 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-07-20 13:54:14,206 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-07-20 13:54:14,481 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:87, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-07-20 13:54:14,482 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:88, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-07-20 13:54:14,483 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:85, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-07-20 13:54:14,484 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:89, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-07-20 13:54:14,485 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:86, serverValue:550600}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.

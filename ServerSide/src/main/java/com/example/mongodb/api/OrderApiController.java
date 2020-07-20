@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-
 @RequestMapping("/v1/api")
 public class OrderApiController {
 
@@ -30,7 +29,7 @@ public class OrderApiController {
 
 
 //    get product prodcut now in user
-    @RequestMapping("/order/products/{idUser}")
+    @RequestMapping("/orders/{idUser}")
     public BaseResponse getListProductInCast(@PathVariable("idUser") String idUser) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 1);
