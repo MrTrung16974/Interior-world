@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/component/header :: sidebar-area"></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="/component/header :: topbar-area"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">List Product</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <label class="col-sm-6 control-label no-padding-right p_top"> Name Product </label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" id="nameproduct" placeholder="Name product" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <label class="col-sm-6 control-label no-padding-right p_top"> Category </label>
+                                <div class="col-sm-6">
+                                    <select class="select2 form-control" name="category" id="category">
+                                        <option value="">All</option>
+                                        <option value="1">Cabinets</option>
+                                        <option value="2">Desk</option>
+                                        <option value="3">Decorate</option>
+                                        <option value="4">Belongings</option>
+                                        <option value="5">Sofa</option>
+                                        <option value="6">Lamp</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <label class="col-sm-6 control-label no-padding-right p_top">Material </label>
+                                <div class="col-sm-6">
+                                    <select class="select2 form-control" name="material" id="material">
+                                        <option value="">All</option>
+                                        <option value="1">Wood</option>
+                                        <option value="2">Plastic</option>
+                                        <option value="3">Glass</option>
+                                        <option value="4">Titanium alloy</option>
+                                        <option value="5">Iron</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <label class="col-sm-6 control-label no-padding-right p_top">Color </label>
+                                <div class="col-sm-6">
+                                    <select class="select2 form-control" name="color" id="color">
+                                        <option value="">All</option>
+                                        <option value="1">Black</option>
+                                        <option value="2">Yellow</option>
+                                        <option value="3">White</option>
+                                        <option value="4">Blue</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="clearfix mt-2 mb-5 w-100 form-actions text-center">
+                        <button type="button" class="btn btn-primary" onclick="doSearch();">Search</button>
+                        <a th:href="@{/product/add}" class="btn btn-warning">Add product</a>
+                    </div>
+                </div>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="overlay" id="tblLoading">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                            <table class="table table-bordered" id="table_list" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Name</th>
+                                    <th>Image prduct</th>
+                                    <th>Price prduct</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Material</th>
+                                    <th>Star</th>
+                                    <th>Option</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Name</th>
+                                    <th>Image prduct</th>
+                                    <th>Price prduct</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Material</th>
+                                    <th>Star</th>
+                                    <th>Option</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer th:replace="/component/footer :: footer-area"></footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a th:replace="/component/footer :: page-top"></a>
+
+<!-- Logout Modal-->
+<a th:replace="/component/footer :: logout-model"></a>
+
+<!-- Script -->
+<footer th:replace="/component/footer :: script-area"></footer>
+<!-- End of Script -->
+
+<!-- DataTables -->
+<script th:inline="javascript">
+    //<![CDATA[
+    var lstProduct = [[${lstProduct}]];
+    // var token = $("meta[name='_csrf']").attr("content");
+    // var header = $("meta[name='_csrf_header']").attr("content");
+    // var dtViLang = /*[[@{/plugins/datatables/extensions/i18n/vi.json}]]*/ "plugins/datatables/extensions/i18n/vi.json";
+    var searchUrl = /*[[@{/product/search}]]*/ "/product/search";
+    var viewProductUrl = /*[[@{/product/view_product/}]]*/ "/product/view_product/";
+    var editProductUrl = /*[[@{/product/edit/}]]*/ "/product/edit/";
+    var deleteProductUrl = /*[[@{/product/delete}]]*/ "/product/delete";
+
+    /**
+     * Chuc nang tim kiem, tai lai bang du lieu dua theo thong tin loc
+     * */
+    jQuery(document).ready(function () {
+        var tblUser = $('#table_list').DataTable({
+            searching: true,
+            bPaginate: true,
+            bAutoWidth: false,
+            bLengthChange: true,
+            "lengthMenu": [10, 25, 50, 100],
+            bSort: true,
+            order: [1, "asc"],
+            pageLength: 10,
+            "processing": false,
+            "serverSide": false,
+            "ajax": {
+                "url": searchUrl,
+                "data": function (d) {
+                    d.name = $("#nameproduct").val().trim();
+                    d.category = $("#category").val().trim();
+                    d.material = $("#material").val().trim();
+                    d.color = $("#color").val().trim();
+                },
+                beforeSend: function (xhr) {
+                    $("#tblLoading").css("display", "block");
+                },
+                complete: function () {
+                    $("#tblLoading").css("display", "none");
+                },
+                error: function (xhr, status, error) {
+                    toastr.error("An error occurred during data download");
+                }
+            },
+            columns: [
+                {"data": "name"},
+                {"data": "name"},
+                {"data": "image"},
+                {"data": "price"},
+                {"data": "description"},
+                {"data": "type.type"},
+                {"data": "type.material"},
+                {"data": "star"},
+                {"data": "name"}
+
+            ],
+            columnDefs: [
+                {
+                    "render": function (data, type, row) {
+                        return `<img width="100%" src="${row.image[0]}" alt="" />`
+                    },
+                    "targets": 2
+                },
+                {
+                    "render": function (data, type, row) {
+                        return `${formatter.format(row.price)}`
+                    },
+                    "targets": 3
+                },
+                {
+                    "render": function (data, type, row) {
+                        let category = null;
+                        switch (row.type.type) {
+                            case 0:
+                                category = "Cabinets";
+                                break;
+                            case 1:
+                                category = "Desk";
+                                break;
+                            case 2:
+                                category = "Decorate";
+                                break;
+                            case 3:
+                                category = "Belongings";
+                                break;
+                            case 4:
+                                category = "Sofa";
+                                break;
+                            case 5:
+                                category = "Lamp";
+                                break;
+                            default:
+                                category = ""
+                                break;
+                        }
+                        return category;
+                    },
+                    "targets": 5
+                },
+                {
+                    "render": function (data, type, row) {
+                        let fabric = null;
+                        switch (row.type.material) {
+                            case 0:
+                                fabric = "Wood";
+                                break;
+                            case 1:
+                                fabric = "Plastic";
+                                break;
+                            case 2:
+                                fabric = "Glass";
+                                break;
+                            case 3:
+                                fabric = "Titanium alloy";
+                                break;
+                            case 4:
+                                fabric = "Iron";
+                                break;
+                            default:
+                                fabric = "";
+                                break;
+                        }
+                        return fabric;
+                    },
+                    "targets": 6
+                },
+                {
+                    "render": function (data, type, row) {
+                        return `${row.star} star`;
+                    },
+                    "targets": 7
+                },
+                {
+                    "render": function (data, type, row) {
+                        var content = "";
+                        if (true) {
+                            content = '<a class="blue" href="' + viewProductUrl + row.id + '" data-toggle="tooltip" title="View info product"> <i class="default-icon fa fa-eye bigger-130"></i> </a>';
+                            content += '<a class="blue" href="'+editProductUrl +row.id + '" data-toggle="tooltip" title="Edit info product"> <i class="default-icon fas fa-pencil-alt bigger-130"></i> </a>';
+                            content += '<a class="blue" ' +
+                                'onclick="deleteProduct(\'' + row.id + '\');" ' + 'data-toggle="tooltip" title="Delete Product"> <i class="default-icon fas fa-trash-alt bigger-130"></i> </a>';
+                        }
+
+                        return content;
+                    },
+                    "targets": 8
+                },
+                {'bSortable': false, 'aTargets': ["no-sort"]}
+            ]
+        });
+
+        //Dat gia tri cho cot index (STT) moi lan sap xep bang
+        tblUser.on('order.dt search.dt', function () {
+            tblUser.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+    });
+
+    function doSearch() {
+        $("#table_list").DataTable().ajax.reload();
+    }
+
+    //Quick search product Advanced
+    var debounceSearchProduct = debounce(function () {
+        $("#table_list").DataTable().ajax.reload();
+    }, 500);
+
+    function deleteProduct(id) {
+        if (id !== undefined && status !== undefined) {
+            $("#dialogConfirm").modal('hide');
+            var datajson = {"id": id};
+            $.ajax({
+                type: "POST",
+                url: deleteProductUrl,
+                traditional: true,
+                data: datajson,
+                success: function (data) {
+                    if (data != null) {
+                        $("#table_list").DataTable().ajax.reload();
+                        toastr.success('Delete product Success!', "HAHA");
+                    }
+                },
+                error: function () {
+                    toastr.error('An error occurred . Please try again', error.message);
+                }
+            });
+            stopEventPropagation(event);
+        }
+    }
+
+</script>
+
+</body>
+
+</html>

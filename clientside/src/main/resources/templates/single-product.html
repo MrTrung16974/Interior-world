@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+
+<body>
+	<!--================ Start Header Menu Area =================-->
+	<header th:replace="/component/header :: header-area"></header>
+	<!--================ End Header Menu Area =================-->
+
+	<!--================ Start Banner Area =================-->
+	<section th:replace="/component/header :: banner-area"></section>
+	<!--================ End Banner Area =================-->
+
+
+  <!--================Single Product Area =================-->
+	<div class="product_image_area">
+		<div id="single-product" class="container">
+		</div>
+	</div>
+	<!--================End Single Product Area =================-->
+
+	<!--================Product Description Area =================-->
+	<section class="product_description_area">
+		<div class="container">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item ">
+					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+					 aria-selected="false">Specification</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+					 aria-selected="false">Comments <span id="total-comment">(0)</span></a>
+				</li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+					<p id="description-product"></p>
+				</div>
+				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					<div class="table-responsive">
+						<table class="table">
+							<tbody>
+								<tr>
+									<td>
+										<h5>Width</h5>
+									</td>
+									<td>
+										<h5 id="width"></h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Height</h5>
+									</td>
+									<td>
+										<h5 id="height"></h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Depth</h5>
+									</td>
+									<td>
+										<h5 id="depth"></h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Weight</h5>
+									</td>
+									<td>
+										<h5 id="weight"></h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Quality checking</h5>
+									</td>
+									<td>
+										<h5 id="quality-checking"></h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Type</h5>
+									</td>
+									<td>
+										<h5 id="type"></h5>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Material</h5>
+									</td>
+									<td>
+										<h5 id="material"></h5>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-lg-6">
+							<div id="comments-list" class="comments-list">
+								<p>Product has not been rated !</p>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="review_box">
+								<div class="review_box">
+									<h4>Post a comment</h4>
+									<p>Your Rating:</p>
+									<span class='rating-stars text-center'>
+										<ul id='stars' class="mx-3">
+											<li class='star' title='Poor' data-value='1'>
+												<i class='fa fa-star fa-fw'></i>
+											</li>
+											<li class='star' title='Fair' data-value='2'>
+												<i class='fa fa-star fa-fw'></i>
+											</li>
+											<li class='star' title='Good' data-value='3'>
+												<i class='fa fa-star fa-fw'></i>
+											</li>
+											<li class='star' title='Excellent' data-value='4'>
+												<i class='fa fa-star fa-fw'></i>
+											</li>
+											<li class='star' title='WOW!!!' data-value='5'>
+												<i class='fa fa-star fa-fw'></i>
+											</li>
+										</ul>
+									</span>
+									<p>Outstanding</p>
+									<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+										<div class="col-md-12">
+											<div class="form-group">
+												<textarea class="form-control different-control w-100"  name="coment-content" id="coment-content" cols="30" rows="5" placeholder="You Comment"></textarea>
+											</div>
+										</div>
+										<div class="col-md-12 text-right">
+											<button type="button" id="add-to-coment" value="submit" class="btn primary-btn">Submit Now</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Product Description Area =================-->
+
+	<!--================ Start related Product area =================-->
+	<section class="related-product-area section-margin--small mt-0">
+		<div class="container">
+			<div class="section-intro pb-60px">
+				<p>Popular Item in the market</p>
+				<h2>Similar <span class="section-intro__style">Product</span></h2>
+			</div>
+			<div id="catetory-product" class="row mt-30">
+			</div>
+		</div>
+	</section>
+	<!--================ end related Product area =================-->
+
+	<!--================ Start chat Area  =================-->
+	<footer th:replace="/component/chat :: chat-area"></footer>
+	<!--================ End chat Area  =================-->
+
+	<!--================ Start footer Area  =================-->
+	<footer th:replace="/component/footer :: footer-area"></footer>
+	<!--================ End footer Area  =================-->
+
+	<!--================ Start script Area  =================-->
+	<script th:src="@{js/detailsJs.js}"></script>
+	<!-- Chat js -->
+	<script th:src="@{/js/chat.js}"></script>
+	<!--================ End script Area  =================-->
+
+</body>
+</html>

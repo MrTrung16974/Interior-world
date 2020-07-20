@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+
+<body>
+<!--================ Start Header Menu Area =================-->
+<header th:replace="/component/header :: header-area"></header>
+<!--================ End Header Menu Area =================-->
+
+<!--================ Start Banner Area =================-->
+<section th:replace="/component/header :: banner-area"></section>
+<!--================ End Banner Area =================-->
+
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-4">
+                <div class="account">
+<!--                    "${item.image != null? item.image[0] :-->
+                    <div class="row">
+                        <div class="col-12 col-md-4 ol-xl-4 col-lg-4">
+                            <img width="50" height="50" id="face-user" src="" alt="">
+                        </div>
+                        <div class="col-12 col-md-8 ol-xl-8 col-lg-8 media-body">
+                            <h6 style="margin-top: 20px;" id="name-account">Anonymously</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-categories common-filter">
+                    <div class="head">My Account</div>
+                    <ul>
+                        <li class="filter-list"><a onclick="rederUserInfo()" class="user-profile">User profile</a></li>
+                        <li class="filter-list"><a onclick="rederUsesAddress()" class="address">Address</a></li>
+                        <li class="filter-list"><a onclick="rederChangePassword()" class="change-pass">Change Password</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="user-info" class="account-content col-xl-9 col-lg-9 col-md-8">
+                <div class="Info-user-profile">
+                    <div class="title-user form-header">
+                        <h5>User Profile</h5>
+                        <p>Manage profile information for account security</p>
+                    </div>
+                    <form class="content-user-profile from-content">
+                        <div id="infomation-user" class="row">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
+
+
+<!--================ Start chat Area  =================-->
+<footer th:replace="/component/chat :: chat-area"></footer>
+<!--================ End chat Area  =================-->
+
+<!--================ Start footer Area  =================-->
+<footer th:replace="/component/footer :: footer-area"></footer>
+<!--================ End footer Area  =================-->
+<!-- Chat js -->
+<script th:src="@{/js/chat.js}"></script>
+
+</body>
+</html>

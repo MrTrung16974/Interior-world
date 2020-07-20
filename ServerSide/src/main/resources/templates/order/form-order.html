@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/component/header :: sidebar-area"></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="/component/header :: topbar-area"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800" th:text="${titlePage}">List User</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="main-content">
+                    <div style="margin-bottom: 50px;" class="breadcrumbs" id="breadcrumbs">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a th:href="@{/home}"><i class="default-icon fa fa-home home-icon"></i>  Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a th:href="@{/order/list}">List Order</a></li>
+                                <li class="breadcrumb-item active" th:text="${titlePage}" aria-current="page">Data</li>
+                            </ol>
+                        </nav>
+                        <!-- /.breadcrumb -->
+                    </div>
+                    <div class="page-content">
+                        <div class="page-content-area">
+                            <!-- /.page-header -->
+                            <div class="col-xs-12 p-4">
+                                <div th:replace="component/header::notice_box"></div>
+
+                                <form id="formInsert" name="formInsert" th:object="${order}" method="POST"
+                                      class="form-horizontal form-row-seperated">
+                                    <div th:replace="/component/header::alert-sub"></div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">User Name (<span class="text-red">*</span>) </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" disabled class="form-control" th:field="*{buyer}" maxlength="30"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Shipping Rates </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:field="*{shippingRates}" maxlength="50"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Total Price </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:field="*{totalPrice}" maxlength="30"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Flat Rate Shipping </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:field="*{flatRateShipping}" maxlength="30"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Total Product Order </label>
+                                            <div class="col-sm-9">
+                                                <input type="date" class="form-control" th:field="*{totalProductOrder}" maxlength="30"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Address </label>
+                                            <div class="col-sm-9">
+                                                <input type="number"  class="form-control" th:field="*{address}" maxlength="10"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Status </label>
+                                            <div class="col-sm-9">
+                                                <select class="select2 form-control" id="status" name="status">
+                                                    <option value="">--Option Status--</option>
+                                                    <option th:selected="${order.status == 1}"  value="1">Cart</option>
+                                                    <option th:selected="${order.status == 2}" value="2">CheckOut</option>
+                                                    <option th:selected="${order.status == 3}" value="3">Order</option>
+                                                    <option th:selected="${order.status == 4}" value="4">OnDelivery</option>
+                                                    <option th:selected="${order.status == 5}" value="5">Delivered</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">List Product </label>
+                                            <div class="col-sm-9">
+                                                <div th:each="product : ${order.listProduct}"  class="image-product px-1">
+                                                    <label>Name Product : </label>
+                                                    <span th:text="${product.name}"> Image </span>
+                                                    <br/>
+                                                    <label>Price Product : </label>
+                                                    <span th:text="${product.price}"> Image </span>
+                                                    <br/>
+                                                    <label>Number Product : </label>
+                                                    <span th:text="${product.number + ' product'}"> Image </span>
+                                                    <br/>
+                                                    <label>Color Product : </label>
+                                                    <span th:text="${product.nameColor}"> Image </span>
+                                                    <hr/>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix form-actions">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <input type="submit" value="Cập nhật" class="btn btn-info" id="addForm" th:if="${order.id} != null and ${titlePage} != 'View info order'"   />
+                                            <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
+                                            <a class="btn btn-warning" th:href="@{/order/list}">Về Danh sách</a></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.page-content-area -->
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer th:replace="/component/footer :: footer-area"></footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a th:replace="/component/footer :: page-top"></a>
+
+<!-- Logout Modal-->
+<a th:replace="/component/footer :: logout-model"></a>
+
+<!-- Script -->
+<footer th:replace="/component/footer :: script-area"></footer>
+<!-- End of Script -->
+<script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var user = [[${user}]];
+    var title = [[${title}]];
+    var editUserUrl = /*[[@{/user/edit/}]]*/ "/user/edit/";
+    var addUserUrl = /*[[@{/user/add}]]*/ "/user/add";
+    jQuery(document).ready(function () {
+        $("#addForm").on("click", function(e){
+            e.preventDefault();
+            if(user.userId != null){
+                $('#formInsert').attr('action', editUserUrl + user.userId).submit();
+            }else{
+                $('#formInsert').attr('action', addUserUrl).submit();
+            }
+
+        });
+        //kiem tra truong user
+        $.validator.methods.username = function (value, element) {
+            return !/[^a-z0-9]/.test(value);
+        }
+        //kiem tra truong role
+        $.validator.methods.role = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+
+        $("#formInsert").validate({
+            focusInvalid: true, // focus the last invalid input
+            ignore: [],
+            rules: {
+                username: {
+                    required: true,
+                    maxlength: 30,
+                    username: true
+                },
+            },
+            messages: {
+                username: "Username must not be blank and no more than 30 characters. Only alphanumeric characters are allowed"
+            }
+        });
+    });
+
+</script>
+
+</body>
+
+</html>
