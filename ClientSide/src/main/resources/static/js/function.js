@@ -207,7 +207,7 @@ if(pathname == "/shop") {
 }
 if(pathname == "/checkout") {
     $.ajax({
-        url: "http://localhost:8099/aroma/order/did-checkout-products/"+ userDto.username,
+        url: "http://localhost:8099/aroma/v1/api/order/did-checkout-products/"+ userDto.username,
         type: "GET",
         success: function (response) {
             if(response.code == "00") {
@@ -304,6 +304,7 @@ function loginCickUser() {
             } else {
                 hideLoading();
                 window.location.href = "http://localhost:8080/login?error=true"
+                toastr.error('An error occurred! ', response.data);
             }
         },
         error: function () {
@@ -721,7 +722,7 @@ function addFavouriteUser(idProduct) {
 // cart product
 function getProductInCast() {
     $.ajax({
-        url: "http://localhost:8099/aroma/order/products/" + userDto.username,
+        url: "http://localhost:8099/aroma/v1/api/order/products/" + userDto.username,
         type: "GET",
         success: function (response) {
             if(response.code = '00') {
@@ -773,7 +774,7 @@ function getProductInCast() {
 //                 };
 //             }
 //             $.ajax({
-//                 url: "http://localhost:8099/aroma/order/update/" + cart.buyer,
+//                 url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
 //                 type: "POST",
 //                 data: JSON.stringify(updateCastRequest),
 //                 contentType: "application/json",
@@ -838,7 +839,7 @@ function addToCastDB(idProduct, type) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/order/update/" + cart.buyer,
+        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -881,7 +882,7 @@ function deleteItem(idProduct, nameColor) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/order/update/" + cart.buyer,
+        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -923,7 +924,7 @@ function addItem(idProduct, nameColor) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/order/update/" + cart.buyer,
+        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -970,7 +971,7 @@ function removeItem(idProduct, nameColor) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/order/update/" + cart.buyer,
+        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -1024,7 +1025,7 @@ function checkout() {
         return;
     }
     $.ajax({
-        url: "http://localhost:8099/aroma/order/checkout-products?idUser=" + userDto.username + "&shippingRates=" + shippingRates,
+        url: "http://localhost:8099/aroma/v1/api/order/checkout-products?idUser=" + userDto.username + "&shippingRates=" + shippingRates,
         type: "PUT",
         processData: false,
         success: function (response) {

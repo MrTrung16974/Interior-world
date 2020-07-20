@@ -166,15 +166,15 @@
             },
             messages: {
                 id: {
-                    required: "Tên nhóm quyền là bắt buộc",
-                    maxlength: "Tên đăng nhập không được bỏ trống và không quá 50 ký tự. Chỉ cho phép ký tự số chữ và dấu _",
-                    roleName: "Tên đăng nhập không được bỏ trống và không quá 50 ký tự. Chỉ cho phép ký tự số chữ và dấu _"
+                    required: "Permission group name is required",
+                    maxlength: "Username must not be blank and no more than 50 characters. Only alphanumeric characters and _ characters are allowed",
+                    roleName: "Username must not be blank and no more than 50 characters. Only alphanumeric characters and _ characters are allowed"
                 },
                 description: {
-                    required: "Tên nhóm quyền là bắt buộc",
-                    maxlength: "Mô tả nhóm quyền không được bỏ trống và không quá 200 ký tự"
+                    required: "Rights group name is required ",
+                    maxlength: "Rights group description cannot be empty and cannot exceed 200 characters"
                 },
-                chkFunctions: "Vui lòng chọn ít nhất 1 quyền thao tác trong nhóm chức năng để phân quyền"
+                chkFunctions: "Please select at least 1 operation permission in the function group to assign permissions"
             },
             errorPlacement: function (error, element) {
                 if (element[0].type === 'checkbox') {

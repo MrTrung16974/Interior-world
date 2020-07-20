@@ -18,7 +18,8 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/order")
+
+@RequestMapping("/v1/api")
 public class OrderApiController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class OrderApiController {
 
 
 //    get product prodcut now in user
-    @RequestMapping("/products/{idUser}")
+    @RequestMapping("/order/products/{idUser}")
     public BaseResponse getListProductInCast(@PathVariable("idUser") String idUser) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 1);
@@ -55,7 +56,7 @@ public class OrderApiController {
     }
 
     //    get product did checkout prodcut now in user
-    @RequestMapping("/did-checkout-products/{idUser}")
+    @RequestMapping("/order/did-checkout-products/{idUser}")
     public BaseResponse getListProductCheckoutedInCast(@PathVariable("idUser") String idUser) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
@@ -74,7 +75,7 @@ public class OrderApiController {
         return response;
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/order/update/{id}", method = RequestMethod.POST)
     public  BaseResponse updateCast(@PathVariable("id") String id,
             @RequestBody UpdateCastRequest updateCastRequest) {
         BaseResponse response = new BaseResponse();
@@ -242,7 +243,7 @@ public class OrderApiController {
     }
 
     //    checkout product now in user
-    @PutMapping("/checkout-products")
+    @PutMapping("/order/checkout-products")
     public BaseResponse checkoutProductInCast(@RequestParam("idUser") String idUser,
                                               @RequestParam("shippingRates") Integer shippingRates) {
         BaseResponse response = new BaseResponse();
@@ -290,7 +291,7 @@ public class OrderApiController {
     }
 
     //    contactus product now in user
-    @PutMapping("/contactus-products")
+    @PutMapping("/order/contactus-products")
     public BaseResponse contactusProductInCast(@RequestParam("idUser") String idUser,
                                               @RequestParam("shippingRates") Integer shippingRates) {
         BaseResponse response = new BaseResponse();
