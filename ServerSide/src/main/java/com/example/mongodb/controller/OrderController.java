@@ -166,7 +166,7 @@ public class OrderController {
             LOGGER.debug(LOG_FORMAT, tag, "Error while edit user: " + id);
             LOGGER.error(tag, e);
             success = false;
-            message = "Cập nhật người dùng thất bại. Vui lòng thử lại sau!";
+            message = "User update failed. Please try again later!";
         }
 
         return getUserModelView(checkOrder, TITLE_EDIT, success, message);

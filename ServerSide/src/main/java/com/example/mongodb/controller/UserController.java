@@ -37,7 +37,7 @@ public class UserController {
     private static final Gson gson = new Gson();
     private static final String VIEW_USER = "View info user";
     private static final String TITLE_ADD = "Add user";
-    private static final String TITLE_EDIT = "Update info user";
+    private static final String TITLE_EDIT = "Edit info user";
     private static final String PATTERN_PASSWORD = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
 
     @Value("${default.password}")
@@ -135,7 +135,7 @@ public class UserController {
         LOGGER.debug(LOG_FORMAT, tag, "Change password action. user: " + username);
         User user = userService.getUserByUserName(username);
         boolean success = false;
-        String message = "Đổi mật khẩu thất bại. Vui lòng thử lại sau!";
+        String message = "Password change failed. Please try again later!";
         if (user != null) {
             LOGGER.debug(LOG_FORMAT, tag, "Found user. Checking password.");
             if (encoder.matches(oldPassword, user.getPassword())) {
@@ -150,7 +150,7 @@ public class UserController {
                         user.setPassword(encoder.encode(password));
                         userRepository.save(user);
                         success = true;
-                        message = "Đổi mật khẩu thành công";
+                        message = "Change password successfully";
                     }
                 } catch (Exception e) {
                     LOGGER.error(LOG_FORMAT, tag, "Updating to DB fail. username: " + username);
@@ -200,12 +200,11 @@ public class UserController {
                                   @RequestParam("address") String address,
                                   @RequestParam("birthday") String birthday,
                                   @RequestParam("phone") String phone,
-                                  @RequestParam("phone") String status,
                                   @RequestParam("role") String role,
                                   Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add User");
-        LOGGER.debug(LOG_FORMAT + "Username: {}, fullName: {}, image: {}, address: {},  birthday: {}, status: {}, role: {}",
-                tag, " ", userName, fullName, email, image, address, birthday, phone, status, role);
+        LOGGER.debug(LOG_FORMAT + "Username: {}, fullName: {}, image: {}, address: {},  birthday: {}, role: {}",
+                tag, " ", userName, fullName, email, image, address, birthday, phone, role);
         User user = new User();
         boolean success = true;
         String message = "Add user " + userName + " seccuss!";
@@ -223,28 +222,21 @@ public class UserController {
             }
             user.setUsername(userName);
             user.setFullName(fullName);
-            user.setPassword(password);
             user.setEmail(email);
+            user.setImage(image);
+            user.setAddress(address);
+            user.setBirthday(Utils.convertStringToDate(birthday, Constant.FORMAT_DATE));
+            user.setPhone(phone);
             user.setRoleID(role);
             user.setFailLoginCount(0);
             //Default status = 1 - active
             user.setStatus(1);
-//            Set<ConstraintViolation<User>> constraints = validator.validate(user);
-//            LOGGER.debug(LOG_FORMAT, tag, "Validating data");
-//            constraints.forEach((constraint) -> {
-//                LOGGER.debug(LOG_FORMAT, tag, constraint.getMessage());
-//            });
             // hash password after validation
             user.setPassword(encoder.encode(password));
-//            if (constraints.size() > 0 ) {
-//                LOGGER.debug(LOG_FORMAT, tag, "Invalid data or invalid role: ROLE_SUPER ");
-//                message = "Dữ liệu đầu vào không hợp lệ!";
-//                success = false;
-//            } else {
+
             LOGGER.debug(LOG_FORMAT, tag, "Inserting to DB. User: " + gson.toJson(user));
             userService.addUser(user);
             LOGGER.debug(LOG_FORMAT, tag, "Add new user successfully!");
-//            }
         } catch (Exception e) {
             LOGGER.debug(LOG_FORMAT, tag, "Exception while adding user!");
             LOGGER.error(tag, e);
@@ -274,13 +266,13 @@ public class UserController {
                                      @RequestParam("address") String address,
                                      @RequestParam("birthday") String birthday,
                                      @RequestParam("phone") String phone,
-                                     @RequestParam("phone") String status,
+                                     @RequestParam("status") String status,
                                      @RequestParam("role") String role,
                                      Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
         LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, image: {},address:{}, birthday: {},phone:{}, status:{}, role: {}",
                 tag, "Edit User.", id, fullName, image, address, birthday, phone, status, email, role);
-        User checkUser = userRepository.findByUsername(id).get();
+        User checkUser = userRepository.findById(id).get();
         if (checkUser == null) {
             LOGGER.error(LOG_FORMAT, tag, "User not found:" + id);
             throw new RuntimeException("Invalid user");
@@ -288,9 +280,30 @@ public class UserController {
         boolean success = true;
         String message = "Update info user success!";
         try {
-            checkUser.setFullName(fullName);
-            checkUser.setEmail(email);
-            checkUser.setRoleID(role);
+            if(!Utils.checkNullOrEmpty(fullName)) {
+                checkUser.setFullName(fullName);
+            }
+            if(!Utils.checkNullOrEmpty(email)) {
+                checkUser.setEmail(email);
+            }
+            if(!Utils.checkNullOrEmpty(image)) {
+                checkUser.setImage(image);
+            }
+            if(!Utils.checkNullOrEmpty(address)) {
+                checkUser.setAddress(address);
+            }
+            if(!Utils.checkNullOrEmpty(birthday)) {
+                checkUser.setBirthday(Utils.convertStringToDate(birthday, Constant.FORMAT_DATE));
+            }
+            if(!Utils.checkNullOrEmpty(phone)) {
+                checkUser.setPhone(phone);
+            }
+            if(!Utils.checkNullOrEmpty(status)) {
+                checkUser.setStatus(Integer.parseInt(status));
+            }
+            if(!Utils.checkNullOrEmpty(role)) {
+                checkUser.setRoleID(role);
+            }
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
             userRepository.save(checkUser);
             LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");

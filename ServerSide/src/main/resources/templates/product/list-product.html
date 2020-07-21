@@ -163,6 +163,7 @@
 
 <!-- Logout Modal-->
 <a th:replace="/component/footer :: logout-model"></a>
+<div th:replace="/component/footer::dialog_confirm"></div>
 
 <!-- Script -->
 <footer th:replace="/component/footer :: script-area"></footer>
@@ -339,22 +340,25 @@
 
     function deleteProduct(id) {
         if (id !== undefined && status !== undefined) {
-            $("#dialogConfirm").modal('hide');
-            var datajson = {"id": id};
-            $.ajax({
-                type: "POST",
-                url: deleteProductUrl,
-                traditional: true,
-                data: datajson,
-                success: function (data) {
-                    if (data != null) {
-                        $("#table_list").DataTable().ajax.reload();
-                        toastr.success('Delete product Success!', "HAHA");
+            showDialogConfirm("Confirm product deletion " + id, " You definitely want to delete this product?");
+            $("#dialogConfirm #btnConfirm").off().click(function () {
+                $("#dialogConfirm").modal('hide');
+                var datajson = {"id": id};
+                $.ajax({
+                    type: "POST",
+                    url: deleteProductUrl,
+                    traditional: true,
+                    data: datajson,
+                    success: function (data) {
+                        if (data != null) {
+                            $("#table_list").DataTable().ajax.reload();
+                            toastr.success('Delete product Success!', "HAHA");
+                        }
+                    },
+                    error: function () {
+                        toastr.error('An error occurred . Please try again', error.message);
                     }
-                },
-                error: function () {
-                    toastr.error('An error occurred . Please try again', error.message);
-                }
+                });
             });
             stopEventPropagation(event);
         }

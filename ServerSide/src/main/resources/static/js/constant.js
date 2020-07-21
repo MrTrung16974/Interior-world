@@ -33,7 +33,7 @@ switch (pathname) {
     case "/aroma/home":
         $("title.title-page").text("Aroma Admin - Home");
         break;
-    case "/aroma/user/role/list":
+    case "/aroma/role/list":
         $("title.title-page").text("Aroma Admin - List Decentralization");
         break;
     case "/aroma/user/list":
@@ -42,7 +42,7 @@ switch (pathname) {
     case "/aroma/product/list":
         $("title.title-page").text("Aroma Admin - List Product");
         break;
-    case "/aroma/product/order/list":
+    case "/aroma/order/list":
         $("title.title-page").text("Aroma Admin - List Order");
         break;
     case "/aroma/user/chats":
@@ -55,7 +55,7 @@ switch (pathname) {
         $("title.title-page").text("Aroma Admin - Register");
         break;
     default :
-        $("title.title-page").text("Aroma Admin");
+        $("title.title-page").text("Aroma Admin - Page Detail");
         break;
 }
 

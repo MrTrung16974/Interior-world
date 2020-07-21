@@ -82,7 +82,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Full Name (<span class="text-red">*</span>) </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" th:field="*{fullName}" maxlength="50"/>
+                                                    <input type="text" class="form-control" name="fullName" id="fullName" th:field="*{fullName}" maxlength="50"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Email (<span class="text-red">*</span>) </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" th:field="*{email}" maxlength="30"/>
+                                                    <input type="text" class="form-control" name="email" id="email" th:field="*{email}" maxlength="30"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Image User </label>
                                                 <div class="col-sm-9">
-                                                    <img width="100" height="100" class="image" id="image" th:src="*{image}" alt="Image User">
+                                                    <img width="100" height="100"class="image" name="image" id="image" th:field="*{image}" th:src="*{image}" alt="Image User">
                                                     <input th:if="${titlePage} != 'View info user'" type="file" class="img mt-2 " name="img" id="img" maxlength="30"/>
                                                     <label th:if="${titlePage} != 'View info user'" class="btn-img" for="img">Choose image</label>
                                                 </div>
@@ -108,7 +108,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Address </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" th:field="*{address}" maxlength="150"/>
+                                                    <input type="text" class="form-control" name="address" id="address" th:field="*{address}" maxlength="150"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -127,11 +127,11 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Phone </label>
                                                 <div class="col-sm-9">
-                                                    <input type="number"  class="form-control" th:field="*{phone}" maxlength="12"/>
+                                                    <input type="number" class="form-control" name="phone" id="phone" th:field="*{phone}" maxlength="12"/>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div th:if="${user.userId} != null" class="form-group">
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Status  (<span class="text-red">*</span>) </label>
                                                 <div class="col-sm-9">
@@ -233,6 +233,7 @@
         });
 
         $("#addForm").on("click", function(e){
+            console.log("Ok");
             e.preventDefault();
             if(user.userId != null){
                 $('#formInsert').attr('action', editUserUrl + user.userId).submit();
@@ -251,7 +252,7 @@
         };
         //kiem tra truong password retype
         $.validator.methods.repwcheck = function (value, element) {
-            return $("#password").val() === value;
+            return $("#passworLab").val() === value;
         };
         $.validator.methods.birthday = function (value, element) {
             if (!isDate(value)) {
@@ -296,9 +297,11 @@
                 passwordRe: {
                     repwcheck: true
                 },
+                email: {
+                    required: false,
+                },
                 image: {
                     required: false,
-                    maxlength: 30
                 },
                 address: {
                     required: false,

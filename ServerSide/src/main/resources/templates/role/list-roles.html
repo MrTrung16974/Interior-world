@@ -119,6 +119,7 @@
 
 <!-- Logout Modal-->
 <a th:replace="/component/footer :: logout-model"></a>
+<div th:replace="/component/footer::dialog_confirm"></div>
 
 <!-- Script -->
 <footer th:replace="/component/footer :: script-area"></footer>
@@ -224,9 +225,9 @@
     function doUpdate(id, status) {
         if (id !== undefined && status !== undefined) {
             if (status === 2) {
-                showDialogConfirm("Xác nhận khóa nhóm quyền " + id, "Bạn chắc chắn muốn đổi trạng thái nhóm quyền này?");
+                showDialogConfirm("Confirm permission group key " + id, " You definitely want to change this permission group status?");
             } else if (status === 1) {
-                showDialogConfirm("Xác nhận mở khóa nhóm quyền " + id, "Bạn chắc chắn muốn đổi trạng thái nhóm quyền này?");
+                showDialogConfirm("Confirm unlocking right group " + id, " You definitely want to change this permission group status?");
             }
             $("#dialogConfirm #btnConfirm").off().click(function () {
                 $("#dialogConfirm").modal('hide');
@@ -238,15 +239,14 @@
                     data: datajson,
                     success: function (data) {
                         if (data === 1) {
-                            alert("Đổi trạng thái nhóm quyền thành công!");
-                            doSearch();
-                            //$("#table_list").DataTable().ajax.reload();
+                            toastr.success("Change permission group status successfully!");
+                            $("#table_list").DataTable().ajax.reload();
                         } else {
-                            alert("Đổi trạng thái nhóm quyền thất bại. Vui lòng thử lại sau!");
+                            toastr.error("State group permission status change failed. Please try again later!");
                         }
                     },
                     error: function () {
-                        alert("Có lỗi xảy ra. Vui lòng thử lại sau!");
+                        toastr.error("An error occurred. Please try again later!");
                     }
                 });
                 stopEventPropagation(event);

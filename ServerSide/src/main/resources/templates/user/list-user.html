@@ -148,8 +148,7 @@
 
 <!-- Logout Modal-->
 <a th:replace="/component/footer :: logout-model"></a>
-<div th:replace="/component/footer::dialog_confirm"></div>
-
+showDialogConfirm
 <!-- Script -->
 <footer th:replace="/component/footer :: script-area"></footer>
 <!-- End of Script -->
@@ -292,16 +291,12 @@
     }
 
     function updateUser(id, status) {
-        console.log("OK");
         if (id !== undefined && status !== undefined) {
             if (status === 2) {
-                console.log("OK2");
                 showDialogConfirm("Confirm lock user " + id, " You definitely want to change this account status?");
             } else if (status === 1) {
-                console.log("OK1");
                 showDialogConfirm("Confirm unlock user" + id, " You definitely want to change this account status?");
             } else if (status === -1) {
-                console.log("OK-1");
                 showDialogConfirm("Confirm re-issue password for user" + id, "You definitely want to re-issue the password for this account?");
             }
             $("#dialogConfirm #btnConfirm").off().click(function () {
@@ -315,22 +310,22 @@
                     success: function (data) {
                         if (data === 1) {
                             if (status !== -1) {
-                                alert("Đổi trạng thái Người dùng thành công!");
+                                toastr.success("Change User status to successful!");
                                 doSearch();
                             } else {
-                                alert("Cấp lại mật khẩu cho người dùng thành công!");
+                                toastr.success("Re-issue passwords for successful users!");
                             }
                             //$("#table_list").DataTable().ajax.reload();
                         } else {
                             if (status !== -1) {
-                                alert("Đổi trạng thái Người dùng thất bại. Vui lòng thử lại sau!");
+                                toastr.warning("Change User state failed. Please try again later!");
                             } else {
-                                alert("Cấp lại mật khẩu cho người dùng thất bại. Vui lòng thử lại sau!");
+                                toastr.warning("Re-grant the password to a failed user. Please try again later!");
                             }
                         }
                     },
                     error: function () {
-                        alert("Có lỗi xảy ra. Vui lòng thử lại sau!");
+                        toastr.error("An error occurred. Please try again later!");
                     }
                 });
                 stopEventPropagation(event);
