@@ -90,7 +90,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Email (<span class="text-red">*</span>) </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="email" id="email" th:field="*{email}" maxlength="30"/>
+                                                    <input type="text" class="form-control" name="email" id="email" th:field="*{email}" maxlength="150"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,8 +98,9 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Image User </label>
                                                 <div class="col-sm-9">
-                                                    <img width="100" height="100"class="image" name="image" id="image" th:field="*{image}" th:src="*{image}" alt="Image User">
-                                                    <input th:if="${titlePage} != 'View info user'" type="file" class="img mt-2 " name="img" id="img" maxlength="30"/>
+                                                    <img width="100" height="100"class="image" th:src="*{image}" alt="Image User">
+                                                    <input type="hidden" class="input-image" th:field="*{image}" name="image" id="image"/>
+                                                    <input th:if="${titlePage} != 'View info user'" type="file" class="img mt-2 " name="img" id="img"/>
                                                     <label th:if="${titlePage} != 'View info user'" class="btn-img" for="img">Choose image</label>
                                                 </div>
                                             </div>
@@ -108,7 +109,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Address </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="address" id="address" th:field="*{address}" maxlength="150"/>
+                                                    <input type="text" class="form-control" name="address" id="address" th:field="*{address}" maxlength="250"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,7 +117,7 @@
                                             <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Birthday </label>
                                                 <div class="col-sm-9">
-                                                    <input type="formDate" class="form-control" name="birthday" id="birthday" th:value="*{#dates.format(birthday, 'dd/MM/yyyy')}" placeholder="dd/mm/yyyy"  data-date-format="dd/mm/yyyy"  maxlength="30"/>
+                                                    <input type="formDate" class="form-control" name="birthday" id="birthday" th:value="*{#dates.format(birthday, 'dd/MM/yyyy')}" placeholder="dd/mm/yyyy"  data-date-format="dd/mm/yyyy"/>
                                                     <span class="input-group-addon">
                                                         <i class="fa fa-calendar bigger-110"></i>
                                                     </span>
@@ -167,7 +168,7 @@
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Group Role (<span class="text-red">*</span>) </label>
                                                 <div class="col-sm-9">
                                                     <select class="select2 form-control" id="role" name="role">
-                                                        <option value="">-Chọn vai trò-</option>
+                                                        <option value="">-Choose role-</option>
                                                         <option th:each="role : ${lstRole}" th:value="${role.roleID}"
                                                                 th:text="${role.roleCode}"
                                                                 th:selected="${role.roleID == user.roleID}"></option>
@@ -305,7 +306,7 @@
                 },
                 address: {
                     required: false,
-                    maxlength: 150
+                    maxlength: 250
                 },
                 birthday: {
                     required: false,

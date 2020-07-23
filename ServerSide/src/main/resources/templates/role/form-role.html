@@ -75,7 +75,6 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-
                                                 <div class="tab-content">
                                                     <div id="functionGroup" class="tab-pane active">
                                                         <div class="control-group">
@@ -95,9 +94,10 @@
                                 </div>
                                 <div class="clearfix form-actions">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <input type="submit" value="Cập nhật" class="btn btn-info" id="addForm" th:if="${role.roleID} != null and ${titlePage} != 'View group role'"   />
+                                        <input type="submit" value="Add Role" class="btn btn-info" id="addForm" th:if="${role.roleID} == null" />
+                                        <input type="submit" value="Update Role" class="btn btn-info" id="addForm" th:if="${role.roleID} != null and ${titlePage} != 'View group role'"   />
                                         <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
-                                        <a class="btn btn-warning" th:href="@{/order/list}">Về Danh sách</a></div>
+                                        <a class="btn btn-warning" th:href="@{/order/list}">Back to list</a></div>
                                 </div>
                             </form>
                         </div>

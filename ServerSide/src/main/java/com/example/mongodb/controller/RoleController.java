@@ -126,8 +126,8 @@ public class RoleController {
         String tag = buildLogTag(request, principal, "Add Role");
         LOGGER.debug(LOG_FORMAT + " roleCode: {}, description: {}, functions: {}", tag, "Add Role.", roleCode, description, gson.toJson(functions));
         if (roleRepository.findByRoleCode(roleCode) != null) {
-            LOGGER.debug(LOG_FORMAT, tag, "Tên nhóm quyền đã tồn tại: " + roleCode);
-            return getUserModelView(new Role(), TITLE_ADD, Boolean.FALSE, "Tên nhóm quyền đã tồn tại. Vui lòng kiểm tra lại.");
+            LOGGER.debug(LOG_FORMAT, tag, "Rights group name already exists: " + roleCode);
+            return getUserModelView(new Role(), TITLE_ADD, Boolean.FALSE, "Rights group name already exists. Please check again.");
         }
         Role rol = new Role();
         rol.setRoleCode(roleCode);
@@ -143,7 +143,7 @@ public class RoleController {
         roleRepository.save(rol);
         LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
 
-        return getUserModelView(new Role(), TITLE_ADD, Boolean.TRUE, "Thêm mới nhóm quyền " + roleCode + " thành công");
+        return getUserModelView(new Role(), TITLE_ADD, Boolean.TRUE, "Add a new permission group " + roleCode + " success!");
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)

@@ -56,9 +56,9 @@
                                     <div th:replace="/component/header::alert-sub"></div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">User Name (<span class="text-red">*</span>) </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Name Product (<span class="text-red">*</span>) </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{name}" maxlength="30" />
+                                                <input type="text" class="form-control" name="name" th:field="*{name}" maxlength="30" />
                                             </div>
                                         </div>
                                     </div>
@@ -66,19 +66,72 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Price product (<span class="text-red">*</span>) </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{price}" />
+                                                <input type="text" class="form-control" name="price" th:field="*{price}" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Price For Color  (<span class="text-red">*</span>) </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Price For Color (<span class="text-red">*</span>) </label>
                                             <div class="col-sm-9">
-                                                <div class="price-for-color" th:each="price : ${product.priceForColor}">
-                                                    <span>Color</span>
-                                                    <input type="text" class="form-control"  th:value="${price.color}" maxlength="1"/>
-                                                    <input type="text" class="form-control"  th:value="${price.nameColor}" maxlength="30"/>
-                                                    <input type="text" class="form-control"  th:value="${price.priceForColor}" maxlength="30"/>
+                                                <div class="tabbable">
+                                                    <ul class="nav nav-tabs" id="myTab" >
+                                                        <li class="active">
+                                                            <p data-toggle="tab">
+                                                                Color for price
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content mt-4">
+                                                        <div id="colorForPrice" class="tab-pane active">
+                                                            <div class="control-group">
+                                                                <div th:if="${product.id != null}" th:each="colorPrice, iterStat : ${product.priceForColor}" class="checkbox">
+                                                                    <label>
+                                                                        <input th:disabled="${titlePage} == 'View info product'" th:name="idColor" th:value="${colorPrice.color}" type="checkbox" class="ace"
+                                                                               th:checked="${product.priceForColor != null}"/>
+                                                                        <input class="price-color"  th:disabled="${titlePage} == 'View info product'" th:name="priceColor"
+                                                                               th:value="${colorPrice.priceForColor}" type="number"/>
+                                                                        <span class="lbl" th:text="${'&nbsp;' + colorPrice.nameColor}"> Choice</span>
+                                                                    </label>
+                                                                </div>
+                                                                <div th:if="${product.id == null}" class="checkbox">
+                                                                    <label>
+                                                                        <input th:name="idColor" value="1" type="checkbox" class="ace"/>
+                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <span class="lbl"> Black</span>
+                                                                    </label>
+                                                                </div>
+                                                                <div th:if="${product.id == null}" class="checkbox">
+                                                                    <label>
+                                                                        <input th:name="idColor" value="2" type="checkbox" class="ace"/>
+                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <span class="lbl"> White</span>
+                                                                    </label>
+                                                                </div>
+                                                                <div th:if="${product.id == null}" class="checkbox">
+                                                                    <label>
+                                                                        <input th:name="idColor" value="3" type="checkbox" class="ace"/>
+                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <span class="lbl"> Yellow</span>
+                                                                    </label>
+                                                                </div>
+                                                                <div th:if="${product.id == null}" class="checkbox">
+                                                                    <label>
+                                                                        <input th:name="idColor" value="4" type="checkbox" class="ace"/>
+                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <span class="lbl"> Blue</span>
+                                                                    </label>
+                                                                </div>
+                                                                <div th:if="${product.id == null}" class="checkbox">
+                                                                    <label>
+                                                                        <input th:name="idColor" value="5" type="checkbox" class="ace"/>
+                                                                        <input class="price-color" th:name="priceColor" value="Other" type="number"/>
+                                                                        <span class="lbl"> Other</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,29 +140,46 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Description Product (<span class="text-red">*</span>) </label>
                                             <div class="col-sm-9">
-                                                <textarea type="text" class="form-control" th:field="*{description}" rows="3" maxlength="500"></textarea>
+                                                <textarea type="text" class="form-control" name="description" th:field="*{description}" rows="3" maxlength="300"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Detailed Description Product </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Detailed Description Product (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
-                                                <textarea type="text" class="form-control" th:field="*{longDescription}" rows="6" maxlength="2000"></textarea>
+                                                <textarea type="text" class="form-control" name="longDescription" th:field="*{longDescription}" rows="6" maxlength="2000"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Image User </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Image User (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
-                                                <div th:each="img : ${product.image}" id="image-product" class="image-product px-1  d-inline-block">
-                                                    <p> Image </p>
-                                                    <img width="100" height="100" th:src="${img}" alt="Image Product">
-                                                </div>
-                                                <div class="btn-img">
-                                                    <input th:if="${titlePage} != 'View info product'" type="file" class="img mt-2 " name="img" id="img" maxlength="30"/>
-                                                    <label th:if="${titlePage} != 'View info product'" class="btn-img" for="img">Choose image</label>
+                                                <div class="tabbable">
+                                                    <ul class="nav nav-tabs" >
+                                                        <li class="active">
+                                                            <h5 data-toggle="tab">
+                                                                Image product
+                                                            </h5>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content mt-2">
+                                                        <div id="chkImage" class="tab-pane active">
+                                                            <div id="content-image" class="control-group">
+                                                                <div th:each="image : ${product.image}" th:name="chkImage" class="checkbox d-inline-block">
+                                                                    <label>
+                                                                        <img width="100" height="100" th:src="${image}" th:name="chkImage" alt="Image Product">
+                                                                        <input type="hidden" th:value="${image}" th:name="chkImage" class="image mt-2">
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="btn-img">
+                                                                <input th:if="${titlePage} != 'View info user'" type="file" class="imgproduct mt-2" name="imgproduct" id="imgproduct"/>
+                                                                <label th:if="${titlePage} != 'View info user'" class="btn-img" for="imgproduct">Choose image</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,38 +189,36 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Promotion priduct </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{promotion.name}" maxlength="30"/>
-                                                <input type="number" class="form-control" th:field="*{promotion.percent}" maxlength="30"/>
+                                                <input type="text" class="form-control" th:field="*{promotion.name}" name="promotionName" id="promotionName" maxlength="100"/>
+                                                <input type="number" class="form-control" th:field="*{promotion.percent}" name="promotionPercent" id="promotionPercent" maxlength="3"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Category product </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Category product (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
                                                 <select class="select2 form-control" name="category" id="category">
-                                                    <option value="">All</option>
-                                                    <option value="1">Cabinets</option>
-                                                    <option value="2">Desk</option>
-                                                    <option value="3">Decorate</option>
-                                                    <option value="4">Belongings</option>
-                                                    <option value="5">Sofa</option>
-                                                    <option value="6">Lamp</option>
+                                                    <option th:selected="${product.type.type == 0}" value="0">Cabinets</option>
+                                                    <option th:selected="${product.type.type == 1}" value="1">Desk</option>
+                                                    <option th:selected="${product.type.type == 2}" value="2">Decorate</option>
+                                                    <option th:selected="${product.type.type == 3}" value="3">Belongings</option>
+                                                    <option th:selected="${product.type.type == 4}" value="4">Sofa</option>
+                                                    <option th:selected="${product.type.type == 5}" value="5">Lamp</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Material product </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Material product (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
                                                 <select class="select2 form-control" name="material" id="material">
-                                                    <option value="">All</option>
-                                                    <option value="1">Wood</option>
-                                                    <option value="2">Plastic</option>
-                                                    <option value="3">Glass</option>
-                                                    <option value="4">Titanium alloy</option>
-                                                    <option value="5">Iron</option>
+                                                    <option th:selected="${product.type.material == 0}" value="0">Wood</option>
+                                                    <option th:selected="${product.type.material == 1}" value="1">Plastic</option>
+                                                    <option th:selected="${product.type.material == 2}" value="2">Glass</option>
+                                                    <option th:selected="${product.type.material == 3}" value="3">Titanium alloy</option>
+                                                    <option th:selected="${product.type.material == 4}" value="4">Iron</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -159,7 +227,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Width  </label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.width}" maxlength="10"/>
+                                                <input type="number"  class="form-control" th:field="*{type.width}" name="width" id="width"/>
                                             </div>
                                         </div>
                                     </div>
@@ -167,7 +235,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Height product </label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.height}" maxlength="10"/>
+                                                <input type="number"  class="form-control" th:field="*{type.height}" name="height" id="height"/>
                                             </div>
                                         </div>
                                     </div>
@@ -175,7 +243,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Depth product </label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.depth}" maxlength="10"/>
+                                                <input type="number"  class="form-control" th:field="*{type.depth}" name="depth" id="depth"/>
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +251,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Weight product </label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.weight}" maxlength="10"/>
+                                                <input type="number"  class="form-control" th:field="*{type.weight}" name="weight" id="weight"/>
                                             </div>
                                         </div>
                                     </div>
@@ -191,7 +259,11 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Quality Checking product </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{type.qualityChecking}" maxlength="3"/>
+                                                <select class="select2 form-control" id="qualityChecking" name="qualityChecking">
+                                                    <option value="">--Option Quality Checking--</option>
+                                                    <option th:selected="${product.type.qualityChecking == 'Yes'}" value="Yes">Yes</option>
+                                                    <option th:selected="${product.type.qualityChecking == 'No'}" value="No">No</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -199,7 +271,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Star product </label>
                                             <div class="col-sm-9">
-                                                <input type="text" disabled class="form-control" th:field="*{star}" maxlength="6"/>
+                                                <input type="text" class="form-control" th:field="*{star}" maxlength="1" name="star" id="star"/>
                                             </div>
                                         </div>
                                     </div>
@@ -208,7 +280,7 @@
                                             <input type="submit" value="Add product" class="btn btn-info" id="addForm" th:if="${product.id} == null" />
                                             <input type="submit" value="Update product" class="btn btn-info" id="addForm" th:if="${product.id} != null and ${titlePage} != 'View info product'" />
                                             <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
-                                            <a class="btn btn-warning" th:href="@{/user/list}">Về Danh sách</a></div>
+                                            <a class="btn btn-warning" th:href="@{/product/list}">Back to List</a></div>
                                     </div>
                                 </form>
                             </div>
@@ -246,5 +318,185 @@
 <!-- End of Script -->
 
 </body>
+<script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var product = [[${product}]];
+    var title = [[${titlePage}]];
+    var editProductUrl = /*[[@{/product/edit/}]]*/ "/product/edit/";
+    var addProductUrl = /*[[@{/product/add}]]*/ "/product/add";
+    jQuery(document).ready(function () {
+        $("#addForm").on("click", function(e){
+            console.log("Ok");
+            e.preventDefault();
+            if(product.id != null){
+                $('#formInsert').attr('action', editProductUrl + product.id).submit();
+            }else{
+                $('#formInsert').attr('action', addProductUrl).submit();
+            }
 
+        });
+        //kiem tra truong user
+        $.validator.methods.name = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        //kiem tra truong status
+        $.validator.methods.price = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        //kiem tra truong idColor
+        $.validator.methods.idColor = function (value, element) {
+            return  $( "input[name=idColor]:checked").length > 0;
+        };
+
+        $.validator.methods.priceColor = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.description = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.longDescription = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.chkImage = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.imgproduct = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.type = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.material = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+
+        $("#formInsert").validate({
+            focusInvalid: true, // focus the last invalid input
+            ignore: [],
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 30,
+                    name: true
+                },
+                price: {
+                    required: true,
+                    price: true
+                },
+                idColor: {
+                    idColor: true
+                },
+                priceColor: {
+                    priceColor: true
+                },
+                description: {
+                    required: true,
+                    maxlength: 300,
+                    description: true
+                },
+                longDescription: {
+                    required: true,
+                    maxlength: 2000,
+                    longDescription: true
+                },
+                chkImage: {
+                    required: true,
+                    chkImage: true
+                },
+                promotionName: {
+                    required: false
+                },
+                promotionPercent: {
+                    required: false
+                },
+                imgproduct: {
+                    required: true,
+                    imgproduct: true
+                },
+                type: {
+                    required: true,
+                    type: true
+                },
+                material: {
+                    required: true,
+                    material: true
+                },
+                width: {
+                    required: false
+                },
+                height: {
+                    required: false
+                },
+                depth: {
+                    required: false
+                },
+                weight: {
+                    required: false
+                },
+                qualityChecking: {
+                    required: false
+                },
+                star: {
+                    required: false
+                }
+            },
+            messages: {
+                name: "Name Product field must not be blank",
+                price: "Price Product field must not be blank",
+                idColor: "Id Color field must not be blank",
+                priceColor: "Price For Color field must not be blank",
+                description: {
+                    required: "Description Product field must not be blank",
+                    maxlength: "Description Product field must no more than 300 characters"
+                },
+                longDescription: {
+                    required: "Detailed Description Product field must not be blank",
+                    maxlength: "Description Product field must no more than  2000 characters"
+                },
+                chkImage: "Image product field must not be blank",
+                imgproduct: "Img product product field must not be blank",
+                type: "Category field must not be blank",
+                material: "Material field must not be blank"
+            },
+            errorPlacement: function (error, element) {
+                if (element[0].type === 'checkbox') {
+                    error.insertBefore(element.parent().parent().parent().parent());      // radio/checkbox?
+                } else if (element.hasClass('select2')) {
+                    error.insertAfter(element.next('span'));  // select2
+                } else {
+                    error.insertAfter(element);               // default
+                }
+            }
+        });
+    });
+
+</script>
 </html>

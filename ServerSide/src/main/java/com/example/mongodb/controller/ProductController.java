@@ -1,21 +1,17 @@
 package com.example.mongodb.controller;
 
 import com.example.mongodb.dto.BaseResponse;
-import com.example.mongodb.dto.product.Color;
-import com.example.mongodb.dto.product.Price;
+import com.example.mongodb.dto.product.Promotion;
 import com.example.mongodb.dto.product.Type;
-import com.example.mongodb.model.Order;
+import com.example.mongodb.dto.product.Price;
 import com.example.mongodb.model.Product;
-import com.example.mongodb.model.Role;
-import com.example.mongodb.model.User;
-import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
 import com.example.mongodb.services.ProductService;
+import com.example.mongodb.utils.Utils;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +22,7 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static com.example.mongodb.utils.Constant.LOG_FORMAT;
 import static com.example.mongodb.utils.Utils.buildLogTag;
@@ -122,7 +117,7 @@ public class ProductController {
         List<Product> lstProduct = productRepository.findAll();
         ModelAndView mv = new ModelAndView("product/form-product");
         mv.addObject("product", product);
-        mv.addObject("lstRole", lstProduct);
+        mv.addObject("lstProduct", lstProduct);
         mv.addObject("titlePage", title);
         if (success != null) {
             mv.addObject("success", success);
@@ -134,28 +129,72 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView doAddProduct(@RequestParam("userName") String userName,
-                                  @RequestParam("fullName") String fullName,
-                                  @RequestParam("role") String role,
-                                  @RequestParam("email") String email,
-                                  @RequestParam("password") String password,
+    public ModelAndView doAddProduct(@PathVariable String id,
+                                  @RequestParam("name") String name,
+                                  @RequestParam("price") String price,
+                                  @RequestParam("idColor") List<String> idColor,
+                                  @RequestParam("priceColor") List<String> priceColor,
+                                  @RequestParam("description") String description,
+                                  @RequestParam("longDescription") String longDescription,
+                                  @RequestParam("chkImage") List<String> image,
+                                  @RequestParam("promotion.name") String promotionName,
+                                  @RequestParam("promotion.percent") String promotionPercent,
+                                  @RequestParam("category") String type,
+                                  @RequestParam("material") String material,
+                                  @RequestParam("type.width") String width,
+                                  @RequestParam("type.height") String height,
+                                  @RequestParam("type.depth") String depth,
+                                  @RequestParam("type.weight") String weight,
+                                  @RequestParam("qualityChecking") String qualityChecking,
+                                  @RequestParam("star") String star,
                                   Model model, HttpServletRequest request, Principal principal) {
-        String tag = buildLogTag(request, principal, "Add User");
-        LOGGER.debug(LOG_FORMAT + "Username: {}, fullName: {}, email: {}, role: {}", tag, " ", userName, fullName, email,role);
+        String tag = buildLogTag(request, principal, "Add Product");
+        LOGGER.debug(LOG_FORMAT + "name: {}, price: {}, idColor: {}, priceColor: {}, description: {}, " +
+                        "longDescription: {}, image: {}, promotionName: {}, promotionPercent: {}, type: {}, " +
+                        "material: {}, width: {}, height: {}, weight: {}, " +
+                        "qualityChecking: {}, star: {}", tag, " ", name, price, idColor, priceColor, description,
+                longDescription, image, promotionName, promotionPercent, type,
+                material, width, height, weight,
+                qualityChecking, star);
         Product product = new Product();
         boolean success = true;
-        String message = "Thêm mới người dùng " + userName + " thành công!";
+        String message = "Add new product " + name + " success!";
         try {
+            if(!Utils.checkNullOrEmpty(name)) {
+                product.setName(name);
+            }
+            if(!Utils.checkNullOrEmpty(price)) {
+                product.setPrice(Double.valueOf(price));
+            }
+            if(!Utils.checkNullOrEmpty(description)) {
+                product.setDescription(description);
+            }
+            if(!Utils.checkNullOrEmpty(longDescription)) {
+                product.setLongDescription(longDescription);
+            }
+            if(!Utils.checkNullOrEmpty(image)) {
+                product.setImage(image);
+            }
+            if(!Utils.checkNullOrEmpty(promotionName) || !Utils.checkNullOrEmpty(promotionPercent)) {
+                product.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent)));
+            }
+            if(!Utils.checkNullOrEmpty(name)) {
+                product.setName(name);
+            }
+            product.setType(new Type(Integer.parseInt(type), Integer.parseInt(material), Integer.parseInt(width),
+                    Integer.parseInt(height),Integer.parseInt(depth),Integer.parseInt(weight), qualityChecking));
+            if(!Utils.checkNullOrEmpty(star)) {
+                product.setStar(Integer.parseInt(star));
+            }
 
-//
-            LOGGER.debug(LOG_FORMAT, tag, "Inserting to DB. User: " + gson.toJson(product));
+            LOGGER.debug(LOG_FORMAT, tag, "Inserting to DB. Product: " + gson.toJson(product));
             productService.addProduct(product);
-            LOGGER.debug(LOG_FORMAT, tag, "Add new user successfully!");
+            LOGGER.debug(LOG_FORMAT, tag, "Add new product successfully!");
         } catch (Exception e) {
             LOGGER.debug(LOG_FORMAT, tag, "Exception while adding user!");
             LOGGER.error(tag, e);
             success = false;
-            message = "Thêm mới người dùng thất bại. Vui lòng thử lại sau!";
+            message = "Adding new products failed. Please try again later!";
         }
         return getUserModelView(new Product(), TITLE_ADD, success, message);
     }
@@ -166,41 +205,79 @@ public class ProductController {
         LOGGER.debug(LOG_FORMAT, tag, "Edit User View. Username: " + id);
         Product product = productRepository.findById(id).get();
         if (product == null) {
-            LOGGER.debug(LOG_FORMAT, tag, "User not found. Throw Exception. Username: " + id);
-            throw new RuntimeException("Invalid user! " + id);
+            LOGGER.debug(LOG_FORMAT, tag, "User not found. Throw Exception. ProductID: " + id);
+            throw new RuntimeException("Invalid Product! " + id);
         }
         return getUserModelView(product, TITLE_EDIT, null, null);
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public ModelAndView doUpdateProduct(@PathVariable String id,
-                                     @RequestParam("fullName") String fullName,
-                                     @RequestParam("email") String email,
-                                     @RequestParam("role") String role,
+                                        @RequestParam("name") String name,
+                                        @RequestParam("price") String price,
+                                        @RequestParam("idColor") List<String> idColor,
+                                        @RequestParam("priceColor") List<String> priceColor,
+                                        @RequestParam("description") String description,
+                                        @RequestParam("longDescription") String longDescription,
+                                        @RequestParam("chkImage") List<String> image,
+                                        @RequestParam("promotion.name") String promotionName,
+                                        @RequestParam("promotion.percent") String promotionPercent,
+                                        @RequestParam("category") String type,
+                                        @RequestParam("material") String material,
+                                        @RequestParam("type.width") String width,
+                                        @RequestParam("type.height") String height,
+                                        @RequestParam("type.depth") String depth,
+                                        @RequestParam("type.weight") String weight,
+                                        @RequestParam("qualityChecking") String qualityChecking,
+                                        @RequestParam("star") String star,
                                      Model model, HttpServletRequest request, Principal principal) {
-        String tag = buildLogTag(request, principal, "Edit User");
-        LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, role: {}", tag, "Edit User.", id, fullName,email, role);
+        String tag = buildLogTag(request, principal, "Edit Product");
+        LOGGER.debug(LOG_FORMAT + "name: {}, price: {}, idColor: {}, priceColor: {}, description: {}, " +
+                        "longDescription: {}, image: {}, promotionName: {}, promotionPercent: {}, type: {}, " +
+                        "material: {}, width: {}, height: {}, weight: {}, " +
+                        "qualityChecking: {}, star: {}", tag, " ", name, price, idColor, priceColor, description,
+                longDescription, image, promotionName, promotionPercent, type,
+                material, width, height, weight,
+                qualityChecking, star);
         Product checkProduct = productRepository.findById(id).get();
         if (checkProduct == null) {
-            LOGGER.error(LOG_FORMAT, tag, "User not found:" + id);
-            throw new RuntimeException("Invalid user");
+            LOGGER.error(LOG_FORMAT, tag, "Product not found:" + id);
+            throw new RuntimeException("Invalid Product");
         }
         boolean success = true;
-        String message = "Cập nhật thông tin người dùng thành công!";
+        String message = "Update product information successfully!";
         try {
-//            checkProduct.setFullName(fullName);
-//            checkProduct.setEmail(email);
-//            checkProduct.setRoleID(role);
-//            LOGGER.debug(LOG_FORMAT, tag, "Edit User. user: " + gson.toJson(checkProduct));
-//            Set<ConstraintViolation<User>> constraints = validator.validate(checkProduct);
-//            constraints.forEach((constraint) -> {
-//                LOGGER.debug(LOG_FORMAT, tag, "Validate field: " + constraint.getMessage());
-//            });
+            if(!Utils.checkNullOrEmpty(name)) {
+                checkProduct.setName(name);
+            }
+            if(!Utils.checkNullOrEmpty(price)) {
+                checkProduct.setPrice(Double.valueOf(price));
+            }
+            if(!Utils.checkNullOrEmpty(description)) {
+                checkProduct.setDescription(description);
+            }
+            if(!Utils.checkNullOrEmpty(longDescription)) {
+                checkProduct.setLongDescription(longDescription);
+            }
+            if(!Utils.checkNullOrEmpty(image)) {
+                checkProduct.setImage(image);
+            }
+            if(!Utils.checkNullOrEmpty(promotionPercent) || !Utils.checkNullOrEmpty(promotionName)) {
+                checkProduct.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent)));
+            }
+            if(!Utils.checkNullOrEmpty(name)) {
+                checkProduct.setName(name);
+            }
+            checkProduct.setType(new Type(Integer.parseInt(type), Integer.parseInt(material), Integer.parseInt(width),
+                    Integer.parseInt(height),Integer.parseInt(depth),Integer.parseInt(weight), qualityChecking));
+            if(!Utils.checkNullOrEmpty(star)) {
+                checkProduct.setStar(Integer.parseInt(star));
+            }
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
             productRepository.save(checkProduct);
             LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");
         } catch (Exception e) {
-            LOGGER.debug(LOG_FORMAT, tag, "Error while edit user: " + id);
+            LOGGER.debug(LOG_FORMAT, tag, "Error while edit product: " + id);
             LOGGER.error(tag, e);
             success = false;
             message = "Update info product failure. Please try again!";

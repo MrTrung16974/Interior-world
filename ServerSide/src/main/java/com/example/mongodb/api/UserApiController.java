@@ -107,11 +107,11 @@ public class UserApiController {
             if (!username.isEmpty() && !password.isEmpty()) {
                 Optional<User> optUser = userRepository.findByUsername(username.toLowerCase());
                 if (!optUser.isPresent()) {
-                    throw new Exception("username or password invalid");
+                    throw new Exception("Username or password invalid");
                 }
                 User user = optUser.get();
                 if(!passwordEncoder.matches(password, user.getPassword())) {
-                    throw new Exception("Password invalid");
+                    throw new Exception("Username or Password invalid");
                 }
                 if(user.getStatus() == 2) {
                     throw new Exception("Your account has been locked! Please contact the admin to unlock!");

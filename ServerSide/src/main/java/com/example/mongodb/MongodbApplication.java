@@ -1,5 +1,6 @@
 package com.example.mongodb;
 
+import com.example.mongodb.dto.product.Price;
 import com.example.mongodb.repository.*;
 import com.example.mongodb.services.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -51,7 +51,7 @@ public class MongodbApplication implements CommandLineRunner {
 
 
 //        List<String> lstImage = new ArrayList<>();
-//            List<Price> lstPrice = new ArrayList<>();
+            List<Price> lstPrice = new ArrayList<>();
 //            lstImage.add("http://localhost:8099/link/1590817275-1.jpg");
 //            lstImage.add("http://localhost:8099/link/1590817280-3.jpg");
 //            lstImage.add("http://localhost:8099/link/1591186178-7.jpg");
@@ -59,6 +59,7 @@ public class MongodbApplication implements CommandLineRunner {
 //            lstPrice.add(new Price(1, "Black", 200.0));
 //            lstPrice.add(new Price(2, "White", 300.0));
 //            lstPrice.add(new Price(3, "Yellow", 400.0));
+//            lstPrice.add(new Price(4,"Blue", 500.0));
 //            lstPrice.add(new Price(4,"Blue", 500.0));
 //            for (int i =90; i <100; i++) {
 //                Product p = new Product();
@@ -75,6 +76,11 @@ public class MongodbApplication implements CommandLineRunner {
 //                p.setCreateAt(new Date());
 //                productRepository.save(p);
 //       }
+//        priceRepository.save(new Price(1, "Black", 200.0));
+//        priceRepository.save(new Price(2, "White", 300.0));
+//        priceRepository.save(new Price(3, "Yellow", 400.0));
+//        priceRepository.save(new Price(4,"Blue", 500.0));
+//        priceRepository.save(new Price(5,"Other", 600.0));
 //        System.out.println("End");
 
 //        User user = new User();

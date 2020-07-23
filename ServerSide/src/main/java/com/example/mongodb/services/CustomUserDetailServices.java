@@ -32,11 +32,11 @@ public class CustomUserDetailServices  implements UserDetailsService {
         String roleID = user.getRoleID();
         List<GrantedAuthority> grantList = new ArrayList<>();
         if (roleID != null) {
-            roleService.findByID(roleID).getFunctions().stream().map((function) -> new SimpleGrantedAuthority(function.getId())).forEachOrdered((authority) -> {
+            roleService.findByRoleCode(roleID).getFunctions().stream().map((function) -> new SimpleGrantedAuthority(function.getId())).forEachOrdered((authority) -> {
                 grantList.add(authority);
             });
             if(roleID.equals(Constant.ROLE_SUPER_ID)){
-                grantList.add(new SimpleGrantedAuthority(roleService.findByID(roleID).getRoleCode()));
+                grantList.add(new SimpleGrantedAuthority(roleService.findByRoleCode(roleID).getRoleCode()));
             }
         }
         UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getStatus() == 1, user.getStatus() != 2, user.getStatus() != 2, user.getStatus() != 3, grantList);

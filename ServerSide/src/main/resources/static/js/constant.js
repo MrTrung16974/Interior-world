@@ -104,15 +104,45 @@ function isDate(ExpiryDate) {
 }
 
 
-// upload file image
+// upload file image user
 let imageFace = $("input.img");
 let newFace = $("img.image");
-for (var i = 0; i < imageFace.length; i++) {
-    let imageProduct = imageFace[i];
+let newInputFace = $("input.input-image");
+let lengthUserImg = imageFace.length;
+for (var i = 0; i < lengthUserImg; i++) {
+    let item = imageFace[i];
     let newFaceImage = newFace[i];
-    imageProduct.addEventListener('change', function () {
+    let newInputFaceImage = newInputFace[i];
+    item.addEventListener('change', function () {
         var formData = new FormData();
-        formData.append('file', imageProduct.files[0]);
+        formData.append('file', item.files[0]);
+        $.ajax({
+            url: 'http://localhost:8099/aroma/v1/api/upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                newFaceImage.src = data;
+                newInputFaceImage.value = data;
+                toastr.success('Upload image success! ', 'Haha!');
+            },
+            error: function () {
+                toastr.error('An error occurred . Please try again', 'Inconceivable!');
+            }
+        });
+    });
+}
+
+// upload file image product
+let imageProduct = $("input.imgproduct");
+let newProduct = $("div#content-image");
+let lengthProductImg = imageProduct.length;
+for (var i = 0; i < lengthProductImg; i++) {
+    let item = imageProduct[i];
+    item.addEventListener('change', function () {
+        var formData = new FormData();
+        formData.append('file', item.files[0]);
         $.ajax({
             url: 'http://localhost:8099/aroma/v1/api/upload',
             type: 'POST',
@@ -120,7 +150,14 @@ for (var i = 0; i < imageFace.length; i++) {
             processData: false,
             contentType: false,
             success: function(data) {
-                newFaceImage.src = data;
+                newProduct.append(
+                    `<div class="checkbox px-1  d-inline-block">
+                        <label>
+                            <img width="100" height="100" src="${data}" th:name="image" alt="Image Product">
+                            <input type="hidden" value="${data}" th:name="image" class="image mt-2">
+                        </label>
+                    </div>`
+                );
                 toastr.success('Upload image success! ', 'Haha!');
             },
             error: function () {

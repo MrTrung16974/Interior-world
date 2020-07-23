@@ -58,7 +58,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">User Name (<span class="text-red">*</span>) </label>
                                             <div class="col-sm-9">
-                                                <input type="text" disabled class="form-control" th:field="*{buyer}" maxlength="30"/>
+                                                <input type="text" disabled class="form-control" th:field="*{buyer}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Shipping Rates </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{shippingRates}" maxlength="50"/>
+                                                <input type="text" class="form-control" th:field="*{shippingRates}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Total Price </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{totalPrice}" maxlength="30"/>
+                                                <input type="text" class="form-control" th:field="*{totalPrice}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Flat Rate Shipping </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{flatRateShipping}" maxlength="30"/>
+                                                <input type="text" class="form-control" th:field="*{flatRateShipping}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Total Product Order </label>
                                             <div class="col-sm-9">
-                                                <input type="date" class="form-control" th:field="*{totalProductOrder}" maxlength="30"/>
+                                                <input type="text" class="form-control" th:field="*{totalProductOrder}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -98,13 +98,13 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Address </label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{address}" maxlength="10"/>
+                                                <input type="text"  class="form-control" th:field="*{address}" maxlength="250"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Status </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Status (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
                                                 <select class="select2 form-control" id="status" name="status">
                                                     <option value="">--Option Status--</option>
@@ -117,7 +117,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div th:if="${order.id} == null" class="form-group">
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">List Product </label>
                                             <div class="col-sm-9">
@@ -181,24 +181,27 @@
 <script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var user = [[${user}]];
-    var title = [[${title}]];
-    var editUserUrl = /*[[@{/user/edit/}]]*/ "/user/edit/";
-    var addUserUrl = /*[[@{/user/add}]]*/ "/user/add";
+    var order = [[${order}]];
+    var title = [[${titlePage}]];
+    var editOrderUrl = /*[[@{/order/edit/}]]*/ "/order/edit/";
     jQuery(document).ready(function () {
         $("#addForm").on("click", function(e){
             e.preventDefault();
             if(user.userId != null){
-                $('#formInsert').attr('action', editUserUrl + user.userId).submit();
-            }else{
-                $('#formInsert').attr('action', addUserUrl).submit();
+                $('#formInsert').attr('action', editOrderUrl + order.id).submit();
             }
-
         });
         //kiem tra truong user
         $.validator.methods.username = function (value, element) {
             return !/[^a-z0-9]/.test(value);
         }
+        //kiem tra truong role
+        $.validator.methods.status = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
         //kiem tra truong role
         $.validator.methods.role = function (value, element) {
             if (value === '') {
@@ -216,9 +219,14 @@
                     maxlength: 30,
                     username: true
                 },
+                status: {
+                    required: true,
+                    status: true
+                },
             },
             messages: {
                 username: "Username must not be blank and no more than 30 characters. Only alphanumeric characters are allowed"
+                status: "Status field must not be blank"
             }
         });
     });

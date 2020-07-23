@@ -141,11 +141,18 @@ public class OrderController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public ModelAndView doUpdateOrder(@PathVariable String id,
-                                     @RequestParam("role") Integer status,
+                                      @RequestParam("shippingRates") Integer shippingRates,
+                                      @RequestParam("totalPrice") Integer totalPrice,
+                                      @RequestParam("flatRateShipping") Integer flatRateShipping,
+                                      @RequestParam("totalProductOrder") Integer totalProductOrder,
+                                      @RequestParam("address") String address,
+                                      @RequestParam("status") Integer status,
                                      Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
-        LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, role: {}", tag, "Edit User.", id, status);
-        Order checkOrder = orderRepository.findByBuyer(id).get();
+        LOGGER.debug(LOG_FORMAT + " shippingRates: {}, totalPrice: {}" +
+                ", flatRateShipping: {}, totalProductOrder: {}, address: {}, status: {}", tag, "Edit Order.",
+                id, shippingRates, totalPrice, flatRateShipping, totalProductOrder, address, status);
+        Order checkOrder = orderRepository.findById(id).get();
         if (checkOrder == null) {
             LOGGER.error(LOG_FORMAT, tag, "Order not found:" + id);
             throw new RuntimeException("Invalid user");
@@ -153,12 +160,24 @@ public class OrderController {
         boolean success = true;
         String message = "Update info order success!";
         try {
-            checkOrder.setStatus(status);
-//            LOGGER.debug(LOG_FORMAT, tag, "Edit User. user: " + gson.toJson(checkOrder));
-//            Set<ConstraintViolation<User>> constraints = validator.validate(checkOrder);
-//            constraints.forEach((constraint) -> {
-//                LOGGER.debug(LOG_FORMAT, tag, "Validate field: " + constraint.getMessage());
-//            });
+            if(!Utils.checkNullOrEmpty(shippingRates)) {
+                checkOrder.setShippingRates(shippingRates);
+            }
+            if(!Utils.checkNullOrEmpty(totalPrice)) {
+                checkOrder.setTotalPrice(Double.valueOf(totalPrice));
+            }
+            if(!Utils.checkNullOrEmpty(flatRateShipping)) {
+                checkOrder.setFlatRateShipping(Double.valueOf(flatRateShipping));
+            }
+            if(!Utils.checkNullOrEmpty(totalProductOrder)) {
+                checkOrder.setTotalProductOrder(totalProductOrder);
+            }
+            if(!Utils.checkNullOrEmpty(address)) {
+                checkOrder.setAddress(address);
+            }
+            if(!Utils.checkNullOrEmpty(status)) {
+                checkOrder.setStatus(status);
+            }
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
             orderRepository.save(checkOrder);
             LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");
