@@ -129,8 +129,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView doAddProduct(@PathVariable String id,
-                                  @RequestParam("name") String name,
+    public ModelAndView doAddProduct(@RequestParam("name") String name,
                                   @RequestParam("price") String price,
                                   @RequestParam("idColor") List<String> idColor,
                                   @RequestParam("priceColor") List<String> priceColor,
@@ -174,6 +173,31 @@ public class ProductController {
             }
             if(!Utils.checkNullOrEmpty(image)) {
                 product.setImage(image);
+            }
+            if(!Utils.checkNullOrEmpty(idColor) && !Utils.checkNullOrEmpty(priceColor)) {
+                List<Price> lstPrice = new ArrayList<>();
+                Integer length = idColor.size();
+                if(length > 0) {
+                    Price price1 = new Price(Integer.parseInt(idColor.get(0)), Utils.getNameColor(Integer.parseInt(idColor.get(0))), Double.valueOf(priceColor.get(0)));
+                    lstPrice.add(price1);
+                }
+                if(length > 1) {
+                    Price price2 = new Price(Integer.parseInt(idColor.get(1)), Utils.getNameColor(Integer.parseInt(idColor.get(1))), Double.valueOf(priceColor.get(1)));
+                    lstPrice.add(price2);
+                }
+                if(length > 2) {
+                    Price price3 = new Price(Integer.parseInt(idColor.get(2)), Utils.getNameColor(Integer.parseInt(idColor.get(2))), Double.valueOf(priceColor.get(2)));
+                    lstPrice.add(price3);
+                }
+                if(length > 3) {
+                    Price price4 = new Price(Integer.parseInt(idColor.get(3)), Utils.getNameColor(Integer.parseInt(idColor.get(3))), Double.valueOf(priceColor.get(3)));
+                    lstPrice.add(price4);
+                }
+                if(length > 4) {
+                    Price price5 = new Price(Integer.parseInt(idColor.get(4)), Utils.getNameColor(Integer.parseInt(idColor.get(4))), Double.valueOf(priceColor.get(4)));
+                    lstPrice.add(price5);
+                }
+                product.setPriceForColor(lstPrice);
             }
             if(!Utils.checkNullOrEmpty(promotionName) || !Utils.checkNullOrEmpty(promotionPercent)) {
                 product.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent)));
@@ -261,6 +285,31 @@ public class ProductController {
             }
             if(!Utils.checkNullOrEmpty(image)) {
                 checkProduct.setImage(image);
+            }
+            if(!Utils.checkNullOrEmpty(idColor) && !Utils.checkNullOrEmpty(priceColor)) {
+                List<Price> lstPrice = new ArrayList<>();
+                Integer length = idColor.size();
+                if(length > 0) {
+                    Price price1 = new Price(Integer.parseInt(idColor.get(0)), Utils.getNameColor(Integer.parseInt(idColor.get(0))), Double.valueOf(priceColor.get(0)));
+                    lstPrice.add(price1);
+                }
+                if(length > 1) {
+                    Price price2 = new Price(Integer.parseInt(idColor.get(1)), Utils.getNameColor(Integer.parseInt(idColor.get(1))), Double.valueOf(priceColor.get(1)));
+                    lstPrice.add(price2);
+                }
+                if(length > 2) {
+                    Price price3 = new Price(Integer.parseInt(idColor.get(2)), Utils.getNameColor(Integer.parseInt(idColor.get(2))), Double.valueOf(priceColor.get(2)));
+                    lstPrice.add(price3);
+                }
+                if(length > 3) {
+                    Price price4 = new Price(Integer.parseInt(idColor.get(3)), Utils.getNameColor(Integer.parseInt(idColor.get(3))), Double.valueOf(priceColor.get(3)));
+                    lstPrice.add(price4);
+                }
+                if(length > 4) {
+                    Price price5 = new Price(Integer.parseInt(idColor.get(4)), Utils.getNameColor(Integer.parseInt(idColor.get(4))), Double.valueOf(priceColor.get(4)));
+                    lstPrice.add(price5);
+                }
+                checkProduct.setPriceForColor(lstPrice);
             }
             if(!Utils.checkNullOrEmpty(promotionPercent) || !Utils.checkNullOrEmpty(promotionName)) {
                 checkProduct.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent)));

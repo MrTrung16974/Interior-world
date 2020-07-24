@@ -175,8 +175,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="btn-img">
-                                                                <input th:if="${titlePage} != 'View info user'" type="file" class="imgproduct mt-2" name="imgproduct" id="imgproduct"/>
-                                                                <label th:if="${titlePage} != 'View info user'" class="btn-img" for="imgproduct">Choose image</label>
+                                                                <input th:if="${titlePage} != 'View info product'" type="file" class="imgproduct mt-2" name="imgproduct" id="imgproduct"/>
+                                                                <label th:if="${titlePage} != 'View info product'" class="btn-img" for="imgproduct">Choose image</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -199,12 +199,13 @@
                                             <label class="col-sm-3 control-label no-padding-right p_top">Category product (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
                                                 <select class="select2 form-control" name="category" id="category">
-                                                    <option th:selected="${product.type.type == 0}" value="0">Cabinets</option>
-                                                    <option th:selected="${product.type.type == 1}" value="1">Desk</option>
-                                                    <option th:selected="${product.type.type == 2}" value="2">Decorate</option>
-                                                    <option th:selected="${product.type.type == 3}" value="3">Belongings</option>
-                                                    <option th:selected="${product.type.type == 4}" value="4">Sofa</option>
-                                                    <option th:selected="${product.type.type == 5}" value="5">Lamp</option>
+                                                    <option value="">--Option Caterory--</option>
+                                                    <option th:selected="${(product.type != null ? product.type.type : 9)  == 0}" value="0">Cabinets</option>
+                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 1}" value="1">Desk</option>
+                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 2}" value="2">Decorate</option>
+                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 3}" value="3">Belongings</option>
+                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 4}" value="4">Sofa</option>
+                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 5}" value="5">Lamp</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -214,11 +215,12 @@
                                             <label class="col-sm-3 control-label no-padding-right p_top">Material product (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
                                                 <select class="select2 form-control" name="material" id="material">
-                                                    <option th:selected="${product.type.material == 0}" value="0">Wood</option>
-                                                    <option th:selected="${product.type.material == 1}" value="1">Plastic</option>
-                                                    <option th:selected="${product.type.material == 2}" value="2">Glass</option>
-                                                    <option th:selected="${product.type.material == 3}" value="3">Titanium alloy</option>
-                                                    <option th:selected="${product.type.material == 4}" value="4">Iron</option>
+                                                    <option value="">--Option Material--</option>
+                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 0}" value="0">Wood</option>
+                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 1}" value="1">Plastic</option>
+                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 2}" value="2">Glass</option>
+                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 3}" value="3">Titanium alloy</option>
+                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 4}" value="4">Iron</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -272,6 +274,18 @@
                                             <label class="col-sm-3 control-label no-padding-right p_top">Star product </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" th:field="*{star}" maxlength="1" name="star" id="star"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div th:if="${titlePage} == 'View info product'" class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">List Commet </label>
+                                            <div class="col-sm-9">
+                                                <div th:each="comment : ${product.comment}" class="list-comment">
+                                                    <img th:src="${comment.image}" style="border-radius: 50%;" width="50" height="50">
+                                                    <span style="font-size: 20px;font-weight: bold;" th:text="${comment.buyer}"></span>
+                                                    <p class="mt-3" th:text="${comment.comtent}"></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -354,9 +368,8 @@
         $.validator.methods.idColor = function (value, element) {
             return  $( "input[name=idColor]:checked").length > 0;
         };
-
         $.validator.methods.priceColor = function (value, element) {
-            if (value === '') {
+            if (value === '' && $( "input[name=idColor]:checked").length > 0) {
                 return false;
             }
             return true;

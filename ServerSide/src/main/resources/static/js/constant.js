@@ -151,10 +151,10 @@ for (var i = 0; i < lengthProductImg; i++) {
             contentType: false,
             success: function(data) {
                 newProduct.append(
-                    `<div class="checkbox px-1  d-inline-block">
+                    `<div name="chkImage" class="checkbox d-inline-block">
                         <label>
-                            <img width="100" height="100" src="${data}" th:name="image" alt="Image Product">
-                            <input type="hidden" value="${data}" th:name="image" class="image mt-2">
+                            <img width="100" height="100" src="${data}" name="chkImage" alt="Image Product">
+                            <input type="hidden" value="${data}" name="chkImage" class="image mt-2">
                         </label>
                     </div>`
                 );

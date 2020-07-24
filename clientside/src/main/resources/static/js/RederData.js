@@ -45,8 +45,8 @@ function rederData(data) {
                               <div class="card-product__img">
                                 <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                                 <ul class="card-product__imgOverlay">
-                                  <li><button onclick="showChooseProduct(${item.id})"><i class="ti-shopping-cart"></i></button></li>
-                                  <li><button onclick="addFavouriteUser(${item.id})"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
+                                  <li><button onclick="showChooseProduct('${item.id}')"><i class="ti-shopping-cart"></i></button></li>
+                                  <li><button onclick="addFavouriteUser('${item.id}')"><i style="color: #e5ff10;" class="ti-heart-broken"></i></button></li>
                                 </ul>
                                 <ul id="${item.id}" style="display: none" class="card-product__imgOverlay choose-color">
                                     <li class="color-for-price">
@@ -76,8 +76,8 @@ function rederData(data) {
                       <div class="card-product__img">
                         <a href="/product-details?id=${item.id ? item.id : ""}"><img class="card-img" src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                         <ul class="card-product__imgOverlay">
-                            <li><button onclick="showChooseProduct(${item.id})"><i class="ti-shopping-cart"></i></button></li>
-                            <li><button onclick="addFavouriteUser(${item.id})"><i class="ti-heart"></i></button></li>
+                            <li><button onclick="showChooseProduct('${item.id}')"><i class="ti-shopping-cart"></i></button></li>
+                            <li><button onclick="addFavouriteUser('${item.id}')"><i class="ti-heart"></i></button></li>
                         </ul>
                         <ul id="${item.id}" style="display: none" class="card-product__imgOverlay choose-color">
                             <li class="color-for-price">
@@ -833,7 +833,6 @@ function rederChangePassword() {
 //reder coment
 //    reder coment product
 function rederComentProduct(data) {
-    console.log(data);
     $("#comments-list").empty();
     if(data != null) {
         data.map(item => {

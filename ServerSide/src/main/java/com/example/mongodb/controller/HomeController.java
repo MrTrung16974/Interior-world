@@ -34,6 +34,11 @@ public class HomeController {
         return "register";
     }
 
+    @RequestMapping("/profile-user")
+    public String profileUser() {
+        return "user/profile-user";
+    }
+
     @RequestMapping("/welcome")
     @PreAuthorize("isAuthenticated()")
     public String welcome(HttpServletRequest request, HttpSession session) {

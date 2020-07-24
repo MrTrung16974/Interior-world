@@ -136,7 +136,7 @@ public class Utils {
 
     }
 
-    public String parsePhone(String phone) {
+    public static String parsePhone(String phone) {
         if (phone.startsWith("0")) {
             phone = phone.replace("0", "+84");
         } else if (phone.startsWith("84")) {
@@ -277,6 +277,7 @@ public class Utils {
             return false;
         }
     }
+
     public static final Date convertStringToDate(String value, String pattern) {
         if(!Comparator.isEqualNullOrEmpty(value)) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
@@ -350,4 +351,33 @@ public class Utils {
         return Constant.DATE_FORMAT_SQL.format(d);
     }
 
+    public static String getNameColor(Integer color) {
+        String nameString = null;
+        try {
+            switch (color) {
+                case 1:
+                    nameString = "Black";
+                    break;
+                case 2:
+                    nameString = "White";
+                    break;
+                case 3:
+                    nameString = "Yellow";
+                    break;
+                case 4:
+                    nameString = "Blue";
+                    break;
+                case 5:
+                    nameString = "Other";
+                    break;
+                default:
+                    nameString = "";
+                    break;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            nameString = "";
+        }
+        return nameString;
+    }
 }

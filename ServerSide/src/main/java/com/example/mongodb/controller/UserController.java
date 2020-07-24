@@ -70,6 +70,17 @@ public class UserController {
         return mv;
     }
 
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public ModelAndView profile(HttpServletRequest request,
+                                 Principal principal) {
+        String tag = buildLogTag(request, principal, "Profile");
+        LOGGER.debug(LOG_FORMAT, tag, "Profile view");
+        ModelAndView mv = new ModelAndView("user/profile-user");
+        mv.addObject("user", userRepository.findByUsername(principal.getName()).get());
+        LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
+        return mv;
+    }
+
     @RequestMapping("/search")
     @ResponseBody
     public BaseResponse search(@RequestParam("username") String userName,
@@ -225,7 +236,7 @@ public class UserController {
             user.setEmail(email);
             user.setImage(image);
             user.setAddress(address);
-            user.setBirthday(Utils.convertStringToDate(birthday, Constant.FORMAT_DATE));
+            user.setBirthday(DATE_FORMAT.parse(birthday));
             user.setPhone(phone);
             user.setRoleID(role);
             user.setFailLoginCount(0);
@@ -293,9 +304,9 @@ public class UserController {
                 checkUser.setAddress(address);
             }
             if(!Utils.checkNullOrEmpty(birthday)) {
-                checkUser.setBirthday(Utils.convertStringToDate(birthday, Constant.FORMAT_DATE));
+                checkUser.setBirthday(DATE_FORMAT.parse(birthday));
             }
-            if(!Utils.checkNullOrEmpty(phone)) {
+            if(!Utils.checkNullOrEmpty(Utils.parsePhone(phone))) {
                 checkUser.setPhone(phone);
             }
             if(!Utils.checkNullOrEmpty(status)) {
