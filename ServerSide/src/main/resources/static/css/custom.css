@@ -693,7 +693,7 @@ input[type="file"] {
 }
 
 [type="file"] + label {
-    background: #f15d22;
+    background: #d8d6d5;
     border: none;
     border-radius: 5px;
     color: #777;
@@ -711,7 +711,7 @@ input[type="file"] {
     vertical-align: middle;
 }
 [type="file"] + label:hover {
-    background-color: #d3460d;
+    background-color: #c7b1a9;
 }
 [type="file"] + label.btn-img {
     background-color: #00000014;

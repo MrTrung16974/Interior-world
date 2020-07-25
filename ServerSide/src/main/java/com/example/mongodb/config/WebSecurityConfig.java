@@ -51,7 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             }
         }
         http.authorizeRequests().mvcMatchers("/login/**").permitAll();
-        http.authorizeRequests().mvcMatchers("/**").access("hasAnyAuthority('EDIT')");
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
         http.authorizeRequests().and().formLogin()//
                 // Submit URL của trang login
@@ -64,6 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
                 // Cấu hình cho Logout Page.
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+        http.authorizeRequests().mvcMatchers("/**").access("hasAnyAuthority('ADMIN')");
+
     }
 
     @Override

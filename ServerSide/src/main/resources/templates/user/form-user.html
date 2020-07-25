@@ -96,6 +96,19 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
+                                                <label class="col-sm-3 control-label no-padding-right p_top">Sex (<span class="text-red">*</span>) </label>
+                                                <div class="col-sm-9">
+                                                    <input th:checked="${user.sex == 0}" type="radio" class="sex" value="0" th:name="sex" id="male">
+                                                    <label for="male">Male</label>
+                                                    <input th:checked="${user.sex == 1}" type="radio" class="sex" value="1" th:name="sex" id="female">
+                                                    <label for="female">Female</label>
+                                                    <input th:checked="${user.sex == 2}" type="radio" class="sex" value="2" th:name="sex" id="other">
+                                                    <label for="other">Other</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
                                                 <label class="col-sm-3 control-label no-padding-right p_top">Image User </label>
                                                 <div class="col-sm-9">
                                                     <img width="100" height="100"class="image" th:src="*{image}" alt="Image User">
@@ -169,9 +182,9 @@
                                                 <div class="col-sm-9">
                                                     <select class="select2 form-control" id="role" name="role">
                                                         <option value="">-Choose role-</option>
-                                                        <option th:each="role : ${lstRole}" th:value="${role.roleID}"
+                                                        <option th:each="role : ${lstRole}" th:value="${role.roleCode}"
                                                                 th:text="${role.roleCode}"
-                                                                th:selected="${role.roleID == user.roleID}"></option>
+                                                                th:selected="${role.roleCode == user.roleID}"></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -255,6 +268,11 @@
         $.validator.methods.repwcheck = function (value, element) {
             return $("#passworLab").val() === value;
         };
+        //kiem tra truong sex
+        $.validator.methods.sex = function (value, element) {
+            return  $( "input[name=sex]:checked").length > 0;
+        };
+        //kiem tra truong birthday
         $.validator.methods.birthday = function (value, element) {
             if (!isDate(value)) {
                 return false;
@@ -301,6 +319,10 @@
                 email: {
                     required: false,
                 },
+                sex: {
+                    required: true,
+                    sex: true
+                },
                 image: {
                     required: false,
                 },
@@ -330,7 +352,8 @@
                 passwordRe: "Password incorrect",
                 birthday: "Your birthday is wrong dd / mm / yyyy",
                 status: "Status field must not be blank",
-                role: "Permission Group field must not be blank"
+                role: "Permission Group field must not be blank",
+                sex: "Sex field must not be blank"
             }
         });
     });

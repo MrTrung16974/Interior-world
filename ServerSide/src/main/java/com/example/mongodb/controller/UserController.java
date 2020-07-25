@@ -187,6 +187,19 @@ public class UserController {
         return getUserModelView(user, TITLE_ADD, null, null);
     }
 
+    private ModelAndView getProfileModelView(User user, String title, Boolean success, String message) {
+        ModelAndView mv = new ModelAndView("user/profile-user");
+        mv.addObject("user", user);
+        mv.addObject("titlePage", title);
+        if (success != null) {
+            mv.addObject("success", success);
+        }
+        if (message != null) {
+            mv.addObject("message", message);
+        }
+        return mv;
+    }
+
     private ModelAndView getUserModelView(User user, String title, Boolean success, String message) {
         List<Role> lstRole = roleRepository.findAll();
         ModelAndView mv = new ModelAndView("user/form-user");
@@ -206,6 +219,7 @@ public class UserController {
     public ModelAndView doAddUser(@RequestParam("username") String userName,
                                   @RequestParam("fullName") String fullName,
                                   @RequestParam("email") String email,
+                                  @RequestParam("sex") String sex,
                                   @RequestParam("password") String password,
                                   @RequestParam("image") String image,
                                   @RequestParam("address") String address,
@@ -214,8 +228,8 @@ public class UserController {
                                   @RequestParam("role") String role,
                                   Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add User");
-        LOGGER.debug(LOG_FORMAT + "Username: {}, fullName: {}, image: {}, address: {},  birthday: {}, role: {}",
-                tag, " ", userName, fullName, email, image, address, birthday, phone, role);
+        LOGGER.debug(LOG_FORMAT + "Username: {}, fullName: {}, email: {}, sex: {} image: {}, address: {},  birthday: {}, role: {}",
+                tag, " ", userName, fullName, email, sex, image, address, birthday, phone, role);
         User user = new User();
         boolean success = true;
         String message = "Add user " + userName + " seccuss!";
@@ -234,6 +248,7 @@ public class UserController {
             user.setUsername(userName);
             user.setFullName(fullName);
             user.setEmail(email);
+            user.setSex(Integer.parseInt(sex));
             user.setImage(image);
             user.setAddress(address);
             user.setBirthday(DATE_FORMAT.parse(birthday));
@@ -273,16 +288,17 @@ public class UserController {
     public ModelAndView doUpdateUser(@PathVariable String id,
                                      @RequestParam("fullName") String fullName,
                                      @RequestParam("email") String email,
+                                     @RequestParam("sex") String sex,
                                      @RequestParam("image") String image,
                                      @RequestParam("address") String address,
                                      @RequestParam("birthday") String birthday,
                                      @RequestParam("phone") String phone,
-                                     @RequestParam("status") String status,
-                                     @RequestParam("role") String role,
+                                     @RequestParam(value = "status", required = false) String status,
+                                     @RequestParam(value = "role", required = false) String role,
                                      Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
-        LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, image: {},address:{}, birthday: {},phone:{}, status:{}, role: {}",
-                tag, "Edit User.", id, fullName, image, address, birthday, phone, status, email, role);
+        LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, sex:{}, image: {},address:{}, birthday: {},phone:{}, status:{}, role: {}",
+                tag, "Edit User.", id, fullName, email, sex, image, address, birthday, phone, status, role);
         User checkUser = userRepository.findById(id).get();
         if (checkUser == null) {
             LOGGER.error(LOG_FORMAT, tag, "User not found:" + id);
@@ -296,6 +312,9 @@ public class UserController {
             }
             if(!Utils.checkNullOrEmpty(email)) {
                 checkUser.setEmail(email);
+            }
+            if(!Utils.checkNullOrEmpty(sex)) {
+                checkUser.setSex(Integer.parseInt(sex));
             }
             if(!Utils.checkNullOrEmpty(image)) {
                 checkUser.setImage(image);
@@ -326,6 +345,61 @@ public class UserController {
         }
 
         return getUserModelView(checkUser, TITLE_EDIT, success, message);
+    }
+
+    @RequestMapping(value = "/edit-profile/{id}", method = RequestMethod.POST)
+    public ModelAndView doUpdateProfile(@PathVariable String id,
+                                     @RequestParam("fullName") String fullName,
+                                     @RequestParam("email") String email,
+                                     @RequestParam("sex") String sex,
+                                     @RequestParam("image") String image,
+                                     @RequestParam("address") String address,
+                                     @RequestParam("birthday") String birthday,
+                                     @RequestParam("phone") String phone,
+                                     Model model, HttpServletRequest request, Principal principal) {
+        String tag = buildLogTag(request, principal, "Edit User");
+        LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, sex:{}, image: {},address:{}, birthday: {},phone:{}",
+                tag, "Edit User.", id, fullName, email, sex, image, address, birthday, phone);
+        User checkUser = userRepository.findById(id).get();
+        if (checkUser == null) {
+            LOGGER.error(LOG_FORMAT, tag, "User not found:" + id);
+            throw new RuntimeException("Invalid user");
+        }
+        boolean success = true;
+        String message = "Update info user success!";
+        try {
+            if(!Utils.checkNullOrEmpty(fullName)) {
+                checkUser.setFullName(fullName);
+            }
+            if(!Utils.checkNullOrEmpty(email)) {
+                checkUser.setEmail(email);
+            }
+            if(!Utils.checkNullOrEmpty(sex)) {
+                checkUser.setSex(Integer.parseInt(sex));
+            }
+            if(!Utils.checkNullOrEmpty(image)) {
+                checkUser.setImage(image);
+            }
+            if(!Utils.checkNullOrEmpty(address)) {
+                checkUser.setAddress(address);
+            }
+            if(!Utils.checkNullOrEmpty(birthday)) {
+                checkUser.setBirthday(DATE_FORMAT.parse(birthday));
+            }
+            if(!Utils.checkNullOrEmpty(Utils.parsePhone(phone))) {
+                checkUser.setPhone(phone);
+            }
+            LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
+            userRepository.save(checkUser);
+            LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");
+        } catch (Exception e) {
+            LOGGER.debug(LOG_FORMAT, tag, "Error while edit user: " + id);
+            LOGGER.error(tag, e);
+            success = false;
+            message = "Update info user failure! Please try again!";
+        }
+
+        return getProfileModelView(checkUser, TITLE_EDIT, success, message);
     }
 
     @RequestMapping("/update_user")

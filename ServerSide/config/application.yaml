@@ -19,7 +19,7 @@ management:
 ekyc:
   security:
     authorizations:
-      - url: /js/**,/css/**,/vendor/**,/img/**,/images/**,/v1/api/**,/link/**,/fonts/**,/plugins/**,/login,/logout
+      - url: /js/**,/css/**,/vendor/**,/img/**,/images/**,/v1/api/**,/link/**,/fonts/**,/plugins/**,/login,/logout,/ws/**,/app/**,/topic/**
         access: permitAll
       - url: /*,/**
         access: isAuthenticated()

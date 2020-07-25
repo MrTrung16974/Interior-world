@@ -29,17 +29,15 @@
                         <div class="row">
                             <div id="user-info" class="account-content col-xl-12 col-lg-12 col-md-12">
                                 <div class="Info-user-profile">
-                                    <div class="title-user form-header">
-                                        <h5>User Profile</h5>
-                                        <p>Manage profile information for account security</p>
-                                    </div>
-                                    <form class="content-user-profile from-content">
-                                        <div class="Info-user-profile">
-                                            <div class="title-user form-header">
-                                                <h5>User Profile</h5>
-                                                <p>Manage profile information for account security</p>
-                                            </div>
-                                            <form class="content-user-profile from-content">
+                                        <div class="title-user form-header mb-3">
+                                            <h4>User Profile</h4>
+                                            <p>Manage profile information for account security</p>
+                                        </div>
+                                    <div th:replace="component/header::notice_box"></div>
+                                    <div class="form-profile">
+                                            <form id="formInsert" name="formInsert" th:object="${user}" method="POST"
+                                                  class="form-horizontal form-row-seperated">
+                                                <div th:replace="/component/header::alert-sub"></div>
                                                 <div class="row">
                                                     <div class="col-12 col-md-7 col-lg-8 col-xl-8">
                                                         <table width="100%">
@@ -47,25 +45,31 @@
                                                             <tr>
                                                                 <td>User Name</td>
                                                                 <td id="user-name">
-                                                                    <input th:value="${user.username ? user.username : ''}"  class="form-control" type="text" disabled name="full-name-user">
+                                                                    <input type="text" class="form-control" th:field="*{username}" maxlength="30" th:disabled="${user.username} != null"/>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Full Name</td>
                                                                 <td class="form-group">
-                                                                    <input th:value="${user.fullName ? user.fullName : ''}" class="form-control" type="text" id="full-name-user" name="full-name-user">
+                                                                    <input type="text" class="form-control" name="fullName" id="fullName" th:field="*{fullName}" maxlength="50"/>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
                                                                 <td class="form-group">
-                                                                    <input th:value="${user.email ? user.email : ''}" class="form-control" type="email" id="email-user" name="email-user">
+                                                                    <input type="text" class="form-control" name="email" id="email" th:field="*{email}" maxlength="150"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Address</td>
+                                                                <td class="form-group">
+                                                                    <input type="text" class="form-control" name="address" id="address" th:field="*{address}" maxlength="250"/>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Phone</td>
                                                                 <td class="form-group">
-                                                                    <input  class="form-control" th:value="${user.phone ? user.phone : ''}" type="number" id="phone-user" name="phone-user">
+                                                                    <input type="text" class="form-control" name="address" id="address" th:field="*{phone}" maxlength="250"/>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -81,8 +85,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Birth Day</td>
-                                                                <td class="form-group">
-                                                                    <input type="date" class="form-control" id="birthday-user" name="birthday-user" th:value="${ChangeDateFormatAgain(user.birthday != null ? user.birthday : "00/00/0000")}" placeholder="dd-mm-yyyy" />
+                                                                <td style="position: relative;" class="form-group">
+                                                                    <input type="formDate" class="form-control" name="birthday" id="birthday" th:value="*{#dates.format(birthday, 'dd/MM/yyyy')}" placeholder="dd/mm/yyyy"  data-date-format="dd/mm/yyyy"/>
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar bigger-110"></i>
+                                                                    </span>
                                                                 </td>
                                                             </tr>
 
@@ -91,7 +98,9 @@
                                                     </div>
                                                     <div class="col-12 col-md-5 col-lg-4 col-xl-4">
                                                         <div class="col-md-12 form-group text-center">
-                                                            <img th:src="${user.image ? user.image : ''}" width="100" height="100" class="face-user" id="img-youface" />
+                                                            <img width="100" height="100"class="image" th:src="*{image}" alt="Image User">
+                                                            <input type="hidden" class="input-image" th:field="*{image}" th:name="image" id="image"/>
+                                                            <br/>
                                                             <input id="image-face" class="image-face" name="image-face" type="file" />
                                                             <label class="btn-face" for="image-face">Choose image</label>
                                                             <br />
@@ -100,14 +109,16 @@
                                                             <span>Format: .JPG, .PND</span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 mt-5">
-                                                        <input class="btn btn-primary" onclick="updateUser()" type="button" name="save-user" id="btn-save" value="Save" />
-                                                    </div>
+                                                </div>
+                                                <div class="clearfix form-actions">
+                                                    <div class="col-md-offset-3 mt-5">
+                                                        <input type="submit" value="Update User" class="btn btn-info" id="addForm" />
+                                                        <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
+                                                        <a class="btn btn-warning" th:href="@{/home}">Back to Home</a></div>
                                                 </div>
                                             </form>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -137,6 +148,109 @@
 <!-- Script -->
 <footer th:replace="/component/footer :: script-area"></footer>
 <!-- End of Script -->
+<script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var user = [[${user}]];
+    var title = [[${title}]];
+    var editUserUrl = /*[[@{/user/edit-profile/}]]*/ "/user/edit-profile/";
+    jQuery(document).ready(function () {
+        $('#birthday').datepicker({
+            format: "dd/mm/yyyy",
+            language: "vi",
+//            endDate: "0d",
+            todayHighlight: true,
+            autoclose: true,
+
+        });
+
+        $("#addForm").on("click", function(e){
+            console.log("Ok");
+            e.preventDefault();
+            if(user.userId != null){
+                $('#formInsert').attr('action', editUserUrl + user.userId).submit();
+            }
+
+        });
+        //kiem tra truong user
+        $.validator.methods.username = function (value, element) {
+            return !/[^a-z0-9]/.test(value);
+        };
+        //kiem tra truong sex
+        $.validator.methods.sex = function (value, element) {
+            return  $( "input[name=sex]:checked").length > 0;
+        };
+        $.validator.methods.birthday = function (value, element) {
+            if (!isDate(value)) {
+                return false;
+            }
+            return true;
+        };
+        //kiem tra truong status
+        $.validator.methods.status = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        //kiem tra truong role
+        $.validator.methods.role = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+
+        $("#formInsert").validate({
+            focusInvalid: true, // focus the last invalid input
+            ignore: [],
+            rules: {
+                username: {
+                    required: true,
+                    maxlength: 30,
+                    username: true
+                },
+                fullName: {
+                    required: true,
+                    maxlength: 50
+                },
+                email: {
+                    required: false,
+                },
+                sex: {
+                    required: true,
+                    sex: true
+                },
+                image: {
+                    required: false
+                },
+                address: {
+                    required: false,
+                    maxlength: 250
+                },
+                birthday: {
+                    required: false,
+                    birthday: true
+                },
+                phone: {
+                    required: false,
+                    maxlength: 12
+                }
+            },
+            messages: {
+                username: "Username must not be blank and no more than 30 characters. Only alphanumeric characters are allowed",
+                fullName: "Name must not be blank and no more than 50 characters",
+                password: "Password is from 6 to 20 characters, including at least 1 letter and 1 number",
+                passwordRe: "Password incorrect",
+                birthday: "Your birthday is wrong dd / mm / yyyy",
+                status: "Status field must not be blank",
+                role: "Permission Group field must not be blank",
+                sex: "Sex field must not be blank"
+            }
+        });
+    });
+
+</script>
 
 </body>
 
