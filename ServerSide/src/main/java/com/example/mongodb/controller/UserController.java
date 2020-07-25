@@ -72,7 +72,7 @@ public class UserController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView profile(HttpServletRequest request,
-                                 Principal principal) {
+                                Principal principal) {
         String tag = buildLogTag(request, principal, "Profile");
         LOGGER.debug(LOG_FORMAT, tag, "Profile view");
         ModelAndView mv = new ModelAndView("user/profile-user");
@@ -252,7 +252,7 @@ public class UserController {
             user.setImage(image);
             user.setAddress(address);
             user.setBirthday(DATE_FORMAT.parse(birthday));
-            user.setPhone(phone);
+            user.setPhone(Utils.parsePhone(phone));
             user.setRoleID(role);
             user.setFailLoginCount(0);
             //Default status = 1 - active
@@ -325,8 +325,8 @@ public class UserController {
             if(!Utils.checkNullOrEmpty(birthday)) {
                 checkUser.setBirthday(DATE_FORMAT.parse(birthday));
             }
-            if(!Utils.checkNullOrEmpty(Utils.parsePhone(phone))) {
-                checkUser.setPhone(phone);
+            if(!Utils.checkNullOrEmpty(phone)) {
+                checkUser.setPhone(Utils.parsePhone(phone));
             }
             if(!Utils.checkNullOrEmpty(status)) {
                 checkUser.setStatus(Integer.parseInt(status));
@@ -349,14 +349,14 @@ public class UserController {
 
     @RequestMapping(value = "/edit-profile/{id}", method = RequestMethod.POST)
     public ModelAndView doUpdateProfile(@PathVariable String id,
-                                     @RequestParam("fullName") String fullName,
-                                     @RequestParam("email") String email,
-                                     @RequestParam("sex") String sex,
-                                     @RequestParam("image") String image,
-                                     @RequestParam("address") String address,
-                                     @RequestParam("birthday") String birthday,
-                                     @RequestParam("phone") String phone,
-                                     Model model, HttpServletRequest request, Principal principal) {
+                                        @RequestParam("fullName") String fullName,
+                                        @RequestParam("email") String email,
+                                        @RequestParam("sex") String sex,
+                                        @RequestParam("image") String image,
+                                        @RequestParam("address") String address,
+                                        @RequestParam("birthday") String birthday,
+                                        @RequestParam("phone") String phone,
+                                        Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
         LOGGER.debug(LOG_FORMAT + " UserID: {}, fullName: {},email:{}, sex:{}, image: {},address:{}, birthday: {},phone:{}",
                 tag, "Edit User.", id, fullName, email, sex, image, address, birthday, phone);
@@ -386,8 +386,8 @@ public class UserController {
             if(!Utils.checkNullOrEmpty(birthday)) {
                 checkUser.setBirthday(DATE_FORMAT.parse(birthday));
             }
-            if(!Utils.checkNullOrEmpty(Utils.parsePhone(phone))) {
-                checkUser.setPhone(phone);
+            if(!Utils.checkNullOrEmpty(phone)) {
+                checkUser.setPhone(Utils.parsePhone(phone));
             }
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
             userRepository.save(checkUser);
