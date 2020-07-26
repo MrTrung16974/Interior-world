@@ -8,15 +8,29 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Banner {
     @Id
     private String id;
+    @Field("link-page")
+    private String linkPage;
     @Field("name-page")
     private String namePage;
     @Field("bg-banner")
     private String bgBanner;
 
-    public Banner(String id, String namePage, String bgBanner) {
-        this.id = id;
+    public Banner() {
+
+    }
+
+    public Banner(String linkPage, String namePage, String bgBanner) {
+        this.linkPage = linkPage;
         this.namePage = namePage;
         this.bgBanner = bgBanner;
+    }
+
+    public String getLinkPage() {
+        return linkPage;
+    }
+
+    public void setLinkPage(String linkPage) {
+        this.linkPage = linkPage;
     }
 
     public String getId() {

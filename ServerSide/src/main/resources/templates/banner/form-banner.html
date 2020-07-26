@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<!--================ Start head link =================-->
+<head th:replace="/component/header :: head-link"></head>
+<!--================ End head link =================-->
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/component/header :: sidebar-area"></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav th:replace="/component/header :: topbar-area"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <!-- Content Row -->
+            <div class="main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 ml-2 mb-0 text-gray-800" th:text="${titlePage}">List User</h1>
+                </div>
+                <div style="margin-bottom: 50px;" class="breadcrumbs" id="breadcrumbs">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a th:href="@{/home}"><i class="default-icon fa fa-home home-icon"></i>  Home</a>
+                            </li>
+                            <li class="breadcrumb-item"><a th:href="@{/banner/list}">List Banner</a></li>
+                            <li class="breadcrumb-item active" th:text="${titlePage}" aria-current="page">Data</li>
+                        </ol>
+                    </nav>
+                    <!-- /.breadcrumb -->
+                </div>
+                <div class="page-content">
+                    <div class="page-content-area">
+                        <!-- /.page-header -->
+                        <div class="col-xs-12 p-4">
+                            <div th:replace="component/header::notice_box"></div>
+
+                            <form id="formInsert" name="formInsert"  action="#"  th:object="${banner}" method="POST"
+                                  class="form-horizontal form-row-seperated">
+                                <div th:replace="/component/header::alert-sub"></div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Link Page (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" th:field="*{linkPage}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Name Page (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" th:field="*{namePage}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Backgroud Banner (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <input type="text"  class="form-control" th:field="*{bgBanner}" maxlength="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix form-actions">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <input type="submit" value="Add Banner" class="btn btn-info" id="addForm" th:if="${banner.id} == null" />
+                                        <input type="submit" value="Update Banner" class="btn btn-info" id="addForm" th:if="${banner.id} != null and ${titlePage} != 'View info banner'"   />
+                                        <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
+                                        <a class="btn btn-warning" th:href="@{/banner/list}">Back to list</a></div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.page-content-area -->
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer th:replace="/component/footer :: footer-area"></footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a th:replace="/component/footer :: page-top"></a>
+
+<!-- Logout Modal-->
+<a th:replace="/component/footer :: logout-model"></a>
+
+<!-- Script -->
+<footer th:replace="/component/footer :: script-area"></footer>
+<!-- End of Script -->
+<script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var banner = [[${banner}]];
+    console.log(role);
+    var editBannerUrl = /*[[@{/banner/edit/}]]*/ "/banner/edit/";
+    var addBannerUrl = /*[[@{/banner/add}]]*/ "/banner/add";
+    jQuery(document).ready(function () {
+        $("#addForm").on("click", function(e){
+            e.preventDefault();
+            if(banner.id != null){
+                $('#formInsert').attr('action', editBannerUrl + banner.id).submit();
+            }else{
+                $('#formInsert').attr('action', addBannerUrl).submit();
+            }
+
+        });
+        $.validator.methods.linkPage = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.namePage = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        //kiem tra truong role
+        $.validator.methods.bgBanner = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+
+        $("#formInsert").validate({
+            focusInvalid: true, // focus the last invalid input
+            ignore: [],
+            rules: {
+                linkPage: {
+                    required: true,
+                    linkPage: true
+                },
+                namePage: {
+                    required: true,
+                    namePage: true
+                },
+                bgBanner: {
+                    required: true,
+                    baBanner: true
+                }
+            },
+            messages: {
+                linkPage: "Link Page field must not be blank",
+                namePage: "Name Page field must not be blank",
+                bgBanner: "Blackground Banner field must not be blank"
+            },
+        });
+    });
+
+</script>
+</body>
+
+</html>

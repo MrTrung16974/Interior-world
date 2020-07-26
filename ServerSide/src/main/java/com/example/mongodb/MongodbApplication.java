@@ -1,6 +1,7 @@
 package com.example.mongodb;
 
 import com.example.mongodb.dto.product.Price;
+import com.example.mongodb.model.Banner;
 import com.example.mongodb.repository.*;
 import com.example.mongodb.services.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,5 +108,21 @@ public class MongodbApplication implements CommandLineRunner {
 //        userRepository.save(user);
 //        functionRepository.save(function);
 //        functionRepository.save(function2);
+
+//        bannerRepository.save(new Banner("/account-info","Account Info","https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
+//        bannerRepository.save(new Banner("/cart","Shopping Cart","https://aromaserver16974.herokuapp.com/aroma/link/1593668032-cart-banner.jpg"));
+//        bannerRepository.save(new Banner("/checkout","Product Checkout","https://aromaserver16974.herokuapp.com/aroma/link/1593668045-checkout-banner.jpg"));
+//        bannerRepository.save(new Banner("/confirmation","Order Confirmation","https://aromaserver16974.herokuapp.com/aroma/link/1593669249-order-banner.jpg"));
+//        bannerRepository.save(new Banner("/contact","Contact Us","https://aromaserver16974.herokuapp.com/aroma/link/1593668051-contact-banner.jpg"));
+//        bannerRepository.save(new Banner("/favourite","Shopping Favourite","https://aromaserver16974.herokuapp.com/aroma/link/1593668058-favourite-banner.jpg"));
+//        bannerRepository.save(new Banner("/login","Login / Register ","https://aromaserver16974.herokuapp.com/aroma/link/1593668066-login-banner.jpg"));
+//        bannerRepository.save(new Banner("/product-details","Single Product","https://aromaserver16974.herokuapp.com/aroma/link/1593668051-contact-banner.jpg"));
+//        bannerRepository.save(new Banner("/register","Register","https://aromaserver16974.herokuapp.com/aroma/link/1593670358-register-banner.jpg"));
+//        bannerRepository.save(new Banner("/shop","Shop Category","https://aromaserver16974.herokuapp.com/aroma/link/1594035238-shop-banner.jpg"));
+//        bannerRepository.save(new Banner("/traking-order","Tracking Order ","https://aromaserver16974.herokuapp.com/aroma/link/1593669204-traking-banner.jpg"));
+//        System.out.println("End");
     }
 }
+
+
+

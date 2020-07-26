@@ -73,7 +73,7 @@ $.ajax({
     success: function (response) {
         if(response.code == "00") {
             response.data.forEach(item => {
-                if(item.id == pathname) {
+                if(item.linkPage == pathname) {
                     rederBanner(item);
                 }
             });
