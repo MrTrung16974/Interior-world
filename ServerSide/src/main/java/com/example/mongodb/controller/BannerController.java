@@ -113,18 +113,21 @@ public class BannerController {
         return getBannerModelView(banner, TITLE_VIEW, null, null);
     }
 
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView addBannerForm(HttpServletRequest request, Principal principal) {
+        String tag = buildLogTag(request, principal, "Add Banner");
+        LOGGER.debug(LOG_FORMAT, tag, "Add Banner View");
+        Banner banner = new Banner();
+        return getBannerModelView(banner, TITLE_ADD, null, null);
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView doAddBanner(@RequestParam("id") String id,
-                                    @RequestParam("linkPage") String linkPage,
+    public ModelAndView doAddBanner(@RequestParam("linkPage") String linkPage,
                                     @RequestParam("namePage") String namePage,
                                     @RequestParam("bgBanner") String bgBanner,
                                     Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add Banner");
         LOGGER.debug(LOG_FORMAT + "linkPage: {}, namePage: {}, bgBanner: {}", tag, "Add banner.",linkPage, namePage, bgBanner);
-        if (bannerRepository.findById(id) != null) {
-            LOGGER.debug(LOG_FORMAT, tag, "Banner already exists: " + id);
-            return getBannerModelView(new Banner(), TITLE_ADD, Boolean.FALSE, "Banner already exists. Please check again.");
-        }
         Banner banner = new Banner();
         if(!Utils.checkNullOrEmpty(linkPage)) {
             banner.setLinkPage(linkPage);
@@ -133,7 +136,7 @@ public class BannerController {
             banner.setNamePage(namePage);
         }
         if(!Utils.checkNullOrEmpty(bgBanner)) {
-            banner.setNamePage(bgBanner);
+            banner.setBgBanner(bgBanner);
         }
         bannerRepository.save(banner);
         LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");

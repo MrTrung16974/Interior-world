@@ -70,7 +70,10 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label no-padding-right p_top">Backgroud Banner (<span class="text-red">*</span>) </label>
                                         <div class="col-sm-9">
-                                            <input type="text"  class="form-control" th:field="*{bgBanner}" maxlength="30"/>
+                                            <img width="150" th:src="${banner.bgBanner}" th:name="bgBanner" th:field="*{bgBanner}" class="image" />
+                                            <input type="hidden" class="form-control input-image" th:name="bgBanner" th:field="*{bgBanner}"/>
+                                            <input th:if="${titlePage} != 'View info banner'" type="file" class="img mt-2 " name="img" id="img"/>
+                                            <label th:if="${titlePage} != 'View info banner'" class="btn-img" for="img">Choose image</label>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +120,6 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     var banner = [[${banner}]];
-    console.log(role);
     var editBannerUrl = /*[[@{/banner/edit/}]]*/ "/banner/edit/";
     var addBannerUrl = /*[[@{/banner/add}]]*/ "/banner/add";
     jQuery(document).ready(function () {
@@ -164,7 +166,7 @@
                 },
                 bgBanner: {
                     required: true,
-                    baBanner: true
+                    bgBanner: true
                 }
             },
             messages: {

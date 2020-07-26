@@ -159,6 +159,13 @@
             columnDefs: [
                 {
                     "render": function (data, type, row) {
+                        row.add
+                        return `<img style="border-radius: 10px" width="200" src='${row.bgBanner}' type="" />`;
+                    },
+                    "targets": 3
+                },
+                {
+                    "render": function (data, type, row) {
                         var content = '<a class="blue" href="' + viewUrl + row.id + '" data-toggle="tooltip" title="View info"> <i class="default-icon fa fa-eye bigger-130"></i> </a>';
                         content += '<a class="blue" href="' + editUrl + row.id + '" data-toggle="tooltip" title="Edit info"> <i class="default-icon  fas fa-pencil-alt bigger-130"></i> </a>';
                         content += '<a class="blue" ' +
@@ -168,7 +175,11 @@
                     "targets": 4
                 },
                 {'bSortable': false, 'aTargets': ["no-sort"]}
-            ]
+            ],
+            createdRow: function( row, data, dataIndex ) {
+                // Set the data-status attribute, and add a class
+                $( row ).find('td:eq(3)').addClass('text-center');
+            }
         });
 
         //Dat gia tri cho cot index (STT) moi lan sap xep bang
