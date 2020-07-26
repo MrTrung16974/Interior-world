@@ -58,6 +58,14 @@ public class ControllerMapping {
     public String notPo(){
         return "403";
     }
+    @RequestMapping("/500")
+    public String errorServer(){
+        return "500";
+    }
+    @RequestMapping("/404")
+    public String notFo(){
+        return "404";
+    }
     @RequestMapping("/tracking-order")
     public String trakingOrder(){
         return "tracking-order";
