@@ -217,6 +217,7 @@ if(pathname == "/checkout") {
                     && order.listProduct.length != null
                     && order.listProduct.length > 0) {
                     rederDataCheckout();
+                    rederInfoUserDataCheckout();
                 }
             }else {
                 toastr.warning("Please place a new order! You have no orders yet.");

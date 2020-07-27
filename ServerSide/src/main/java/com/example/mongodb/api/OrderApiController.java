@@ -292,7 +292,11 @@ public class OrderApiController {
     //    contactus product now in user
     @PutMapping("/order/contactus-products")
     public BaseResponse contactusProductInCast(@RequestParam("idUser") String idUser,
-                                              @RequestParam("shippingRates") Integer shippingRates) {
+                                               @RequestParam("phone") String phone,
+                                               @RequestParam("email") String email,
+                                               @RequestParam("fullName") String fullName,
+                                               @RequestParam("address") String address,
+                                               @RequestParam("paymentType") String paymentType) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalCheckoutOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
 //        1, new account
@@ -307,8 +311,25 @@ public class OrderApiController {
                 response.setData(null);
             } else {
                 Order exits = optionalCheckoutOrder.get();
+                if(exits == null) {
+                    throw new Exception("Order not exit!");
+                }
                 exits.setStatus(3);
-                exits.setShippingRates(shippingRates);
+                if(phone != null) {
+                    exits.setPhone(phone);
+                }
+                if(email != null) {
+                    exits.setEmail(email);
+                }
+                if(fullName != null) {
+                    exits.setFullName(fullName);
+                }
+                if(paymentType != null) {
+                    exits.setPaymentType(paymentType);
+                }
+                if(address != null) {
+                    exits.setAddress(address);
+                }
                 exits.setCreatedAt(new Date());
                 orderRepository.save(exits);
                 response.setCode("00");

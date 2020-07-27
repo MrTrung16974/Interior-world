@@ -103,8 +103,11 @@ i.eye-pass {
 i.fas.fa-star {
     color: #efe30f;
 }
-.owl-carousel .owl-item img {
-    height: 21em !important;
+div#owl-demo-featured img.img-fluid {
+    height: 23em !important;
+}
+div#bestSellerCarousel img.img-fluid {
+    height: 18em !important;
 }
 .card-img {
     height: 18em !important;

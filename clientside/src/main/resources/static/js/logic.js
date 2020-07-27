@@ -387,6 +387,7 @@ function editAddressUser() {
 }
 
 $(document).ready(function() {
+
     // Rating Initialization
     /* 1. Visualizing things on Hover - See next part for action on click */
     $('#stars li').on('mouseover', function(){

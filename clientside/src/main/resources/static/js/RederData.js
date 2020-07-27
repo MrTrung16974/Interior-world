@@ -642,6 +642,52 @@ function rederDataCheckout() {
         $('#lst-product-in-cast').html("<p style='color: #1abc9c; padding: 20px;'>Checkout does not exist!</p>");
     }
 }
+function rederInfoUserDataCheckout() {
+    if(typeof userDto != "undefined"
+        && userDto != null
+        && userDto != "") {
+        $("#billing-details").empty();
+        $("#billing-details").html(
+            `<div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" value="${userDto.username ? userDto.username : ''}" id="username" placeholder="First name" name="name">
+                <span class="placeholder" data-placeholder="User name" ></span>
+            </div>
+            <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" value="${userDto.fullName ? userDto.fullName : ''}" id="fullname" name="name" placeholder="Last name">
+                <span class="placeholder" data-placeholder="Full name"></span>
+            </div>
+            <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="number"  value="${userDto.phone ? userDto.phone : ''}"  name="number" placeholder="Phone number">
+                <span class="placeholder" data-placeholder="Phone number"></span>
+            </div>
+            <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="email"  value="${userDto.email ? userDto.email : ''}"  name="compemailany" placeholder="Email Address">
+                <span class="placeholder" data-placeholder="Email Address"></span>
+            </div>
+            <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add1" name="add1"  value="${userDto.address ? userDto.address : ''}"  placeholder="Address line 01">
+                <span class="placeholder" data-placeholder="Address line 01"></span>
+            </div>    
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="creat_account">
+                    <input type="checkbox" id="f-option2" name="selector">
+                    <label for="f-option2">Create an account?</label>
+                </div>
+            </div>
+            <div class="col-md-12 form-group mb-0">
+                <div class="creat_account">
+                    <h3>Shipping Details</h3>
+                    <input type="checkbox" id="f-option3" name="selector">
+                    <label for="f-option3">Ship to a different address?</label>
+                </div>
+                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Note to the seller..."></textarea>
+            </div>`
+        );
+    }
+}
 
 //reder user
 function rederUserInfo() {

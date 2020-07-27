@@ -34,6 +34,14 @@ public class Order {
     private Date createdAt;
     @Field("address")
     private String address;
+    @Field("payment_type")
+    private String paymentType;
+    @Field("phone")
+    private String phone;
+    @Field("email")
+    private String email;
+    @Field("full_name")
+    private String fullName;
     @Field("status")
     private Integer status;
 
@@ -56,6 +64,38 @@ public class Order {
 
     public List<ProductModel> getListProduct() {
         return listProduct;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setListProduct(List<ProductModel> listProduct) {
