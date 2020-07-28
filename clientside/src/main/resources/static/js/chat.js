@@ -13,7 +13,7 @@ if(checkLoginDto()) {
 
 function connect(event) {
     if(userDto.username) {
-        var socket = new SockJS('http://localhost:8099/aroma/ws');
+        var socket = new SockJS(urlServer + '/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
@@ -23,7 +23,7 @@ function connect(event) {
 
 function onConnected() {
     // Subscribe to the Public Topic
-    stompClient.subscribe('http://localhost:8099/aroma/topic/public', onMessageReceived);
+    stompClient.subscribe(urlServer + 'topic/public', onMessageReceived);
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
@@ -47,7 +47,7 @@ function sendMessage(event) {
             content: messageInput.value,
             type: 'CHAT'
         };
-        stompClient.send("http://localhost:8099/aroma/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send(urlServer + "app/chat.sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();

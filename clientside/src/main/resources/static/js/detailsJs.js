@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/aroma/v1/api/product/" + idProduct,
+        url: urlServer + "v1/api/product/" + idProduct,
         processData: false,
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công

@@ -1,7 +1,7 @@
 // check user login not yet
 var loadUserDto = () => {
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/getInfoUser",
+        url: urlServer + "v1/api/getInfoUser",
         type: "GET",
         dataType: 'json',
         async: false,
@@ -30,14 +30,14 @@ var loadUserDto = () => {
         error: function (response) {
             checkLogin = false
             ;
-            window.location.href = "http://localhost:8080/login"
+            window.location.href = urlClient + "login"
             toastr.error('An error occurred . Please try again', response.message);
         }
     });
 }
 var checkLoginDto = () => {
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/getInfoUser",
+        url: urlServer + "v1/api/getInfoUser",
         type: "GET",
         dataType: 'json',
         async: false,
@@ -68,7 +68,7 @@ if(token != null && token != "") {
 
 // Load banner for page
 $.ajax({
-    url: "http://localhost:8099/aroma/v1/api/banners",
+    url: urlServer + "v1/api/banners",
     type: "GET",
     success: function (response) {
         if(response.code == "00") {
@@ -118,7 +118,7 @@ if(pathname == "/home" || pathname === "/") {
         }
     });
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/product/latest",
+        url: urlServer + "v1/api/product/latest",
         type: "GET",
         dataType: 'json',
         success: function(response) {
@@ -168,7 +168,7 @@ if(pathname == "/home" || pathname === "/") {
             })
         }
         $.ajax({
-            url: "http://localhost:8099/aroma/v1/api/product/best-sellers",
+            url: urlServer + "v1/api/product/best-sellers",
             type: "GET",
             dataType: 'json',
             success: function(response) {
@@ -188,7 +188,7 @@ if(pathname == "/home" || pathname === "/") {
 }
 if(pathname == "/shop") {
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
+        url: urlServer + "v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
         type: "GET",
         success: function (response) {
             if(response.code == "00") {
@@ -207,7 +207,7 @@ if(pathname == "/shop") {
 }
 if(pathname == "/checkout") {
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/order/did-checkout-products/"+ userDto.username,
+        url: urlServer + "v1/api/order/did-checkout-products/"+ userDto.username,
         type: "GET",
         success: function (response) {
             if(response.code == "00") {
@@ -229,7 +229,7 @@ if(pathname == "/checkout") {
     });
 }
 $.ajax({
-    url: "http://localhost:8099/aroma/v1/api/product/trending",
+    url: urlServer + "v1/api/product/trending",
     type: "GET",
     success: function (response) {
         if (response.code == "00") {
@@ -250,7 +250,7 @@ $.ajax({
 });
 function catetoryProduct(type) {
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/product/catetory/" + type,
+        url: urlServer + "v1/api/product/catetory/" + type,
         type: "GET",
         success: function (response) {
             if (response.code == "00") {
@@ -287,7 +287,7 @@ function loginCickUser() {
     shopLoading();
     $.ajax({
         type: "POST",
-        url: "http://localhost:8099/aroma/v1/api/login?username=" + username + "&password=" + password,
+        url: urlServer + "v1/api/login?username=" + username + "&password=" + password,
         processData: false,
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công
@@ -299,12 +299,12 @@ function loginCickUser() {
                     toastr.success('Logic success!', response.message);
                 }
                 if (checkLogin) {
-                    window.location.href = "http://localhost:8080/home"
+                    window.location.href = urlClient + "home"
                 }
                 hideLoading();
             } else {
                 hideLoading();
-                window.location.href = "http://localhost:8080/login?error=true"
+                window.location.href = urlClient + "login?error=true"
                 toastr.error('An error occurred! ', response.data);
             }
         },
@@ -360,7 +360,7 @@ function registerClickUser() {
     shopLoading();
     $.ajax({
         type: "POST",
-        url: "http://localhost:8099/aroma/v1/api/register?username="+username+"&password="+
+        url: urlServer + "v1/api/register?username="+username+"&password="+
             password+"&name="+ name + "&email=" + email,
         processData: false,
         success: function (response) {
@@ -373,7 +373,7 @@ function registerClickUser() {
                     toastr.success('Register success!', response.message);
                 }
                 if(checkLogin) {
-                    window.location.href = "http://localhost:8080/home";
+                    window.location.href = urlClient + "home";
                 }
                 hideLoading();
             }else {
@@ -400,7 +400,7 @@ function logoutUser() {
     shopLoading();
     $.ajax({
         type: "POST",
-        url: "http://localhost:8099/aroma/v1/api/logout",
+        url: urlServer + "v1/api/logout",
         processData: false,
         success: function (response) {
             // server trả về HTTP status code là 200 => Thành công
@@ -410,7 +410,7 @@ function logoutUser() {
                 checkLogin = false;
                 toastr.success('Logout success!', response.message);
                 if(!checkLogin) {
-                    window.location.href = "http://localhost:8080/login"
+                    window.location.href = urlClient + "login"
                 }else {
                     toastr.success('Logout error!', response.message);
                 }
@@ -465,7 +465,7 @@ function changeClickPassword() {
     shopLoading();
     $.ajax({
         type: "PUT",
-        url: "http://localhost:8099/aroma/v1/api/change-password?username="+ userDto.username
+        url: urlServer + "v1/api/change-password?username="+ userDto.username
             +"&current-password="+ currentPassword + "&new-password=" + newPassword +
             "&confirm-password=" + confirmPassword,
         processData: false,
@@ -531,7 +531,7 @@ function updateUser() {
         sex: sex
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/user/" + userDto.username,
+        url: urlServer + "v1/api/user/" + userDto.username,
         type: "PUT",
         data: JSON.stringify(UserDto),
         contentType: "application/json; charset=utf-8",
@@ -567,7 +567,7 @@ function updateUserAddress() {
     };
     $.ajax({
         type: "PUT",
-        url: "http://localhost:8099/aroma/v1/api/user/" + userDto.username,
+        url: urlServer + "v1/api/user/" + userDto.username,
         data: JSON.stringify(UserDto),
         contentType: "application/json",
         processData: false,
@@ -623,7 +623,7 @@ function searchProduct(page) {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/aroma/v1/api/product/search?name=" +
+        url: urlServer + "v1/api/product/search?name=" +
             keyword + "&page=" + currentPage + "&perPage=12&sort=" + sort
             + "&type=" + type + "&material=" + material + "&color=" + color,
         processData: false,
@@ -657,7 +657,7 @@ function sortProduct() {
     }
     $.ajax({
         type: "GET",
-        url: "http://localhost:8099/aroma/v1/api/product/search?name=" +
+        url: urlServer + "v1/api/product/search?name=" +
             keyword + "&page=" + currentPage + "&perPage=12&sort=" + sort
             + "&type=" + type + "&material=" + material + "&color=" + color,
         processData: false,
@@ -691,7 +691,7 @@ function addFavouriteUser(idProduct) {
         return;
     }
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/user/favourite/?userName="+
+        url: urlServer + "v1/api/user/favourite/?userName="+
             cart.buyer + "&idProduct=" + idProduct,
         type: "PUT",
         success: function (response) {
@@ -723,7 +723,7 @@ function addFavouriteUser(idProduct) {
 // cart product
 function getProductInCast() {
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/orders/" + userDto.username,
+        url: urlServer + "v1/api/orders/" + userDto.username,
         type: "GET",
         success: function (response) {
             if(response.code = '00') {
@@ -775,7 +775,7 @@ function getProductInCast() {
 //                 };
 //             }
 //             $.ajax({
-//                 url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
+//                 url: urlServer + "v1/api/order/update/" + cart.buyer,
 //                 type: "POST",
 //                 data: JSON.stringify(updateCastRequest),
 //                 contentType: "application/json",
@@ -840,7 +840,7 @@ function addToCastDB(idProduct, type) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
+        url: urlServer + "v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -883,7 +883,7 @@ function deleteItem(idProduct, nameColor) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
+        url: urlServer + "v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -925,7 +925,7 @@ function addItem(idProduct, nameColor) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
+        url: urlServer + "v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -972,7 +972,7 @@ function removeItem(idProduct, nameColor) {
         }]
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/order/update/" + cart.buyer,
+        url: urlServer + "v1/api/order/update/" + cart.buyer,
         type: "POST",
         data: JSON.stringify(updateCastRequest),
         contentType: "application/json",
@@ -1026,7 +1026,7 @@ function checkout() {
         return;
     }
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/order/checkout-products?idUser=" + userDto.username + "&shippingRates=" + shippingRates,
+        url: urlServer + "v1/api/order/checkout-products?idUser=" + userDto.username + "&shippingRates=" + shippingRates,
         type: "PUT",
         processData: false,
         success: function (response) {
@@ -1039,7 +1039,7 @@ function checkout() {
                     && order.listProduct != null
                     && order.listProduct.length != null
                     && order.listProduct.length > 0) {
-                    window.location.href = "http://localhost:8080/checkout"
+                    window.location.href = urlClient + "checkout"
                 }else {
                     toastr.success('Checkout error!', response.message);
                 }
@@ -1082,7 +1082,7 @@ function addComment(idProduct) {
         star: parseInt(star)
     };
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/comment/" + idProduct,
+        url: urlServer + "v1/api/comment/" + idProduct,
         type: "POST",
         data: JSON.stringify(comment),
         contentType: "application/json",
@@ -1121,7 +1121,7 @@ function likeCommet(idCommet) {
         return;
     }
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/like-comment?idProduct=" + idProduct
+        url: urlServer + "v1/api/like-comment?idProduct=" + idProduct
             + "&idUser=" + userDto.username + "&idCommet=" + idCommet,
         type: "PUT",
         success: function (response) {
@@ -1182,7 +1182,7 @@ function contactUs() {
         "email": email, "subject" : subject, "message": message};
 
     $.ajax({
-        url: "http://localhost:8099/aroma/v1/api/user/contact-us",
+        url: urlServer + "v1/api/user/contact-us",
         type: "POST",
         data: datajson,
         success: function (response) {
@@ -1210,7 +1210,7 @@ for (var i = 0; i < imageFace.length; i++) {
         var formData = new FormData();
         formData.append('file', imageProduct.files[0]);
         $.ajax({
-            url: 'http://localhost:8099/aroma/v1/api/upload',
+            url: urlServer + 'v1/api/upload',
             type: 'POST',
             data: formData,
             processData: false,

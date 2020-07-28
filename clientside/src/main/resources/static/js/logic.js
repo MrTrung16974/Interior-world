@@ -1,3 +1,7 @@
+const urlServer = "http://localhost:8099/aroma/";
+const urlClient = "http://localhost:8080/";
+
+
 // khai báo biến
 var type = "";
 var material = "";
@@ -439,9 +443,9 @@ $(document).ready(function() {
 //Load need login page to view
 function loadPage(url) {
     if(token != null && token != "") {
-        window.location.href = "http://localhost:8080/" + url;
+        window.location.href = urlClient + url;
     }else {
-        window.location.href = "http://localhost:8080/login"
+        window.location.href = urlClient + "login";
 
     }
 }
