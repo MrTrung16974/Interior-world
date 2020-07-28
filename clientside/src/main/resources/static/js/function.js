@@ -1106,11 +1106,11 @@ function addComment(idProduct) {
 }
 function likeCommet(idCommet) {
     var idProduct = getParameterByName('id');
-    if(idProduct == null && idProduct == "") {
+    if(idProduct == null || idProduct == "") {
         toastr.warning('An error occurred . Please try again!');
         return;
     }
-    if(idCommet == null && idCommet == "") {
+    if(idCommet == null || idCommet == "") {
         toastr.warning('An error occurred . Please try again!');
         return;
     }
@@ -1136,6 +1136,60 @@ function likeCommet(idCommet) {
                 rederComentProduct(comment);
             }else {
                 toastr.success('Null data', "HAHA")
+            }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
+}
+function contacEnterUs (e) {
+    if(e.keyCode === 13) {
+        contactUs();
+    }
+}
+
+function contactUs() {
+    var name = $("input#name").val().trim();
+    var email = $("input#email").val().trim();
+    var subject = $("input#subject").val().trim();
+    var message = $("textarea#message").val().trim();
+    if(name == null || name == "") {
+        toastr.warning('You cannot leave the name blank!');
+        return;
+    }
+    if(subject == null || subject == "") {
+        toastr.warning('You cannot leave the subject blank!');
+        return;
+    }
+    if(email == null || email == "") {
+        toastr.warning('You cannot leave the email blank!');
+        return;
+    }
+    if(message == null || message == "") {
+        toastr.warning('You cannot leave the message blank!');
+        return;
+    }
+    shopLoading();
+    if(!checkLoginDto()) {
+        toastr.warning('You need login!');
+        hideLoading();
+        return;
+    }
+    var datajson = {"userName": userDto.username, "name": name,
+        "email": email, "subject" : subject, "message": message};
+
+    $.ajax({
+        url: "http://localhost:8099/aroma/v1/api/user/contact-us",
+        type: "POST",
+        data: datajson,
+        success: function (response) {
+            if (response.code == "00") {
+                toastr.success('Send message success!', response.data);
+            }else {
+                toastr.success('Send mesage error!', response.message);
             }
             hideLoading();
         },

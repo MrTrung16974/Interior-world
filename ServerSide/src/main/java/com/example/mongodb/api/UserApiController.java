@@ -385,4 +385,27 @@ public class UserApiController {
 
         return response;
     }
+
+    @PostMapping("/user/contact-us")
+    public BaseResponse contactUs(@RequestParam("userName") String userName,
+                                  @RequestParam("name") String name,
+                                  @RequestParam("email") String email,
+                                  @RequestParam("subject") String subject,
+                                  @RequestParam("message") String message){
+        BaseResponse response = new BaseResponse();
+        Optional<User> optUser = userRepository.findByUsername(userName);
+        User exitUser = optUser.get();
+
+        if(!optUser.isPresent()) {
+            response.setCode("99");
+            response.setMessage("Found not user");
+            response.setData(null);
+            return response;
+        }else {
+            response.setMessage("Send message success!");
+            response.setCode("00");
+            response.setData(name);
+        }
+        return response;
+    }
 }
