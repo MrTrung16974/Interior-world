@@ -171,8 +171,8 @@
                             <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
                             <p>Harvey Specter</p>
                         </div>
-                        <div class="messages">
-                            <ul>
+                        <form id="message-form" class="messages">
+                            <ul id="message-area">
                                 <li class="sent">
                                     <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
                                     <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
@@ -181,37 +181,13 @@
                                     <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
                                     <p>When you're backed against the wall, break the god damn thing down.</p>
                                 </li>
-                                <li class="replies">
-                                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                                    <p>Excuses don't win championships.</p>
-                                </li>
-                                <li class="sent">
-                                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                                    <p>Oh yeah, did Michael Jordan tell you that?</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                                    <p>No, I told him that.</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                                    <p>What are your choices when someone puts a gun to your head?</p>
-                                </li>
-                                <li class="sent">
-                                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                                    <p>What are you talking about? You do what they say or they shoot you.</p>
-                                </li>
-                                <li class="replies">
-                                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                                    <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                                </li>
                             </ul>
-                        </div>
+                        </form>
                         <div class="message-input">
                             <div class="wrap">
-                                <input type="text" placeholder="Write your message..." />
+                                <input id="input-message" type="text" placeholder="Write your message..." />
                                 <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                                <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                <button class="submit" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
@@ -242,7 +218,123 @@
 <!-- Script -->
 <footer th:replace="/component/footer :: script-area"></footer>
 <!-- End of Script -->
+<script th:inline="javascript">
+    var username = [[${username}]];
+    'use strict';
 
+    var usernamePage = document.querySelector('#username-page');
+    var chatPage = document.querySelector('#chat-page');
+    // var usernameForm = document.querySelector('#chat-form');
+    var messageForm = document.querySelector('#message-form');
+    var messageInput = document.querySelector('#input-message');
+    var messageArea = document.querySelector('#message-area');
+
+    var pathname = window.location.pathname;
+    // Returns path only (/path/example.html)
+
+    var stompClient = null;
+    var message = null;
+
+    var colors = [
+        '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+        '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+    ];
+
+    function connect(event) {
+        if(username) {
+            var socket = new SockJS('/aroma/ws');
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, onConnected, onError);
+        }
+    }
+
+
+    function onConnected() {
+        // Subscribe to the Public Topic
+        stompClient.subscribe('/aroma/topic/public', onMessageReceived);
+
+        // Tell your username to the server
+        stompClient.send("/aroma/app/chat.addUser",
+            {},
+            JSON.stringify({sender: username, type: 'JOIN'})
+        )
+
+    }
+
+
+    function onError(error) {
+        toastr.error('Could not connect to WebSocket server. Please refresh this page to try again!');
+    }
+
+
+    function sendMessage(event) {
+        var messageContent = messageInput.value.trim();
+        if(messageContent && stompClient) {
+            var chatMessage = {
+                sender: username,
+                content: messageInput.value,
+                type: 'CHAT'
+            };
+            stompClient.send("/aroma/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+            messageInput.value = '';
+        }
+        event.preventDefault();
+    }
+
+
+    function onMessageReceived(payload) {
+        var message = JSON.parse(payload.body);
+
+        var messageElement = document.createElement('li');
+
+        if(message.type === 'JOIN') {
+            messageElement.classList.add('event-message');
+            message.content = message.sender + ' joined!';
+        } else if (message.type === 'LEAVE') {
+            messageElement.classList.add('event-message');
+            message.content = message.sender + ' left!';
+        } else {
+            messageElement.classList.add('chat-message');
+
+            var avatarElement = document.createElement('i');
+            var avatarText = document.createTextNode(message.sender[0]);
+            avatarElement.appendChild(avatarText);
+            avatarElement.style['background-color'] = getAvatarColor(message.sender);
+
+            messageElement.appendChild(avatarElement);
+
+            var usernameElement = document.createElement('span');
+            var usernameText = document.createTextNode(message.sender);
+            usernameElement.appendChild(usernameText);
+            messageElement.appendChild(usernameElement);
+        }
+
+        var textElement = document.createElement('p');
+        var messageText = document.createTextNode(message.content);
+        textElement.appendChild(messageText);
+
+        messageElement.appendChild(textElement);
+
+        messageArea.appendChild(messageElement);
+        messageArea.scrollTop = messageArea.scrollHeight;
+    }
+
+
+    function getAvatarColor(messageSender) {
+        var hash = 0;
+        for (var i = 0; i < messageSender.length; i++) {
+            hash = 31 * hash + messageSender.charCodeAt(i);
+        }
+        var index = Math.abs(hash % colors.length);
+        return colors[index];
+    }
+    if(pathname == "/aroma/user/chats") {
+        connect(event);
+    }
+    // usernameForm.addEventListener('click', connect, true)
+    messageForm.addEventListener('submit', sendMessage, true)
+</script>
 </body>
 
 </html>

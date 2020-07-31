@@ -1055,6 +1055,93 @@ function checkout() {
     });
 }
 
+function payContactus() {
+    let phone = $("input#phone").val().trim();
+    let email = $('input#email').val().trim();
+    let fullName = $('input#fullName').val().trim();
+    let billingAddress = $('input#billing-address').val().trim();
+    let shippingAddress = $('input#shipping-address').val().trim();
+    let noteSeller = $('textarea#message').val().trim();
+    let paymentType = $('input[name="payment"]:checked').val();
+
+    if(typeof cart.listProduct == "undefined"
+        || cart.listProduct == null
+        || cart.listProduct.length == null
+        || cart.listProduct .length < 0) {
+        toastr.warning('You do not have products to checkout! Please select a product');
+        return;
+    }
+    if(order.listProduct .length < 0) {
+        toastr.warning('You need to contact us to pay for old orders! To be able to continue ordering!');
+        return;
+    }
+    if(phone == "" || phone == null) {
+        toastr.warning('Phone field must not be blank');
+        return;
+    }
+    if(email == "" || email == null) {
+        toastr.warning('Email field must not be blank');
+        return;
+    }
+    if(fullName == "" || fullName == null) {
+        toastr.warning('Full Name field must not be blank');
+        return;
+    }
+    if(shippingAddress == "" || shippingAddress == null) {
+        toastr.warning('Shipping Address field must not be blank');
+        return;
+    }
+    if(billingAddress == "" || billingAddress == null) {
+        toastr.warning('Billing Address field must not be blank');
+        return;
+    }
+    if(paymentType == "" || paymentType == null) {
+        toastr.warning('You need to choose payment type');
+        return;
+    }
+    if(!$('input[name="accept-terms"]').is(":checked")) {
+        toastr.warning('You need to accept the terms!');
+        return;
+    }
+
+    shopLoading();
+    if(!checkLoginDto()) {
+        toastr.warning('You need login!');
+        hideLoading();
+        return;
+    }
+    $.ajax({
+        url: urlServer + "v1/api/order/contactus-products?userName=" + userDto.username +
+            "&phone=" + phone + "&email=" + email +
+            "&fullName=" + fullName + "&billingAddress=" + billingAddress + "&shippingAddress" + shippingAddress
+            + "&paymentType=" + paymentType + "&noteSeller=" + noteSeller,
+        type: "PUT",
+        processData: false,
+        success: function (response) {
+            // server trả về HTTP status code là 200 => Thành công
+            //hàm đc thực thi khi request thành công không có lỗi
+            if(response.code == "00") {
+                order = response.data;
+                toastr.success('Checkout success!', response.message);
+                if(typeof order.listProduct != "undefined"
+                    && order.listProduct != null
+                    && order.listProduct.length != null
+                    && order.listProduct.length > 0) {
+                    window.location.href = urlClient + "confirmation"
+                }else {
+                    toastr.success('Checkout error!', response.message);
+                }
+            }else {
+                toastr.success('Checkout server error !', response.message);
+            }
+            hideLoading();
+        },
+        error: function () {
+            hideLoading();
+            toastr.error('An error occurred . Please try again');
+        }
+    });
+}
 
 // comment
 function addComment(idProduct) {
@@ -1145,12 +1232,12 @@ function likeCommet(idCommet) {
         }
     });
 }
+
 function contacEnterUs (e) {
     if(e.keyCode === 13) {
         contactUs();
     }
 }
-
 function contactUs() {
     var name = $("input#name").val().trim();
     var email = $("input#email").val().trim();
@@ -1178,7 +1265,7 @@ function contactUs() {
         hideLoading();
         return;
     }
-    var datajson = {"userName": userDto.username, "name": name,
+    let datajson = {"userName": userDto.username, "name": name,
         "email": email, "subject" : subject, "message": message};
 
     $.ajax({

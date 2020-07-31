@@ -31,24 +31,28 @@
                     <h3>Billing Details</h3>
                     <form class="row contact_form" action="#" id="billing-details" method="post" novalidate="novalidate">
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="username" placeholder="First name" name="name">
-                            <span class="placeholder" data-placeholder="User name" ></span>
+                            <input type="text" class="form-control" id="name" placeholder="First name" name="name">
+                            <span class="placeholder" data-placeholder="User name"></span>
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="fullname" name="name" placeholder="Last name">
+                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Last name">
                             <span class="placeholder" data-placeholder="Full name"></span>
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="number" name="number" placeholder="Phone number">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number">
                             <span class="placeholder" data-placeholder="Phone number"></span>
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="email"  name="compemailany" placeholder="Email Address">
+                            <input type="text" class="form-control" id="email"  name="email" placeholder="Email Address">
                             <span class="placeholder" data-placeholder="Email Address"></span>
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="add1" name="add1"  placeholder="Address line 01">
-                            <span class="placeholder" data-placeholder="Address line 01"></span>
+                            <input type="text" class="form-control" id="billing-address" name="billing-address" placeholder="Billing Address">
+                            <span class="placeholder" data-placeholder="Billing Address"></span>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" id="shipping-address" name="shipping-address"  placeholder="Shipping Address">
+                            <span class="placeholder" data-placeholder="Shipping Address"></span>
                         </div>
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
@@ -81,7 +85,7 @@
                         </ul>
                         <div class="payment_item">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="selector">
+                                <input type="radio" value="Check payments" id="f-option5" name="payment">
                                 <label for="f-option5">Check payments</label>
                                 <div class="check"></div>
                             </div>
@@ -90,7 +94,7 @@
                         </div>
                         <div class="payment_item active">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option6" name="selector">
+                                <input type="radio" value="Paypal" id="f-option6" name="payment">
                                 <label for="f-option6">Paypal </label>
                                 <img src="img/product/card.jpg" alt="">
                                 <div class="check"></div>
@@ -99,12 +103,12 @@
                                 account.</p>
                         </div>
                         <div class="creat_account">
-                            <input type="checkbox" id="f-option4" name="selector">
+                            <input type="checkbox" id="f-option4" name="accept-terms">
                             <label for="f-option4">I’ve read and accept the </label>
                             <a href="#">terms & conditions*</a>
                         </div>
                         <div class="text-center">
-                          <a class="button button-paypal" href="#">Contact us to buy</a>
+                          <a class="button button-paypal" onclick="payContactus()">Contact us to buy</a>
                         </div>
                     </div>
                 </div>

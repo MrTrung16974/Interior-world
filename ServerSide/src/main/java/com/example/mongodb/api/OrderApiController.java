@@ -278,7 +278,7 @@ public class OrderApiController {
                 exits.setCreatedAt(new Date());
                 orderRepository.save(exits);
                 response.setCode("00");
-                response.setMessage("'Find order thành công for" + idUser);
+                response.setMessage("'Successful product check out by" + idUser);
                 response.setData(exits);
             }
         }catch (Exception e) {
@@ -291,18 +291,20 @@ public class OrderApiController {
 
     //    contactus product now in user
     @PutMapping("/order/contactus-products")
-    public BaseResponse contactusProductInCast(@RequestParam("idUser") String idUser,
+    public BaseResponse contactusProductInCast(@RequestParam("userName") String userName,
                                                @RequestParam("phone") String phone,
                                                @RequestParam("email") String email,
                                                @RequestParam("fullName") String fullName,
-                                               @RequestParam("address") String address,
-                                               @RequestParam("paymentType") String paymentType) {
+                                               @RequestParam("billingAddress") String billingAddress,
+                                               @RequestParam("shippingAddress") String shippingAddress,
+                                               @RequestParam("paymentType") String paymentType,
+                                               @RequestParam("noteSeller") String noteSeller) {
         BaseResponse response = new BaseResponse();
-        Optional<Order> optionalCheckoutOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
+        Optional<Order> optionalCheckoutOrder = orderRepository.findByBuyerAndStatus(userName, 2);
 //        1, new account
 //        2, Just Order
         try{
-            if(idUser == null) {
+            if(userName == null) {
                 throw new Exception("You need login!");
             }
             if (!optionalCheckoutOrder.isPresent()) {
@@ -327,13 +329,19 @@ public class OrderApiController {
                 if(paymentType != null) {
                     exits.setPaymentType(paymentType);
                 }
-                if(address != null) {
-                    exits.setAddress(address);
+                if(billingAddress != null) {
+                    exits.setBillingAddress(billingAddress);
+                }
+                if(shippingAddress != null) {
+                    exits.setShippingAddress(shippingAddress);
+                }
+                if(noteSeller != null) {
+                    exits.setNoteSeller(noteSeller);
                 }
                 exits.setCreatedAt(new Date());
                 orderRepository.save(exits);
                 response.setCode("00");
-                response.setMessage("'Find order thành công for" + idUser);
+                response.setMessage("Successful product payment by " + userName);
                 response.setData(exits);
             }
         }catch (Exception e) {

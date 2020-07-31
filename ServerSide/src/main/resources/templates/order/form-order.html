@@ -96,9 +96,17 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Address </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Billing Address </label>
                                             <div class="col-sm-9">
-                                                <input type="text"  class="form-control" th:field="*{address}" maxlength="250"/>
+                                                <input type="text"  class="form-control" th:field="*{billingAddress}" maxlength="250"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Shipping Address </label>
+                                            <div class="col-sm-9">
+                                                <input type="text"  class="form-control" th:field="*{shippingAddress}" maxlength="250"/>
                                             </div>
                                         </div>
                                     </div>
@@ -225,7 +233,7 @@
                 },
             },
             messages: {
-                username: "Username must not be blank and no more than 30 characters. Only alphanumeric characters are allowed"
+                username: "Username must not be blank and no more than 30 characters. Only alphanumeric characters are allowed",
                 status: "Status field must not be blank"
             }
         });

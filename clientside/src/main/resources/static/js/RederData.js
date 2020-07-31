@@ -649,25 +649,29 @@ function rederInfoUserDataCheckout() {
         $("#billing-details").empty();
         $("#billing-details").html(
             `<div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" value="${userDto.username ? userDto.username : ''}" id="username" placeholder="First name" name="name">
+                <input type="text" class="form-control" disabled value="${userDto.username ? userDto.username : ''}" id="name" placeholder="First name" name="name">
                 <span class="placeholder" data-placeholder="User name" ></span>
             </div>
             <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" value="${userDto.fullName ? userDto.fullName : ''}" id="fullname" name="name" placeholder="Last name">
+                <input type="text" class="form-control" value="${userDto.fullName ? userDto.fullName : ''}" id="fullName" name="fullName" placeholder="Last name">
                 <span class="placeholder" data-placeholder="Full name"></span>
             </div>
             <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number"  value="${userDto.phone ? userDto.phone : ''}"  name="number" placeholder="Phone number">
+                <input type="text" class="form-control" id="phone"  value="${userDto.phone ? userDto.phone : ''}"  name="phone" placeholder="Phone number">
                 <span class="placeholder" data-placeholder="Phone number"></span>
             </div>
             <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email"  value="${userDto.email ? userDto.email : ''}"  name="compemailany" placeholder="Email Address">
+                <input type="text" class="form-control" id="email"  value="${userDto.email ? userDto.email : ''}"  name="email" placeholder="Email Address">
                 <span class="placeholder" data-placeholder="Email Address"></span>
             </div>
             <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add1"  value="${userDto.address ? userDto.address : ''}"  placeholder="Address line 01">
-                <span class="placeholder" data-placeholder="Address line 01"></span>
-            </div>    
+                <input type="text" class="form-control" id="billing-address" name="billing-address"  value="${userDto.address ? userDto.address : ''}"  placeholder="Billing Address">
+                <span class="placeholder" data-placeholder="Billing Address"></span>
+            </div>
+            <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="shipping-address" name="shipping-address"  value="${userDto.address ? userDto.address : ''}" placeholder="Shipping Address">
+                <span class="placeholder" data-placeholder="Shipping Address"></span>
+            </div>      
             <div class="col-md-12 form-group">
                 <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
             </div>

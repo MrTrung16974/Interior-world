@@ -1,24 +1,22 @@
 package com.example.mongodb.model;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
-public class ChatMessage {
+@Document(collation = "sa_chat")
+public class Chat {
+    @Id
     private String id;
-    private MessageType type;
-    private String content;
+    @Field("lst_message")
+    private List<String> lstMessage;
+    @Field("sender")
     private String sender;
+    @Field("createAt")
     private Date createAt;
-
-    public enum MessageType {
-        CHAT,
-        JOIN,
-        LEAVE
-    }
 
     public String getId() {
         return id;
@@ -28,20 +26,12 @@ public class ChatMessage {
         this.id = id;
     }
 
-    public MessageType getType() {
-        return type;
+    public List<String> getLstMessage() {
+        return lstMessage;
     }
 
-    public void setType(MessageType type) {
-        this.type = type;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setLstMessage(List<String> lstMessage) {
+        this.lstMessage = lstMessage;
     }
 
     public String getSender() {

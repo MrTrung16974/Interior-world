@@ -47,7 +47,7 @@ public class ProductApIController {
     @PostMapping("/upload")
     public String singleFileUpload(@RequestParam("file") MultipartFile file) {
         String fileName = "";
-        String fileLink = "http://localhost:8099/aroma/link/";
+        String fileLink = "https://aromaserver16974.herokuapp.com/aroma/link/";
         try {
             if(file.isEmpty()) {
                 throw new Exception();

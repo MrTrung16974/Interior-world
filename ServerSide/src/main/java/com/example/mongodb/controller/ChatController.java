@@ -34,7 +34,7 @@ public class ChatController {
         String tag = buildLogTag(request, principal, "Chat User");
         LOGGER.debug(LOG_FORMAT, tag, "List product view");
         ModelAndView mv = new ModelAndView("chat");
-        mv.addObject("lstRoles",roleRepository.findAll());
+        mv.addObject("username",principal.getName());
         LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
         return mv;
     }

@@ -32,8 +32,10 @@ public class Order {
     @Field("createdAt")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "Asia/Saigon")
     private Date createdAt;
-    @Field("address")
-    private String address;
+    @Field("shipping_address")
+    private String shippingAddress;
+    @Field("billing_address")
+    private String billingAddress;
     @Field("payment_type")
     private String paymentType;
     @Field("phone")
@@ -42,6 +44,8 @@ public class Order {
     private String email;
     @Field("full_name")
     private String fullName;
+    @Field("note_seller")
+    private String noteSeller;
     @Field("status")
     private Integer status;
 
@@ -98,6 +102,14 @@ public class Order {
         this.fullName = fullName;
     }
 
+    public String getNoteSeller() {
+        return noteSeller;
+    }
+
+    public void setNoteSeller(String noteSeller) {
+        this.noteSeller = noteSeller;
+    }
+
     public void setListProduct(List<ProductModel> listProduct) {
         this.listProduct = listProduct;
     }
@@ -150,12 +162,20 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    public String getAddress() {
-        return address;
+    public String getShippingAddress() {
+        return shippingAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public Integer getStatus() {

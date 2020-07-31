@@ -145,13 +145,14 @@ public class OrderController {
                                       @RequestParam("totalPrice") Integer totalPrice,
                                       @RequestParam("flatRateShipping") Integer flatRateShipping,
                                       @RequestParam("totalProductOrder") Integer totalProductOrder,
-                                      @RequestParam("address") String address,
+                                      @RequestParam("billingAddress") String billingAddress,
+                                      @RequestParam("shippingAddress") String shippingAddress,
                                       @RequestParam("status") Integer status,
                                      Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit User");
         LOGGER.debug(LOG_FORMAT + " shippingRates: {}, totalPrice: {}" +
-                ", flatRateShipping: {}, totalProductOrder: {}, address: {}, status: {}", tag, "Edit Order.",
-                id, shippingRates, totalPrice, flatRateShipping, totalProductOrder, address, status);
+                ", flatRateShipping: {}, totalProductOrder: {}, billingAddress: {}, shippingAddress: {}, status: {}", tag, "Edit Order.",
+                id, shippingRates, totalPrice, flatRateShipping, totalProductOrder, billingAddress, shippingAddress, status);
         Order checkOrder = orderRepository.findById(id).get();
         if (checkOrder == null) {
             LOGGER.error(LOG_FORMAT, tag, "Order not found:" + id);
@@ -172,8 +173,11 @@ public class OrderController {
             if(!Utils.checkNullOrEmpty(totalProductOrder)) {
                 checkOrder.setTotalProductOrder(totalProductOrder);
             }
-            if(!Utils.checkNullOrEmpty(address)) {
-                checkOrder.setAddress(address);
+            if(!Utils.checkNullOrEmpty(billingAddress)) {
+                checkOrder.setBillingAddress(billingAddress);
+            }
+            if(!Utils.checkNullOrEmpty(shippingAddress)) {
+                checkOrder.setShippingAddress(shippingAddress);
             }
             if(!Utils.checkNullOrEmpty(status)) {
                 checkOrder.setStatus(status);
