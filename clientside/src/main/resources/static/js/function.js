@@ -89,7 +89,7 @@ $.ajax({
 
 //check the user already logged
 // find product all
-if(pathname == "/home" || pathname === "/") {
+if(pathname == "/home" || pathname == "/") {
     /* ------- hero carousel -------*/
     //Javascript
     $(document).ready(function(){
@@ -1108,10 +1108,10 @@ function payContactus() {
     let noteSeller = $('textarea#message').val().trim();
     let paymentType = $('input[name="payment"]:checked').val();
 
-    if(typeof cart.listProduct == "undefined"
-        || cart.listProduct == null
-        || cart.listProduct.length == null
-        || cart.listProduct .length < 0) {
+    if(typeof order.listProduct == "undefined"
+        || order.listProduct == null
+        || order.listProduct.length == null
+        || order.listProduct .length < 0) {
         toastr.warning('You do not have products to checkout! Please select a product');
         return;
     }
@@ -1157,7 +1157,7 @@ function payContactus() {
     $.ajax({
         url: urlServer + "v1/api/order/contactus-products?userName=" + userDto.username +
             "&phone=" + phone + "&email=" + email +
-            "&fullName=" + fullName + "&billingAddress=" + billingAddress + "&shippingAddress" + shippingAddress
+            "&fullName=" + fullName + "&billingAddress=" + billingAddress + "&shippingAddress=" + shippingAddress
             + "&paymentType=" + paymentType + "&noteSeller=" + noteSeller,
         type: "PUT",
         processData: false,
@@ -1172,7 +1172,8 @@ function payContactus() {
                     && order.listProduct.length != null
                     && order.listProduct.length > 0) {
                     orderConfirmation = response.data;
-                    window.location.href = urlClient + "confirmation"
+                    console.log(orderConfirmation);
+                    window.location.href = urlClient + "confirmation?id=" + response.data.id;
                 }else {
                     toastr.success('Payment error!', response.message);
                 }

@@ -157,14 +157,22 @@
     <!-- Chat js -->
     <script th:src="@{/js/chat.js}"></script>
     <script th:inline="javascript">
-        if(typeof orderConfirmation != "undefined"
-            && orderConfirmation != null
-            && orderConfirmation.listProduct.length != null
-            && orderConfirmation.listProduct.length > 0) {
-            rederInfoUserDataPayMent(orderConfirmation);
-        }else {
-            rederInfoUserDataPayMent(null);
+      var idOrder = new URLSearchParams(window.location.search).get("id");
+
+      $.ajax({
+        url: urlServer + "v1/api/order-single/" + idOrder,
+        type: "GET",
+        success: function (response) {
+          if (response.code == "00") {
+              rederInfoUserDataPayMent(response.data);
+          } else {
+              rederInfoUserDataPayMent(null);
+          }
+        },
+        error: function (response) {
+          toastr.error('An error occurred . Please try again', response.message);
         }
+      });
     </script>
 </body>
 </html>

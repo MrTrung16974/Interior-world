@@ -758,7 +758,7 @@ function rederInfoUserDataPayMent(order) {
                     </tr>
                     <tr>
                       <td>Total</td>
-                      <td>: ${order.flatRateShipping != null ? order.flatRateShipping : ""}</td>
+                      <td>: ${order.flatRateShipping != null ? formatter.format(order.flatRateShipping) : "$0"}</td>
                     </tr>
                     <tr>
                       <td>Payment method</td>

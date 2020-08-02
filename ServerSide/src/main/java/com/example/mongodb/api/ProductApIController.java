@@ -133,14 +133,14 @@ public class ProductApIController {
         BaseResponse response = new BaseResponse();
         try {
             Optional<List<Order>> listLatestProduct = orderRepository.findAllByStatus(1);
-            Optional<List<Product>> listAllPrduct = Optional.of(productRepository.findAll());
-            if (!listLatestProduct.isPresent() && !listAllPrduct.isPresent()) {
+            Optional<List<Product>> listAllProduct = Optional.of(productRepository.findAll());
+            if (!listLatestProduct.isPresent() && !listAllProduct.isPresent()) {
                 response.setCode("99");
                 response.setMessage("Data not found");
                 response.setData(null);
             } else {
                 List<Order> listExitProduct = listLatestProduct.get();
-                List<Product> listAllExitProduct = listAllPrduct.get();
+                List<Product> listAllExitProduct = listAllProduct.get();
                 List<ProductModel> lstProductBestSellers = new ArrayList<>();
                 Set<Product> lstDuplicateProductBestSellers = new HashSet<>();
 

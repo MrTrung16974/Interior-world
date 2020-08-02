@@ -44,8 +44,6 @@ public class ProductService {
         }
         if(color > 0 && color != null) {
             query.addCriteria(Criteria.where("price_for_color").elemMatch(Criteria.where("color").is(color)));
-//            query.addCriteria(Criteria.where("color").is(color).and("price_for_color.color").is(color));
-//            query.fields().include("color").position("price_for_color", color);
         }
         //nếu khác null là phân trang và sắp xếp theo pageanable
         if(pageable != null){
@@ -88,5 +86,4 @@ public class ProductService {
         List<Product> lstProduct = mongoTemplate.find(query, Product.class);
         return lstProduct;
     }
-//
 }

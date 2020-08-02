@@ -49,9 +49,6 @@ var order = {
     listProduct: [],
     status: ""
 };
-var orderConfirmation = {
-
-}
 // single commnet
 var comment = {
     image: "",

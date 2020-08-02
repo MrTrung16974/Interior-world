@@ -35,6 +35,26 @@ public class OrderApiController {
     @Autowired
     ProductRepository productRepository;
 
+    //    get product prodcut now in user
+    @RequestMapping("/order-single/{idOrder}")
+    public BaseResponse getSingleOrderById(@PathVariable("idOrder") String idOrder) {
+        BaseResponse response = new BaseResponse();
+        Optional<Order> optionalOrder = orderRepository.findById(idOrder);
+//        1, new account
+//        2, Just Order
+        if (!optionalOrder.isPresent()) {
+            response.setCode("99");
+            response.setMessage("Data not found");
+            response.setData(null);
+        }else {
+            Order exits = optionalOrder.get();
+            response.setCode("00");
+            response.setMessage("'Find order success for" + idOrder);
+            response.setData(exits);
+        }
+        return response;
+    }
+
 //    get product prodcut now in user
     @RequestMapping("/order/{idUser}")
     public BaseResponse getSingleOrderByUser(@PathVariable("idUser") String idUser) {
@@ -75,7 +95,7 @@ public class OrderApiController {
         }else {
             Order exits = optionalOrder.get();
             response.setCode("00");
-            response.setMessage("'Find order thành công for" + idUser);
+            response.setMessage("'Find order success for" + idUser);
             response.setData(exits);
         }
         return response;
