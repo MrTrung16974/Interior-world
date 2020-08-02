@@ -89,6 +89,103 @@ $.ajax({
 
 //check the user already logged
 // find product all
+if(pathname == "/home" || pathname === "/") {
+    /* ------- hero carousel -------*/
+    //Javascript
+    $(document).ready(function(){
+        $('.hero-carousel').owlCarousel();
+    });
+
+    var owl = $('.hero-carousel');
+
+    owl.owlCarousel({
+        margin: 10,
+        autoplay:false,
+        autoplayTimeout: 5000,
+        loop:true,
+        nav:false,
+        dots:false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items: 2
+            },
+            810:{
+                items:3
+            }
+        }
+    });
+    $.ajax({
+        url: urlServer + "v1/api/product/latest",
+        type: "GET",
+        dataType: 'json',
+        success: function(response) {
+            if(response.code == "00") {
+                rederDataLatest(response.data);
+            }else {
+                toastr.warning('Find not data latest!');
+            }
+        },
+        error: function (response) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
+    /* ------- hero carousel -------*/
+
+    /*------- Best Seller Carousel -------*/
+    var owlCarousel = null;
+    var owlBestSeller = null;
+    var bestSellers = () => {
+        //Javascript
+        $(document).ready(function(){
+            $('#bestSellerCarousel').owlCarousel();
+        });
+        owlCarousel = $('.owl-carousel');
+        owlBestSeller = $('#bestSellerCarousel');
+        if(owlCarousel.length > 0){
+            owlBestSeller.owlCarousel({
+                loop:true,
+                margin:30,
+                nav:true,
+                navText: ["<i class='ti-arrow-left'></i>","<i class='ti-arrow-right'></i>"],
+                dots: false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items: 2
+                    },
+                    900:{
+                        items:3
+                    },
+                    1130:{
+                        items:4
+                    }
+                }
+            })
+        }
+        $.ajax({
+            url: urlServer + "v1/api/product/best-sellers",
+            type: "GET",
+            dataType: 'json',
+            success: function(response) {
+                if(response.code == "00") {
+                    rederDataBestSellers(response.data);
+                }else {
+                    toastr.warning('Find not data best sellers!');
+                }
+            },
+            error: function (response) {
+                toastr.error('An error occurred . Please try again', response.message);
+            }
+        });
+        /*------- Best Seller Carousel -------*/
+    }
+    bestSellers();
+}
 if(pathname == "/shop") {
     $.ajax({
         url: urlServer + "v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
