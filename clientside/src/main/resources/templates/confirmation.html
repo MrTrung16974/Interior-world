@@ -18,89 +18,61 @@
   <section class="order_details section-margin--small">
     <div class="container">
       <p class="text-center billing-alert">Thank you. Your order has been received.</p>
-      <div class="row mb-5">
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Order Info</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Order number</td>
-                <td>: 60235</td>
-              </tr>
-              <tr>
-                <td>Date</td>
-                <td>: Oct 03, 2017</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td>: USD 2210</td>
-              </tr>
-              <tr>
-                <td>Payment method</td>
-                <td>: Check payments</td>
-              </tr>
-            </table>
+        <div id="order-info" class="row mb-5">
+          <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div class="confirmation-card">
+              <h3 class="billing-title">Order Info</h3>
+              <table class="order-rable">
+                <tr>
+                  <td>Order number</td>
+                  <td>: 60235</td>
+                </tr>
+                <tr>
+                  <td>Date</td>
+                  <td>: Oct 03, 2017</td>
+                </tr>
+                <tr>
+                  <td>Total</td>
+                  <td>: USD 2210</td>
+                </tr>
+                <tr>
+                  <td>Payment method</td>
+                  <td>: Check payments</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div class="confirmation-card">
+                <h3 class="billing-title">Billing Address</h3>
+                <p>
+                    <span>Address</span>
+                    <span>: 56/8 panthapath udasduhasud audhsauhd aushdsauhd áuhdi</span>
+                </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div class="confirmation-card">
+                <h3 class="billing-title">Shipping Address</h3>
+                <p>
+                    <span>Address</span>
+                    <span>: 56/8 panthapath</span>
+                </p>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Billing Address</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: 56/8 panthapath</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Dhaka</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: Bangladesh</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 1205</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Shipping Address</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: 56/8 panthapath</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Dhaka</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: Bangladesh</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 1205</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="order_details_table">
-        <h2>Order Details</h2>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
+        <div class="order_details_table">
+          <h2>Order Details</h2>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
               <tr>
                 <th scope="col">Product</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Total</th>
               </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody id="order-product">
               <tr>
                 <td>
                   <p>Pixelstore fresh Blackberry</p>
@@ -167,10 +139,10 @@
                   <h4>$2210.00</h4>
                 </td>
               </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
     </div>
   </section>
   <!--================End Order Details Area =================-->
@@ -184,6 +156,15 @@
     <!--================ End footer Area  =================-->
     <!-- Chat js -->
     <script th:src="@{/js/chat.js}"></script>
-
+    <script th:inline="javascript">
+        if(typeof orderConfirmation != "undefined"
+            && orderConfirmation != null
+            && orderConfirmation.listProduct.length != null
+            && orderConfirmation.listProduct.length > 0) {
+            rederInfoUserDataPayMent(orderConfirmation);
+        }else {
+            rederInfoUserDataPayMent(null);
+        }
+    </script>
 </body>
 </html>

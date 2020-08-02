@@ -89,103 +89,6 @@ $.ajax({
 
 //check the user already logged
 // find product all
-if(pathname == "/home" || pathname === "/") {
-    /* ------- hero carousel -------*/
-    //Javascript
-    $(document).ready(function(){
-        $('.hero-carousel').owlCarousel();
-    });
-
-    var owl = $('.hero-carousel');
-
-    owl.owlCarousel({
-        margin: 10,
-        autoplay:false,
-        autoplayTimeout: 5000,
-        loop:true,
-        nav:false,
-        dots:false,
-        responsive:{
-            0:{
-                items:1
-            },
-            600:{
-                items: 2
-            },
-            810:{
-                items:3
-            }
-        }
-    });
-    $.ajax({
-        url: urlServer + "v1/api/product/latest",
-        type: "GET",
-        dataType: 'json',
-        success: function(response) {
-            if(response.code == "00") {
-                rederDataLatest(response.data);
-            }else {
-                toastr.warning('Find not data latest!');
-            }
-        },
-        error: function (response) {
-            toastr.error('An error occurred . Please try again', response.message);
-        }
-    });
-    /* ------- hero carousel -------*/
-
-    /*------- Best Seller Carousel -------*/
-    var owlCarousel = null;
-    var owlBestSeller = null;
-    var bestSellers = () => {
-        //Javascript
-        $(document).ready(function(){
-            $('#bestSellerCarousel').owlCarousel();
-        });
-        owlCarousel = $('.owl-carousel');
-        owlBestSeller = $('#bestSellerCarousel');
-        if(owlCarousel.length > 0){
-            owlBestSeller.owlCarousel({
-                loop:true,
-                margin:30,
-                nav:true,
-                navText: ["<i class='ti-arrow-left'></i>","<i class='ti-arrow-right'></i>"],
-                dots: false,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items: 2
-                    },
-                    900:{
-                        items:3
-                    },
-                    1130:{
-                        items:4
-                    }
-                }
-            })
-        }
-        $.ajax({
-            url: urlServer + "v1/api/product/best-sellers",
-            type: "GET",
-            dataType: 'json',
-            success: function(response) {
-                if(response.code == "00") {
-                    rederDataBestSellers(response.data);
-                }else {
-                    toastr.warning('Find not data best sellers!');
-                }
-            },
-            error: function (response) {
-                toastr.error('An error occurred . Please try again', response.message);
-            }
-        });
-        /*------- Best Seller Carousel -------*/
-    }
-    bestSellers();
-}
 if(pathname == "/shop") {
     $.ajax({
         url: urlServer + "v1/api/product/search?name=" + keyword + "&page="+currentPage+"&perPage=12",
@@ -193,7 +96,7 @@ if(pathname == "/shop") {
         success: function (response) {
             if(response.code == "00") {
                 listAllProduct = response.data.content;
-                rederData(response.data.content);
+                rederDataAllProduct(response.data.content);
                 let totalPage = response.data.totalPages;
                 forPagination(totalPage, 0);
             }else {
@@ -228,6 +131,10 @@ if(pathname == "/checkout") {
         }
     });
 }
+if(pathname == "/tracking-order") {
+    searchOrder();
+}
+
 $.ajax({
     url: urlServer + "v1/api/product/trending",
     type: "GET",
@@ -632,12 +539,12 @@ function searchProduct(page) {
             // server trả về HTTP status code là 200 => Thành công
             //hàm đc thực thi khi request thành công không có lỗi
             if (response.code == "00") {
-                rederData(response.data.content);
+                rederDataAllProduct(response.data.content);
                 listAllProduct = response.data.content;
                 let totalPage = response.data.totalPages;
                 forPagination(totalPage, page);
             } else {
-                rederData(response.data);
+                rederDataAllProduct(response.data);
                 forPagination(1, 0);
             }
             hideLoading();
@@ -666,12 +573,12 @@ function sortProduct() {
             // server trả về HTTP status code là 200 => Thành công
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
-                rederData(response.data.content);
+                rederDataAllProduct(response.data.content);
                 let totalPage = response.data.totalPages;
                 forPagination(totalPage, 0);
             }
             else {
-                rederData(response.data);
+                rederDataAllProduct(response.data);
                 forPagination(1, 0);
             }
             hideLoading();
@@ -703,7 +610,7 @@ function addFavouriteUser(idProduct) {
                     toastr.success('remove favourite user Success!', "HAHA");
                 }
                 loadUserDto();
-                rederData(listAllProduct);
+                rederDataAllProduct(listAllProduct);
                 if(pathname = "/home") {
                     rederDataTrending(listTrendingProduct);
                 }
@@ -723,7 +630,7 @@ function addFavouriteUser(idProduct) {
 // cart product
 function getProductInCast() {
     $.ajax({
-        url: urlServer + "v1/api/orders/" + userDto.username,
+        url: urlServer + "v1/api/order/" + userDto.username,
         type: "GET",
         success: function (response) {
             if(response.code = '00') {
@@ -1002,6 +909,46 @@ function removeItem(idProduct, nameColor) {
     });
 }
 
+function searchEnterOrder(e) {
+    if(e.keyCode === 13) {
+        searchOrder();
+    }
+}
+
+function searchOrder() {
+    let idOrder = $('#order').val().trim();
+    let email = $('#email').val().trim();
+    if(idOrder == null || idOrder == undefined) {
+        idOrder = "";
+
+    }
+    if(email == null || email == undefined) {
+        email = "";
+    }
+    if(!checkLoginDto()) {
+        toastr.warning('You need login!');
+        return;
+    }
+    shopLoading();
+    $.ajax({
+        url: urlServer + "v1/api/order/search?idUser=" + userDto.username
+            + "&idOrder=" + idOrder + "&email=" + email,
+        type: "GET",
+        success: function (response) {
+            if(response.code = '00') {
+                rederDataAllOrder(response.data);
+            }else {
+                toastr.warning('Find not data for order!');
+            }
+            hideLoading();
+        },
+        error: function (error) {
+            toastr.error('An error occurred . Please try again', error.message);
+            hideLoading();
+        }
+    });
+}
+
 function checkout() {
     let shippingRates = $('input[name="shipping-rete"]:checked').val();
     if(typeof cart.listProduct == "undefined"
@@ -1122,17 +1069,18 @@ function payContactus() {
             //hàm đc thực thi khi request thành công không có lỗi
             if(response.code == "00") {
                 order = response.data;
-                toastr.success('Checkout success!', response.message);
+                toastr.success('Payment success!', response.message);
                 if(typeof order.listProduct != "undefined"
                     && order.listProduct != null
                     && order.listProduct.length != null
                     && order.listProduct.length > 0) {
+                    orderConfirmation = response.data;
                     window.location.href = urlClient + "confirmation"
                 }else {
-                    toastr.success('Checkout error!', response.message);
+                    toastr.success('Payment error!', response.message);
                 }
             }else {
-                toastr.success('Checkout server error !', response.message);
+                toastr.success('Payment server error !', response.message);
             }
             hideLoading();
         },

@@ -39,7 +39,7 @@ public class ControllerMapping {
         return "checkout";
     }
     @RequestMapping("/confirmation")
-    public String confirmation(){
+    public String confirmation(@RequestParam("id") String id){
         return "confirmation";
     }
     @RequestMapping("/contact")

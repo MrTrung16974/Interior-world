@@ -7,7 +7,7 @@ import com.example.mongodb.model.Product;
 import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
 import com.example.mongodb.repository.UserRepository;
-import com.example.mongodb.services.OrderServices;
+import com.example.mongodb.services.ProductService;
 import com.example.mongodb.services.StoreFileService;
 import com.example.mongodb.services.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class ProductApIController {
     OrderRepository orderRepository;
 
     @Autowired
-    OrderServices orderServices;
+    ProductService productService;
 
     @Autowired
     TokenAuthenticationService tokenAuthenticationService;
@@ -87,7 +87,7 @@ public class ProductApIController {
                     break;
             }
 //            phân trang
-            Page<Product> listProduct = orderServices.advancedSearch(name, color, material, type, pageable);
+            Page<Product> listProduct = productService.advancedSearch(name, color, material, type, pageable);
             if (!listProduct.isEmpty()) {
                 response.setCode("00");
                 response.setMessage("List actor search by key: " + name);
@@ -197,7 +197,7 @@ public class ProductApIController {
     public BaseResponse catetoryProduct(@PathVariable("type") Integer type){
         BaseResponse response = new BaseResponse();
         try {
-            List<Product> listCatetoryProduct = orderServices.findByCatetory(type);
+            List<Product> listCatetoryProduct = productService.findByCatetory(type);
             if (listCatetoryProduct.isEmpty()) {
                 response.setCode("99");
                 response.setMessage("Data not found");

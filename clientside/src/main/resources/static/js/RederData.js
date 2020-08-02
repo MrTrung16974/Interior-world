@@ -20,7 +20,7 @@ function rederBanner(data) {
 }
 
 // reder cast
-function rederData(data) {
+function rederDataAllProduct(data) {
     let checkFavourite = false;
     $("#lst-product").empty();
     if(typeof data != "undefined"
@@ -642,6 +642,50 @@ function rederDataCheckout() {
         $('#lst-product-in-cast').html("<p style='color: #1abc9c; padding: 20px;'>Checkout does not exist!</p>");
     }
 }
+function rederDataAllOrder(order) {
+    $("#content-order").empty();
+    if( typeof order != "undefined"
+        && order != null
+        && order.length != null
+        && order.length > 0) {
+        order.map(item => {
+            $("#content-order").append(`
+                <div class="order">
+                    <div class="order-header">
+                        <div class="row">
+                            <div class="col-12 col-sm-5">
+                                <div>
+                                    <i class="fas fa-shipping-fast"></i>
+                                    <span id="order_status">${findStatusOrder(item.status)}</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-7">
+                                <div>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="order_address">${item.shippingAddress}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="body-order mx-2">
+                        <div class="product-in-order">
+                            ${forProductOrder(item.listProduct)}
+                        </div>
+                        <hr />
+                        <div style="font-size: 20px;" >
+                            <span>Total : </span>
+                            <span style="color: red;">${item.flatRateShipping}</span>
+                        </div>
+                    </div>
+                </div>
+            `);
+        });
+    }else {
+        $("#content-order").text("You have not placed any orders yet!");
+    }
+}
+
 function rederInfoUserDataCheckout() {
     if(typeof userDto != "undefined"
         && userDto != null
@@ -690,6 +734,111 @@ function rederInfoUserDataCheckout() {
                 <textarea class="form-control" name="message" id="message" rows="1" placeholder="Note to the seller..."></textarea>
             </div>`
         );
+    }
+}
+function rederInfoUserDataPayMent(order) {
+    $("#order-info").empty();
+    $("#order-product").empty();
+    if(typeof userDto != "undefined"
+        && userDto != null
+        && userDto != "") {
+        $("#order-info").html(
+            `<div class="row mb-5">
+              <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <div class="confirmation-card">
+                  <h3 class="billing-title">Order Info</h3>
+                  <table class="order-rable">
+                    <tr>
+                      <td>Order number</td>
+                      <td>: ${order.id}</td>
+                    </tr>
+                    <tr>
+                      <td>Date</td>
+                      <td>: ${order.createdAt}</td>
+                    </tr>
+                    <tr>
+                      <td>Total</td>
+                      <td>: ${order.flatRateShipping != null ? order.flatRateShipping : ""}</td>
+                    </tr>
+                    <tr>
+                      <td>Payment method</td>
+                      <td>: ${order.paymentType != null ? order.paymentType : ""}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <div class="confirmation-card">
+                  <h3 class="billing-title">Billing Address</h3>
+                    <p>
+                        <span>Adderss </span>
+                        <span>:  ${order.billingAddress != null ? order.billingAddress : ""}</span>
+                    </p>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+                <div class="confirmation-card">
+                  <h3 class="billing-title">Shipping Address</h3>
+                    <p>
+                        <span>Adderss</span>
+                        <span>: ${order.shippingAddress != null ? order.shippingAddress : ""}</span>
+                    </p>
+                </div>
+              </div>
+            </div>`
+        );
+        order.listProduct.map(item => {
+            $('#order-product').append(
+                `<tr>
+                <td>
+                  <p>${item.name}</p>
+                </td>
+                <td>
+                  <h5>x ${item.number}</h5>
+                </td>
+                <td>
+                  <p>${formatter.format(item.price)}</p>
+                </td>`
+            );
+        });
+        $('#order-product').append(
+            `<tr>
+                <td>
+                  <h4>Subtotal</h4>
+                </td>
+                <td>
+                  <h5></h5>
+                </td>
+                <td>
+                  <p>${formatter.format(order.totalPrice)}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Shipping</h4>
+                </td>
+                <td>
+                  <h5></h5>
+                </td>
+                <td>
+                  <p>Flat rate: ${formatter.format(order.shippingRates)}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Total</h4>
+                </td>
+                <td>
+                  <h5></h5>
+                </td>
+                <td>
+                  <h4>${formatter.format(order.flatRateShipping)}</h4>
+                </td>
+              </tr>`
+        );
+        orderConfirmation = {};
+    }else {
+        $("p.billing-alert").text("You have not placed any orders yet!");
     }
 }
 

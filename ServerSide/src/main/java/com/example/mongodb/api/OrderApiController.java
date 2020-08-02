@@ -8,7 +8,12 @@ import com.example.mongodb.model.Product;
 import com.example.mongodb.dto.product.ProductModel;
 import com.example.mongodb.repository.OrderRepository;
 import com.example.mongodb.repository.ProductRepository;
+import com.example.mongodb.services.OrderServices;
+import com.example.mongodb.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,12 +30,14 @@ public class OrderApiController {
     OrderRepository orderRepository;
 
     @Autowired
+    OrderServices orderServices;
+
+    @Autowired
     ProductRepository productRepository;
 
-
 //    get product prodcut now in user
-    @RequestMapping("/orders/{idUser}")
-    public BaseResponse getListProductInCast(@PathVariable("idUser") String idUser) {
+    @RequestMapping("/order/{idUser}")
+    public BaseResponse getSingleOrderByUser(@PathVariable("idUser") String idUser) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 1);
 //        1, new account
@@ -56,7 +63,7 @@ public class OrderApiController {
 
     //    get product did checkout prodcut now in user
     @RequestMapping("/order/did-checkout-products/{idUser}")
-    public BaseResponse getListProductCheckoutedInCast(@PathVariable("idUser") String idUser) {
+    public BaseResponse getOrderCheckoutedByUser(@PathVariable("idUser") String idUser) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 2);
 //        1, new account
@@ -74,8 +81,48 @@ public class OrderApiController {
         return response;
     }
 
+    //    get product prodcut now in user
+    @RequestMapping("/order/search")
+    public BaseResponse getAllOrderByUser(@RequestParam("idUser") String idUser,
+                                          @RequestParam("idOrder") String idOrder,
+                                          @RequestParam("email") String email) {
+        BaseResponse response = new BaseResponse();
+
+        Order order = new Order();
+        try {
+            if(Utils.checkNullOrEmpty(idUser)) {
+                throw new Exception("You need login!");
+            }
+            if(!Utils.checkNullOrEmpty(idOrder)) {
+                order.setId(idOrder);
+            }
+            if(!Utils.checkNullOrEmpty(email)) {
+                order.setEmail(email);
+            }
+            order.setBuyer(idUser);
+
+            Optional<List<Order>> optionalOrder = Optional.ofNullable(orderServices.advancedSearch(order, 3));
+    //        1, new account
+    //        2, Just Order
+            if (!optionalOrder.isPresent()) {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+                return response;
+            }else {
+                List<Order> listExits = optionalOrder.get();
+                response.setCode("00");
+                response.setMessage("'Find order success for " + idUser);
+                response.setData(listExits);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
     @RequestMapping(value = "/order/update/{id}", method = RequestMethod.POST)
-    public  BaseResponse updateCast(@PathVariable("id") String id,
+    public  BaseResponse updateCastByUser(@PathVariable("id") String id,
             @RequestBody UpdateCastRequest updateCastRequest) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optOrder = orderRepository.findByBuyerAndStatus(id, 1);
@@ -235,6 +282,7 @@ public class OrderApiController {
             }
         }
         exitsOrder.setListProduct(productInCart);
+        exitsOrder.setCreatedAt(new Date());
         response.setCode("00");
         response.setMessage("Update giỏ hàng thành công");
         response.setData(orderRepository.save(exitsOrder));
@@ -243,7 +291,7 @@ public class OrderApiController {
 
     //    checkout product now in user
     @PutMapping("/order/checkout-products")
-    public BaseResponse checkoutProductInCast(@RequestParam("idUser") String idUser,
+    public BaseResponse checkoutProductInOrderByUser(@RequestParam("idUser") String idUser,
                                               @RequestParam("shippingRates") Integer shippingRates) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalOrder = orderRepository.findByBuyerAndStatus(idUser, 1);
@@ -276,10 +324,10 @@ public class OrderApiController {
                 exits.setTotalProductOrder(exits.getListProduct().size());
                 exits.setShippingRates(shippingRates);
                 exits.setCreatedAt(new Date());
-                orderRepository.save(exits);
+                Order orderExit = orderRepository.save(exits);
                 response.setCode("00");
                 response.setMessage("'Successful product check out by" + idUser);
-                response.setData(exits);
+                response.setData(orderExit);
             }
         }catch (Exception e) {
             response.setCode("90");
@@ -291,7 +339,7 @@ public class OrderApiController {
 
     //    contactus product now in user
     @PutMapping("/order/contactus-products")
-    public BaseResponse contactusProductInCast(@RequestParam("userName") String userName,
+    public BaseResponse contactusProductOrderByUser(@RequestParam("userName") String userName,
                                                @RequestParam("phone") String phone,
                                                @RequestParam("email") String email,
                                                @RequestParam("fullName") String fullName,
@@ -301,8 +349,6 @@ public class OrderApiController {
                                                @RequestParam("noteSeller") String noteSeller) {
         BaseResponse response = new BaseResponse();
         Optional<Order> optionalCheckoutOrder = orderRepository.findByBuyerAndStatus(userName, 2);
-//        1, new account
-//        2, Just Order
         try{
             if(userName == null) {
                 throw new Exception("You need login!");
@@ -339,10 +385,10 @@ public class OrderApiController {
                     exits.setNoteSeller(noteSeller);
                 }
                 exits.setCreatedAt(new Date());
-                orderRepository.save(exits);
+                Order orderExit = orderRepository.save(exits);
                 response.setCode("00");
                 response.setMessage("Successful product payment by " + userName);
-                response.setData(exits);
+                response.setData(orderExit);
             }
         }catch (Exception e) {
             response.setCode("90");

@@ -515,3 +515,10 @@ a.btn.btn-user {
 }
 /*--================ End account info Area =================--*/
 
+/*============Start order traking order ======================*/
+section.tracking_box_area.section-margin--small div.content-order.m-5 div.order {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+/*============End order traking order ======================*/

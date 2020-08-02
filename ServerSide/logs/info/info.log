@@ -4314,3 +4314,755 @@ java.util.NoSuchElementException: No value present
 2020-07-31 21:46:53,839 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:6, serverValue:15893}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
 2020-07-31 21:46:53,983 [http-nio-8099-exec-10] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:7, serverValue:15893}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
 2020-07-31 21:46:54,108 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:8, serverValue:15875}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:27:58,396 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Starting MongodbApplication on DESKTOP-TRTHTKE with PID 11956 (E:\LUCAS\Interior-world\ServerSide\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\ServerSide)
+2020-08-02 19:27:58,409 [restartedMain] INFO  c.e.mongodb.MongodbApplication - No active profile set, falling back to default profiles: default
+2020-08-02 19:27:58,626 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-02 19:27:58,626 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-02 19:28:02,689 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-08-02 19:28:02,946 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 239ms. Found 7 MongoDB repository interfaces.
+2020-08-02 19:28:04,687 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5cb37279' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:28:04,700 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:28:06,234 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8099 (http)
+2020-08-02 19:28:06,279 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:28:06,281 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-02 19:28:06,282 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-08-02 19:28:06,636 [restartedMain] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring embedded WebApplicationContext
+2020-08-02 19:28:06,636 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 8009 ms
+2020-08-02 19:28:07,297 [restartedMain] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0-fsosc.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='Cluster0-shard-0'}
+2020-08-02 19:28:07,363 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:28:07,520 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:28:07,523 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:28:08,822 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-02 19:28:10,516 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:106557}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:28:10,516 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:81270}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-08-02 19:28:10,516 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:72928}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-08-02 19:28:10,787 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=250967000, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:28:09 ICT 2020, lastUpdateTimeNanos=21747835608800}
+2020-08-02 19:28:10,794 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=262180600, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff000000000000000a, setVersion=1, lastWriteDate=Sun Aug 02 19:28:09 ICT 2020, lastUpdateTimeNanos=21747845808500}
+2020-08-02 19:28:10,795 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max election id to 7fffffff000000000000000a from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:28:10,796 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max set version to 1 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:28:10,796 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:28:10,801 [cluster-ClusterId{value='5f26b1571243860a057e6668', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=269697400, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:28:09 ICT 2020, lastUpdateTimeNanos=21747853317800}
+2020-08-02 19:28:11,346 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:28:11,362 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:28:11,391 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:28:11,782 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-02 19:28:12,161 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:28:13,602 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:28:13,653 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8099 (http) with context path '/aroma'
+2020-08-02 19:28:13,657 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-08-02 19:28:13,657 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:28:13,658 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-08-02 19:28:13,680 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Started MongodbApplication in 17.757 seconds (JVM running for 25.951)
+2020-08-02 19:28:46,299 [http-nio-8099-exec-1] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-02 19:28:46,300 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-02 19:28:46,379 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 79 ms
+2020-08-02 19:28:52,481 [http-nio-8099-exec-4] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:5, serverValue:100297}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:28:53,037 [http-nio-8099-exec-3] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:4, serverValue:106557}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:29:00,305 [http-nio-8099-exec-9] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:6, serverValue:101678}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:29:12,197 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-08-02 19:32:10,523 [http-nio-8099-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [/aroma] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.example.mongodb.services.OrderServices.advancedSearch(OrderServices.java:35)
+	at com.example.mongodb.api.OrderApiController.getAllOrderByUser(OrderApiController.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-08-02 19:32:18,242 [http-nio-8099-exec-10] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [/aroma] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.example.mongodb.services.OrderServices.advancedSearch(OrderServices.java:35)
+	at com.example.mongodb.api.OrderApiController.getAllOrderByUser(OrderApiController.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-08-02 19:33:00,269 [http-nio-8099-exec-4] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:7, serverValue:102820}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:34:45,285 [http-nio-8099-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [/aroma] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.example.mongodb.services.OrderServices.advancedSearch(OrderServices.java:38)
+	at com.example.mongodb.api.OrderApiController.getAllOrderByUser(OrderApiController.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-08-02 19:37:10,432 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2020-08-02 19:37:10,432 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:37:10,432 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2020-08-02 19:37:11,862 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:37:11,865 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:37:11,866 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:37:11,866 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:37:12,148 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:6, serverValue:101678}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:37:12,149 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:7, serverValue:102820}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:37:12,149 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:4, serverValue:106557}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:37:12,150 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:5, serverValue:100297}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:37:40,087 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Starting MongodbApplication on DESKTOP-TRTHTKE with PID 11436 (E:\LUCAS\Interior-world\ServerSide\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\ServerSide)
+2020-08-02 19:37:40,094 [restartedMain] INFO  c.e.mongodb.MongodbApplication - No active profile set, falling back to default profiles: default
+2020-08-02 19:37:40,213 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-02 19:37:40,213 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-02 19:37:42,182 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-08-02 19:37:42,482 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 287ms. Found 7 MongoDB repository interfaces.
+2020-08-02 19:37:43,542 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6bc54513' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:37:43,542 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:37:44,351 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8099 (http)
+2020-08-02 19:37:44,375 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:37:44,378 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-02 19:37:44,379 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-08-02 19:37:44,709 [restartedMain] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring embedded WebApplicationContext
+2020-08-02 19:37:44,710 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4497 ms
+2020-08-02 19:37:45,227 [restartedMain] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0-fsosc.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='Cluster0-shard-0'}
+2020-08-02 19:37:45,289 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:37:45,371 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:37:45,373 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:37:46,323 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-02 19:37:48,387 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:72926}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-08-02 19:37:48,387 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:81267}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-08-02 19:37:48,637 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=242583100, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:37:44 ICT 2020, lastUpdateTimeNanos=22325685047700}
+2020-08-02 19:37:48,641 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=251331300, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:37:44 ICT 2020, lastUpdateTimeNanos=22325692509200}
+2020-08-02 19:37:49,099 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:106558}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:37:49,415 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=314274900, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff000000000000000a, setVersion=1, lastWriteDate=Sun Aug 02 19:37:44 ICT 2020, lastUpdateTimeNanos=22326466890600}
+2020-08-02 19:37:49,416 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max election id to 7fffffff000000000000000a from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:37:49,417 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max set version to 1 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:37:49,417 [cluster-ClusterId{value='5f26b399723d8b22e093ad5e', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:37:49,655 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:37:49,689 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:37:49,720 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:37:50,223 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-02 19:37:50,626 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:37:52,099 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:37:52,162 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8099 (http) with context path '/aroma'
+2020-08-02 19:37:52,166 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-08-02 19:37:52,167 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:37:52,169 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-08-02 19:37:52,199 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Started MongodbApplication in 14.474 seconds (JVM running for 18.828)
+2020-08-02 19:38:50,626 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-08-02 19:38:52,377 [http-nio-8099-exec-1] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-02 19:38:52,378 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-02 19:38:52,408 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 30 ms
+2020-08-02 19:39:03,268 [http-nio-8099-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [/aroma] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.example.mongodb.services.OrderServices.advancedSearch(OrderServices.java:35)
+	at com.example.mongodb.api.OrderApiController.getAllOrderByUser(OrderApiController.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-08-02 19:39:06,814 [http-nio-8099-exec-3] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:4, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:39:09,748 [http-nio-8099-exec-5] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:5, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:39:11,057 [http-nio-8099-exec-6] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:6, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:39:11,864 [http-nio-8099-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [/aroma] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.example.mongodb.services.OrderServices.advancedSearch(OrderServices.java:38)
+	at com.example.mongodb.api.OrderApiController.getAllOrderByUser(OrderApiController.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2020-08-02 19:43:56,053 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2020-08-02 19:43:56,054 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:43:56,055 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2020-08-02 19:43:56,766 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:43:56,766 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:43:56,766 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:43:56,766 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:43:57,047 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:4, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:43:57,047 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:6, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:43:57,047 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:5, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:44:30,209 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Starting MongodbApplication on DESKTOP-TRTHTKE with PID 5532 (E:\LUCAS\Interior-world\ServerSide\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\ServerSide)
+2020-08-02 19:44:30,224 [restartedMain] INFO  c.e.mongodb.MongodbApplication - No active profile set, falling back to default profiles: default
+2020-08-02 19:44:30,406 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-02 19:44:30,407 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-02 19:44:34,255 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-08-02 19:44:34,645 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 375ms. Found 7 MongoDB repository interfaces.
+2020-08-02 19:44:36,883 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@421f215f' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:44:36,914 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:44:38,289 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8099 (http)
+2020-08-02 19:44:38,336 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:44:38,336 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-02 19:44:38,336 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-08-02 19:44:38,834 [restartedMain] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring embedded WebApplicationContext
+2020-08-02 19:44:38,838 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 8429 ms
+2020-08-02 19:44:39,650 [restartedMain] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0-fsosc.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='Cluster0-shard-0'}
+2020-08-02 19:44:39,713 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:44:39,791 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:44:39,791 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:44:40,707 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-02 19:44:42,301 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:81267}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-08-02 19:44:42,301 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:79539}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-08-02 19:44:42,301 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:44:42,555 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=260659200, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:44:34 ICT 2020, lastUpdateTimeNanos=22739616327200}
+2020-08-02 19:44:42,555 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=266565100, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:44:34 ICT 2020, lastUpdateTimeNanos=22739621181300}
+2020-08-02 19:44:42,571 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=274048700, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff000000000000000a, setVersion=1, lastWriteDate=Sun Aug 02 19:44:34 ICT 2020, lastUpdateTimeNanos=22739632167600}
+2020-08-02 19:44:42,571 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max election id to 7fffffff000000000000000a from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:44:42,571 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max set version to 1 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:44:42,571 [cluster-ClusterId{value='5f26b537bb30d36c84ab007f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:44:42,618 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:44:42,633 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:44:42,649 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:44:42,993 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-02 19:44:43,243 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:44:44,284 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:44:44,362 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8099 (http) with context path '/aroma'
+2020-08-02 19:44:44,362 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-08-02 19:44:44,362 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:44:44,362 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-08-02 19:44:44,393 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Started MongodbApplication in 17.076 seconds (JVM running for 24.306)
+2020-08-02 19:44:47,650 [http-nio-8099-exec-2] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-02 19:44:47,651 [http-nio-8099-exec-2] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-02 19:44:47,671 [http-nio-8099-exec-2] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 19 ms
+2020-08-02 19:44:49,950 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:4, serverValue:100300}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:44:52,652 [http-nio-8099-exec-1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:5, serverValue:106557}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:45:43,245 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-08-02 19:46:34,805 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2020-08-02 19:46:34,809 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:46:34,810 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2020-08-02 19:46:35,397 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:46:35,397 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:46:35,397 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:46:35,397 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:46:35,679 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:4, serverValue:100300}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:46:35,679 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:5, serverValue:106557}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:46:47,894 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Starting MongodbApplication on DESKTOP-TRTHTKE with PID 9860 (E:\LUCAS\Interior-world\ServerSide\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\ServerSide)
+2020-08-02 19:46:47,910 [restartedMain] INFO  c.e.mongodb.MongodbApplication - No active profile set, falling back to default profiles: default
+2020-08-02 19:46:48,089 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-02 19:46:48,089 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-02 19:46:49,943 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-08-02 19:46:50,139 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 171ms. Found 7 MongoDB repository interfaces.
+2020-08-02 19:46:51,001 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3eebabe7' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:46:51,016 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:46:51,745 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8099 (http)
+2020-08-02 19:46:51,761 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:46:51,777 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-02 19:46:51,777 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-08-02 19:46:52,116 [restartedMain] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring embedded WebApplicationContext
+2020-08-02 19:46:52,117 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4027 ms
+2020-08-02 19:46:52,730 [restartedMain] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0-fsosc.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='Cluster0-shard-0'}
+2020-08-02 19:46:52,791 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:46:52,874 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:46:52,874 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:46:53,446 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-02 19:46:54,973 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:46:54,993 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:46:55,006 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:77099}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-08-02 19:46:55,006 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:76245}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-08-02 19:46:55,014 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:106558}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:46:55,021 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:46:55,263 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=249898200, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:46:49 ICT 2020, lastUpdateTimeNanos=22872310466200}
+2020-08-02 19:46:55,266 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=257408400, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:46:49 ICT 2020, lastUpdateTimeNanos=22872317012100}
+2020-08-02 19:46:55,274 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=258557900, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff000000000000000a, setVersion=1, lastWriteDate=Sun Aug 02 19:46:49 ICT 2020, lastUpdateTimeNanos=22872325374000}
+2020-08-02 19:46:55,275 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max election id to 7fffffff000000000000000a from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:46:55,275 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max set version to 1 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:46:55,275 [cluster-ClusterId{value='5f26b5bcc872530fcf4b3b56', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:46:55,320 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-02 19:46:55,603 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:46:56,402 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:46:56,451 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8099 (http) with context path '/aroma'
+2020-08-02 19:46:56,454 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-08-02 19:46:56,455 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:46:56,456 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-08-02 19:46:56,475 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Started MongodbApplication in 10.675 seconds (JVM running for 13.594)
+2020-08-02 19:47:55,600 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-08-02 19:48:28,964 [http-nio-8099-exec-2] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-02 19:48:28,965 [http-nio-8099-exec-2] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-02 19:48:28,993 [http-nio-8099-exec-2] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 27 ms
+2020-08-02 19:49:54,207 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2020-08-02 19:49:54,207 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:49:54,207 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2020-08-02 19:49:55,139 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:49:55,143 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:49:55,147 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:49:55,148 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:50:27,415 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Starting MongodbApplication on DESKTOP-TRTHTKE with PID 3832 (E:\LUCAS\Interior-world\ServerSide\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\ServerSide)
+2020-08-02 19:50:27,432 [restartedMain] INFO  c.e.mongodb.MongodbApplication - No active profile set, falling back to default profiles: default
+2020-08-02 19:50:27,717 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-02 19:50:27,718 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-02 19:50:32,450 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-08-02 19:50:32,774 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 308ms. Found 7 MongoDB repository interfaces.
+2020-08-02 19:50:34,198 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@7247b42e' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:50:34,228 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:50:35,498 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8099 (http)
+2020-08-02 19:50:35,533 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:50:35,536 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-02 19:50:35,537 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-08-02 19:50:35,840 [restartedMain] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring embedded WebApplicationContext
+2020-08-02 19:50:35,848 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 8129 ms
+2020-08-02 19:50:36,469 [restartedMain] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0-fsosc.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='Cluster0-shard-0'}
+2020-08-02 19:50:36,539 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:50:36,669 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:50:36,674 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:50:37,623 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-02 19:50:39,346 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:77101}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-08-02 19:50:39,346 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:101678}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:50:39,346 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:81272}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-08-02 19:50:39,623 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=273640800, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:50:39 ICT 2020, lastUpdateTimeNanos=23096673564500}
+2020-08-02 19:50:39,623 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=268386900, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:50:39 ICT 2020, lastUpdateTimeNanos=23096669528900}
+2020-08-02 19:50:39,623 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=273228400, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff000000000000000a, setVersion=1, lastWriteDate=Sun Aug 02 19:50:39 ICT 2020, lastUpdateTimeNanos=23096673294400}
+2020-08-02 19:50:39,630 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max election id to 7fffffff000000000000000a from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:50:39,631 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max set version to 1 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:50:39,631 [cluster-ClusterId{value='5f26b69ce57dc86237aa16f3', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:50:39,882 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:50:39,911 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:50:39,932 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:50:40,365 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-02 19:50:40,648 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:50:41,750 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:50:41,808 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8099 (http) with context path '/aroma'
+2020-08-02 19:50:41,814 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-08-02 19:50:41,815 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:50:41,816 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-08-02 19:50:41,851 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Started MongodbApplication in 17.897 seconds (JVM running for 22.818)
+2020-08-02 19:51:32,050 [http-nio-8099-exec-2] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-02 19:51:32,050 [http-nio-8099-exec-2] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-02 19:51:32,079 [http-nio-8099-exec-2] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 28 ms
+2020-08-02 19:51:41,963 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-08-02 19:51:49,553 [http-nio-8099-exec-2] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:4, serverValue:98914}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:53:18,559 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping...
+2020-08-02 19:53:18,560 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:53:18,561 [SpringContextShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped.
+2020-08-02 19:53:19,857 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:53:19,857 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:53:19,857 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:53:19,857 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:53:20,146 [SpringContextShutdownHook] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:4, serverValue:98914}] to cluster0-shard-00-02-fsosc.mongodb.net:27017 because the pool has been closed.
+2020-08-02 19:53:47,644 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Starting MongodbApplication on DESKTOP-TRTHTKE with PID 3324 (E:\LUCAS\Interior-world\ServerSide\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\ServerSide)
+2020-08-02 19:53:47,660 [restartedMain] INFO  c.e.mongodb.MongodbApplication - No active profile set, falling back to default profiles: default
+2020-08-02 19:53:47,832 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-02 19:53:47,832 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-02 19:53:50,028 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-08-02 19:53:50,215 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 174ms. Found 7 MongoDB repository interfaces.
+2020-08-02 19:53:51,129 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@2b9d02e5' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:53:51,144 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 19:53:51,771 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8099 (http)
+2020-08-02 19:53:51,803 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:53:51,803 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-02 19:53:51,803 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-08-02 19:53:52,137 [restartedMain] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring embedded WebApplicationContext
+2020-08-02 19:53:52,138 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4306 ms
+2020-08-02 19:53:52,697 [restartedMain] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0-fsosc.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='Cluster0-shard-0'}
+2020-08-02 19:53:52,759 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:53:52,822 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:53:52,837 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-srv-cluster0-fsosc.mongodb.net] INFO  org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02-fsosc.mongodb.net:27017 to client view of cluster
+2020-08-02 19:53:53,415 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-02 19:53:54,884 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-08-02 19:53:54,915 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:81268}] to cluster0-shard-00-00-fsosc.mongodb.net:27017
+2020-08-02 19:53:54,915 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-08-02 19:53:54,931 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-08-02 19:53:54,947 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:102822}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:53:55,165 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-00-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=242001100, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-00-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:53:49 ICT 2020, lastUpdateTimeNanos=23292219137900}
+2020-08-02 19:53:55,212 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-02-fsosc.mongodb.net:27017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=267837300, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-02-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=7fffffff000000000000000a, setVersion=1, lastWriteDate=Sun Aug 02 19:53:49 ICT 2020, lastUpdateTimeNanos=23292278510700}
+2020-08-02 19:53:55,228 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max election id to 7fffffff000000000000000a from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:53:55,228 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Setting max set version to 1 from replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:53:55,228 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-02-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Discovered replica set primary cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:53:55,228 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-02 19:53:55,462 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-08-02 19:53:55,650 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:79506}] to cluster0-shard-00-01-fsosc.mongodb.net:27017
+2020-08-02 19:53:55,915 [cluster-ClusterId{value='5f26b7607dbe6c6725b9112f', description='null'}-cluster0-shard-00-01-fsosc.mongodb.net:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-01-fsosc.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=259121900, setName='Cluster0-shard-0', canonicalAddress=cluster0-shard-00-01-fsosc.mongodb.net:27017, hosts=[cluster0-shard-00-02-fsosc.mongodb.net:27017, cluster0-shard-00-00-fsosc.mongodb.net:27017, cluster0-shard-00-01-fsosc.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-02-fsosc.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}]}, electionId=null, setVersion=1, lastWriteDate=Sun Aug 02 19:53:49 ICT 2020, lastUpdateTimeNanos=23292975425600}
+2020-08-02 19:53:56,290 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8099"]
+2020-08-02 19:53:56,337 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8099 (http) with context path '/aroma'
+2020-08-02 19:53:56,353 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-08-02 19:53:56,353 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-08-02 19:53:56,353 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-08-02 19:53:56,368 [restartedMain] INFO  c.e.mongodb.MongodbApplication - Started MongodbApplication in 10.655 seconds (JVM running for 13.834)
+2020-08-02 19:54:06,747 [http-nio-8099-exec-1] INFO  o.a.c.c.C.[.[.[/aroma] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-02 19:54:06,748 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-02 19:54:06,776 [http-nio-8099-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 28 ms
+2020-08-02 19:54:31,346 [http-nio-8099-exec-1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:4, serverValue:106558}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:54:55,476 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-08-02 19:58:48,998 [http-nio-8099-exec-7] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:6, serverValue:101674}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:58:49,798 [http-nio-8099-exec-6] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:5, serverValue:101674}] to cluster0-shard-00-02-fsosc.mongodb.net:27017
+2020-08-02 19:58:51,469 [http-nio-8099-exec-10] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:7, serverValue:98914}] to cluster0-shard-00-02-fsosc.mongodb.net:27017

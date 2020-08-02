@@ -30,32 +30,21 @@ public class OrderServices {
     MongoTemplate mongoTemplate;
 
     //tìm kiếm product theo name và giá tiền
-    public Page<Product> advancedSearch(String name, Integer color, Integer material, Integer type, Pageable pageable){
+    public List<Order> advancedSearch(Order order, Integer status){
         Query query = new Query();
-        //check name tồn tài mới thêm điều kiện search
-        if(!name.isEmpty()  && name != null){
-            query.addCriteria(Criteria.where("name").regex(Pattern.compile(Pattern.quote(name), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
+        if(!Utils.checkNullOrEmpty(order.getBuyer())) {
+            query.addCriteria(Criteria.where("buyer").is(order.getBuyer()));
         }
-        if(type > 0 && type != null) {
-            query.addCriteria(Criteria.where("type.type").is(type));
+        if(!Utils.checkNullOrEmpty(order.getId())) {
+            query.addCriteria(Criteria.where("id").regex(Pattern.compile(Pattern.quote(order.getId()), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
         }
-        if(material > 0 && material != null) {
-            query.addCriteria(Criteria.where("type.material").is(material));
+        if(!Utils.checkNullOrEmpty(order.getEmail())) {
+            query.addCriteria(Criteria.where("email").regex(Pattern.compile(Pattern.quote(order.getId()), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
         }
-        if(color > 0 && color != null) {
-            query.addCriteria(Criteria.where("price_for_color").elemMatch(Criteria.where("color").is(color)));
-//            query.addCriteria(Criteria.where("color").is(color).and("price_for_color.color").is(color));
-//            query.fields().include("color").position("price_for_color", color);
-        }
-        //nếu khác null là phân trang và sắp xếp theo pageanable
-        if(pageable != null){
-            query.with(pageable);
-        }
-        List<Product> lstProduct = mongoTemplate.find(query, Product.class);
-        return PageableExecutionUtils.getPage(
-                lstProduct,
-                pageable,
-                () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Product.class));
+        query.addCriteria(Criteria.where("status").gte(status));
+
+        List<Order> lstOrder = mongoTemplate.find(query, Order.class);
+        return lstOrder;
     }
 
     //tìm kiếm product theo name và giá tiền
@@ -70,23 +59,11 @@ public class OrderServices {
         }
 
         if(!Utils.checkNullOrEmpty(fromDate) || !Utils.checkNullOrEmpty(toDate)) {
-            query.addCriteria(Criteria.where("createdAt").gte(fromDate).lte(toDate));
+            query.addCriteria(Criteria.where("createdAt").gte(fromDate).and("createdAt").lt(toDate));
         }
 
         List<Order> lstOrder = mongoTemplate.find(query, Order.class);
         return lstOrder;
-    }
-
-    public List<Product> findByCatetory(Integer type){
-        Query query = new Query();
-
-        query.addCriteria(Criteria.where("star").is(5));
-        query.limit(12);
-        if(type >= 0 && type != null) {
-            query.addCriteria(Criteria.where("type.type").is(type));
-        }
-        List<Product> lstProduct = mongoTemplate.find(query, Product.class);
-        return lstProduct;
     }
 
     public static <T> List<T> removeDuplicates(List<T> list)

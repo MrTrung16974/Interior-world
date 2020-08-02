@@ -49,7 +49,9 @@ var order = {
     listProduct: [],
     status: ""
 };
+var orderConfirmation = {
 
+}
 // single commnet
 var comment = {
     image: "",
@@ -218,6 +220,29 @@ function findMaterial(matearial) {
     }
     return fabric;
 }
+function findStatusOrder(status) {
+    let satusOrder = null;
+    switch (status) {
+        case 1:
+            satusOrder = "Cart";
+            break;
+        case 2:
+            satusOrder = "CheckOut";
+            break;
+        case 3:
+            satusOrder = "Order";
+            break;
+        case 4:
+            satusOrder = "OnDelivery";
+            break;
+        case 5:
+            satusOrder = "Delivered";
+            break;
+        default:
+            return satusOrder;
+    }
+}
+
 function forStar(star) {
     let starWrite = "";
     for (let i=1; i <= 5; i++) {
@@ -286,7 +311,31 @@ function forColor(data) {
     }
     return colorWrite;
 }
-
+function forProductOrder(data) {
+    let productOrder = "";
+    if (data != null && data.length > 0) {
+        let item = data.priceForColor;
+        order.listProduct.map(item => {
+            productOrder +=
+                (`<div class="row">
+                    <div class="col-sm-3 image-product">
+                        <img width="100" height="100" src="${item.image != null ? item.image : ''}" alt="Ảnh product">
+                    </div>
+                    <div class="col-sm-6 name-product">
+                        <span>${item.name != null ? item.name : ''}</span>
+                        <div>
+                            <span>Color : </span>
+                            <span>${item.nameColor != null ? item.nameColor : ''}"</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 price-product">
+                        <span style="color: red;">${item.price != null ? formatter.format(item.price) : ''}"</span>
+                    </div>
+                </div>`);
+        });
+    }
+    return productOrder;
+}
 function getPriceProduct(id, price, priceColor) {
     let nameColor = $(this);
     if(price > 0) {
