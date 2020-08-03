@@ -675,7 +675,7 @@ function rederDataAllOrder(order) {
                         <hr />
                         <div style="font-size: 20px;" >
                             <span>Total : </span>
-                            <span style="color: red;">${item.flatRateShipping}</span>
+                            <span style="color: red;">${item.flatRateShipping != null ? formatter.format(item.flatRateShipping) : "$0"}</span>
                         </div>
                     </div>
                 </div>

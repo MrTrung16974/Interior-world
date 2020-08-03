@@ -236,8 +236,9 @@ function findStatusOrder(status) {
             satusOrder = "Delivered";
             break;
         default:
-            return satusOrder;
+            break;
     }
+    return satusOrder;
 }
 
 function forStar(star) {
@@ -312,21 +313,21 @@ function forProductOrder(data) {
     let productOrder = "";
     if (data != null && data.length > 0) {
         let item = data.priceForColor;
-        order.listProduct.map(item => {
+        data.map(item => {
             productOrder +=
-                (`<div class="row">
+                (`<div class="row mt-2">
                     <div class="col-sm-3 image-product">
-                        <img width="100" height="100" src="${item.image != null ? item.image : ''}" alt="Ảnh product">
+                        <img width="100" height="100" src="${item.image.length > 0 ? item.image[0] : ''}" alt="Ảnh product">
                     </div>
                     <div class="col-sm-6 name-product">
                         <span>${item.name != null ? item.name : ''}</span>
                         <div>
                             <span>Color : </span>
-                            <span>${item.nameColor != null ? item.nameColor : ''}"</span>
+                            <span>${item.nameColor != null ? item.nameColor : ''}</span>
                         </div>
                     </div>
                     <div class="col-sm-3 price-product">
-                        <span style="color: red;">${item.price != null ? formatter.format(item.price) : ''}"</span>
+                        <span style="color: red;">${item.price != null ? formatter.format(item.price) : ''}</span>
                     </div>
                 </div>`);
         });
@@ -488,7 +489,7 @@ $(document).ready(function() {
 
 //Load need login page to view
 function loadPage(url) {
-    if(token != null && token != "") {
+    if(checkLoginDto()) {
         window.location.href = urlClient + url;
     }else {
         window.location.href = urlClient + "login";
