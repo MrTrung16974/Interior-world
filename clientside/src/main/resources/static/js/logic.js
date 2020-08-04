@@ -244,7 +244,7 @@ function findPriceProduct(item, nameClacs) {
     let price = "";
     if(item.promotion != null) {
         price = (`<p class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>
-        <p id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</p>`)
+        <p id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? formatter.format((item.price*((100-item.promotion.percent)/100))) : ""}</p>`)
     }else {
         price = (`<p id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>`);
     }
@@ -255,7 +255,7 @@ function findPriceProductSellers(item, nameClacs) {
     let price = "";
     if(item.promotion != null) {
         price = (`<p class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>
-        <p  class="card-product__price ${item.id + nameClacs}">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</p>`)
+        <p  class="card-product__price ${item.id + nameClacs}">${item.promotion != null ? formatter.format((item.price*((100-item.promotion.percent)/100))) : ""}</p>`)
     }else {
         price = (`<p  class="card-product__price ${item.id + nameClacs}" >${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>`);
     }
@@ -266,7 +266,7 @@ function findPriceSingleProduct(item, nameClacs) {
     let price = "";
     if(item.promotion != null) {
         price = (`<h2 class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></h2>
-        <h2 id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</h2>`)
+        <h2 id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? formatter.format((item.price*((100-item.promotion.percent)/100))) : ""}</h2>`)
     }else {
         price = (`<h2 id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></h2>`);
     }
@@ -383,7 +383,7 @@ function showChooseProductSellers(id) {
 function hideChooseProductSellers(id, percent, price) {
     $(`.${id}-sellers`).hide();
     if(percent > 0) {
-        $(`.${id}-price-sellers`).text(formatter.format((price*(percent/100))));
+        $(`.${id}-price-sellers`).text(formatter.format((price*((100-Number.parseInt(percent))/100))));
     }else {
         $(`.${id}-price-sellers`).text(formatter.format((price)));
     }
@@ -396,9 +396,9 @@ function showChooseProduct(id) {
 function hideChooseProduct(id, percent, price) {
     $(`#${id}`).hide();
     if(percent > 0) {
-        $(`#${id}-price`).text(formatter.format((price * (percent / 100))));
+        $(`#${id}-price`).text(formatter.format((price*((100-Number.parseInt(percent))/100))));
     }else {
-        $(`.${id}-price`).text(formatter.format((price)));
+        $(`#${id}-price`).text(formatter.format(price));
     }
     $(`a.${id}-checked input[type="radio"]`).prop('checked', false);
 }
