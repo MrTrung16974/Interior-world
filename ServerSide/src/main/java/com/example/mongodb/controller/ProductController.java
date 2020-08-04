@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -200,7 +201,7 @@ public class ProductController {
                 product.setPriceForColor(lstPrice);
             }
             if(!Utils.checkNullOrEmpty(promotionName) || !Utils.checkNullOrEmpty(promotionPercent)) {
-                product.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent)));
+                product.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent), new Date()));
             }
             if(!Utils.checkNullOrEmpty(name)) {
                 product.setName(name);
@@ -312,7 +313,7 @@ public class ProductController {
                 checkProduct.setPriceForColor(lstPrice);
             }
             if(!Utils.checkNullOrEmpty(promotionPercent) || !Utils.checkNullOrEmpty(promotionName)) {
-                checkProduct.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent)));
+                checkProduct.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent), new Date()));
             }
             if(!Utils.checkNullOrEmpty(name)) {
                 checkProduct.setName(name);

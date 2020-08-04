@@ -1,7 +1,6 @@
 package com.example.mongodb;
 
 import com.example.mongodb.dto.product.Price;
-import com.example.mongodb.model.Banner;
 import com.example.mongodb.repository.*;
 import com.example.mongodb.services.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class MongodbApplication implements CommandLineRunner {
     }
 
     @Autowired
-    BannerRepository bannerRepository;
+    SlideRepository bannerRepository;
     @Autowired
     ProductRepository productRepository;
     @Autowired

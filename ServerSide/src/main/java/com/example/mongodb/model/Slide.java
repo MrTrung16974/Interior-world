@@ -4,33 +4,23 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "sa_banner")
-public class Banner {
+@Document(collection = "sa_silde")
+public class Slide {
     @Id
     private String id;
-    @Field("link-page")
-    private String linkPage;
-    @Field("name-page")
-    private String namePage;
+    @Field("name-banner")
+    private String nameBanner;
     @Field("bg-banner")
     private String bgBanner;
 
-    public Banner() {
+    public Slide() {
 
     }
 
-    public Banner(String linkPage, String namePage, String bgBanner) {
-        this.linkPage = linkPage;
-        this.namePage = namePage;
+    public Slide(String id, String nameBanner, String bgBanner) {
+        this.id = id;
+        this.nameBanner = nameBanner;
         this.bgBanner = bgBanner;
-    }
-
-    public String getLinkPage() {
-        return linkPage;
-    }
-
-    public void setLinkPage(String linkPage) {
-        this.linkPage = linkPage;
     }
 
     public String getId() {
@@ -41,12 +31,12 @@ public class Banner {
         this.id = id;
     }
 
-    public String getNamePage() {
-        return namePage;
+    public String getNameBanner() {
+        return nameBanner;
     }
 
-    public void setNamePage(String namePage) {
-        this.namePage = namePage;
+    public void setNameBanner(String nameBanner) {
+        this.nameBanner = nameBanner;
     }
 
     public String getBgBanner() {

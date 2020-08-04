@@ -240,6 +240,39 @@ function findStatusOrder(status) {
     }
     return satusOrder;
 }
+function findPriceProduct(item, nameClacs) {
+    let price = "";
+    if(item.promotion != null) {
+        price = (`<p class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>
+        <p id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</p>`)
+    }else {
+        price = (`<p id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>`);
+    }
+    return price;
+}
+
+function findPriceProductSellers(item, nameClacs) {
+    let price = "";
+    if(item.promotion != null) {
+        price = (`<p class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>
+        <p  class="card-product__price ${item.id + nameClacs}">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</p>`)
+    }else {
+        price = (`<p  class="card-product__price ${item.id + nameClacs}" >${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></p>`);
+    }
+    return price;
+}
+
+function findPriceSingleProduct(item, nameClacs) {
+    let price = "";
+    if(item.promotion != null) {
+        price = (`<h2 class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></h2>
+        <h2 id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</h2>`)
+    }else {
+        price = (`<h2 id="${item.id + nameClacs}" class="card-product__price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></h2>`);
+    }
+    return price;
+}
+
 
 function forStar(star) {
     let starWrite = "";
@@ -302,7 +335,7 @@ function forColor(data) {
             colorWrite += `<a class="${data.id}-checked">
                                 <label for="${data.id}-${item[i].nameColor}" class="name-color">${item[i].nameColor}</label>
                                 <input type="radio" value="${item[i].nameColor}"
-                                 onclick="getPriceProduct(${data.id} ,${data.price}, ${item[i].priceForColor})"
+                                 onclick="getPriceProduct('${data.id}' ,${data.price}, ${item[i].priceForColor})"
                                   name="color-price" id="${data.id}-${item[i].nameColor}">
                             </a>`;
         }
@@ -347,18 +380,26 @@ function getPriceProduct(id, price, priceColor) {
 function showChooseProductSellers(id) {
     $(`.${id}-sellers`).show();
 }
-function hideChooseProductSellers(id, price) {
+function hideChooseProductSellers(id, percent, price) {
     $(`.${id}-sellers`).hide();
-    $(`.${id}-price-sellers`).text(formatter.format(`${price}`));
+    if(percent > 0) {
+        $(`.${id}-price-sellers`).text(formatter.format((price*(percent/100))));
+    }else {
+        $(`.${id}-price-sellers`).text(formatter.format((price)));
+    }
     $(`a.${id}-checked input[type="radio"]`).prop('checked', false);
 }
 
 function showChooseProduct(id) {
     $(`#${id}`).show();
 }
-function hideChooseProduct(id, price) {
+function hideChooseProduct(id, percent, price) {
     $(`#${id}`).hide();
-    $(`#${id}-price`).text(formatter.format(`${price}`));
+    if(percent > 0) {
+        $(`#${id}-price`).text(formatter.format((price * (percent / 100))));
+    }else {
+        $(`.${id}-price`).text(formatter.format((price)));
+    }
     $(`a.${id}-checked input[type="radio"]`).prop('checked', false);
 }
 

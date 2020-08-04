@@ -24,14 +24,14 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form th:action="@{/login}" method="post" autocomplete="off" class="user">
+                  <form th:action="@{/login}" method="post" autocomplete="off" id="login_form" class="user">
                     <label class="error" style="color: #777;margin: 15px;width: 100%;font-size: 15px;" th:if="${param.error != null}">Login information is not valid. Please check again!</label>
                     <label class="error" style="color: #777;margin: 15px;width: 100%;font-size: 15px;" th:if="${param.lock != null}">Username has been locked because of wrong password in succession 5 times</label>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter Account Address...">
+                      <input type="text" class="form-control form-control-user" autofocus="autofocus" name="username" id="username" aria-describedby="emailHelp"  maxlength="30" placeholder="Enter Account Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password" >
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -45,10 +45,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="user/forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="user/forgot-password">Forgot Password?</a>
                   </div>
                 </div>
               </div>
@@ -65,7 +62,39 @@
   <!-- Script -->
   <footer th:replace="/component/footer :: script-area"></footer>
   <!-- End of Script -->
-
+  <script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
+  <!-- OTT application -->
+  <script src="../static/js/ott.js" th:src="@{/js/ott.js}"></script>
+  <script th:inline="javascript">
+    jQuery(document).ready(function () {
+      $('#login_form').keydown(function(event) {
+        // enter has keyCode = 13, change it if you want to use another button
+        if (event.keyCode == 13) {
+          $("#login_form").submit();
+        }
+      });
+      $("#login_form").validate({
+        focusInvalid: true, // focus the last invalid input
+        ignore: [],
+        rules: {
+          username: {
+            required: true,
+          },
+          password: {
+            required: true,
+            minlength: 8
+          },
+        },
+        messages: {
+          username: "Username field must not be blank",
+          password: {
+            required: "Password field must not be blank",
+            minlength: "Password must be between 8 characters. Please check again"
+          }
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

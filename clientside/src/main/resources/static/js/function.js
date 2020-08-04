@@ -66,27 +66,6 @@ if(token != null && token != "") {
     $('#logout-user').css({"visibility": "hidden", "opacity": "0"});
 }
 
-// Load banner for page
-$.ajax({
-    url: urlServer + "v1/api/banners",
-    type: "GET",
-    success: function (response) {
-        if(response.code == "00") {
-            response.data.forEach(item => {
-                if(item.linkPage == pathname) {
-                    rederBanner(item);
-                }
-            });
-        }else {
-            toastr.warning('Find not data for banner!');
-        }
-    },
-    error: function (response) {
-        toastr.error('An error occurred . Please try again', response.message);
-    }
-});
-
-
 //check the user already logged
 // find product all
 if(pathname == "/home" || pathname == "/") {

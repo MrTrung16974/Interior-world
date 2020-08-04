@@ -2,11 +2,8 @@ package com.example.mongodb.controller;
 
 import com.example.mongodb.dto.BaseResponse;
 import com.example.mongodb.model.*;
-import com.example.mongodb.repository.BannerRepository;
-import com.example.mongodb.repository.OrderRepository;
+import com.example.mongodb.repository.SlideRepository;
 import com.example.mongodb.services.BannerService;
-import com.example.mongodb.services.OrderServices;
-import com.example.mongodb.utils.Constant;
 import com.example.mongodb.utils.Utils;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
@@ -21,16 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static com.example.mongodb.utils.Constant.LOG_FORMAT;
 import static com.example.mongodb.utils.Utils.buildLogTag;
 
 @Controller
-@RequestMapping("/banner")
-public class BannerController {
+@RequestMapping("/slide")
+public class SlideController {
     private static final Logger LOGGER = LogManager.getLogger(OrderController.class);
     private static final Gson gson = new Gson();
     private static final String TITLE_ADD = "Add info banner";
@@ -39,7 +34,7 @@ public class BannerController {
     private static final String TITLE_DELETE = "Delete banner";
 
     @Autowired
-    BannerRepository bannerRepository;
+    SlideRepository slideRepository;
 
     @Autowired
     BannerService bannerService;
@@ -50,13 +45,13 @@ public class BannerController {
         String tag = buildLogTag(request, principal, "List banner");
         LOGGER.debug(LOG_FORMAT, tag, "List banner view");
         ModelAndView mv = new ModelAndView("banner/list-banner");
-        mv.addObject("lstBanner", bannerRepository.findAll());
+        mv.addObject("lstBanner", slideRepository.findAll());
         LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
         return mv;
     }
 
-    private ModelAndView getBannerModelView(Banner banner, String title, Boolean success, String message) {
-        List<Banner> lstBanner = bannerRepository.findAll();
+    private ModelAndView getBannerModelView(Slide banner, String title, Boolean success, String message) {
+        List<Slide> lstBanner = slideRepository.findAll();
         ModelAndView mv = new ModelAndView("banner/form-banner");
         mv.addObject("banner", banner);
         mv.addObject("lstBanner", lstBanner);
@@ -78,10 +73,10 @@ public class BannerController {
         LOGGER.debug(LOG_FORMAT + "namePage: {}", tag, "Search Banner. ", namePage);
         BaseResponse response = new BaseResponse();
 //        Declare
-        Banner banner = new Banner();
+        Slide banner = new Slide();
         banner.setBgBanner(namePage);
         LOGGER.debug(LOG_FORMAT, tag, "Order: " + gson.toJson(banner));
-        List<Banner> lstBanner = new ArrayList<>();
+        List<Slide> lstBanner = new ArrayList<>();
         try {
             lstBanner = bannerService.advancedSearch(banner);
             response.setCode("00");
@@ -105,7 +100,7 @@ public class BannerController {
                                         HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "View Product");
         LOGGER.debug(LOG_FORMAT, tag, "Edit banner View. Banner: " + id);
-        Banner banner = bannerRepository.findById(id).get();
+        Slide banner = slideRepository.findById(id).get();
         if (banner == null) {
             LOGGER.debug(LOG_FORMAT, tag, "Order not found. Throw Exception. OrderID: " + id);
             throw new RuntimeException("Invalid order! " + id);
@@ -117,31 +112,27 @@ public class BannerController {
     public ModelAndView addBannerForm(HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add Banner");
         LOGGER.debug(LOG_FORMAT, tag, "Add Banner View");
-        Banner banner = new Banner();
+        Slide banner = new Slide();
         return getBannerModelView(banner, TITLE_ADD, null, null);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView doAddBanner(@RequestParam("linkPage") String linkPage,
-                                    @RequestParam("namePage") String namePage,
+    public ModelAndView doAddBanner(@RequestParam("nameBanner") String nameBanner,
                                     @RequestParam("bgBanner") String bgBanner,
                                     Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add Banner");
-        LOGGER.debug(LOG_FORMAT + "linkPage: {}, namePage: {}, bgBanner: {}", tag, "Add banner.",linkPage, namePage, bgBanner);
-        Banner banner = new Banner();
-        if(!Utils.checkNullOrEmpty(linkPage)) {
-            banner.setLinkPage(linkPage);
-        }
-        if(!Utils.checkNullOrEmpty(namePage)) {
-            banner.setNamePage(namePage);
+        LOGGER.debug(LOG_FORMAT + "namePage: {}, bgBanner: {}", tag, "Add banner.", nameBanner, bgBanner);
+        Slide banner = new Slide();
+        if(!Utils.checkNullOrEmpty(nameBanner)) {
+            banner.setNameBanner(nameBanner);
         }
         if(!Utils.checkNullOrEmpty(bgBanner)) {
             banner.setBgBanner(bgBanner);
         }
-        bannerRepository.save(banner);
+        slideRepository.save(banner);
         LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
 
-        return getBannerModelView(banner, TITLE_ADD, Boolean.TRUE, "Add a new banner " + namePage + " success!");
+        return getBannerModelView(banner, TITLE_ADD, Boolean.TRUE, "Add a new banner " + nameBanner + " success!");
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -149,7 +140,7 @@ public class BannerController {
                                       Principal principal) {
         String tag = buildLogTag(request, principal, "Edit Banner");
         LOGGER.debug(LOG_FORMAT, tag, "Edit banner View. Banner Product: " + id);
-        Banner banner = bannerRepository.findById(id).get();
+        Slide banner = slideRepository.findById(id).get();
         if (banner == null) {
             LOGGER.debug(LOG_FORMAT, tag, "Order not found. Throw Exception. IdBanner: " + id);
             throw new RuntimeException("Invalid banner! " + id);
@@ -159,14 +150,13 @@ public class BannerController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public ModelAndView doUpdateBanner(@PathVariable("id") String id,
-                                      @RequestParam("linkPage") String linkPage,
-                                      @RequestParam("namePage") String namePage,
+                                      @RequestParam("nameBanner") String nameBanner,
                                       @RequestParam("bgBanner") String bgBanner,
                                       Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add Banner");
-        LOGGER.debug(LOG_FORMAT + "linkPage: {}, namePage: {}, bgBanner: {}",
-                tag, "Add banner.",linkPage, namePage, bgBanner);
-        Banner checkBanner = bannerRepository.findById(id).get();
+        LOGGER.debug(LOG_FORMAT + "nameBanner: {}, bgBanner: {}",
+                tag, "Add banner.", nameBanner, bgBanner);
+        Slide checkBanner = slideRepository.findById(id).get();
         if (checkBanner == null) {
             LOGGER.error(LOG_FORMAT, tag, "Banner not found:" + id);
             throw new RuntimeException("Invalid user");
@@ -174,17 +164,14 @@ public class BannerController {
         boolean success = true;
         String message = "Update info order success!";
         try {
-            if(!Utils.checkNullOrEmpty(linkPage)) {
-                checkBanner.setLinkPage(linkPage);
-            }
-            if(!Utils.checkNullOrEmpty(namePage)) {
-                checkBanner.setNamePage(namePage);
+            if(!Utils.checkNullOrEmpty(nameBanner)) {
+                checkBanner.setNameBanner(nameBanner);
             }
             if(!Utils.checkNullOrEmpty(bgBanner)) {
                 checkBanner.setBgBanner(bgBanner);
             }
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
-            bannerRepository.save(checkBanner);
+            slideRepository.save(checkBanner);
             LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");
         } catch (Exception e) {
             LOGGER.debug(LOG_FORMAT, tag, "Error while edit banner: " + id);
@@ -204,13 +191,13 @@ public class BannerController {
         LOGGER.debug(LOG_FORMAT, tag, "DeleteBanner:" + id);
         //modified count
         long modifiedCnt = 0;
-        Banner checkBanner = bannerRepository.findById(id).get();
+        Slide checkBanner = slideRepository.findById(id).get();
         if (checkBanner == null) {
             LOGGER.error(LOG_FORMAT, tag, "Banner not found:" + id);
             return modifiedCnt;
         }
         try {
-            bannerRepository.delete(checkBanner);
+            slideRepository.delete(checkBanner);
             modifiedCnt = 1;
             LOGGER.debug(LOG_FORMAT, tag, "Delete banner successfully");
         } catch (Exception e) {

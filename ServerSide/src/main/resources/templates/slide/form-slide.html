@@ -47,22 +47,14 @@
                         <div class="col-xs-12 p-4">
                             <div th:replace="component/header::notice_box"></div>
 
-                            <form id="formInsert" name="formInsert"  action="#"  th:object="${banner}" method="POST"
+                            <form id="formInsert" name="formInsert"  action="#"  th:object="${silde}" method="POST"
                                   class="form-horizontal form-row-seperated">
                                 <div th:replace="/component/header::alert-sub"></div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label no-padding-right p_top">Link Page (<span class="text-red">*</span>) </label>
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Name Banner (<span class="text-red">*</span>) </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" th:field="*{linkPage}"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <label class="col-sm-3 control-label no-padding-right p_top">Name Page (<span class="text-red">*</span>) </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" th:field="*{namePage}"/>
+                                            <input type="text" class="form-control" th:field="*{nameBanner}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -132,13 +124,7 @@
             }
 
         });
-        $.validator.methods.linkPage = function (value, element) {
-            if (value === '') {
-                return false;
-            }
-            return true;
-        };
-        $.validator.methods.namePage = function (value, element) {
+        $.validator.methods.nameBanner = function (value, element) {
             if (value === '') {
                 return false;
             }
@@ -160,9 +146,9 @@
                     required: true,
                     linkPage: true
                 },
-                namePage: {
+                nameBanner: {
                     required: true,
-                    namePage: true
+                    nameBanner: true
                 },
                 bgBanner: {
                     required: true,
@@ -171,7 +157,7 @@
             },
             messages: {
                 linkPage: "Link Page field must not be blank",
-                namePage: "Name Page field must not be blank",
+                nameBanner: "Name Banner field must not be blank",
                 bgBanner: "Blackground Banner field must not be blank"
             },
         });

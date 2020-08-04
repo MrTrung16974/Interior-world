@@ -466,6 +466,17 @@ li.color-for-price a {
 .card-product .card-product__imgOverlay.choose-color {
     background-color: #000000ad;
 }
+.promotion {
+    position: absolute;
+    right: -25px;
+    top: 15px;
+    width: 100px;
+    background-color: #0e25ff;
+    color: #fff;
+    text-align: center;
+    transform: rotateZ(45deg);
+    overflow: hidden;
+}
 /*--================ End Product Area =================--*/
 
 /*--================ Start account info Area =================--*/

@@ -7,6 +7,21 @@ a {
     top: 7px;
     right: 23px;
 }
+.image-remove {
+    position: relative;
+    top: -49px;
+    right: 16px;
+    cursor: pointer;
+    color: #fffefe;
+    background-color: #1212de;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+}
 /* ---------- End * ------- */
 
 /*----- Chat ----*/
