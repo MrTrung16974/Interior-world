@@ -28,7 +28,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">List Banner</h1>
+                    <h1 class="h3 mb-0 text-gray-800">List Slide</h1>
                 </div>
 
                 <!-- Content Row -->
@@ -36,9 +36,9 @@
                     <div class="col-sm-6">
                         <div class="form-group clearfix">
                             <div class="row">
-                                <label for="namePage" class="col-sm-6 control-label no-padding-right p_top">Name Page </label>
+                                <label for="nameBanner" class="col-sm-6 control-label no-padding-right p_top">Name Banner </label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" id="namePage" type="text" placeholder="Name Page" />
+                                    <input class="form-control" id="nameBanner" type="text" placeholder="Name Page" />
                                 </div>
                             </div>
                         </div>
@@ -47,14 +47,14 @@
                     <div class="clear"></div>
                     <div class="clearfix mt-2 mb-5 w-100 form-actions text-center">
                         <button type="button" class="btn btn-primary" onclick="doSearch();">Search</button>
-                        <a th:href="@{/banner/add}" class="btn btn-warning">Add banner</a>
+                        <a th:href="@{/slide/add}" class="btn btn-warning">Add banner</a>
                     </div>
                 </div>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Roles</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Slides</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -62,8 +62,8 @@
                                 <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Link Page</th>
-                                    <th>Name Page</th>
+                                    <th>Name Banner</th>
+                                    <th>Title Banner</th>
                                     <th>Background Banner</th>
                                     <th>Option</th>
                                 </tr>
@@ -71,8 +71,8 @@
                                 <tfoot>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Link Page</th>
-                                    <th>Role Code</th>
+                                    <th>Name Banner</th>
+                                    <th>Title Banner</th>
                                     <th>Background Banner</th>
                                     <th>Option</th>
                                 </tr>
@@ -117,10 +117,10 @@
     // var token = $("meta[name='_csrf']").attr("content");
     // var header = $("meta[name='_csrf_header']").attr("content");
     // var dtViLang = /*[[@{/plugins/datatables/extensions/i18n/vi.json}]]*/ "plugins/datatables/extensions/i18n/vi.json";
-    var searchUrl = /*[[@{/banner/search}]]*/ "/banner/search";
-    var editUrl = /*[[@{/banner/edit/}]]*/ "/banner/edit/";
-    var deleteBannerUrl = /*[[@{/banner/delete}]]*/ "/banner/delete";
-    var viewUrl = /*[[@{/banner/view_banner/}]]*/ "/banner/view_banner/";
+    var searchUrl = /*[[@{/slide/search}]]*/ "/slide/search";
+    var editUrl = /*[[@{/slide/edit/}]]*/ "/slide/edit/";
+    var deleteSlideUrl = /*[[@{/slide/delete}]]*/ "/slide/delete";
+    var viewUrl = /*[[@{/slide/view_slide/}]]*/ "/slide/view_slide/";
     /**
      * Chuc nang tim kiem, tai lai bang du lieu dua theo thong tin loc
      * */
@@ -138,7 +138,7 @@
             "ajax": {
                 "url": searchUrl,
                 "data": function (d) {
-                    d.namePage = $("#namePage").val().trim();
+                    d.nameBanner = $("#nameBanner").val().trim();
                 },
                 beforeSend: function (xhr) {
                     $("#tblLoading").css("display", "block");
@@ -152,8 +152,8 @@
             },
             columns: [
                 {"data": "id"},
-                {"data": "linkPage"},
-                {"data": "namePage"},
+                {"data": "nameBanner"},
+                {"data": "titleBanner"},
                 {"data": "bgBanner"},
             ],
             columnDefs: [
@@ -202,7 +202,7 @@
                 var datajson = {"id": id};
                 $.ajax({
                     type: "POST",
-                    url: deleteBannerUrl,
+                    url: deleteSlideUrl,
                     traditional: true,
                     data: datajson,
                     success: function (data) {

@@ -35,7 +35,7 @@
                             <li class="breadcrumb-item">
                                 <a th:href="@{/home}"><i class="default-icon fa fa-home home-icon"></i>  Home</a>
                             </li>
-                            <li class="breadcrumb-item"><a th:href="@{/banner/list}">List Banner</a></li>
+                            <li class="breadcrumb-item"><a th:href="@{/slide/list}">List Slide</a></li>
                             <li class="breadcrumb-item active" th:text="${titlePage}" aria-current="page">Data</li>
                         </ol>
                     </nav>
@@ -47,7 +47,7 @@
                         <div class="col-xs-12 p-4">
                             <div th:replace="component/header::notice_box"></div>
 
-                            <form id="formInsert" name="formInsert"  action="#"  th:object="${silde}" method="POST"
+                            <form id="formInsert" name="formInsert"  action="#"  th:object="${slide}" method="POST"
                                   class="form-horizontal form-row-seperated">
                                 <div th:replace="/component/header::alert-sub"></div>
                                 <div class="form-group">
@@ -60,9 +60,25 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Title Banner (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" th:field="*{titleBanner}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label no-padding-right p_top">Content Banner (<span class="text-red">*</span>) </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" th:field="*{contentBanner}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
                                         <label class="col-sm-3 control-label no-padding-right p_top">Backgroud Banner (<span class="text-red">*</span>) </label>
                                         <div class="col-sm-9">
-                                            <img width="150" th:src="${banner.bgBanner}" th:name="bgBanner" th:field="*{bgBanner}" class="image" />
+                                            <img width="150" th:src="${slide.bgBanner}" th:name="bgBanner" th:field="*{bgBanner}" class="image" />
                                             <input type="hidden" class="form-control input-image" th:name="bgBanner" th:field="*{bgBanner}"/>
                                             <input th:if="${titlePage} != 'View info banner'" type="file" class="img mt-2 " name="img" id="img"/>
                                             <label th:if="${titlePage} != 'View info banner'" class="btn-img" for="img">Choose image</label>
@@ -71,10 +87,10 @@
                                 </div>
                                 <div class="clearfix form-actions">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <input type="submit" value="Add Banner" class="btn btn-info" id="addForm" th:if="${banner.id} == null" />
-                                        <input type="submit" value="Update Banner" class="btn btn-info" id="addForm" th:if="${banner.id} != null and ${titlePage} != 'View info banner'"   />
+                                        <input type="submit" value="Add Slide" class="btn btn-info" id="addForm" th:if="${slide.id} == null" />
+                                        <input type="submit" value="Update Slide" class="btn btn-info" id="addForm" th:if="${slide.id} != null and ${titlePage} != 'View info banner'"   />
                                         <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
-                                        <a class="btn btn-warning" th:href="@{/banner/list}">Back to list</a></div>
+                                        <a class="btn btn-warning" th:href="@{/slide/list}">Back to list</a></div>
                                 </div>
                             </form>
                         </div>
@@ -111,20 +127,32 @@
 <script src="../../static/vendor/jqueryValidator/jquery.validate.min.js" th:src="@{/vendor/jqueryValidator/jquery.validate.min.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var banner = [[${banner}]];
-    var editBannerUrl = /*[[@{/banner/edit/}]]*/ "/banner/edit/";
-    var addBannerUrl = /*[[@{/banner/add}]]*/ "/banner/add";
+    var slide = [[${slide}]];
+    var editSlideUrl = /*[[@{/slide/edit/}]]*/ "/slide/edit/";
+    var addSlideUrl = /*[[@{/slide/add}]]*/ "/slide/add";
     jQuery(document).ready(function () {
         $("#addForm").on("click", function(e){
             e.preventDefault();
-            if(banner.id != null){
-                $('#formInsert').attr('action', editBannerUrl + banner.id).submit();
+            if(slide.id != null){
+                $('#formInsert').attr('action', editSlideUrl + slide.id).submit();
             }else{
-                $('#formInsert').attr('action', addBannerUrl).submit();
+                $('#formInsert').attr('action', addSlideUrl).submit();
             }
 
         });
         $.validator.methods.nameBanner = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.titleBanner = function (value, element) {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        };
+        $.validator.methods.contentBanner = function (value, element) {
             if (value === '') {
                 return false;
             }
@@ -142,13 +170,17 @@
             focusInvalid: true, // focus the last invalid input
             ignore: [],
             rules: {
-                linkPage: {
-                    required: true,
-                    linkPage: true
-                },
                 nameBanner: {
                     required: true,
                     nameBanner: true
+                },
+                titleBanner: {
+                    required: true,
+                    titleBanner: true
+                },
+                contentBanner: {
+                    required: true,
+                    contentBanner: true
                 },
                 bgBanner: {
                     required: true,
@@ -156,9 +188,10 @@
                 }
             },
             messages: {
-                linkPage: "Link Page field must not be blank",
-                nameBanner: "Name Banner field must not be blank",
-                bgBanner: "Blackground Banner field must not be blank"
+                nameBanner: "Name banner field must not be blank",
+                titleBanner: "Title banner field must not be blank",
+                contentBanner: "Content banner field must not be blank",
+                bgBanner: "Blackground banner field must not be blank"
             },
         });
     });

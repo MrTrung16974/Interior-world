@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-public class BannerService {
+public class SlideService {
     @Autowired
     MongoTemplate mongoTemplate;
 
@@ -20,7 +20,7 @@ public class BannerService {
         Query query = new Query();
         //check name tồn tài mới thêm điều kiện search
         if(!banner.getBgBanner().isEmpty() && banner.getBgBanner() != null) {
-            query.addCriteria(Criteria.where("namePage").regex(Pattern.compile(Pattern.quote(banner.getBgBanner()), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
+            query.addCriteria(Criteria.where("nameBanner").regex(Pattern.compile(Pattern.quote(banner.getNameBanner()), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)));
         }
         List<Slide> lstBanner = mongoTemplate.find(query, Slide.class);
         return lstBanner;

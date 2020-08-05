@@ -1,6 +1,7 @@
 package com.example.mongodb;
 
 import com.example.mongodb.dto.product.Price;
+import com.example.mongodb.model.Slide;
 import com.example.mongodb.repository.*;
 import com.example.mongodb.services.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class MongodbApplication implements CommandLineRunner {
     }
 
     @Autowired
-    SlideRepository bannerRepository;
+    SlideRepository slideRepository;
     @Autowired
     ProductRepository productRepository;
     @Autowired
@@ -37,17 +38,17 @@ public class MongodbApplication implements CommandLineRunner {
 
     @Override
     public void  run(String...args) throws Exception {
-//        bannerRepository.save(new Banner("/login","Login / Register ","http://localhost:8099/link/1593668066-login-banner.jpg"));
-//        bannerRepository.save(new Banner("/account-info","Account Info ","http://localhost:8099/link/1593669489-account-banner.jpg"));
-//        bannerRepository.save(new Banner("/cart","Shopping Cart","http://localhost:8099/link/1593668032-cart-banner.jpg"));
-//        bannerRepository.save(new Banner("/shop","Shop Category ","http://localhost:8099/link/1593669308-shop-banner.jpg"));
-//        bannerRepository.save(new Banner("/checkout","Product Checkout","http://localhost:8099/link/1593668045-checkout-banner.jpg"));
-//        bannerRepository.save(new Banner("/confirmation","Order Confirmation","http://localhost:8099/link/1593669249-order-banner.jpg"));
-//        bannerRepository.save(new Banner("/contact","Contact Us","http://localhost:8099/link/1593668051-contact-banner.jpg"));
-//        bannerRepository.save(new Banner("/favourite","Shopping Favourite","http://localhost:8099/link/1593668058-favourite-banner.jpg"));
-//        bannerRepository.save(new Banner("/register","Register ","http://localhost:8099/link/1593668079-register-banner"));
-//        bannerRepository.save(new Banner("/product-details","Single Product","http://localhost:8099/link/1593668072-product-banner.jpg"));
-//        bannerRepository.save(new Banner("/traking-order","Tracking Order ","http://localhost:8099/link/1593669204-traking-banner.jpg"));
+//        slideRepository.save(new Banner("/login","Login / Register ","http://localhost:8099/link/1593668066-login-banner.jpg"));
+//        slideRepository.save(new Banner("/account-info","Account Info ","http://localhost:8099/link/1593669489-account-banner.jpg"));
+//        slideRepository.save(new Banner("/cart","Shopping Cart","http://localhost:8099/link/1593668032-cart-banner.jpg"));
+//        slideRepository.save(new Banner("/shop","Shop Category ","http://localhost:8099/link/1593669308-shop-banner.jpg"));
+//        slideRepository.save(new Banner("/checkout","Product Checkout","http://localhost:8099/link/1593668045-checkout-banner.jpg"));
+//        slideRepository.save(new Banner("/confirmation","Order Confirmation","http://localhost:8099/link/1593669249-order-banner.jpg"));
+//        slideRepository.save(new Banner("/contact","Contact Us","http://localhost:8099/link/1593668051-contact-banner.jpg"));
+//        slideRepository.save(new Banner("/favourite","Shopping Favourite","http://localhost:8099/link/1593668058-favourite-banner.jpg"));
+//        slideRepository.save(new Banner("/register","Register ","http://localhost:8099/link/1593668079-register-banner"));
+//        slideRepository.save(new Banner("/product-details","Single Product","http://localhost:8099/link/1593668072-product-banner.jpg"));
+//        slideRepository.save(new Banner("/traking-order","Tracking Order ","http://localhost:8099/link/1593669204-traking-banner.jpg"));
 
 
 //        List<String> lstImage = new ArrayList<>();
@@ -108,17 +109,24 @@ public class MongodbApplication implements CommandLineRunner {
 //        functionRepository.save(function);
 //        functionRepository.save(function2);
 
-//        bannerRepository.save(new Banner("/account-info","Account Info","https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
-//        bannerRepository.save(new Banner("/cart","Shopping Cart","https://aromaserver16974.herokuapp.com/aroma/link/1593668032-cart-banner.jpg"));
-//        bannerRepository.save(new Banner("/checkout","Product Checkout","https://aromaserver16974.herokuapp.com/aroma/link/1593668045-checkout-banner.jpg"));
-//        bannerRepository.save(new Banner("/confirmation","Order Confirmation","https://aromaserver16974.herokuapp.com/aroma/link/1593669249-order-banner.jpg"));
-//        bannerRepository.save(new Banner("/contact","Contact Us","https://aromaserver16974.herokuapp.com/aroma/link/1593668051-contact-banner.jpg"));
-//        bannerRepository.save(new Banner("/favourite","Shopping Favourite","https://aromaserver16974.herokuapp.com/aroma/link/1593668058-favourite-banner.jpg"));
-//        bannerRepository.save(new Banner("/login","Login / Register ","https://aromaserver16974.herokuapp.com/aroma/link/1593668066-login-banner.jpg"));
-//        bannerRepository.save(new Banner("/product-details","Single Product","https://aromaserver16974.herokuapp.com/aroma/link/1593668051-contact-banner.jpg"));
-//        bannerRepository.save(new Banner("/register","Register","https://aromaserver16974.herokuapp.com/aroma/link/1593670358-register-banner.jpg"));
-//        bannerRepository.save(new Banner("/shop","Shop Category","https://aromaserver16974.herokuapp.com/aroma/link/1594035238-shop-banner.jpg"));
-//        bannerRepository.save(new Banner("/traking-order","Tracking Order ","https://aromaserver16974.herokuapp.com/aroma/link/1593669204-traking-banner.jpg"));
+//        slideRepository.save(new Slide("Shop is fun", "Browse Our Premium Product",
+//                "Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.",
+//                "https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
+//        slideRepository.save(new Slide("Shop is fun", "Browse Our Premium Product",
+//                "Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.",
+//                "https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
+//        slideRepository.save(new Slide("Shop is fun", "Browse Our Premium Product",
+//                "Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.",
+//                "https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
+//        slideRepository.save(new Slide("Shop is fun", "Browse Our Premium Product",
+//                "Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.",
+//                "https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
+//        slideRepository.save(new Slide("Shop is fun", "Browse Our Premium Product",
+//                "Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.",
+//                "https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
+//        slideRepository.save(new Slide("Shop is fun", "Browse Our Premium Product",
+//                "Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.",
+//                "https://aromaserver16974.herokuapp.com/aroma/link/1593669489-account-banner.jpg"));
 //        System.out.println("End");
     }
 }

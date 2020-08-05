@@ -13,25 +13,25 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/v1/api")
-public class BannerApiController {
+public class SlideApiController {
 
     @Autowired
-    SlideRepository bannerRepository;
+    SlideRepository slideRepository;
 
     //    get product prodcut now in user
-    @RequestMapping("/banners")
+    @RequestMapping("/slides")
     public BaseResponse getAllBanner() {
         BaseResponse response = new BaseResponse();
-        List<Slide> lstBanner = bannerRepository.findAll();
+        List<Slide> lstSlide = slideRepository.findAll();
         try {
-            if (lstBanner.isEmpty()) {
+            if (lstSlide.isEmpty()) {
                 response.setCode("99");
                 response.setMessage("Data not found");
                 response.setData(null);
             }else {
                 response.setCode("00");
                 response.setMessage("Find banner success!");
-                response.setData(lstBanner);
+                response.setData(lstSlide);
             }
         }catch (Exception e) {
             response.setCode("90");

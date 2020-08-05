@@ -10,6 +10,10 @@ public class Slide {
     private String id;
     @Field("name-banner")
     private String nameBanner;
+    @Field("title-banner")
+    private String titleBanner;
+    @Field("content-banner")
+    private String contentBanner;
     @Field("bg-banner")
     private String bgBanner;
 
@@ -17,9 +21,10 @@ public class Slide {
 
     }
 
-    public Slide(String id, String nameBanner, String bgBanner) {
-        this.id = id;
+    public Slide(String nameBanner, String titleBanner, String contentBanner, String bgBanner) {
         this.nameBanner = nameBanner;
+        this.titleBanner = titleBanner;
+        this.contentBanner = contentBanner;
         this.bgBanner = bgBanner;
     }
 
@@ -37,6 +42,22 @@ public class Slide {
 
     public void setNameBanner(String nameBanner) {
         this.nameBanner = nameBanner;
+    }
+
+    public String getTitleBanner() {
+        return titleBanner;
+    }
+
+    public void setTitleBanner(String titleBanner) {
+        this.titleBanner = titleBanner;
+    }
+
+    public String getContentBanner() {
+        return contentBanner;
+    }
+
+    public void setContentBanner(String contentBanner) {
+        this.contentBanner = contentBanner;
     }
 
     public String getBgBanner() {

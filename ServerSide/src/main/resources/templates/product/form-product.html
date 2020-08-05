@@ -190,8 +190,8 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Promotion priduct </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{promotion.name}" name="promotionName" id="promotionName" maxlength="100"/>
-                                                <input type="number" class="form-control" th:field="*{promotion.percent}" name="promotionPercent" id="promotionPercent" maxlength="3"/>
+                                                <input type="text" class="form-control" th:field="*{promotion.name}" th:name="promotionName" id="promotionName" maxlength="100"/>
+                                                <input type="number" class="form-control" th:field="*{promotion.percent}" th:name="promotionPercent" id="promotionPercent" maxlength="3"/>
                                                 <p th:text="${product.promotion != null ? product.promotion.createAt : '00/00/0000'}"></p>
                                             </div>
                                         </div>
