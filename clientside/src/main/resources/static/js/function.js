@@ -273,9 +273,9 @@ $.ajax({
         toastr.error('An error occurred . Please try again', response.message);
     }
 });
-function catetoryProduct(type) {
+function categoryProduct(type) {
     $.ajax({
-        url: urlServer + "v1/api/product/catetory/" + type,
+        url: urlServer + "v1/api/product/category/" + type,
         type: "GET",
         success: function (response) {
             if (response.code == "00") {
