@@ -36,6 +36,7 @@ var loadUserDto = () => {
     });
 }
 var checkLoginDto = () => {
+    shopLoading();
     $.ajax({
         url: urlServer + "v1/api/getInfoUser",
         type: "GET",
@@ -51,9 +52,11 @@ var checkLoginDto = () => {
             } else {
                 checkLogin = false;
             }
+            hideLoading();
         },
         error: function (response) {
             checkLogin = false;
+            hideLoading();
         }
     });
     return checkLogin;
@@ -69,6 +72,45 @@ if(token != null && token != "") {
 //check the user already logged
 // find product all
 if(pathname == "/home" || pathname == "/") {
+    /* ------- hero banner -------*/
+    //Javascript
+    $(document).ready(function(){
+        $('#hero-slide').owlCarousel();
+    });
+
+    var owlBanner = $('#hero-slide');
+
+    owlBanner.owlCarousel({
+        items:1,
+        margin: 10,
+        autoplay:false,
+        autoplayTimeout: 5000,
+        loop:true,
+        nav:false,
+        dots:false,
+        responsive:{
+            0:{
+                items:1
+            }
+        }
+    });
+    $.ajax({
+        url: urlServer + "v1/api/slides",
+        type: "GET",
+        dataType: 'json',
+        success: function(response) {
+            if(response.code == "00") {
+                rederDataSlide(response.data);
+            }else {
+                toastr.warning('Find not data slide!');
+            }
+        },
+        error: function (response) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
+    /* ------- hero banner -------*/
+
     /* ------- hero carousel -------*/
     //Javascript
     $(document).ready(function(){

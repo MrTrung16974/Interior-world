@@ -3,6 +3,10 @@
     header .main_menu ul.nav-shop .nav-item ul.dropdown-menu {
         left: -20px !important;
     }
+    .hero-carousel__slide img.img-fluid {
+         height: 400px !important;
+    }
+
 }
 /*--================ End Responsive Area =================--*/
 
@@ -111,6 +115,22 @@ div#bestSellerCarousel img.img-fluid {
 }
 .card-img {
     height: 18em !important;
+}
+.hero-carousel__slide img.img-fluid {
+    height: 500px;
+}
+.hero-banner__content {
+    position: absolute;
+    left: 5%;
+    top: 15%;
+}
+.hero-banner .hero-carousel__slide:hover::after {
+    opacity: 0;
+    z-index: 0;
+    transform: translateY(0);
+}
+.hero-banner::before {
+    background: none !important;
 }
 /* Bootstrap */
 

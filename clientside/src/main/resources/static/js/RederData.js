@@ -195,9 +195,9 @@ function rederDataCatetory(data) {
                         <div class="single-search-product d-flex">
                             <a href="/product-details?id=${item.id ? item.id : ""}"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                             <div class="desc">
-                                <a href="/product-details?id=${item.id}" class="title">${item.name ? item.name : ""}</a>
-                                <div class="price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></div>
-                                <div class="price">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</div>                             
+                                <a href="/product-details?id=${item.id ? item.id : ""}" class="title">${item.name ? item.name : ""}</a>
+                                <div class="price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</div>
+                                <div class="price">${item.promotion != null ? formatter.format((item.price*((100-item.promotion.percent)/100))) : ""}</div>                             
                             </div>
                         </div>
                     </div>
@@ -222,9 +222,9 @@ function rederDataTop(data) {
                         <div class="single-search-product d-flex">
                             <a href="/product-details?id=${item.id ? item.id : ""}"><img src="${item.image[0] ? item.image[0] : ""}" alt=""></a>
                             <div class="desc">
-                                <a href="/product-details?id=${data[i].id}" class="title">${item.name ? item.name : ""}</a>
+                                <a href="/product-details?id=${item.id ? item.id : ""}" class="title">${item.name ? item.name : ""}</a>
                                 <div class="price">${item.promotion != null ? item.price ? "<s>" + formatter.format(item.price) +"</s>" : "<s>" +0 +"</s>" : item.price ? formatter.format(item.price) : 0}</s></div>
-                                <div class="price">${item.promotion != null ? formatter.format((item.price*(item.promotion.percent/100))) : ""}</div>                            
+                                <div class="price">${item.promotion != null ? formatter.format((item.price*((100-item.promotion.percent)/100))) : ""}</div>                            
                             </div>
                         </div>
                     </div>
@@ -327,6 +327,25 @@ function rederDataLatest(data) {
     }
     owl.trigger('refresh.owl.carousel')
 }
+function rederDataSlide(data) {
+    for( var i in data ){
+        if( data.hasOwnProperty(i) ){
+            var $html = '';
+            $html += (`<div class="hero-carousel__slide">
+                          <img src="${data[i].bgBanner ? data[i].bgBanner : 'img/Slide/banner_1.jpg'}" alt="" class="img-fluid">
+                          <div class="hero-banner__content">
+                            <h4>${data[i].nameBanner}</h4>
+                            <h1>${data[i].titleBanner}</h1>
+                            <p>${data[i].contentBanner}</p>
+                            <a class="button button-hero" href="/shop">Browse Now</a>
+                          </div>
+                        </div>`);
+        }
+        owlBanner.trigger('add.owl.carousel',jQuery($html));
+    }
+    owlBanner.trigger('refresh.owl.carousel')
+}
+
 
 function rederDataSingleProduct(item) {
     let checkFavourite = false;
