@@ -122,52 +122,89 @@ var pathname = window.location.pathname;
 
 //    switch option
 switch (pathname) {
-        case "/home":
-            $("title.title-page").text("Aroma Shop - Home");
-            $("li.home").addClass("active");
-            break;
-        case "/shop":
-            $("title.title-page").text("Aroma Shop - Shop");
-            $("li.shop").addClass("active");
-            break;
-        case "/cart":
-            $("title.title-page").text("Aroma Shop - Cart");
-            $("li.cart").addClass("active");
-            break;
-        case "/checkout":
-            $("title.title-page").text("Aroma Shop - Check Out");
-            break;
-        case "/product-details":
-            $("title.title-page").text("Aroma Shop - Product Details");
-            break;
-        case "/contact":
-            $("title.title-page").text("Aroma Shop - Contact");
-            $("li.contact").addClass("active");
-            break;
-        case "/login":
-            $("title.title-page").text("Aroma Shop - Login");
-            $("div.nav-link>a.login").addClass("active");
-            break;
-        case "/register":
-            $("title.title-page").text("Aroma Shop - Register");
-            $("div.nav-link>a.register").addClass("active");
-            break;
-        case "/confirmation":
-            $("title.title-page").text("Aroma Shop - Confirmation");
-            break;
-        case "/tracking-order":
-            $("title.title-page").text("Aroma Shop - Tracking Order");
-            break;
-        case "/favourite":
-            $("title.title-page").text("Aroma Shop - Favourite");
-            break;
-        case "/account-info":
-            $("title.title-page").text("Aroma Shop - Account Info");
-            break;
-        default :
-            $("title.title-page").text("Aroma Shop");
-            break;
+    case "/home":
+        $("title.title-page").text("Aroma Shop - Home");
+        $("li.home").addClass("active");
+        break;
+    case "/shop":
+        $("title.title-page").text("Aroma Shop - Shop");
+        $("li.shop").addClass("active");
+        break;
+    case "/cart":
+        $("title.title-page").text("Aroma Shop - Cart");
+        $("li.cart").addClass("active");
+        break;
+    case "/checkout":
+        $("title.title-page").text("Aroma Shop - Check Out");
+        break;
+    case "/product-details":
+        $("title.title-page").text("Aroma Shop - Product Details");
+        break;
+    case "/contact":
+        $("title.title-page").text("Aroma Shop - Contact");
+        $("li.contact").addClass("active");
+        break;
+    case "/login":
+        $("title.title-page").text("Aroma Shop - Login");
+        $("div.nav-link>a.login").addClass("active");
+        break;
+    case "/register":
+        $("title.title-page").text("Aroma Shop - Register");
+        $("div.nav-link>a.register").addClass("active");
+        break;
+    case "/confirmation":
+        $("title.title-page").text("Aroma Shop - Confirmation");
+        break;
+    case "/tracking-order":
+        $("title.title-page").text("Aroma Shop - Tracking Order");
+        break;
+    case "/favourite":
+        $("title.title-page").text("Aroma Shop - Favourite");
+        break;
+    case "/account-info":
+        $("title.title-page").text("Aroma Shop - Account Info");
+        break;
+    default :
+        $("title.title-page").text("Aroma Shop");
+        break;
+}
+$.ajax({
+    url: urlServer + "v1/api/product/all-category",
+    type: "GET",
+    success: function (response) {
+        if(response.code == "00") {
+            lstCategory = response.data;
+            if(pathname == "/shop") {
+                rederDataCategory(response.data);
+            }
+            searchAdvanced();
+        }else {
+            toastr.warning('Find not data for category!');
+        }
+    },
+    error: function (response) {
+        toastr.error('An error occurred . Please try again', response.message);
     }
+});
+$.ajax({
+    url: urlServer + "v1/api/product/all-material",
+    type: "GET",
+    success: function (response) {
+        if(response.code == "00") {
+            lstMaterial = response.data;
+            if(pathname == "/shop") {
+                rederDataMaterial(response.data);
+            }
+            searchAdvanced();
+        }else {
+            toastr.warning('Find not data for material!');
+        }
+    },
+    error: function (response) {
+        toastr.error('An error occurred . Please try again', response.message);
+    }
+});
+
 function findCategories(type) {
     let category = null;
     console.log(lstCategory);
