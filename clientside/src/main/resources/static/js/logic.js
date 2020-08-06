@@ -17,6 +17,8 @@ var currentPage = 0;
 var listAllProduct = [];
 var listTrendingProduct = [];
 var singleProduct = null;
+var lstMaterial  = [];
+var lstCategory  = [];
 
 var userDto = {
     username: "",
@@ -168,53 +170,21 @@ switch (pathname) {
     }
 function findCategories(type) {
     let category = null;
-    switch (type) {
-        case 0:
-            category = "Cabinets";
-            break;
-        case 1:
-            category = "Desk";
-            break;
-        case 2:
-            category = "Decorate";
-            break;
-        case 3:
-            category = "Belongings";
-            break;
-        case 4:
-            category = "Sofa";
-            break;
-        case 5:
-            category = "Lamp";
-            break;
-        default:
-            category = ""
-            break;
-    }
+    console.log(lstCategory);
+    lstCategory.forEach(item => {
+        if(item.id == type) {
+            category = item.contentCategory;
+        }
+    });
     return category;
 }
-function findMaterial(matearial) {
+function findMaterial(material) {
     let fabric = null;
-    switch (matearial) {
-        case 0:
-            fabric = "Wood";
-            break;
-        case 1:
-            fabric = "Plastic";
-            break;
-        case 2:
-            fabric = "Glass";
-            break;
-        case 3:
-            fabric = "Titanium alloy";
-            break;
-        case 4:
-            fabric = "Iron";
-            break;
-        default:
-            fabric = "";
-            break;
-    }
+    lstMaterial.forEach(item => {
+        if(item.id == material) {
+            fabric = item.contentMaterial;
+        }
+    });
     return fabric;
 }
 function findStatusOrder(status) {

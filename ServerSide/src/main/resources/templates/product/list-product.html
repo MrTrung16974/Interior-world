@@ -167,7 +167,8 @@
 <!-- DataTables -->
 <script th:inline="javascript">
     //<![CDATA[
-    var lstProduct = [[${lstProduct}]];
+    var lstCategory = [[${lstCategory}]];
+    var lstMaterial = [[${lstMaterial}]];
     // var token = $("meta[name='_csrf']").attr("content");
     // var header = $("meta[name='_csrf_header']").attr("content");
     // var dtViLang = /*[[@{/plugins/datatables/extensions/i18n/vi.json}]]*/ "plugins/datatables/extensions/i18n/vi.json";
@@ -237,29 +238,11 @@
                 {
                     "render": function (data, type, row) {
                         let category = null;
-                        switch (row.type.type) {
-                            case 0:
-                                category = "Cabinets";
-                                break;
-                            case 1:
-                                category = "Desk";
-                                break;
-                            case 2:
-                                category = "Decorate";
-                                break;
-                            case 3:
-                                category = "Belongings";
-                                break;
-                            case 4:
-                                category = "Sofa";
-                                break;
-                            case 5:
-                                category = "Lamp";
-                                break;
-                            default:
-                                category = ""
-                                break;
-                        }
+                        lstCategory.forEach(item => {
+                            if(item.id == row.type.type) {
+                                category = item.contentCategory;
+                            }
+                        });
                         return category;
                     },
                     "targets": 5
@@ -267,26 +250,11 @@
                 {
                     "render": function (data, type, row) {
                         let fabric = null;
-                        switch (row.type.material) {
-                            case 0:
-                                fabric = "Wood";
-                                break;
-                            case 1:
-                                fabric = "Plastic";
-                                break;
-                            case 2:
-                                fabric = "Glass";
-                                break;
-                            case 3:
-                                fabric = "Titanium alloy";
-                                break;
-                            case 4:
-                                fabric = "Iron";
-                                break;
-                            default:
-                                fabric = "";
-                                break;
-                        }
+                        lstMaterial.forEach(item => {
+                            if(item.id == row.type.material) {
+                                fabric = item.contentMaterial;
+                            }
+                        });
                         return fabric;
                     },
                     "targets": 6

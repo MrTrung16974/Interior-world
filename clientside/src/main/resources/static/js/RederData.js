@@ -380,8 +380,8 @@ function rederDataMaterial(data) {
         && data.length > 0) {
         $('#reder-material').append(
             `<li class="filter-list">
-                <input class="pixel-radio" type="radio" id="all-type" name="material" value="">
-                <label for="all-type">All</label>
+                <input class="pixel-radio" type="radio" id="all-material" name="material" value="">
+                <label for="all-material">All</label>
             </li>`
         );
         data.map(item => {

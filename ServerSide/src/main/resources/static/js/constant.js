@@ -154,6 +154,7 @@ for (var i = 0; i < lengthProductImg; i++) {
                         <label>
                             <img width="100" height="100" src="${data}" name="chkImage" alt="Image Product">
                             <input type="hidden" value="${data}" name="chkImage" class="image mt-2">
+                            <label class="image-remove" >&#967;</label>
                         </label>
                     </div>`
                 );

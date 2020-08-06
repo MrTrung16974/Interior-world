@@ -200,7 +200,7 @@ public class ProductApIController {
     }
 
     @GetMapping("/product/category/{type}")
-    public BaseResponse catetoryProduct(@PathVariable("type") Integer type){
+    public BaseResponse catetoryProduct(@PathVariable("type") String type){
         BaseResponse response = new BaseResponse();
         try {
             List<Product> listCatetoryProduct = productService.findByCatetory(type);

@@ -56,12 +56,12 @@ public class ProductService {
                 () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Product.class));
     }
 
-    public List<Product> findByCatetory(Integer type){
+    public List<Product> findByCatetory(String type){
         Query query = new Query();
 
         query.addCriteria(Criteria.where("star").is(5));
         query.limit(12);
-        if(type >= 0 && type != null) {
+        if(!Utils.checkNullOrEmpty(type)) {
             query.addCriteria(Criteria.where("type.type").is(type));
         }
         List<Product> lstProduct = mongoTemplate.find(query, Product.class);

@@ -58,7 +58,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Name Product (<span class="text-red">*</span>) </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="name" th:field="*{name}" maxlength="30" />
+                                                <input type="text" class="form-control" name="name" th:field="*{name}" maxlength="100" />
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@
                                                                     <label class="image" style="position: relative;">
                                                                         <img width="100" height="100" th:src="${image}" th:name="chkImage" alt="Image Product">
                                                                         <input type="hidden" th:value="${image}" th:name="chkImage" class="image mt-2">
-                                                                        <label class="image-remove" th:if="${titlePage} != 'View info product'">&#967;</label>
+                                                                        <label class="image-remove" th:if="${product.id} != null and ${titlePage} != 'View info product'">&#967;</label>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -340,7 +340,6 @@
     var addProductUrl = /*[[@{/product/add}]]*/ "/product/add";
     jQuery(document).ready(function () {
         $("#addForm").on("click", function(e){
-            console.log("Ok");
             e.preventDefault();
             if(product.id != null){
                 $('#formInsert').attr('action', editProductUrl + product.id).submit();
@@ -368,7 +367,7 @@
             return  $( "input[name=idColor]:checked").length > 0;
         };
         $.validator.methods.priceColor = function (value, element) {
-            if (value === '' && $( "input[name=idColor]:checked").length > 0) {
+            if ((value === '' || value === null) && $( "input[name=idColor]:checked").length > 0) {
                 return false;
             }
             return true;
@@ -416,7 +415,7 @@
             rules: {
                 name: {
                     required: true,
-                    maxlength: 30,
+                    maxlength: 100,
                     name: true
                 },
                 price: {
@@ -481,7 +480,7 @@
                 }
             },
             messages: {
-                name: "Name Product field must not be blank",
+                name: "Name Product field must not be blank and must no more than 100 characters",
                 price: "Price Product field must not be blank",
                 idColor: "Id Color field must not be blank",
                 priceColor: "Price For Color field must not be blank",

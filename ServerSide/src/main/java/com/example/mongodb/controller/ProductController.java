@@ -177,6 +177,14 @@ public class ProductController {
         boolean success = true;
         String message = "Add new product " + name + " success!";
         try {
+            List<String> newPriceColor = new ArrayList<>();
+            if(!Utils.checkNullOrEmpty(priceColor)) {
+                for (String s : priceColor) {
+                    if (!Utils.checkNullOrEmpty(s)) {
+                        newPriceColor.add(s);
+                    }
+                }
+            }
             if (!Utils.checkNullOrEmpty(name)) {
                 product.setName(name);
             }
@@ -196,23 +204,23 @@ public class ProductController {
                 List<Price> lstPrice = new ArrayList<>();
                 Integer length = idColor.size();
                 if (length > 0) {
-                    Price price1 = new Price(Integer.parseInt(idColor.get(0)), Utils.getNameColor(Integer.parseInt(idColor.get(0))), Double.valueOf(priceColor.get(0)));
+                    Price price1 = new Price(Integer.parseInt(idColor.get(0)), Utils.getNameColor(Integer.parseInt(idColor.get(0))), Double.valueOf(newPriceColor.get(0)));
                     lstPrice.add(price1);
                 }
                 if (length > 1) {
-                    Price price2 = new Price(Integer.parseInt(idColor.get(1)), Utils.getNameColor(Integer.parseInt(idColor.get(1))), Double.valueOf(priceColor.get(1)));
+                    Price price2 = new Price(Integer.parseInt(idColor.get(1)), Utils.getNameColor(Integer.parseInt(idColor.get(1))), Double.valueOf(newPriceColor.get(1)));
                     lstPrice.add(price2);
                 }
                 if (length > 2) {
-                    Price price3 = new Price(Integer.parseInt(idColor.get(2)), Utils.getNameColor(Integer.parseInt(idColor.get(2))), Double.valueOf(priceColor.get(2)));
+                    Price price3 = new Price(Integer.parseInt(idColor.get(2)), Utils.getNameColor(Integer.parseInt(idColor.get(2))), Double.valueOf(newPriceColor.get(2)));
                     lstPrice.add(price3);
                 }
                 if (length > 3) {
-                    Price price4 = new Price(Integer.parseInt(idColor.get(3)), Utils.getNameColor(Integer.parseInt(idColor.get(3))), Double.valueOf(priceColor.get(3)));
+                    Price price4 = new Price(Integer.parseInt(idColor.get(3)), Utils.getNameColor(Integer.parseInt(idColor.get(3))), Double.valueOf(newPriceColor.get(3)));
                     lstPrice.add(price4);
                 }
                 if (length > 4) {
-                    Price price5 = new Price(Integer.parseInt(idColor.get(4)), Utils.getNameColor(Integer.parseInt(idColor.get(4))), Double.valueOf(priceColor.get(4)));
+                    Price price5 = new Price(Integer.parseInt(idColor.get(4)), Utils.getNameColor(Integer.parseInt(idColor.get(4))), Double.valueOf(newPriceColor.get(4)));
                     lstPrice.add(price5);
                 }
                 product.setPriceForColor(lstPrice);

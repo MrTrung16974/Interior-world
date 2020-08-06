@@ -225,38 +225,44 @@ if(pathname == "/shop") {
             toastr.error('An error occurred . Please try again', response.message);
         }
     });
-
-    $.ajax({
-        url: urlServer + "v1/api/product/all-category",
-        type: "GET",
-        success: function (response) {
-            if(response.code == "00") {
-                rederDataCategory(response.data);
-                searchAdvanced();
-            }else {
-                toastr.warning('Find not data for category!');
-            }
-        },
-        error: function (response) {
-            toastr.error('An error occurred . Please try again', response.message);
-        }
-    });
-    $.ajax({
-        url: urlServer + "v1/api/product/all-material",
-        type: "GET",
-        success: function (response) {
-            if(response.code == "00") {
-                rederDataMaterial(response.data);
-                searchAdvanced();
-            }else {
-                toastr.warning('Find not data for material!');
-            }
-        },
-        error: function (response) {
-            toastr.error('An error occurred . Please try again', response.message);
-        }
-    });
 }
+$.ajax({
+    url: urlServer + "v1/api/product/all-category",
+    type: "GET",
+    success: function (response) {
+        if(response.code == "00") {
+            lstCategory = response.data;
+            if(pathname == "/shop") {
+                rederDataCategory(response.data);
+            }
+            searchAdvanced();
+        }else {
+            toastr.warning('Find not data for category!');
+        }
+    },
+    error: function (response) {
+        toastr.error('An error occurred . Please try again', response.message);
+    }
+});
+$.ajax({
+    url: urlServer + "v1/api/product/all-material",
+    type: "GET",
+    success: function (response) {
+        if(response.code == "00") {
+            lstMaterial = response.data;
+            if(pathname == "/shop") {
+                rederDataMaterial(response.data);
+            }
+            searchAdvanced();
+        }else {
+            toastr.warning('Find not data for material!');
+        }
+    },
+    error: function (response) {
+        toastr.error('An error occurred . Please try again', response.message);
+    }
+});
+
 if(pathname == "/checkout") {
     $.ajax({
         url: urlServer + "v1/api/order/did-checkout-products/"+ userDto.username,
