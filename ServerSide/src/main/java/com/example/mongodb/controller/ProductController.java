@@ -4,7 +4,11 @@ import com.example.mongodb.dto.BaseResponse;
 import com.example.mongodb.dto.product.Promotion;
 import com.example.mongodb.dto.product.Type;
 import com.example.mongodb.dto.product.Price;
+import com.example.mongodb.model.Category;
+import com.example.mongodb.model.Material;
 import com.example.mongodb.model.Product;
+import com.example.mongodb.repository.CategoryRepository;
+import com.example.mongodb.repository.MaterialRepository;
 import com.example.mongodb.repository.ProductRepository;
 import com.example.mongodb.services.ProductService;
 import com.example.mongodb.utils.Utils;
@@ -42,15 +46,24 @@ public class ProductController {
     ProductRepository productRepository;
 
     @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    MaterialRepository materialRepository;
+
+
+    @Autowired
     ProductService productService;
 
     @RequestMapping("/list")
     public ModelAndView listProduct(HttpServletRequest request,
-                              Principal principal) {
+                                    Principal principal) {
         String tag = buildLogTag(request, principal, "List Product");
         LOGGER.debug(LOG_FORMAT, tag, "List product view");
         ModelAndView mv = new ModelAndView("product/list-product");
-        mv.addObject("lstProduct",productRepository.findAll());
+        mv.addObject("lstProduct", productRepository.findAll());
+        mv.addObject("lstMaterial", materialRepository.findAll());
+        mv.addObject("lstCategory", categoryRepository.findAll());
         LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
         return mv;
     }
@@ -58,8 +71,8 @@ public class ProductController {
     @RequestMapping("/search")
     @ResponseBody
     public BaseResponse search(@RequestParam("name") String name,
-                               @RequestParam("material") Integer material,
-                               @RequestParam("category") Integer category,
+                               @RequestParam("material") String material,
+                               @RequestParam("category") String category,
                                @RequestParam("color") Integer color,
                                HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Search Product");
@@ -116,9 +129,13 @@ public class ProductController {
 
     private ModelAndView getUserModelView(Product product, String title, Boolean success, String message) {
         List<Product> lstProduct = productRepository.findAll();
+        List<Category> lstCategory = categoryRepository.findAll();
+        List<Material> lstMaterial = materialRepository.findAll();
         ModelAndView mv = new ModelAndView("product/form-product");
         mv.addObject("product", product);
         mv.addObject("lstProduct", lstProduct);
+        mv.addObject("lstCategory", lstCategory);
+        mv.addObject("lstMaterial", lstMaterial);
         mv.addObject("titlePage", title);
         if (success != null) {
             mv.addObject("success", success);
@@ -131,23 +148,23 @@ public class ProductController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView doAddProduct(@RequestParam("name") String name,
-                                  @RequestParam("price") String price,
-                                  @RequestParam("idColor") List<String> idColor,
-                                  @RequestParam("priceColor") List<String> priceColor,
-                                  @RequestParam("description") String description,
-                                  @RequestParam("longDescription") String longDescription,
-                                  @RequestParam("chkImage") List<String> image,
-                                  @RequestParam("promotion.name") String promotionName,
-                                  @RequestParam("promotion.percent") String promotionPercent,
-                                  @RequestParam("category") String type,
-                                  @RequestParam("material") String material,
-                                  @RequestParam("type.width") String width,
-                                  @RequestParam("type.height") String height,
-                                  @RequestParam("type.depth") String depth,
-                                  @RequestParam("type.weight") String weight,
-                                  @RequestParam("qualityChecking") String qualityChecking,
-                                  @RequestParam("star") String star,
-                                  Model model, HttpServletRequest request, Principal principal) {
+                                     @RequestParam("price") String price,
+                                     @RequestParam("idColor") List<String> idColor,
+                                     @RequestParam("priceColor") List<String> priceColor,
+                                     @RequestParam("description") String description,
+                                     @RequestParam("longDescription") String longDescription,
+                                     @RequestParam("chkImage") List<String> image,
+                                     @RequestParam("promotion.name") String promotionName,
+                                     @RequestParam("promotion.percent") String promotionPercent,
+                                     @RequestParam("category") String type,
+                                     @RequestParam("material") String material,
+                                     @RequestParam("type.width") String width,
+                                     @RequestParam("type.height") String height,
+                                     @RequestParam("type.depth") String depth,
+                                     @RequestParam("type.weight") String weight,
+                                     @RequestParam("qualityChecking") String qualityChecking,
+                                     @RequestParam("star") String star,
+                                     Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Add Product");
         LOGGER.debug(LOG_FORMAT + "name: {}, price: {}, idColor: {}, priceColor: {}, description: {}, " +
                         "longDescription: {}, image: {}, promotionName: {}, promotionPercent: {}, type: {}, " +
@@ -160,55 +177,55 @@ public class ProductController {
         boolean success = true;
         String message = "Add new product " + name + " success!";
         try {
-            if(!Utils.checkNullOrEmpty(name)) {
+            if (!Utils.checkNullOrEmpty(name)) {
                 product.setName(name);
             }
-            if(!Utils.checkNullOrEmpty(price)) {
+            if (!Utils.checkNullOrEmpty(price)) {
                 product.setPrice(Double.valueOf(price));
             }
-            if(!Utils.checkNullOrEmpty(description)) {
+            if (!Utils.checkNullOrEmpty(description)) {
                 product.setDescription(description);
             }
-            if(!Utils.checkNullOrEmpty(longDescription)) {
+            if (!Utils.checkNullOrEmpty(longDescription)) {
                 product.setLongDescription(longDescription);
             }
-            if(!Utils.checkNullOrEmpty(image)) {
+            if (!Utils.checkNullOrEmpty(image)) {
                 product.setImage(image);
             }
-            if(!Utils.checkNullOrEmpty(idColor) && !Utils.checkNullOrEmpty(priceColor)) {
+            if (!Utils.checkNullOrEmpty(idColor) && !Utils.checkNullOrEmpty(priceColor)) {
                 List<Price> lstPrice = new ArrayList<>();
                 Integer length = idColor.size();
-                if(length > 0) {
+                if (length > 0) {
                     Price price1 = new Price(Integer.parseInt(idColor.get(0)), Utils.getNameColor(Integer.parseInt(idColor.get(0))), Double.valueOf(priceColor.get(0)));
                     lstPrice.add(price1);
                 }
-                if(length > 1) {
+                if (length > 1) {
                     Price price2 = new Price(Integer.parseInt(idColor.get(1)), Utils.getNameColor(Integer.parseInt(idColor.get(1))), Double.valueOf(priceColor.get(1)));
                     lstPrice.add(price2);
                 }
-                if(length > 2) {
+                if (length > 2) {
                     Price price3 = new Price(Integer.parseInt(idColor.get(2)), Utils.getNameColor(Integer.parseInt(idColor.get(2))), Double.valueOf(priceColor.get(2)));
                     lstPrice.add(price3);
                 }
-                if(length > 3) {
+                if (length > 3) {
                     Price price4 = new Price(Integer.parseInt(idColor.get(3)), Utils.getNameColor(Integer.parseInt(idColor.get(3))), Double.valueOf(priceColor.get(3)));
                     lstPrice.add(price4);
                 }
-                if(length > 4) {
+                if (length > 4) {
                     Price price5 = new Price(Integer.parseInt(idColor.get(4)), Utils.getNameColor(Integer.parseInt(idColor.get(4))), Double.valueOf(priceColor.get(4)));
                     lstPrice.add(price5);
                 }
                 product.setPriceForColor(lstPrice);
             }
-            if(!Utils.checkNullOrEmpty(promotionName) || !Utils.checkNullOrEmpty(promotionPercent)) {
+            if (!Utils.checkNullOrEmpty(promotionName) || !Utils.checkNullOrEmpty(promotionPercent)) {
                 product.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent), new Date()));
             }
-            if(!Utils.checkNullOrEmpty(name)) {
+            if (!Utils.checkNullOrEmpty(name)) {
                 product.setName(name);
             }
-            product.setType(new Type(Integer.parseInt(type), Integer.parseInt(material), Integer.parseInt(width),
-                    Integer.parseInt(height),Integer.parseInt(depth),Integer.parseInt(weight), qualityChecking));
-            if(!Utils.checkNullOrEmpty(star)) {
+            product.setType(new Type(type, material, Integer.parseInt(width),
+                    Integer.parseInt(height), Integer.parseInt(depth), Integer.parseInt(weight), qualityChecking));
+            if (!Utils.checkNullOrEmpty(star)) {
                 product.setStar(Integer.parseInt(star));
             }
 
@@ -255,7 +272,7 @@ public class ProductController {
                                         @RequestParam("type.weight") String weight,
                                         @RequestParam("qualityChecking") String qualityChecking,
                                         @RequestParam("star") String star,
-                                     Model model, HttpServletRequest request, Principal principal) {
+                                        Model model, HttpServletRequest request, Principal principal) {
         String tag = buildLogTag(request, principal, "Edit Product");
         LOGGER.debug(LOG_FORMAT + "name: {}, price: {}, idColor: {}, priceColor: {}, description: {}, " +
                         "longDescription: {}, image: {}, promotionName: {}, promotionPercent: {}, type: {}, " +
@@ -272,55 +289,55 @@ public class ProductController {
         boolean success = true;
         String message = "Update product information successfully!";
         try {
-            if(!Utils.checkNullOrEmpty(name)) {
+            if (!Utils.checkNullOrEmpty(name)) {
                 checkProduct.setName(name);
             }
-            if(!Utils.checkNullOrEmpty(price)) {
+            if (!Utils.checkNullOrEmpty(price)) {
                 checkProduct.setPrice(Double.valueOf(price));
             }
-            if(!Utils.checkNullOrEmpty(description)) {
+            if (!Utils.checkNullOrEmpty(description)) {
                 checkProduct.setDescription(description);
             }
-            if(!Utils.checkNullOrEmpty(longDescription)) {
+            if (!Utils.checkNullOrEmpty(longDescription)) {
                 checkProduct.setLongDescription(longDescription);
             }
-            if(!Utils.checkNullOrEmpty(image)) {
+            if (!Utils.checkNullOrEmpty(image)) {
                 checkProduct.setImage(image);
             }
-            if(!Utils.checkNullOrEmpty(idColor) && !Utils.checkNullOrEmpty(priceColor)) {
+            if (!Utils.checkNullOrEmpty(idColor) && !Utils.checkNullOrEmpty(priceColor)) {
                 List<Price> lstPrice = new ArrayList<>();
                 Integer length = idColor.size();
-                if(length > 0) {
+                if (length > 0) {
                     Price price1 = new Price(Integer.parseInt(idColor.get(0)), Utils.getNameColor(Integer.parseInt(idColor.get(0))), Double.valueOf(priceColor.get(0)));
                     lstPrice.add(price1);
                 }
-                if(length > 1) {
+                if (length > 1) {
                     Price price2 = new Price(Integer.parseInt(idColor.get(1)), Utils.getNameColor(Integer.parseInt(idColor.get(1))), Double.valueOf(priceColor.get(1)));
                     lstPrice.add(price2);
                 }
-                if(length > 2) {
+                if (length > 2) {
                     Price price3 = new Price(Integer.parseInt(idColor.get(2)), Utils.getNameColor(Integer.parseInt(idColor.get(2))), Double.valueOf(priceColor.get(2)));
                     lstPrice.add(price3);
                 }
-                if(length > 3) {
+                if (length > 3) {
                     Price price4 = new Price(Integer.parseInt(idColor.get(3)), Utils.getNameColor(Integer.parseInt(idColor.get(3))), Double.valueOf(priceColor.get(3)));
                     lstPrice.add(price4);
                 }
-                if(length > 4) {
+                if (length > 4) {
                     Price price5 = new Price(Integer.parseInt(idColor.get(4)), Utils.getNameColor(Integer.parseInt(idColor.get(4))), Double.valueOf(priceColor.get(4)));
                     lstPrice.add(price5);
                 }
                 checkProduct.setPriceForColor(lstPrice);
             }
-            if(!Utils.checkNullOrEmpty(promotionPercent) || !Utils.checkNullOrEmpty(promotionName)) {
+            if (!Utils.checkNullOrEmpty(promotionPercent) || !Utils.checkNullOrEmpty(promotionName)) {
                 checkProduct.setPromotion(new Promotion(promotionName, Integer.parseInt(promotionPercent), new Date()));
             }
-            if(!Utils.checkNullOrEmpty(name)) {
+            if (!Utils.checkNullOrEmpty(name)) {
                 checkProduct.setName(name);
             }
-            checkProduct.setType(new Type(Integer.parseInt(type), Integer.parseInt(material), Integer.parseInt(width),
-                    Integer.parseInt(height),Integer.parseInt(depth),Integer.parseInt(weight), qualityChecking));
-            if(!Utils.checkNullOrEmpty(star)) {
+            checkProduct.setType(new Type(type, material, Integer.parseInt(width),
+                    Integer.parseInt(height), Integer.parseInt(depth), Integer.parseInt(weight), qualityChecking));
+            if (!Utils.checkNullOrEmpty(star)) {
                 checkProduct.setStar(Integer.parseInt(star));
             }
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
@@ -339,13 +356,14 @@ public class ProductController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public long deleteProduct(@RequestParam("id") String id,
-                            HttpServletRequest request, Model model, Principal principal) throws ParseException {
-        String tag = buildLogTag(request, principal, "Update Status Product");
-        LOGGER.debug(LOG_FORMAT, tag, "DeleteOrder:" + id);
+                              HttpServletRequest request,
+                              Model model, Principal principal) throws ParseException {
+        String tag = buildLogTag(request, principal, "Delete Product");
+        LOGGER.debug(LOG_FORMAT, tag, "DeleteProduct:" + id);
         //modified count
         long modifiedCnt = 0;
         Product checkProduct = productRepository.findById(id).get();
-        if (checkProduct == null) {
+        if (Utils.checkNullOrEmpty(checkProduct)) {
             LOGGER.error(LOG_FORMAT, tag, "User not found:" + id);
             return modifiedCnt;
         }

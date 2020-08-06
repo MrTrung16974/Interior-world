@@ -92,6 +92,7 @@ function rederDataAllProduct(data) {
     }
 }
 
+// reder product
 function rederDataTrending(data) {
     let checkFavourite = false;
     let count = 0;
@@ -346,6 +347,56 @@ function rederDataSlide(data) {
     owlBanner.trigger('refresh.owl.carousel')
 }
 
+function rederDataCategory(data) {
+    $("#render-type").empty();
+    if(typeof data != "undefined"
+        && data != null
+        && data.length != null
+        && data.length > 0) {
+        $('#render-type').append(
+            `<li class="filter-list">
+                <input class="pixel-radio" type="radio" id="all-type" name="type" value="">
+                <label for="all-type">All</label>
+            </li>`
+        );
+        data.map(item => {
+            $('#render-type').append(
+                `<li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="${item.contentCategory}" name="type" value="${item.id}">
+                    <img width="20" height="20" style="border-right: 10px;" src="${item.iconCategory}" alt="icon Category" />
+                    <label for="${item.contentCategory}">${item.contentCategory}</label>
+                </li>`
+            );
+        });
+    }else{
+        $("#render-type").html("<p style='color: #1abc9c;padding: 20px;'>Category not data!</p>");
+    }
+}
+function rederDataMaterial(data) {
+    $("#reder-material").empty();
+    if(typeof data != "undefined"
+        && data != null
+        && data.length != null
+        && data.length > 0) {
+        $('#reder-material').append(
+            `<li class="filter-list">
+                <input class="pixel-radio" type="radio" id="all-type" name="material" value="">
+                <label for="all-type">All</label>
+            </li>`
+        );
+        data.map(item => {
+            $('#reder-material').append(
+                `<li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="${item.contentMaterial}" name="material" value="${item.id}">
+                    <img width="20" height="20" style="border-right: 10px;" src="${item.iconMaterial}" alt="icon Material" />
+                    <label for="${item.contentMaterial}">${item.contentMaterial}</label>
+                </li>`
+            );
+        });
+    }else{
+        $("#reder-material").html("<p style='color: #1abc9c;padding: 20px;'>Material not data!</p>");
+    }
+}
 
 function rederDataSingleProduct(item) {
     let checkFavourite = false;

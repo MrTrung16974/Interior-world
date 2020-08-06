@@ -3,8 +3,8 @@ package com.example.mongodb.dto.product;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Type {
-    private Integer type;
-    private Integer material;
+    private String type;
+    private String material;
     private Integer width;
     private Integer height;
     private Integer depth;
@@ -16,7 +16,7 @@ public class Type {
 
     }
 
-    public Type(Integer type, Integer material, Integer width, Integer height, Integer depth, Integer weight, String qualityChecking) {
+    public Type(String type, String material, Integer width, Integer height, Integer depth, Integer weight, String qualityChecking) {
         this.type = type;
         this.material = material;
         this.width = width;
@@ -26,19 +26,19 @@ public class Type {
         this.qualityChecking = qualityChecking;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Integer getMaterial() {
+    public String getMaterial() {
         return material;
     }
 
-    public void setMaterial(Integer material) {
+    public void setMaterial(String material) {
         this.material = material;
     }
 
@@ -81,5 +81,6 @@ public class Type {
     public void setQualityChecking(String qualityChecking) {
         this.qualityChecking = qualityChecking;
     }
-
 }
+
+  

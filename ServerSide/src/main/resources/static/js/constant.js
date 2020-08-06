@@ -103,7 +103,6 @@ function isDate(ExpiryDate) {
     return true;
 }
 
-
 // upload file image user
 let imageFace = $("input.img");
 let newFace = $("img.image");

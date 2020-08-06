@@ -225,6 +225,37 @@ if(pathname == "/shop") {
             toastr.error('An error occurred . Please try again', response.message);
         }
     });
+
+    $.ajax({
+        url: urlServer + "v1/api/product/all-category",
+        type: "GET",
+        success: function (response) {
+            if(response.code == "00") {
+                rederDataCategory(response.data);
+                searchAdvanced();
+            }else {
+                toastr.warning('Find not data for category!');
+            }
+        },
+        error: function (response) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
+    $.ajax({
+        url: urlServer + "v1/api/product/all-material",
+        type: "GET",
+        success: function (response) {
+            if(response.code == "00") {
+                rederDataMaterial(response.data);
+                searchAdvanced();
+            }else {
+                toastr.warning('Find not data for material!');
+            }
+        },
+        error: function (response) {
+            toastr.error('An error occurred . Please try again', response.message);
+        }
+    });
 }
 if(pathname == "/checkout") {
     $.ajax({
@@ -618,21 +649,23 @@ function updateUserAddress() {
 
 // product
 
-//Advanced search product
-$('#find-type input').on('change', function() {
-    type = $('input[name=type]:checked', '#find-type').val();
-    searchProduct(0);
-});
+function searchAdvanced() {
+    //Advanced search product
+    $('#find-type input').on('change', function() {
+        type = $('input[name=type]:checked', '#find-type').val();
+        searchProduct(0);
+    });
 
-$('#find-material input').on('change', function() {
-    material = $('input[name=material]:checked', '#find-material').val();
-    searchProduct(0);
-});
+    $('#find-material input').on('change', function() {
+        material = $('input[name=material]:checked', '#find-material').val();
+        searchProduct(0);
+    });
 
-$('#find-color input').on('change', function() {
-    color = $('input[name=color]:checked', '#find-color').val();
-    searchProduct(0);
-});
+    $('#find-color input').on('change', function() {
+        color = $('input[name=color]:checked', '#find-color').val();
+        searchProduct(0);
+    });
+}
 
 //Quick search product Advanced
 var debounceSearchProduct = debounce(function (page) {

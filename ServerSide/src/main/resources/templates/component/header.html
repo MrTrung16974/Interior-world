@@ -3,35 +3,35 @@
       xmlns:th="https://www.thymeleaf.org">
 
 <head th:fragment="head-link" class="footer">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Page Admin">
-        <meta name="author" content="Nguyễn Tiến Trung">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Page Admin">
+    <meta name="author" content="Nguyễn Tiến Trung">
 
-        <title  class="title-page">Aroma Admin</title>
+    <title  class="title-page">Aroma Admin</title>
 
-        <link rel="icon" th:href="@{/img/Fevicon.png}" type="image/png">
+    <link rel="icon" th:href="@{/img/Fevicon.png}" type="image/png">
 
-        <!-- Custom styles for this page -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- Custom styles for this page -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-        <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
 
-        <!-- Custom fonts for this template-->
-        <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-        <!-- Custom styles for this template-->
-        <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
-        <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
 
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div th:fragment="sidebar-area">
-        <ul class="navbar-nav h-100 bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<!-- Sidebar -->
+<div th:fragment="sidebar-area">
+    <ul class="navbar-nav h-100 bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/home}">
@@ -85,6 +85,8 @@
                     <h6 class="collapse-header">Product:</h6>
                     <a class="collapse-item" th:href="@{/product/list}">List Products</a>
                     <a class="collapse-item" th:href="@{/order/list}">Order Product</a>
+                    <a class="collapse-item" th:href="@{/category/list}">List Category</a>
+                    <a class="collapse-item" th:href="@{/material/list}">List Material</a>
                 </div>
             </div>
         </li>
@@ -120,127 +122,127 @@
         </div>
 
     </ul>
-    </div>
-    <!-- End of Sidebar -->
+</div>
+<!-- End of Sidebar -->
 
-    <!-- Topbar -->
-    <nav th:fragment="topbar-area" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<!-- Topbar -->
+<nav th:fragment="topbar-area" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <!-- Sidebar Toggle (Topbar) -->
-        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-        </button>
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
 
-        <!-- Topbar Navbar -->
-        <ul class="navbar-nav ml-auto">
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-                <a class="nav-link dropdown-toggle" th:href="@{#}" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-search fa-fw"></i>
-                </a>
-                <!-- Dropdown - Messages -->
-                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                    <form class="form-inline mr-auto w-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" th:href="@{#}" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
                         </div>
-                    </form>
-                </div>
-            </li>
+                    </div>
+                </form>
+            </div>
+        </li>
 
-            <div class="topbar-divider d-none d-sm-block"></div>
+        <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" th:href="@{#}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" th:href="@{#}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" th:href="@{/user/profile}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" th:href="@{/user/profile}">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{#}" data-toggle="modal" data-target="#logoutModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
-                </div>
-            </li>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" th:href="@{#}" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
+        </li>
 
-        </ul>
+    </ul>
 
-    </nav>
-    <!-- End of Topbar -->
+</nav>
+<!-- End of Topbar -->
 
 <!--    Infocations -->
-    <th:block th:fragment="notice_box">
-        <div class="alert alert-success alert-dismissable" th:if="${success!=null and success and message!=null}">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <span class="alert-content" th:text="${message}">Success</span>
-        </div>
+<th:block th:fragment="notice_box">
+    <div class="alert alert-success alert-dismissable" th:if="${success!=null and success and message!=null}">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span class="alert-content" th:text="${message}">Success</span>
+    </div>
 
-        <div class="alert alert-danger alert-dismissable" th:if="${success!=null and !success and message!=null}">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <span class="alert-content" th:text="${message}">Error</span>
-        </div>
-    </th:block>
-    <th:block th:fragment="alert">
-        <div class="alert alert-success alert-dismissable" id="alert-success"
-             style="display: none;position: fixed; top: 50px; right: 10px; z-index: 9999999; opacity: 0.9; min-width: 300px">
+    <div class="alert alert-danger alert-dismissable" th:if="${success!=null and !success and message!=null}">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span class="alert-content" th:text="${message}">Error</span>
+    </div>
+</th:block>
+<th:block th:fragment="alert">
+    <div class="alert alert-success alert-dismissable" id="alert-success"
+         style="display: none;position: fixed; top: 50px; right: 10px; z-index: 9999999; opacity: 0.9; min-width: 300px">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span class="alert-content">Success</span>
+    </div>
+
+    <div class="alert alert-danger alert-dismissable" id="alert-dander"
+         style="display: none; position: fixed; top: 50px; right: 10px; z-index: 9999999; opacity: 0.9">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span class="alert-content">Error</span>
+    </div>
+</th:block>
+<th:block th:fragment="alert-sub">
+    <div class="col-md-12">
+        <div class="alert alert-success alert-dismissable" id="alert-success-sub"
+             style="display: none; z-index: 9999999; opacity: 0.9">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <span class="alert-content">Success</span>
         </div>
 
-        <div class="alert alert-danger alert-dismissable" id="alert-dander"
-             style="display: none; position: fixed; top: 50px; right: 10px; z-index: 9999999; opacity: 0.9">
+        <div class="alert alert-danger alert-dismissable" id="alert-danger-sub"
+             style="display: none; z-index: 9999999; opacity: 0.9">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <span class="alert-content">Error</span>
         </div>
-    </th:block>
-    <th:block th:fragment="alert-sub">
-        <div class="col-md-12">
-            <div class="alert alert-success alert-dismissable" id="alert-success-sub"
-                 style="display: none; z-index: 9999999; opacity: 0.9">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <span class="alert-content">Success</span>
-            </div>
+    </div>
+</th:block>
 
-            <div class="alert alert-danger alert-dismissable" id="alert-danger-sub"
-                 style="display: none; z-index: 9999999; opacity: 0.9">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <span class="alert-content">Error</span>
+<!-- Modal Confirmation-->
+<div th:fragment="dialog_confirm" id="dialogConfirm" title="Confirm?" class="modal fade" role="dialog"
+     data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-content">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="confirm_title">Confirm</span>
             </div>
-        </div>
-    </th:block>
-
-    <!-- Modal Confirmation-->
-    <div th:fragment="dialog_confirm" id="dialogConfirm" title="Confirm?" class="modal fade" role="dialog"
-         data-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog modal-content">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span id="confirm_title">Xác nhận</span>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12" id="confirm_content">Are you sure?</div>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12" id="confirm_content">Bạn có chắc chắn không?</div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnConfirm">Xác nhận</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy bỏ</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnConfirm">Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

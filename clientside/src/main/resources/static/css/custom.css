@@ -127,6 +127,7 @@ div#bestSellerCarousel img.img-fluid {
 .hero-banner .hero-carousel__slide:hover::after {
     opacity: 0;
     z-index: 0;
+    visibility: hidden;
     transform: translateY(0);
 }
 .hero-banner::before {

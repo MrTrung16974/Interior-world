@@ -9,17 +9,17 @@ public class Category {
     @Id
     private String id;
     @Field("icon-category")
-    private String iconcategory;
+    private String iconCategory;
     @Field("content-category")
-    private String contentcategory;
+    private String contentCategory;
 
     public Category() {
 
     }
 
-    public Category(String iconcategory, String contentcategory) {
-        this.iconcategory = iconcategory;
-        this.contentcategory = contentcategory;
+    public Category(String iconCategory, String contentCategory) {
+        this.iconCategory = iconCategory;
+        this.contentCategory = contentCategory;
     }
 
     public String getId() {
@@ -30,20 +30,20 @@ public class Category {
         this.id = id;
     }
 
-    public String getIconcategory() {
-        return iconcategory;
+    public String getIconCategory() {
+        return iconCategory;
     }
 
-    public void setIconcategory(String iconcategory) {
-        this.iconcategory = iconcategory;
+    public void setIconCategory(String iconCategory) {
+        this.iconCategory = iconCategory;
     }
 
-    public String getContentcategory() {
-        return contentcategory;
+    public String getContentCategory() {
+        return contentCategory;
     }
 
-    public void setContentcategory(String contentcategory) {
-        this.contentcategory = contentcategory;
+    public void setContentCategory(String contentCategory) {
+        this.contentCategory = contentCategory;
     }
 }
 

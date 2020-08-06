@@ -46,14 +46,11 @@
                             <div class="row">
                                 <label class="col-sm-6 control-label no-padding-right p_top"> Category </label>
                                 <div class="col-sm-6">
-                                    <select class="select2 form-control" name="category" id="category">
-                                        <option value="">All</option>
-                                        <option value="0">Cabinets</option>
-                                        <option value="1">Desk</option>
-                                        <option value="2">Decorate</option>
-                                        <option value="3">Belongings</option>
-                                        <option value="4">Sofa</option>
-                                        <option value="5">Lamp</option>
+                                    <select class="select2 selectpicker form-control" name="category" id="category">
+                                        <option value="">--All--</option>
+                                        <option  th:each="category : ${lstCategory}" th:data-thumbnail="${category.iconCategory}"
+                                                 th:text="${category.contentCategory}" th:value="${category.id}">
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -64,13 +61,11 @@
                             <div class="row">
                                 <label class="col-sm-6 control-label no-padding-right p_top">Material </label>
                                 <div class="col-sm-6">
-                                    <select class="select2 form-control" name="material" id="material">
-                                        <option value="">All</option>
-                                        <option value="0">Wood</option>
-                                        <option value="1">Plastic</option>
-                                        <option value="2">Glass</option>
-                                        <option value="3">Titanium alloy</option>
-                                        <option value="4">Iron</option>
+                                    <select class="select2 selectpicker form-control" name="material" id="material">
+                                        <option value="">--All--</option>
+                                        <option th:each="material : ${lstMaterial}" th:data-thumbnail="${material.iconMaterial}"
+                                                th:value="${material.id}" th:text="${material.contentMaterial}">
+                                        </option>
                                     </select>
                                 </div>
                             </div>

@@ -200,14 +200,12 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Category product (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
-                                                <select class="select2 form-control" name="category" id="category">
+                                                <select class="select2 selectpicker form-control" name="category" id="category">
                                                     <option value="">--Option Caterory--</option>
-                                                    <option th:selected="${(product.type != null ? product.type.type : 9)  == 0}" value="0">Cabinets</option>
-                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 1}" value="1">Desk</option>
-                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 2}" value="2">Decorate</option>
-                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 3}" value="3">Belongings</option>
-                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 4}" value="4">Sofa</option>
-                                                    <option th:selected="${(product.type != null ? product.type.type : 9) == 5}" value="5">Lamp</option>
+                                                    <option  th:each="category : ${lstCategory}" th:data-thumbnail="${category.iconCategory}"
+                                                             th:selected="${(product.type != null ? product.type.type : 9) == category.id}"
+                                                             th:text="${category.contentCategory}" th:value="${category.id}">
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -216,13 +214,12 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Material product (<span class="text-red">*</span>)</label>
                                             <div class="col-sm-9">
-                                                <select class="select2 form-control" name="material" id="material">
+                                                <select class="select2 selectpicker form-control" name="material" id="material">
                                                     <option value="">--Option Material--</option>
-                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 0}" value="0">Wood</option>
-                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 1}" value="1">Plastic</option>
-                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 2}" value="2">Glass</option>
-                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 3}" value="3">Titanium alloy</option>
-                                                    <option th:selected="${(product.type != null ? product.type.material : 9) == 4}" value="4">Iron</option>
+                                                    <option th:each="material : ${lstMaterial}" th:data-thumbnail="${material.iconMaterial}"
+                                                            th:selected="${(product.type != null ? product.type.material : 9) == material.id}"
+                                                            th:value="${material.id}" th:text="${material.contentMaterial}">
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -395,7 +392,7 @@
             return true;
         };
         $.validator.methods.imgproduct = function (value, element) {
-            if (value === '') {
+            if (value == '') {
                 return false;
             }
             return true;

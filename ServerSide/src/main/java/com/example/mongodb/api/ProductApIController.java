@@ -68,9 +68,9 @@ public class ProductApIController {
 
     @GetMapping("/product/search")
     public BaseResponse searchProduct(@RequestParam(value = "name", required = false)String name,
-                              @RequestParam(value = "material", defaultValue = "-1")Integer material,
-                              @RequestParam(value = "color", defaultValue = "-1")Integer color,
-                              @RequestParam(value = "type", defaultValue = "-1")Integer type,
+                              @RequestParam(value = "material", defaultValue = "")String material,
+                              @RequestParam(value = "color", defaultValue = "")Integer color,
+                              @RequestParam(value = "type", defaultValue = "")String type,
                               @RequestParam(value = "sort", defaultValue = "1")Integer sort,
                               @RequestParam("page") int page,
                               @RequestParam("perPage") int perPage){
