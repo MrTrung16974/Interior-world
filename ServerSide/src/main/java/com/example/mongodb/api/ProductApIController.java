@@ -2,11 +2,11 @@ package com.example.mongodb.api;
 
 import com.example.mongodb.dto.BaseResponse;
 import com.example.mongodb.dto.product.ProductModel;
+import com.example.mongodb.model.Category;
+import com.example.mongodb.model.Material;
 import com.example.mongodb.model.Order;
 import com.example.mongodb.model.Product;
-import com.example.mongodb.repository.OrderRepository;
-import com.example.mongodb.repository.ProductRepository;
-import com.example.mongodb.repository.UserRepository;
+import com.example.mongodb.repository.*;
 import com.example.mongodb.services.ProductService;
 import com.example.mongodb.services.StoreFileService;
 import com.example.mongodb.services.TokenAuthenticationService;
@@ -30,6 +30,12 @@ public class ProductApIController {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    MaterialRepository materialRepository;
 
     @Autowired
     OrderRepository orderRepository;
@@ -193,7 +199,7 @@ public class ProductApIController {
         return response;
     }
 
-    @GetMapping("/product/catetory/{type}")
+    @GetMapping("/product/category/{type}")
     public BaseResponse catetoryProduct(@PathVariable("type") Integer type){
         BaseResponse response = new BaseResponse();
         try {
@@ -328,4 +334,47 @@ public class ProductApIController {
         return response;
     }
 
+    @GetMapping("/product/all-category")
+    public BaseResponse getAllCategoryProduct(){
+        BaseResponse response = new BaseResponse();
+        try {
+            List<Category> listCatetory = categoryRepository.findAll();
+            if (listCatetory.isEmpty()) {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            } else {
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listCatetory);
+            }
+        } catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("System erorr : " + e.getMessage());
+            response.setData(null);
+        }
+        return response;
+    }
+
+    @GetMapping("/product/all-material")
+    public BaseResponse getAllMaterialProduct(){
+        BaseResponse response = new BaseResponse();
+        try {
+            List<Material> listMaterial = materialRepository.findAll();
+            if (listMaterial.isEmpty()) {
+                response.setCode("99");
+                response.setMessage("Data not found");
+                response.setData(null);
+            } else {
+                response.setCode("00");
+                response.setMessage("success");
+                response.setData(listMaterial);
+            }
+        } catch (Exception e) {
+            response.setCode("90");
+            response.setMessage("System erorr : " + e.getMessage());
+            response.setData(null);
+        }
+        return response;
+    }
 }
