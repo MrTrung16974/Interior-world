@@ -11,6 +11,7 @@ import com.example.mongodb.repository.CategoryRepository;
 import com.example.mongodb.repository.MaterialRepository;
 import com.example.mongodb.repository.ProductRepository;
 import com.example.mongodb.services.ProductService;
+import com.example.mongodb.utils.Constant;
 import com.example.mongodb.utils.Utils;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
@@ -131,8 +132,18 @@ public class ProductController {
         List<Product> lstProduct = productRepository.findAll();
         List<Category> lstCategory = categoryRepository.findAll();
         List<Material> lstMaterial = materialRepository.findAll();
+        String createAt = null;
         ModelAndView mv = new ModelAndView("product/form-product");
+        if(!Utils.checkNullOrEmpty(product) && !Utils.checkNullOrEmpty(product.getPromotion())) {
+            try {
+                Promotion promotion =  product.getPromotion();
+                createAt = Constant.DATE_FORMAT_HMS.format(promotion.getCreateAt());
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         mv.addObject("product", product);
+        mv.addObject("createAtPot", createAt);
         mv.addObject("lstProduct", lstProduct);
         mv.addObject("lstCategory", lstCategory);
         mv.addObject("lstMaterial", lstMaterial);
@@ -154,14 +165,14 @@ public class ProductController {
                                      @RequestParam("description") String description,
                                      @RequestParam("longDescription") String longDescription,
                                      @RequestParam("chkImage") List<String> image,
-                                     @RequestParam("promotion.name") String promotionName,
-                                     @RequestParam("promotion.percent") String promotionPercent,
+                                     @RequestParam("promotionName") String promotionName,
+                                     @RequestParam("promotionPercent") String promotionPercent,
                                      @RequestParam("category") String type,
                                      @RequestParam("material") String material,
-                                     @RequestParam("type.width") String width,
-                                     @RequestParam("type.height") String height,
-                                     @RequestParam("type.depth") String depth,
-                                     @RequestParam("type.weight") String weight,
+                                     @RequestParam("width") String width,
+                                     @RequestParam("height") String height,
+                                     @RequestParam("depth") String depth,
+                                     @RequestParam("weight") String weight,
                                      @RequestParam("qualityChecking") String qualityChecking,
                                      @RequestParam("star") String star,
                                      Model model, HttpServletRequest request, Principal principal) {
@@ -236,6 +247,7 @@ public class ProductController {
             if (!Utils.checkNullOrEmpty(star)) {
                 product.setStar(Integer.parseInt(star));
             }
+            product.setCreateAt(new Date());
 
             LOGGER.debug(LOG_FORMAT, tag, "Inserting to DB. Product: " + gson.toJson(product));
             productService.addProduct(product);
@@ -270,14 +282,14 @@ public class ProductController {
                                         @RequestParam("description") String description,
                                         @RequestParam("longDescription") String longDescription,
                                         @RequestParam("chkImage") List<String> image,
-                                        @RequestParam("promotion.name") String promotionName,
-                                        @RequestParam("promotion.percent") String promotionPercent,
+                                        @RequestParam("promotionName") String promotionName,
+                                        @RequestParam("promotionPercent") String promotionPercent,
                                         @RequestParam("category") String type,
                                         @RequestParam("material") String material,
-                                        @RequestParam("type.width") String width,
-                                        @RequestParam("type.height") String height,
-                                        @RequestParam("type.depth") String depth,
-                                        @RequestParam("type.weight") String weight,
+                                        @RequestParam("width") String width,
+                                        @RequestParam("height") String height,
+                                        @RequestParam("depth") String depth,
+                                        @RequestParam("weight") String weight,
                                         @RequestParam("qualityChecking") String qualityChecking,
                                         @RequestParam("star") String star,
                                         Model model, HttpServletRequest request, Principal principal) {
@@ -348,6 +360,9 @@ public class ProductController {
             if (!Utils.checkNullOrEmpty(star)) {
                 checkProduct.setStar(Integer.parseInt(star));
             }
+            checkProduct.setCreateAt(new Date());
+
+
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
             productRepository.save(checkProduct);
             LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");

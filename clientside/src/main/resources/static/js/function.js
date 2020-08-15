@@ -36,7 +36,6 @@ var loadUserDto = () => {
     });
 }
 var checkLoginDto = () => {
-    shopLoading();
     $.ajax({
         url: urlServer + "v1/api/getInfoUser",
         type: "GET",
@@ -52,11 +51,9 @@ var checkLoginDto = () => {
             } else {
                 checkLogin = false;
             }
-            hideLoading();
         },
         error: function (response) {
             checkLogin = false;
-            hideLoading();
         }
     });
     return checkLogin;

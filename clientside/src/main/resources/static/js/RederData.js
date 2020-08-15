@@ -454,7 +454,7 @@ function rederDataSingleProduct(item) {
                                     <a class="button primary-btn" onclick="addToCastDB('${item.id}', 1)">Add to Cart</a>               
                                 </div>
                                 <div class="card_area d-flex align-items-center">
-                                    <a class="icon_btn" onclick="addFavouriteUser(${item.id})"><i style="color: red;" class="lnr lnr lnr-heart-pulse"></i></a>
+                                    <a class="icon_btn" onclick="addFavouriteUser('${item.id}')"><i style="color: red;" class="lnr lnr lnr-heart-pulse"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -501,7 +501,7 @@ function rederDataSingleProduct(item) {
                                         <a class="button primary-btn" onclick="addToCastDB('${item.id}', 1)">Add to Cart</a>               
                                     </div>
                                     <div class="card_area d-flex align-items-center">
-                                        <a class="icon_btn" onclick="addFavouriteUser(${item.id})"><i class="lnr lnr lnr-heart"></i></a>
+                                        <a class="icon_btn" onclick="addFavouriteUser('${item.id}')"><i class="lnr lnr lnr-heart"></i></a>
                                     </div>
                                 </div>
                             </div>

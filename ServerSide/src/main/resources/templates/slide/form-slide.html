@@ -80,15 +80,15 @@
                                         <div class="col-sm-9">
                                             <img width="150" th:src="${slide.bgBanner}" th:name="bgBanner" th:field="*{bgBanner}" class="image" />
                                             <input type="hidden" class="form-control input-image" th:name="bgBanner" th:field="*{bgBanner}"/>
-                                            <input th:if="${titlePage} != 'View info banner'" type="file" class="img mt-2 " name="img" id="img"/>
-                                            <label th:if="${titlePage} != 'View info banner'" class="btn-img" for="img">Choose image</label>
+                                            <input th:if="${titlePage} != 'View info slide'" type="file" class="img mt-2 " name="img" id="img"/>
+                                            <label th:if="${titlePage} != 'View info slide'" class="btn-img" for="img">Choose image</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="clearfix form-actions">
                                     <div class="col-md-offset-3 col-md-9">
                                         <input type="submit" value="Add Slide" class="btn btn-info" id="addForm" th:if="${slide.id} == null" />
-                                        <input type="submit" value="Update Slide" class="btn btn-info" id="addForm" th:if="${slide.id} != null and ${titlePage} != 'View info banner'"   />
+                                        <input type="submit" value="Update Slide" class="btn btn-info" id="addForm" th:if="${slide.id} != null and ${titlePage} != 'View info slide'"   />
                                         <!--<input type="reset" class="btn" value="Hủy">&nbsp;-->
                                         <a class="btn btn-warning" th:href="@{/slide/list}">Back to list</a></div>
                                 </div>

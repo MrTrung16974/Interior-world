@@ -207,7 +207,6 @@ $.ajax({
 
 function findCategories(type) {
     let category = null;
-    console.log(lstCategory);
     lstCategory.forEach(item => {
         if(item.id == type) {
             category = item.contentCategory;
@@ -334,6 +333,7 @@ function forImage(data) {
     return imageWrite;
 }
 function forColor(data) {
+    console.log(data);
     let colorWrite = "";
     if(data.priceForColor != null && data.priceForColor.length > 0) {
         let item = data.priceForColor;
@@ -342,7 +342,7 @@ function forColor(data) {
             colorWrite += `<a class="${data.id}-checked">
                                 <label for="${data.id}-${item[i].nameColor}" class="name-color">${item[i].nameColor}</label>
                                 <input type="radio" value="${item[i].nameColor}"
-                                 onclick="getPriceProduct('${data.id}' ,${data.price}, ${item[i].priceForColor})"
+                                 onclick="getPriceProduct('${data.id}' , '${data.price}', '${item[i].priceForColor}', '${data.promotion != null ? data.promotion.percent : 0}')"
                                   name="color-price" id="${data.id}-${item[i].nameColor}">
                             </a>`;
         }
@@ -374,11 +374,20 @@ function forProductOrder(data) {
     }
     return productOrder;
 }
-function getPriceProduct(id, price, priceColor) {
+function getPriceProduct(id, price, priceColor , percent) {
     let nameColor = $(this);
+    let numberPrice = Number.parseInt(price);
+    let numberPriceColor = Number.parseInt(priceColor);
+    let numberPercent = Number.parseInt(percent);
     if(price > 0) {
-        $(`#${id}-price`).text(formatter.format(price + priceColor));
-        $(`.${id}-price-sellers`).text(formatter.format(price + priceColor));
+        if(Number.parseInt(percent) > 0) {
+            $(`#${id}-price`).text(formatter.format((numberPrice*((100-numberPercent)/100)) + numberPriceColor));
+
+            $(`.${id}-price-sellers`).text(formatter.format((numberPrice*((100-numberPercent)/100)) + numberPriceColor));
+        }else {
+            $(`#${id}-price`).text(formatter.format(numberPrice + numberPriceColor));
+            $(`.${id}-price-sellers`).text(formatter.format(numberPrice + numberPriceColor));
+        }
     }else {
         $(`#${id}-price`).text(formatter.format(0));
     }

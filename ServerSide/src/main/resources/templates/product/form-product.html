@@ -97,35 +97,35 @@
                                                                 <div th:if="${product.id == null}" class="checkbox">
                                                                     <label>
                                                                         <input th:name="idColor" value="1" type="checkbox" class="ace"/>
-                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <input disabled class="price-color" th:name="priceColor" type="number"/>
                                                                         <span class="lbl"> Black</span>
                                                                     </label>
                                                                 </div>
                                                                 <div th:if="${product.id == null}" class="checkbox">
                                                                     <label>
                                                                         <input th:name="idColor" value="2" type="checkbox" class="ace"/>
-                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <input disabled class="price-color" th:name="priceColor" type="number"/>
                                                                         <span class="lbl"> White</span>
                                                                     </label>
                                                                 </div>
                                                                 <div th:if="${product.id == null}" class="checkbox">
                                                                     <label>
                                                                         <input th:name="idColor" value="3" type="checkbox" class="ace"/>
-                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <input disabled="false" class="price-color" th:name="priceColor" type="number"/>
                                                                         <span class="lbl"> Yellow</span>
                                                                     </label>
                                                                 </div>
                                                                 <div th:if="${product.id == null}" class="checkbox">
                                                                     <label>
                                                                         <input th:name="idColor" value="4" type="checkbox" class="ace"/>
-                                                                        <input class="price-color" th:name="priceColor" type="number"/>
+                                                                        <input disabled class="price-color" th:name="priceColor" type="number"/>
                                                                         <span class="lbl"> Blue</span>
                                                                     </label>
                                                                 </div>
                                                                 <div th:if="${product.id == null}" class="checkbox">
                                                                     <label>
                                                                         <input th:name="idColor" value="5" type="checkbox" class="ace"/>
-                                                                        <input class="price-color" th:name="priceColor" value="Other" type="number"/>
+                                                                        <input disabled class="price-color" th:name="priceColor" value="Other" type="number"/>
                                                                         <span class="lbl"> Other</span>
                                                                     </label>
                                                                 </div>
@@ -177,7 +177,7 @@
                                                             </div>
                                                             <div class="btn-img">
                                                                 <input th:if="${titlePage} != 'View info product'" type="file" class="imgproduct mt-2" name="imgproduct" id="imgproduct"/>
-                                                                <label th:if="${titlePage} != 'View info product'" class="btn-img" for="imgproduct">Choose image</label>
+                                                                <label onclick="removeImage()" th:if="${titlePage} != 'View info product'" class="btn-img" for="imgproduct">Choose image</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,9 +190,9 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Promotion priduct </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:field="*{promotion.name}" th:name="promotionName" id="promotionName" maxlength="100"/>
-                                                <input type="number" class="form-control" th:field="*{promotion.percent}" th:name="promotionPercent" id="promotionPercent" maxlength="3"/>
-                                                <p th:text="${product.promotion != null ? product.promotion.createAt : '00/00/0000'}"></p>
+                                                <input type="text" class="form-control" th:value="${product.promotion != null ? product.promotion.name : ''}" th:name="promotionName" id="promotionName" maxlength="100"/>
+                                                <input type="number" class="form-control" th:value="${product.promotion != null ? product.promotion.percent : ''}" th:name="promotionPercent" id="promotionPercent" maxlength="3"/>
+                                                <p th:if="${product.id != null}" th:text="${createAtPot != null ? createAtPot : '00/00/0000 00:00:00'}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -226,33 +226,33 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Width  </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Width  (<span class="text-red">cm</span>)</label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.width}" name="width" id="width"/>
+                                                <input type="number"  class="form-control" th:value="${product.type != null ? product.type.width : ''}" name="width" id="width"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Height product </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Height product (<span class="text-red">cm</span>) </label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.height}" name="height" id="height"/>
+                                                <input type="number"  class="form-control" th:value="${product.type != null ? product.type.height : ''}" name="height" id="height"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Depth product </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Depth product (<span class="text-red">cm</span>)</label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.depth}" name="depth" id="depth"/>
+                                                <input type="number"  class="form-control" th:value="${product.type != null ? product.type.depth : ''}" name="depth" id="depth"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-sm-3 control-label no-padding-right p_top">Weight product </label>
+                                            <label class="col-sm-3 control-label no-padding-right p_top">Weight product (<span class="text-red">kg</span>)</label>
                                             <div class="col-sm-9">
-                                                <input type="number"  class="form-control" th:field="*{type.weight}" name="weight" id="weight"/>
+                                                <input type="number"  class="form-control" th:value="${product.type != null ? product.type.weight : ''}" name="weight" id="weight"/>
                                             </div>
                                         </div>
                                     </div>
@@ -262,8 +262,8 @@
                                             <div class="col-sm-9">
                                                 <select class="select2 form-control" id="qualityChecking" name="qualityChecking">
                                                     <option value="">--Option Quality Checking--</option>
-                                                    <option th:selected="${product.type.qualityChecking == 'Yes'}" value="Yes">Yes</option>
-                                                    <option th:selected="${product.type.qualityChecking == 'No'}" value="No">No</option>
+                                                    <option th:selected="${(product.type != null ? product.type.qualityChecking : '') == 'Yes'}" value="Yes">Yes</option>
+                                                    <option th:selected="${(product.type != null ? product.type.qualityChecking : '') == 'No'}" value="No">No</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -272,7 +272,7 @@
                                         <div class="row">
                                             <label class="col-sm-3 control-label no-padding-right p_top">Star product </label>
                                             <div class="col-sm-9">
-                                                <input type="number" class="form-control" th:field="*{star}" maxlength="1" name="star" id="star"/>
+                                                <input type="number" class="form-control" th:value="${product.star}" maxlength="1" name="star" id="star"/>
                                             </div>
                                         </div>
                                     </div>
@@ -339,6 +339,13 @@
     var editProductUrl = /*[[@{/product/edit/}]]*/ "/product/edit/";
     var addProductUrl = /*[[@{/product/add}]]*/ "/product/add";
     jQuery(document).ready(function () {
+        $('input[name=idColor]'). click(function() {
+            if($(this).prop("checked") == true){
+                $(this).next(".price-color").removeAttr("disabled");
+            }else if($(this).prop("checked") == false){
+                $(this).next(".price-color").attr("disabled", "disabled");
+            }
+        });
         $("#addForm").on("click", function(e){
             e.preventDefault();
             if(product.id != null){
@@ -409,6 +416,20 @@
             return true;
         };
 
+        $.validator.methods.promotionPercent = function (value, element) {
+            if(value > 100) {
+                return false;
+            }
+            return true;
+        };
+
+        $.validator.methods.star = function (value, element) {
+            if(value > 5) {
+                return false;
+            }
+            return true;
+        };
+
         $("#formInsert").validate({
             focusInvalid: true, // focus the last invalid input
             ignore: [],
@@ -446,7 +467,10 @@
                     required: false
                 },
                 promotionPercent: {
-                    required: false
+                    required: false,
+                    maxlength: 3,
+                    number: true,
+                    promotionPercent: true
                 },
                 imgproduct: {
                     required: true,
@@ -461,22 +485,29 @@
                     material: true
                 },
                 width: {
-                    required: false
+                    required: false,
+                    number: true
                 },
                 height: {
-                    required: false
+                    required: false,
+                    number: true
                 },
                 depth: {
-                    required: false
+                    required: false,
+                    number: true
                 },
                 weight: {
-                    required: false
+                    required: false,
+                    number: true
                 },
                 qualityChecking: {
                     required: false
                 },
                 star: {
-                    required: false
+                    required: false,
+                    number: true,
+                    maxlength: 1,
+                    star: true
                 }
             },
             messages: {
@@ -495,7 +526,9 @@
                 chkImage: "Image product field must not be blank",
                 imgproduct: "Img product product field must not be blank",
                 type: "Category field must not be blank",
-                material: "Material field must not be blank"
+                material: "Material field must not be blank",
+                promotionPercent: "Please enter no more than 3 characters and value should not be greater than 100",
+                star: "Please enter no more than 1 characters and value should not be greater than 5"
             },
             errorPlacement: function (error, element) {
                 if (element[0].type === 'checkbox') {
@@ -507,9 +540,13 @@
                 }
             }
         });
+    });
+    function removeImage() {
         $('label.image-remove').on('click', function() {
+            console.log("Ok");
             $(this).parent().html("");
         });
-    });
+    }
+    removeImage();
 </script>
 </html>

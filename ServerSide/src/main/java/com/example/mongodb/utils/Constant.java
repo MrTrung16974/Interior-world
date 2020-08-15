@@ -9,6 +9,7 @@ public class Constant {
 
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat DATE_FORMAT_HMS = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     public static final SimpleDateFormat DATE_FORMAT_SQL = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
     public static final String FORMAT_DATE_BE = "dd/MM/YYYY HH:mm";
