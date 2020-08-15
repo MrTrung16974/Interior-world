@@ -174,7 +174,6 @@ function forImage(data) {
     return imageWrite;
 }
 function forColor(data) {
-    console.log(data);
     let colorWrite = "";
     if(data.priceForColor != null && data.priceForColor.length > 0) {
         let item = data.priceForColor;

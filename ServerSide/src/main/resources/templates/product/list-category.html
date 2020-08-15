@@ -174,7 +174,11 @@
                     "targets": 3
                 },
                 {'bSortable': false, 'aTargets': ["no-sort"]}
-            ]
+            ],
+            createdRow: function( row, data, dataIndex ) {
+                // Set the data-status attribute, and add a class
+                $( row ).find('td:eq(1)').addClass('text-center');
+            }
         });
 
         //Dat gia tri cho cot index (STT) moi lan sap xep bang
