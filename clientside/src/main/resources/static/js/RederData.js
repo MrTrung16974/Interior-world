@@ -1159,7 +1159,7 @@ function rederDataFavourite(data) {
                           </div>
                       </td>
                       <td>
-                          <h5>${findCategories(item.type.type != null? item.type.type : 10)}</h5>
+                          <h5>${findCategories(item.type != null? item.type.type : 10)}</h5>
                       </td>
                       <td class="delete-item-cart">
                           <i onclick="addFavouriteUser('${item.id}')" class="fas fa-trash-alt"></i>

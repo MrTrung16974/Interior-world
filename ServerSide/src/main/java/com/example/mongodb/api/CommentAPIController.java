@@ -39,21 +39,21 @@ public class CommentAPIController {
                 comment.setId(String.valueOf(rd.nextInt(79263217)));
                 comment.setCreateAt(new Date());
                 List<Comment> lstComent = new ArrayList<>() ;
-                Integer totalStar = 0;
-                Integer length = 0;
-                Integer starProduct = null;
+                Double totalStar = 0.0;
+                Double length = 0.0;
+                Double starProduct = null;
                 if(exitproduct.getComment() != null) {
                     lstComent = exitproduct.getComment();
                 }
                 if(comment != null) {
                     lstComent.add(comment);
-                    length = lstComent.size();
+                    length = (double)lstComent.size();
                     exitproduct.setComment(lstComent);
                     for (int i = 0; i < length; i++) {
-                        totalStar += lstComent.get(i).getStar();
+                        totalStar +=(double) lstComent.get(i).getStar();
                     }
                     starProduct = totalStar / length;
-                    exitproduct.setStar(starProduct);
+                    exitproduct.setStar((int) Math.round(starProduct));
                 }
 
                 Product product = productRepository.save(exitproduct);
