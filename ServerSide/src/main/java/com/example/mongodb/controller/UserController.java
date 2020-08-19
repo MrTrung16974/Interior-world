@@ -81,6 +81,17 @@ public class UserController {
         return mv;
     }
 
+    @RequestMapping(value = "/header", method = RequestMethod.GET)
+    public ModelAndView headerView(HttpServletRequest request,
+                                Principal principal) {
+        String tag = buildLogTag(request, principal, "Header");
+        LOGGER.debug(LOG_FORMAT, tag, "Header view");
+        ModelAndView mv = new ModelAndView("component/header");
+        mv.addObject("user", userRepository.findByUsername(principal.getName()).get());
+        LOGGER.debug(LOG_FORMAT, tag, "Return view: " + mv.getViewName());
+        return mv;
+    }
+
     @RequestMapping("/search")
     @ResponseBody
     public BaseResponse search(@RequestParam("username") String userName,

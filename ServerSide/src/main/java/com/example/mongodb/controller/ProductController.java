@@ -360,9 +360,6 @@ public class ProductController {
             if (!Utils.checkNullOrEmpty(star)) {
                 checkProduct.setStar(Integer.parseInt(star));
             }
-            checkProduct.setCreateAt(new Date());
-
-
             LOGGER.debug(LOG_FORMAT, tag, "Updating into DB");
             productRepository.save(checkProduct);
             LOGGER.debug(LOG_FORMAT, tag, "Update into DB successfully");
