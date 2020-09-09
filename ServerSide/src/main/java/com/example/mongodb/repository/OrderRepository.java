@@ -12,4 +12,5 @@ public interface OrderRepository extends MongoRepository<Order,String> {
     Optional<Order> findByBuyerAndStatus(String id, Integer status);
     Optional<Order> findByBuyer(String id);
     Optional<List<Order>> findAllByStatus(Integer status);
+    Optional<List<Order>> findAllByStatusGreaterThan(Integer status);
 }

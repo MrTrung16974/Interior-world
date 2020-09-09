@@ -94,6 +94,9 @@ var formatPirceToInt = (price) => {
     let srtPrice = price.slice(1, end);
 
     let endStr = srtPrice.indexOf(",")
+    if(endStr == "-1") {
+        return srtPrice;
+    }
     let oneSrtPrice = srtPrice.slice(0, endStr);
     let twoStrPrice = srtPrice.slice(endStr+1)
     let endStrPrice = oneSrtPrice.concat(twoStrPrice);

@@ -720,13 +720,20 @@ function rederDataAllOrder(order) {
                 <div class="order">
                     <div class="order-header">
                         <div class="row">
-                            <div class="col-12 col-sm-5">
+                            <div class="col-12 col-sm-3">
+                                <div>
+                                    <i class="fas fa-id-card-alt"></i>
+                                    <span id="order_status">${item.id}</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-3">
                                 <div>
                                     <i class="fas fa-shipping-fast"></i>
                                     <span id="order_status">${findStatusOrder(item.status)}</span>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-7">
+                          
+                            <div class="col-12 col-sm-6">
                                 <div>
                                     <i class="fas fa-map-marker-alt"></i>
                                     <span id="order_address">${item.shippingAddress}</span>

@@ -7552,3 +7552,136 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving fragment: "~{'/
 2020-08-15 09:51:38,177 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-08-15 09:51:38,180 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2020-08-15 09:51:38,199 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 18 ms
+2020-08-20 00:44:19,446 [restartedMain] INFO  c.e.c.ClientsideApplication - Starting ClientsideApplication on MR_TRUNG with PID 4296 (E:\LUCAS\Interior-world\clientside\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\clientside)
+2020-08-20 00:44:19,565 [restartedMain] INFO  c.e.c.ClientsideApplication - No active profile set, falling back to default profiles: default
+2020-08-20 00:44:19,924 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-20 00:44:19,925 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-20 00:44:25,391 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-08-20 00:44:25,447 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-08-20 00:44:25,450 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-20 00:44:25,451 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-08-20 00:44:25,886 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-20 00:44:25,887 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5961 ms
+2020-08-20 00:44:26,570 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-20 00:44:26,814 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-20 00:44:27,646 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-20 00:44:27,708 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-08-20 00:44:27,776 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-08-20 00:44:27,813 [restartedMain] INFO  c.e.c.ClientsideApplication - Started ClientsideApplication in 11.253 seconds (JVM running for 16.794)
+2020-08-20 00:44:45,844 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-20 00:44:45,846 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-20 00:44:45,866 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 19 ms
+2020-08-20 00:55:29,753 [restartedMain] INFO  c.e.c.ClientsideApplication - Starting ClientsideApplication on MR_TRUNG with PID 9236 (E:\LUCAS\Interior-world\clientside\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\clientside)
+2020-08-20 00:55:29,768 [restartedMain] INFO  c.e.c.ClientsideApplication - No active profile set, falling back to default profiles: default
+2020-08-20 00:55:30,028 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-20 00:55:30,029 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-20 00:55:33,783 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-08-20 00:55:33,802 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-08-20 00:55:33,803 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-20 00:55:33,804 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-08-20 00:55:34,051 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-20 00:55:34,055 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4024 ms
+2020-08-20 00:55:34,539 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-20 00:55:34,648 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-20 00:55:35,083 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-20 00:55:35,116 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-08-20 00:55:35,150 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-08-20 00:55:35,169 [restartedMain] INFO  c.e.c.ClientsideApplication - Started ClientsideApplication in 7.534 seconds (JVM running for 11.441)
+2020-08-20 00:55:35,520 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-20 00:55:35,521 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-20 00:55:35,569 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 48 ms
+2020-08-20 19:38:22,587 [restartedMain] INFO  c.e.c.ClientsideApplication - Starting ClientsideApplication on MR_TRUNG with PID 12048 (E:\LUCAS\Interior-world\clientside\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\clientside)
+2020-08-20 19:38:22,704 [restartedMain] INFO  c.e.c.ClientsideApplication - No active profile set, falling back to default profiles: default
+2020-08-20 19:38:23,060 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-08-20 19:38:23,060 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-08-20 19:38:26,108 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-08-20 19:38:26,147 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-08-20 19:38:26,149 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-08-20 19:38:26,150 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-08-20 19:38:26,380 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-20 19:38:26,380 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3319 ms
+2020-08-20 19:38:26,855 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-20 19:38:27,016 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-08-20 19:38:27,438 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2020-08-20 19:38:27,493 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-08-20 19:38:27,545 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-08-20 19:38:27,564 [restartedMain] INFO  c.e.c.ClientsideApplication - Started ClientsideApplication in 7.2 seconds (JVM running for 15.811)
+2020-08-20 19:38:35,421 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-20 19:38:35,422 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-20 19:38:35,445 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 22 ms
+2020-09-05 21:55:11,119 [restartedMain] INFO  c.e.c.ClientsideApplication - Starting ClientsideApplication on MR_TRUNG with PID 7740 (E:\LUCAS\Interior-world\clientside\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\clientside)
+2020-09-05 21:55:11,275 [restartedMain] INFO  c.e.c.ClientsideApplication - No active profile set, falling back to default profiles: default
+2020-09-05 21:55:11,516 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-09-05 21:55:11,520 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-09-05 21:55:20,346 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-09-05 21:55:20,369 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-09-05 21:55:20,371 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-09-05 21:55:20,372 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-09-05 21:55:20,686 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-09-05 21:55:20,687 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 9145 ms
+2020-09-05 21:55:21,219 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-05 21:55:21,441 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-09-05 21:55:24,596 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-09-05 21:55:24,653 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-09-05 21:55:24,722 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-09-05 21:55:25,500 [restartedMain] INFO  c.e.c.ClientsideApplication - Started ClientsideApplication in 18.297 seconds (JVM running for 22.796)
+2020-09-05 22:30:55,302 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-05 22:30:55,306 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-09-05 22:30:55,369 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 62 ms
+2020-09-07 18:53:29,970 [restartedMain] INFO  c.e.c.ClientsideApplication - Starting ClientsideApplication on MR_TRUNG with PID 11820 (E:\LUCAS\Interior-world\clientside\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\clientside)
+2020-09-07 18:53:30,003 [restartedMain] INFO  c.e.c.ClientsideApplication - No active profile set, falling back to default profiles: default
+2020-09-07 18:53:30,439 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-09-07 18:53:30,439 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-09-07 18:53:37,245 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-09-07 18:53:37,403 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-09-07 18:53:37,408 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-09-07 18:53:37,410 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-09-07 18:53:38,830 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-09-07 18:53:38,831 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 8391 ms
+2020-09-07 18:53:39,844 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-07 18:53:40,428 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-09-07 18:53:43,566 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-09-07 18:53:43,661 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-09-07 18:53:43,775 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-09-07 18:53:43,812 [restartedMain] INFO  c.e.c.ClientsideApplication - Started ClientsideApplication in 17.633 seconds (JVM running for 27.729)
+2020-09-07 20:34:29,589 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-07 20:34:29,597 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-09-07 20:34:29,719 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 121 ms
+2020-09-07 22:51:13,745 [restartedMain] INFO  c.e.c.ClientsideApplication - Starting ClientsideApplication on MR_TRUNG with PID 9236 (E:\LUCAS\Interior-world\clientside\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\clientside)
+2020-09-07 22:51:13,759 [restartedMain] INFO  c.e.c.ClientsideApplication - No active profile set, falling back to default profiles: default
+2020-09-07 22:51:13,985 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-09-07 22:51:13,986 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-09-07 22:51:20,814 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-09-07 22:51:20,892 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-09-07 22:51:20,896 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-09-07 22:51:20,897 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-09-07 22:51:21,706 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-09-07 22:51:21,708 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7717 ms
+2020-09-07 22:51:34,015 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-07 22:51:34,448 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-09-07 22:51:35,857 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-09-07 22:51:35,928 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-09-07 22:51:36,058 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-09-07 22:51:36,177 [restartedMain] INFO  c.e.c.ClientsideApplication - Started ClientsideApplication in 25.375 seconds (JVM running for 33.443)
+2020-09-07 23:11:48,908 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-07 23:11:48,915 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-09-07 23:11:48,937 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 21 ms
+2020-09-09 14:03:45,181 [restartedMain] INFO  c.e.c.ClientsideApplication - Starting ClientsideApplication on MR_TRUNG with PID 4640 (E:\LUCAS\Interior-world\clientside\target\classes started by Mr.Trung in E:\LUCAS\Interior-world\clientside)
+2020-09-09 14:03:45,236 [restartedMain] INFO  c.e.c.ClientsideApplication - No active profile set, falling back to default profiles: default
+2020-09-09 14:03:45,806 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-09-09 14:03:45,808 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-09-09 14:03:55,155 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-09-09 14:03:55,209 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-09-09 14:03:55,211 [restartedMain] INFO  o.a.c.core.StandardService - Starting service [Tomcat]
+2020-09-09 14:03:55,213 [restartedMain] INFO  o.a.c.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-09-09 14:03:55,632 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-09-09 14:03:55,633 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 9820 ms
+2020-09-09 14:03:59,189 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-09 14:03:59,639 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2020-09-09 14:04:03,424 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-09-09 14:04:03,528 [restartedMain] INFO  o.a.c.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-09-09 14:04:03,614 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-09-09 14:04:03,642 [restartedMain] INFO  c.e.c.ClientsideApplication - Started ClientsideApplication in 26.211 seconds (JVM running for 45.222)
+2020-09-09 14:06:35,348 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-09 14:06:35,350 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-09-09 14:06:35,364 [http-nio-8080-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 13 ms

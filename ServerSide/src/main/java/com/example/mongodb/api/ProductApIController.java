@@ -138,7 +138,7 @@ public class ProductApIController {
     public BaseResponse bestSellers(){
         BaseResponse response = new BaseResponse();
         try {
-            Optional<List<Order>> listLatestProduct = orderRepository.findAllByStatus(1);
+            Optional<List<Order>> listLatestProduct = orderRepository.findAllByStatusGreaterThan(2);
             Optional<List<Product>> listAllProduct = Optional.of(productRepository.findAll());
             if (!listLatestProduct.isPresent() && !listAllProduct.isPresent()) {
                 response.setCode("99");

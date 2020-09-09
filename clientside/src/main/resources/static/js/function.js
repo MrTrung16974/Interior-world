@@ -68,7 +68,7 @@ if(token != null && token != "") {
 
 //check the user already logged
 // find product all
-if(pathname == "/home" || pathname == "/") {
+if(pathname == "/home" || pathname == "/" || pathname == ",") {
     /* ------- hero banner -------*/
     //Javascript
     $(document).ready(function(){
